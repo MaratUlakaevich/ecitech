@@ -7,6 +7,16 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      'sm': '320px',
+      // => @media (min-width: 576px) { ... }
+
+      'md': '768px',
+      // => @media (min-width: 960px) { ... }
+
+      'lg': '1140px',
+      // => @media (min-width: 1440px) { ... }
+    },
     extend: {
       colors: {
         background: "var(--background)",
