@@ -1,20 +1,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import Burger from "./Burger";
+import logo from "../../public/img/logo.png";
 
 export default function Navbar() {
   
 
-  const liStyle = "text-white-500 hover:text-gray-400 duration-300 font-medium text-xl tracking-wide";
+  const liStyle = "text-white-500 hover:text-gray-400 duration-300 font-medium text-lg tracking-wide";
 
   return (
-    <div className="relative flex justify-between items-center w-full">
+    <div className="relative flex justify-between items-center w-full lg:bg-transparent">
       <Link href="/" className="ml-8 lg:ml-0">
-        <Image src="/img/Logo.png" alt="ECITech Logo" width={170} height={44}></Image>
+        <Image src={logo} alt="ECITech Logo" className="w-40 lg:w-44"></Image>
       </Link>
-      <nav className="lg:flex hidden items-center py-4">
+      <nav className="lg:flex hidden items-center py-4 lg:bg-transparent">
 
-        <ul className="flex space-x-5 items-center">
+        <ul className="flex space-x-5 items-center lg:bg-transparent">
           <li className={liStyle}>
             <Link href="/services">Services</Link>
           </li>
@@ -33,7 +34,7 @@ export default function Navbar() {
           <li className={liStyle}>
             <Link href="/blog">Blog</Link>
           </li>
-          <li className={`${liStyle} border-2 border-blue-400 rounded-full px-5 py-2 hover:bg-gray-100 hover:text-gray-800 hover:border-gray-200`}>
+          <li className={`${liStyle} text-white bg-blue-700 hover:bg-blue-800 duration-300 focus:outline-none font-medium rounded-full text-xl px-10 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700`}>
             <Link href="/contact">Contact us</Link>
           </li>
         </ul>
