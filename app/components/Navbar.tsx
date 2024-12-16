@@ -6,7 +6,7 @@ import logo from "../../public/img/logo.png";
 export default function Navbar() {
   
 
-  const liStyle = "text-white-500 hover:text-gray-400 duration-300 font-medium text-lg tracking-wide";
+  const liStyle = "text-white-500 duration-300 font-medium text-lg tracking-wide hover:bg-grey-400";
 
   return (
     <div className="relative flex justify-between items-center w-full lg:bg-transparent">
@@ -15,26 +15,38 @@ export default function Navbar() {
       </Link>
       <nav className="lg:flex hidden items-center py-4 lg:bg-transparent">
 
-        <ul className="flex space-x-5 items-center lg:bg-transparent">
+        <ul className="flex space-x-2 items-center lg:bg-transparent">
           <li className={liStyle}>
-            <Link href="/services">Services</Link>
+            <Link href="/services">
+              <button className="p-1 px-3 rounded-full bg-black-500 hover:bg-blue-800 duration-300 active:bg-blue-700">Services</button>
+            </Link>
           </li>
           <li className={liStyle}>
-            <Link href="/industries">Industries</Link>
+            <Link href="/industries">
+              <button className="p-1 px-3 rounded-full bg-black-500 hover:bg-blue-800 duration-300 active:bg-blue-700">Industries</button>
+            </Link>
           </li>
           <li className={liStyle}>
-            <Link href="/expertise">Expertise</Link>
+            <Link href="/expertise">
+              <button className="p-1 px-3 rounded-full bg-black-500 hover:bg-blue-800 duration-300 active:bg-blue-700">Expertise</button>
+            </Link>
           </li>
           <li className={liStyle}>
-            <Link href="/company">Company</Link>
+            <Link href="/company">
+              <button className="p-1 px-3 rounded-full bg-black-500 hover:bg-blue-800 duration-300 active:bg-blue-700">Company</button>
+            </Link>
           </li>
           <li className={liStyle}>
-            <Link href="/portfolio">Portfolio</Link>
+            <Link href="/portfolio">
+              <button className="p-1 px-3 rounded-full bg-black-500 hover:bg-blue-800 duration-300 active:bg-blue-700">Portfolio</button>
+            </Link>
           </li>
           <li className={liStyle}>
-            <Link href="/blog">Blog</Link>
+            <Link href="/blog">
+              <button className="p-1 px-3 rounded-full bg-black-500 hover:bg-blue-800 duration-300 active:bg-blue-700">Blog</button>
+            </Link>
           </li>
-          <li className={`${liStyle} text-white bg-blue-700 hover:bg-blue-800 duration-300 focus:outline-none font-medium rounded-full text-xl px-10 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700`}>
+          <li className={`${liStyle} text-white bg-blue-700 hover:bg-blue-800 duration-300 font-medium rounded-full text-xl px-10 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700`}>
             <Link href="/contact">Contact us</Link>
           </li>
         </ul>
