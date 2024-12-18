@@ -4,7 +4,6 @@ interface CaseStudy {
   description: string;
   link: string;
 }
-//add one more case study. AI!
 export const cases: CaseStudy[] = [
   {
     image: "/img/portfolio/0c7fd31b0bbe5f0e3736693f4a6fff62758509f7bd7d4f3f0b90eb920ae31654-1x.webp",
@@ -23,6 +22,12 @@ export const cases: CaseStudy[] = [
     title: "Blockchain Wallet",
     description: "A secure blockchain wallet with real-time transactions and analytics.",
     link: "/portfolio/blockchain-wallet",
+  },
+  {
+    image: "/img/portfolio/6b550ac284ccdf6a8d5242fd1cf6f87d62ef805a1b983adbf4fb060b86fbf413-2x.webp",
+    title: "Mobile Banking App",
+    description: "A user-friendly mobile app for secure and convenient banking.",
+    link: "/portfolio/mobile-banking-app",
   },
 ];
 
