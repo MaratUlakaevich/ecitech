@@ -13,26 +13,26 @@ const CaseCardSchema = z.object({
 type CaseCardProps = z.infer<typeof CaseCardSchema>;
 
 const CaseCard: React.FC<CaseCardProps> = ({ image, title, description, link }) => {
-  
+  //make the background of card gradient. AI!
   return (
 
-    <div className="flex flex-col lg:flex-row items-center bg-[#292929] rounded-3xl shadow-md overflow-hidden">
-      <div className="hidden md:block w-full md:w-1/3 relative h-64">
+    <div className="flex flex-col lg:flex-row items-center bg-[#292929] rounded-3xl shadow-md overflow-hidden max-h-fit lg:max-h-[30.25rem]">
+      <div className="flex hidden px-2 md:flex w-full lg:w-1/2 relative md:h-[32rem] lg:h-[24rem]">
         <ErrorBoundary fallback={<div>Error loading image</div>}>
           
           <Image
             src={image}
             alt={title}
-            fill={true}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="rounded-l-lg"
+            width={512}
+            height={325}
+            className="rounded-l-lg object-contain w-full h-full"
             loading="lazy"
             placeholder="blur"
             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
           />
         </ErrorBoundary>
       </div>
-      <div className="w-full md:w-2/3 p-6 text-left">
+      <div className="w-full lg:w-1/2 p-6 text-left">
         <h3 className="text-xl lg:text-2xl font-bold text-white mb-2">{title}</h3>
         <p className="text-sm lg:text-base text-gray-400 mb-4">{description}</p>
         <a
