@@ -1,13 +1,26 @@
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Burger from "./Burger";
 import logo from "../../public/img/logo.png";
 
 export default function Navbar() {
-  
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [isMenuOpen]);
 
   const liStyle = "text-white-500 duration-300 font-medium text-lg tracking-wide hover:bg-grey-400";
-  //prevent the scroll of the page while the burger menu is open. AI!
+  
   return (
     <div className="relative flex justify-between items-center w-full lg:bg-transparent">
       <Link href="/" className="ml-8 lg:ml-0">
@@ -51,7 +64,7 @@ export default function Navbar() {
           </li>
         </ul>
       </nav>
-      <Burger/>
+      <Burger isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
     </div>
   );
 }
