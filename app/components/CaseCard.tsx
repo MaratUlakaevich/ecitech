@@ -17,14 +17,14 @@ const CaseCard: React.FC<CaseCardProps> = ({ image, title, description, link }) 
   return (
 
     <div className="flex flex-col lg:flex-row items-center bg-[#292929] rounded-3xl shadow-md overflow-hidden">
-      <div className="hidden md:block w-1/3 relative">
+      <div className="hidden md:block w-full md:w-1/3 relative h-64">
         <ErrorBoundary fallback={<div>Error loading image</div>}>
           
           <Image
             src={image}
             alt={title}
-            layout="responsive"
-            objectFit="cover"
+            fill={true}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="rounded-l-lg"
             loading="lazy"
             placeholder="blur"
