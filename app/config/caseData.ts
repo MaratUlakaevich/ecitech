@@ -4,7 +4,7 @@ interface CaseStudy {
   description: string;
   link: string;
 }
-
+// take the real images from the /public/img/portfolio folder. AI!
 export const cases: CaseStudy[] = [
   {
     image: "/img/portfolio/peopleAI.webp",
@@ -25,3 +25,5 @@ export const cases: CaseStudy[] = [
     link: "/portfolio/blockchain-wallet",
   },
 ];
+
+
