@@ -23,8 +23,7 @@ const CaseCard: React.FC<CaseCardProps> = ({ image, title, description, link }) 
           <Image
             src={image}
             alt={title}
-            width={500}
-            height={500} 
+            layout="responsive"
             objectFit="cover"
             className="rounded-l-lg"
             loading="lazy"
