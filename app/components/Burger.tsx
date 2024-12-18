@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-
+//now Burger has a prop isMenuOpen. Add this prop to the Burger component. AI!
 export default function Burger() {
   const [isOpen, setIsOpen] = useState(false);
 
