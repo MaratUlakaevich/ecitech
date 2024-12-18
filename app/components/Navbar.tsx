@@ -7,7 +7,7 @@ export default function Navbar() {
   
 
   const liStyle = "text-white-500 duration-300 font-medium text-lg tracking-wide hover:bg-grey-400";
-
+  //prevent the scroll of the page while the burger menu is open. AI!
   return (
     <div className="relative flex justify-between items-center w-full lg:bg-transparent">
       <Link href="/" className="ml-8 lg:ml-0">
