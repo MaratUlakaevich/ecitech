@@ -16,7 +16,7 @@ const CaseCard: React.FC<CaseCardProps> = ({ image, title, description, link }) 
   //make the background of card gradient. AI!
   return (
 
-    <div className="flex flex-col lg:flex-row items-center bg-[#292929] rounded-3xl shadow-md overflow-hidden max-h-fit lg:max-h-[30.25rem]">
+    <div className="flex flex-col lg:flex-row items-center outline-none bg-[#292929] rounded-3xl shadow-md overflow-hidden max-h-fit lg:max-h-[30.25rem]">
       <div className="flex hidden px-2 md:flex w-full lg:w-1/2 relative md:h-[32rem] lg:h-[24rem]">
         <ErrorBoundary fallback={<div>Error loading image</div>}>
           
