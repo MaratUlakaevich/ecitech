@@ -19,7 +19,7 @@ const CaseCard: React.FC<CaseCardProps> = ({ image, title, description, link }) 
     <div className="flex flex-col lg:flex-row items-center bg-[#292929] rounded-3xl shadow-md overflow-hidden">
       <div className="hidden md:block w-1/3 relative">
         <ErrorBoundary fallback={<div>Error loading image</div>}>
-          // make the image in range of 768px to 1140px on the top or the card and full width of the card. AI!
+          
           <Image
             src={image}
             alt={title}
