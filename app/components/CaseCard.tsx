@@ -1,24 +1,37 @@
 import React from "react";
 import Image from "next/image";
+import { z } from "zod";
+import { ErrorBoundary } from "react-error-boundary";
 
-interface CaseCardProps {
-  image: string; // URL изображения
-  title: string; // Название проекта
-  description: string; // Краткое описание
-  link: string; // Ссылка на страницу проекта
-}
+const CaseCardSchema = z.object({
+  image: z.string().url(),
+  title: z.string().min(1),
+  description: z.string().min(1),
+  link: z.string().url()
+});
+
+type CaseCardProps = z.infer<typeof CaseCardSchema>;
 
 const CaseCard: React.FC<CaseCardProps> = ({ image, title, description, link }) => {
+  
   return (
-    <div className="flex flex-col lg:flex-row items-center bg-[#292929] rounded-lg shadow-md overflow-hidden">
+
+    <div className="flex flex-col lg:flex-row items-center bg-[#292929] rounded-3xl shadow-md overflow-hidden">
       <div className="hidden md:block w-1/3 relative">
-        <Image
-          src={image}
-          alt={title}
-          layout="fill"
-          objectFit="cover"
-          className="rounded-l-lg"
-        />
+        <ErrorBoundary fallback={<div>Error loading image</div>}>
+          // make the image in range of 768px to 1140px on the top or the card and full width of the card. AI!
+          <Image
+            src={image}
+            alt={title}
+            width={500}
+            height={500} 
+            objectFit="cover"
+            className="rounded-l-lg"
+            loading="lazy"
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+          />
+        </ErrorBoundary>
       </div>
       <div className="w-full md:w-2/3 p-6 text-left">
         <h3 className="text-xl lg:text-2xl font-bold text-white mb-2">{title}</h3>
@@ -34,6 +47,5 @@ const CaseCard: React.FC<CaseCardProps> = ({ image, title, description, link }) 
       </div>
     </div>
   );
-};
-
+}
 export default CaseCard;
