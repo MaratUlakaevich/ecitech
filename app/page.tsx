@@ -13,7 +13,7 @@ import { clientImages } from "./config/images";
 import up from "../public/img/up.svg";
 
 export default function Home() {
-  const headerRef = useRef(null);
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     let prevScrollPos = window.pageYOffset;
@@ -29,6 +29,7 @@ export default function Home() {
       const newTranslateY = Math.max(maxTranslateY, Math.min(0, parseFloat(headerElement.style.transform.split('(')[1] || '0') - deltaY));
 
       headerElement.style.transform = `translateY(${newTranslateY}px)`;
+      headerElement.style.backgroundColor = currentScrollPos > 100 ? '#0a0a0a' : 'transparent';
       prevScrollPos = currentScrollPos;
     };
 
@@ -50,7 +51,7 @@ export default function Home() {
       <main>
         <header
           ref={headerRef}
-          className="sticky top-0 z-10 lg:mx-8 pt-10 flex lg:bg-transparent transition-transform duration-200 ease-in-out"
+          className={`sticky top-0 z-10 lg:mx-[-10px] pt-10 pb-5  flex transition-transform duration-200 ease-linear`}
         >
           <Navbar />
         </header>
