@@ -1,3 +1,5 @@
+'use client'
+
 import Head from "next/head"
 import Navbar from "./components/Navbar";
 import Image from "next/image";
@@ -9,6 +11,8 @@ import { styles } from "./constants/styles";
 import { useState, useEffect } from 'react';
 import { clientImages } from "./config/images";
 import up from "../public/img/up.svg";
+
+//instead of using state isHeaderVisible use css translateY only to make the transition smooth. AI! 
 
 export default function Home() {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -38,8 +42,8 @@ export default function Home() {
 
       <main>
         <header
-          className={`sticky top-0 z-10 lg:mx-8 pt-10 flex lg:bg-transparent transition-transform duration-300 ${
-            isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
+          className={`sticky top-0 z-10 lg:mx-8 pt-10 flex lg:bg-transparent transition-transform duration-200 ease-in-out ${
+            isHeaderVisible ? 'translate-y-0' : '-translate-y-[120px]'
           }`}
         >
           <Navbar />
