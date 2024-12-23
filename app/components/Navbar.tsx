@@ -1,8 +1,12 @@
+'use client'
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Burger from "./Burger";
 import logo from "../../public/img/logo.png";
+
+//make the navbar fixed but hidding when scrolling down and slowly appear when starting scrolling up. AI!
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
