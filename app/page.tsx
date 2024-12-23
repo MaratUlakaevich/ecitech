@@ -9,25 +9,34 @@ import Slider from "./components/Slider";
 import CaseSection from "./components/CaseSection";
 import { styles } from "./constants/styles";
 import { useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { clientImages } from "./config/images";
 import up from "../public/img/up.svg";
 
-//instead of using state isHeaderVisible use css translateY only to make the transition smooth. AI! 
-
 export default function Home() {
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const headerRef = useRef(null);
 
   useEffect(() => {
+    let prevScrollPos = window.pageYOffset;
+
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
-      setIsHeaderVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
-      setPrevScrollPos(currentScrollPos);
+      const headerElement = headerRef.current;
+
+      if (!headerElement) return;
+
+      if (prevScrollPos > currentScrollPos) {
+        headerElement.style.transform = "translateY(0)";
+      } else {
+        headerElement.style.transform = "translateY(-120px)";
+      }
+
+      prevScrollPos = currentScrollPos;
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [prevScrollPos, isHeaderVisible]);
+  }, []);
 
   return (
     <>
@@ -42,9 +51,8 @@ export default function Home() {
 
       <main>
         <header
-          className={`sticky top-0 z-10 lg:mx-8 pt-10 flex lg:bg-transparent transition-transform duration-200 ease-in-out ${
-            isHeaderVisible ? 'translate-y-0' : '-translate-y-[120px]'
-          }`}
+          ref={headerRef}
+          className="sticky top-0 z-10 lg:mx-8 pt-10 flex lg:bg-transparent transition-transform duration-200 ease-in-out"
         >
           <Navbar />
         </header>
