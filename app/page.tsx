@@ -6,11 +6,24 @@ import ScrollButton from "./components/ScrollButton";
 import Slider from "./components/Slider";
 import CaseSection from "./components/CaseSection";
 import { styles } from "./constants/styles";
+import { useState, useEffect } from 'react';
 import { clientImages } from "./config/images";
 import up from "../public/img/up.svg";
 
-//change haeder position to sticky and add translateY to add an effect of appearing when scrolling up and hidding when scrolling down. AI!
 export default function Home() {
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      setIsHeaderVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollPos, isHeaderVisible]);
 
   return (
     <>
@@ -24,8 +37,12 @@ export default function Home() {
       </Head>
 
       <main>
-        <header className="sticky lg:mx-8 pt-10 flex lg:bg-transparent">
-          <Navbar></Navbar>
+        <header
+          className={`sticky top-0 z-10 lg:mx-8 pt-10 flex lg:bg-transparent transition-transform duration-300 ${
+            isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
+          }`}
+        >
+          <Navbar />
         </header>
 
         <div className="absolute overflow-hidden lg:overflow-visible w-screen lg:max-w-[1128px]">
