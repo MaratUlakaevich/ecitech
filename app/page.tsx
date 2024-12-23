@@ -12,7 +12,6 @@ import { useEffect, useRef } from 'react';
 import { clientImages } from "./config/images";
 import up from "../public/img/up.svg";
 
-//at the beginng of the page the header should be vissible and when scrolling down it should go up till it hide. AI!
 export default function Home() {
   const headerRef = useRef(null);
 
