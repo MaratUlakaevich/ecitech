@@ -11,6 +11,7 @@ import { styles } from "./constants/styles";
 import { useEffect, useRef } from 'react';
 import { clientImages } from "./config/images";
 import up from "../public/img/up.svg";
+// make in opposit appear when scrolling up and hide when scrolling down. AI!
 export default function Home() {
   const headerRef = useRef(null);
 
