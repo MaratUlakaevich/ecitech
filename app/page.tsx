@@ -5,47 +5,40 @@ import headImg from "../public/img/3d.svg";
 import ScrollButton from "./components/ScrollButton";
 import Slider from "./components/Slider";
 import CaseSection from "./components/CaseSection";
+import { styles } from "./constants/styles";
+import { clientImages } from "./config/images";
 import up from "../public/img/up.svg";
 
-
+//change haeder position to sticky and add translateY to add an effect of appearing when scrolling up and hidding when scrolling down. AI!
 export default function Home() {
-  const lgh1 = "lg:text-7xl lg:px-0 lg:mx-0 lg:w-[40rem] lg:leading-snug";
-  const lgp = "lg:text-xl lg:px-0 lg:mx-0 lg:w-[40rem] lg:my-6";
-  const lgh2 = "lg:text-4xl lg:px-0 lg:mx-0 lg:w-[40rem]";
-  const section = "relative px-8 lg:px-0 bg-auto bg-no-repeat bg-center"
-
-  const images = [
-    "/img/peopleAI.svg",
-    "/img/ecosyst.svg",
-    "/img/wardiere.svg",
-    "/img/uipath.svg",
-    "/img/walletconnect.svg",
-    "/img/salford.svg",
-  ];
 
   return (
     <>
       <Head>
         <title>ECITech</title>
-        <meta name="description" content="" />
         <link rel="icon" href="#" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="ECITech - Unlocking Your Tech Potential" />
+        <meta property="og:title" content="ECITech" />
+        <meta property="og:description" content="We create solutions that solve business problems..." />
       </Head>
 
       <main>
-        <header className="lg:mx-8 pt-10 flex lg:bg-transparent">
+        <header className="sticky lg:mx-8 pt-10 flex lg:bg-transparent">
           <Navbar></Navbar>
         </header>
 
         <div className="absolute overflow-hidden lg:overflow-visible w-screen lg:max-w-[1128px]">
           <Image src={headImg} 
+                 priority={true}
+                 loading="eager"
                  alt="ECITech Main 3d img" 
                  className="relative rotate-[6deg] max-w-[600px] left-[4%] md:max-w-[800px] md:left-[20%] lg:max-w-full 
                             lg:w-fit -z-10 md:-top-9 lg:-top-20 g:left-40"></Image>
         </div>
-        <section className={`${section}`}>
+        <section className={`${styles.section}`}>
           <div className="m-auto mt-10 py-4 lg:mx-0 lg:mt-16 lg:p-0">
-            <h1 className={`${lgh1} 
+            <h1 className={`${styles.lgh1} 
                             md:text-6xl 
                             md:leading-snug 
                             md:w-[40rem] 
@@ -55,7 +48,7 @@ export default function Home() {
                             text-left 
                             text-white-500 
                             my-4`}>Unlocking Your Tech Potential</h1>
-            <p className={`${lgp} md:w-[44rem] text-lg font-medium text-left text-white-500 my-4`}>
+            <p className={`${styles.lgp} md:w-[44rem] text-lg font-medium text-left text-white-500 my-4`}>
               We create solutions that solve business problems, meet requirements, respond to market needs, and transform internal operations.
             </p>
           </div>
@@ -68,16 +61,25 @@ export default function Home() {
             <h4 className="text-slate-400">Our Clients</h4>
             <h3>We've Worked with</h3>
           </div>
-          <Slider images={images}></Slider>
+          <Slider images={clientImages}></Slider>
         </section>
-        <section className={`${section}`}>
+        <section className={`${styles.section}`}>
           <CaseSection></CaseSection>
         </section>
-        <section className={`${section} h-[500px]`}>
-          <h1 className={`${lgh2}
-                            mt-10 
-                            text-2xl
-                            font-bold`}>Case Studies</h1>
+        <section className={`${styles.section} h-[500px]`}>
+          <h1 className={`${styles.lgh2} mt-10 text-2xl font-bold`}>Core industry expertise</h1>
+          <div className="flex flex-wrap justify-center gap-4 mt-10">
+            <div className="w-full md:w-1/2 lg:w-1/3 p-4">
+              <div className="bg-gray-100 p-6 rounded-3xl">
+                <h2 className="text-lg font-semibold mb-2">Service Title</h2>
+                <p className="text-gray-600">Service Description</p>
+                <button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+          
         </section>
       </main>
       
