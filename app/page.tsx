@@ -26,7 +26,7 @@ export default function Home() {
       if (!headerElement) return;
 
       const deltaY = currentScrollPos - prevScrollPos;
-      const newTranslateY = Math.max(maxTranslateY, Math.min(0, parseFloat(headerElement.style.transform.split('(')[1] || '0') + deltaY));
+      const newTranslateY = Math.max(maxTranslateY, Math.min(0, parseFloat(headerElement.style.transform.split('(')[1] || '0') - deltaY));
 
       headerElement.style.transform = `translateY(${newTranslateY}px)`;
       prevScrollPos = currentScrollPos;
@@ -56,11 +56,11 @@ export default function Home() {
         </header>
 
         <div className="absolute overflow-hidden lg:overflow-visible w-screen lg:max-w-[1128px]">
-          <Image src={headImg} 
-                 priority={true}
-                 loading="eager"
-                 alt="ECITech Main 3d img" 
-                 className="relative rotate-[6deg] max-w-[600px] left-[4%] md:max-w-[800px] md:left-[20%] lg:max-w-full 
+          <Image src={headImg}
+            priority={true}
+            loading="eager"
+            alt="ECITech Main 3d img"
+            className="relative rotate-[6deg] max-w-[600px] left-[4%] md:max-w-[800px] md:left-[20%] lg:max-w-full 
                             lg:w-fit -z-10 md:-top-9 lg:-top-20 g:left-40"></Image>
         </div>
         <section className={`${styles.section}`}>
@@ -106,10 +106,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
+
         </section>
       </main>
-      
+
       <ScrollButton></ScrollButton>
     </>
   );
