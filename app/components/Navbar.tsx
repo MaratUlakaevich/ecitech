@@ -11,6 +11,17 @@ import logo from "../../public/img/logo.png";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
+    setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+    setPrevScrollPos(currentScrollPos);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollPos, visible, handleScroll]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -25,10 +36,14 @@ export default function Navbar() {
 
   const liStyle = "text-white-500 duration-300 font-medium text-lg tracking-wide hover:bg-grey-400";
   
+  const navbarStyles = `fixed w-full top-0 z-10 transition-opacity duration-500 ${
+    visible ? 'opacity-100' : 'opacity-0'
+  } flex justify-between items-center lg:bg-transparent`;
+
   return (
-    <div className="relative flex justify-between items-center w-full lg:bg-transparent">
+    <div className={navbarStyles}>
       <Link href="/" className="ml-8 lg:ml-0">
-        <Image src={logo} alt="ECITech Logo" className="w-40 lg:w-44"></Image>
+        <Image src={logo} alt="ECITech Logo" className="w-40 lg:w-44" />
       </Link>
       <nav className="lg:flex hidden items-center py-4 lg:bg-transparent">
 
