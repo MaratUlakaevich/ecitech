@@ -1,34 +1,55 @@
 'use client'
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import Burger from "./Burger";
-import logo from "../../public/img/logo.png";
-
-//make the navbar fixed but hidding when scrolling down and slowly appear when starting scrolling up. AI!
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import Burger from './Burger'
+import logo from '../../public/img/logo.png'
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [prevScrollPos, setPrevScrollPos] = useState(0)
+  const [visible, setVisible] = useState(true)
+
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset
+    setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10)
+    setPrevScrollPos(currentScrollPos)
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  })
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('overflow-hidden')
+    } else {
+      document.body.classList.remove('overflow-hidden')
     }
-  }, [isMenuOpen]);
+  }, [isMenuOpen])
 
-  const liStyle = "text-white-500 duration-300 font-medium text-lg tracking-wide hover:bg-grey-400";
-  
+  const liStyle =
+    'text-white-500 duration-300 font-medium text-lg tracking-wide hover:bg-grey-400'
+
   return (
-    <div className="relative flex justify-between items-center w-full lg:bg-transparent">
+    <div
+      className={`fixed top-0 z-10 flex justify-between items-center w-full transition-opacity duration-500 ${
+        visible ? 'opacity-100' : 'opacity-0'
+      } bg-black-500`}
+    >
       <Link href="/" className="ml-8 lg:ml-0">
-        <Image src={logo} alt="ECITech Logo" className="w-40 lg:w-44"></Image>
+        <Image src={logo} alt="ECITech Logo" className="w-40 lg:w-44" />
       </Link>
       <nav className="lg:flex hidden items-center py-4 lg:bg-transparent">
 
