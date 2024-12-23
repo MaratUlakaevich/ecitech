@@ -8,15 +8,16 @@ import ScrollButton from "./components/ScrollButton";
 import Slider from "./components/Slider";
 import CaseSection from "./components/CaseSection";
 import { styles } from "./constants/styles";
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { clientImages } from "./config/images";
 import up from "../public/img/up.svg";
-//the translateY should be not switching but depend on a position of a scroll. AI!
+
 export default function Home() {
   const headerRef = useRef(null);
 
   useEffect(() => {
     let prevScrollPos = window.pageYOffset;
+    const maxTranslateY = -120;
 
     const handleScroll = () => {
       const currentScrollPos = window.pageYOffset;
@@ -24,12 +25,10 @@ export default function Home() {
 
       if (!headerElement) return;
 
-      if (prevScrollPos > currentScrollPos) {
-        headerElement.style.transform = "translateY(0)";
-      } else {
-        headerElement.style.transform = "translateY(-120px)";
-      }
+      const deltaY = currentScrollPos - prevScrollPos;
+      const newTranslateY = Math.max(maxTranslateY, Math.min(0, parseFloat(headerElement.style.transform.split('(')[1] || '0') + deltaY));
 
+      headerElement.style.transform = `translateY(${newTranslateY}px)`;
       prevScrollPos = currentScrollPos;
     };
 
