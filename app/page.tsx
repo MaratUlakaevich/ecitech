@@ -8,11 +8,10 @@ import ScrollButton from "./components/ScrollButton";
 import Slider from "./components/Slider";
 import CaseSection from "./components/CaseSection";
 import { styles } from "./constants/styles";
-import { useState, useEffect } from 'react';
-import { useRef, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { clientImages } from "./config/images";
 import up from "../public/img/up.svg";
-
+//the translateY should be not switching but depend on a position of a scroll. AI!
 export default function Home() {
   const headerRef = useRef(null);
 
