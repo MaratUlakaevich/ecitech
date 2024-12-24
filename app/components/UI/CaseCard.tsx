@@ -25,6 +25,7 @@ const CaseCard: React.FC<CaseCardProps> = ({ image, title, description, link }) 
             alt={title}
             width={512}
             height={325}
+            unoptimized
             className="rounded-l-lg object-contain w-full h-full"
             loading="lazy"
             placeholder="blur"

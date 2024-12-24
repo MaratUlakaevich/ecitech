@@ -27,7 +27,7 @@ export default function Navbar() {
   return (
     <div className="relative flex justify-between items-center w-full lg:bg-transparent">
       <Link href="/" className="ml-8 lg:ml-0">
-        <Image src={logo} alt="ECITech Logo" className="w-40 lg:w-44"></Image>
+        <Image src={logo} alt="ECITech Logo" className="w-40 lg:w-44" unoptimized></Image>
       </Link>
       <nav className="lg:flex hidden items-center py-4 lg:bg-transparent">
 
