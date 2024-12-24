@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Burger from "./Burger";
-import logo from "../../public/img/logo.png";
+import logo from "../../../public/img/logo.png";
 
 
 export default function Navbar() {

@@ -1,5 +1,6 @@
 import Head from "next/head"
-import Navbar from "../components/Navbar";
+import Navbar from "../components/UI/Navbar";
+import Header from "../components/Header";
 
 export default function Home() {
   return (
@@ -12,9 +13,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <header className="lg:mx-8 pt-10 flex">
-          <Navbar></Navbar>
-        </header>
+        <Header></Header>
 
       </main>
     </>

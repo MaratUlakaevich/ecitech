@@ -1,5 +1,5 @@
 import React from "react";
-import CaseCard from "./CaseCard";
+import CaseCard from "./UI/CaseCard";
 import { cases } from "../config/caseData";
 
 

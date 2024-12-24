@@ -1,6 +1,6 @@
 'use client'
 import React, {useRef, useEffect, ReactElement} from 'react';
-import Navbar from './Navbar';
+import Navbar from './UI/Navbar';
 
 
 function Header():ReactElement {
@@ -20,7 +20,6 @@ function Header():ReactElement {
       const newTranslateY = Math.max(maxTranslateY, Math.min(0, parseFloat(headerElement.style.transform.split('(')[1] || '0') - deltaY));
 
       headerElement.style.transform = `translateY(${newTranslateY}px)`;
-      //do the same as the line below but in header className to save backgroung-color even after refresh of the page. AI!
       headerElement.style.backgroundColor = currentScrollPos > 100 ? '#0a0a0a' : 'transparent';
       prevScrollPos = currentScrollPos;
     };

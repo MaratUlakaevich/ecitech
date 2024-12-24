@@ -1,10 +1,10 @@
 'use client'
 
 import Head from "next/head"
-import Navbar from "./components/Navbar";
+import Header from "./components/Header";
 import Image from "next/image";
 import headImg from "../public/img/3d.svg";
-import ScrollButton from "./components/ScrollButton";
+import ScrollButton from "./components/UI/ScrollButton";
 import Slider from "./components/Slider";
 import CaseSection from "./components/CaseSection";
 import { styles } from "./constants/styles";
@@ -13,29 +13,6 @@ import { clientImages } from "./config/images";
 import up from "../public/img/up.svg";
 
 export default function Home() {
-  const headerRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    let prevScrollPos = window.pageYOffset;
-    const maxTranslateY = -120;
-
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset;
-      const headerElement = headerRef.current;
-
-      if (!headerElement) return;
-
-      const deltaY = currentScrollPos - prevScrollPos;
-      const newTranslateY = Math.max(maxTranslateY, Math.min(0, parseFloat(headerElement.style.transform.split('(')[1] || '0') - deltaY));
-
-      headerElement.style.transform = `translateY(${newTranslateY}px)`;
-      headerElement.style.backgroundColor = currentScrollPos > 100 ? '#0a0a0a' : 'transparent';
-      prevScrollPos = currentScrollPos;
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <>
@@ -49,12 +26,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <header
-          ref={headerRef}
-          className={`sticky top-0 z-10 lg:mx-[-10px] pt-10 pb-5  flex transition-transform duration-200 ease-linear`}
-        >
-          <Navbar />
-        </header>
+        <Header></Header>
 
         <div className="absolute overflow-hidden lg:overflow-visible w-screen lg:max-w-[1128px]">
           <Image src={headImg}
