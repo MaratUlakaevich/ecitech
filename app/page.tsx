@@ -8,9 +8,7 @@ import ScrollButton from "./components/UI/ScrollButton";
 import Slider from "./components/Slider";
 import CaseSection from "./components/CaseSection";
 import { styles } from "./constants/styles";
-import { useEffect, useRef } from 'react';
 import { clientImages } from "./config/images";
-import up from "../public/img/up.svg";
 
 export default function Home() {
 
@@ -59,7 +57,7 @@ export default function Home() {
           </button>
           <div className=" mx-8 mt-10 lg:mx-0 lg:mt-10">
             <h4 className="text-slate-400">Our Clients</h4>
-            <h3>We've Worked with</h3>
+            <h3>We&apos;ve Worked with</h3>
           </div>
           <Slider images={clientImages}></Slider>
         </section>
