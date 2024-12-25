@@ -1,13 +1,14 @@
 'use client'
 
 import Link from "next/link";
+import React, { FC } from "react";
 
 type BurgerProps = {
   isMenuOpen: boolean;
   toggleMenu: () => void;
 };
 
-export default function Burger({ isMenuOpen, toggleMenu }: BurgerProps) {
+const Burger: FC<BurgerProps> = ({ isMenuOpen, toggleMenu }: BurgerProps) => {
   const liStyle = "mx-8 text-white-500 font-medium text-xl ";
   const burger = "block w-10 h-1 bg-white rounded duration-300 ease-in-out";
 
@@ -78,3 +79,5 @@ export default function Burger({ isMenuOpen, toggleMenu }: BurgerProps) {
     </>
   );
 }
+
+export default Burger;

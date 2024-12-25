@@ -1,13 +1,13 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Burger from "./Burger";
 import logo from "../../../public/img/Logo.png";
 
 
-export default function Navbar() {
+const Navbar: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -71,3 +71,5 @@ export default function Navbar() {
     </div>
   );
 }
+
+export default Navbar;

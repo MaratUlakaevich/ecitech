@@ -1,13 +1,13 @@
 'use client';
 
-import {useRef } from 'react';
+import { FC, useRef } from 'react';
 import Image from 'next/image';
 
 type SlidingImagesProps = {
   images: string[];
 };
 
-export default function SlidingImages({ images }: SlidingImagesProps) {
+const SlidingImages: FC<SlidingImagesProps> = ({ images }: SlidingImagesProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -34,3 +34,5 @@ export default function SlidingImages({ images }: SlidingImagesProps) {
     </div>
   );
 }
+
+export default SlidingImages

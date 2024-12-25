@@ -1,6 +1,6 @@
+import React, { FC } from "react";
 
-
-export default function ServiceCard() {
+const ServiceCard: FC = () => {
   return (
     <div className="w-full lg:w-1/3 md:w-1/2 p-4">
       <div className="bg-gray-100 p-6 rounded-lg">
@@ -11,3 +11,5 @@ export default function ServiceCard() {
     </div>
   );
 }
+
+export default ServiceCard;

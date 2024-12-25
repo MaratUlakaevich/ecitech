@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import CaseCard from "./UI/CaseCard";
 import { cases } from "../config/caseData";
 
 
-const CaseSection: React.FC = () => {
+const CaseSection: FC = () => {
   return (
     <>
       <h2 className="text-2xl lg:text-4xl font-bold text-white text-center mb-8">

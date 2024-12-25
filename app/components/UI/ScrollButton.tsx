@@ -1,7 +1,7 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
-export default function ScrollButton () {
+const ScrollButton: FC  = () => {
   const [opacity, setOpacity] = useState(0);
 
   // Easing function for non-linear transition
@@ -67,3 +67,5 @@ export default function ScrollButton () {
     
   );
 };
+
+export default ScrollButton;

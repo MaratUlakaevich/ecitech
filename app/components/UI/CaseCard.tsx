@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import Image from "next/image";
 import { z } from "zod";
 import { ErrorBoundary } from "react-error-boundary";
@@ -12,14 +12,13 @@ const CaseCardSchema = z.object({
 
 type CaseCardProps = z.infer<typeof CaseCardSchema>;
 
-const CaseCard: React.FC<CaseCardProps> = ({ image, title, description, link }) => {
+const CaseCard: FC<CaseCardProps> = ({ image, title, description, link }) => {
   
   return (
 
     <div className="flex flex-col lg:flex-row items-center outline-none ring-1 ring-slate-500 bg-gradient-to-r from-slate-600 to-slate-950  rounded-3xl shadow-md overflow-hidden max-h-fit lg:max-h-[30.25rem]">
       <div className="flex hidden px-2 md:flex w-full lg:w-1/2 relative md:h-[32rem] lg:h-[24rem]">
         <ErrorBoundary fallback={<div>Error loading image</div>}>
-          
           <Image
             src={image}
             alt={title}
@@ -48,4 +47,5 @@ const CaseCard: React.FC<CaseCardProps> = ({ image, title, description, link }) 
     </div>
   );
 }
+
 export default CaseCard;

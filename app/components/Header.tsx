@@ -1,9 +1,9 @@
 'use client'
-import React, {useRef, useEffect, ReactElement} from 'react';
+import React, {useRef, useEffect, FC} from 'react';
 import Navbar from './UI/Navbar';
 
 
-function Header():ReactElement {
+const Header:FC = () => {
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -25,13 +25,16 @@ function Header():ReactElement {
     };
 
     window.addEventListener('scroll', handleScroll);
+
+    handleScroll();
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <header
       ref={headerRef}
-      className={`sticky top-0 z-10 lg:mx-[-10px] pt-10 pb-5  flex transition-transform duration-200 ease-linear`}
+      className={`sticky top-0 z-10 lg:mx-[-10px] pt-10 pb-5 flex transition-transform duration-200 ease-linear`}
     >
       <Navbar />
     </header>
