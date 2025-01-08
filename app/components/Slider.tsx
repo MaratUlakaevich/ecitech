@@ -22,6 +22,7 @@ const SlidingImages: FC<SlidingImagesProps> = ({ images }: SlidingImagesProps) =
               <Image
                 src={src}
                 alt={`Sliding Image ${index}`}
+                unoptimized
                 width={0} // Adjust width as necessary
                 height={0} // Adjust height as necessary
                 /*sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"*/
