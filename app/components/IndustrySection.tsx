@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { styles } from '../constants/styles';
 import Card from './UI/Card';
 
-const IndustrySection: FC = (props) => {
+const IndustrySection: FC = () => {
   return (
     <>
       <h1 className={`${styles.lgh2} mt-10 text-3xl font-bold`}>Core industry expertise</h1>
