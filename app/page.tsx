@@ -11,6 +11,7 @@ import CaseSection from "./components/CaseSection";
 import IndustrySection from "./components/IndustrySection";
 import { styles } from "./constants/styles";
 import { clientImages } from "./config/images";
+import StackSection from "./components/StackSection";
 
 export default function Home() {
 
@@ -46,6 +47,9 @@ export default function Home() {
         </section>
         <section className={`${styles.section}`}>
           <IndustrySection></IndustrySection>
+        </section>
+        <section className={`${styles.section}`}>
+          <StackSection />
         </section>
       </main>
 
