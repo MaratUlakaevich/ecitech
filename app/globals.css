@@ -20,6 +20,14 @@
   }
 }
 
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
 .scroll {
   -webkit-mask: linear-gradient(90deg, transparent, #0a0a0a, #0a0a0a, transparent);
   mask: linear-gradient(90deg, transparent, #0a0a0a, #0a0a0a, transparent);

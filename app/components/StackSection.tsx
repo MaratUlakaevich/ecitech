@@ -3,7 +3,7 @@ import { styles } from '../constants/styles';
 import TechItem from './UI/TechItem';
 
 const StackSection: FC = () => {
-  const [activeTab, setActiveTab] = useState<'web' | 'mobile'>('web');
+  const [activeSection, setActiveSection] = useState<'web' | 'mobile'>('web');
 
   return (
     <div className="relative -mx-12 p-10 bg-gray-800 lg:rounded-3xl">
@@ -18,60 +18,64 @@ const StackSection: FC = () => {
         <div className="flex lg:hidden mb-8">
           <button 
             className={`flex-1 py-2 text-center text-2xl font-bold text-white border-b-2 ${
-              activeTab === 'web' 
+              activeSection === 'web' 
                 ? 'text-white border-white' 
                 : 'text-gray-400 border-transparent'
             }`}
-            onClick={() => setActiveTab('web')}
+            onClick={() => setActiveSection('web')}
           >
-            Web Technologies
+            Web <span className='hidden md:block'>Technologies</span>
           </button>
           <button 
             className={`flex-1 py-2 text-center text-2xl font-bold text-white border-b-2 ${
-              activeTab === 'mobile' 
+              activeSection === 'mobile' 
                 ? 'text-white border-white' 
                 : 'text-gray-400 border-transparent'
             }`}
-            onClick={() => setActiveTab('mobile')}
+            onClick={() => setActiveSection('mobile')}
           >
-            Mobile Technologies
+            Mobile <span className='hidden md:block'>Technologies</span>
           </button>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="flex lg:grid lg:grid-cols-2 gap-12 w-full">
           {/* Web Technologies */}
-          <div className={`${activeTab === 'web' ? 'block' : 'hidden lg:block'}`}>
+          <div className={`${activeSection === 'web' ? 'block' : 'hidden lg:block'} w-full`}>
             <h3 className="hidden lg:block text-2xl font-bold text-white mb-8">Web Technologies</h3>
             
-            <div className="flex lg:flex-row flex-col items-start lg:space-x-20 space-y-10 lg:space-y-0">
-              <div>
+            <div className="flex lg:flex-row flex-col items-start lg:space-x-20 space-y-10 lg:space-y-0 w-full">
+              <div className='w-full lg:w-fit'>
                 <h4 className="text-xl text-white mb-6">Backend</h4>
-                <div className="lg:grid lg:grid-cols-2 flex gap-10">
-                  <TechItem src="/img/tech/TS.svg" name="TypeScript" />
-                  <TechItem src="/img/tech/Python.svg" name="Python" />
-                  <TechItem src="/img/tech/Ruby.svg" name="Ruby" />
-                  <TechItem src="/img/tech/Node.svg" name="Node.JS" />
-                  <TechItem src="/img/tech/NET.svg" name=".NET" />
-                  <TechItem src="/img/tech/Java.svg" name="Java" />
+                <div className="lg:grid lg:grid-cols-2 flex gap-10 pb-4">
+                  <div className="flex gap-10 lg:contents overflow-x-scroll">
+                    <TechItem src="/img/tech/TS.svg" name="TypeScript" />
+                    <TechItem src="/img/tech/Python.svg" name="Python" />
+                    <TechItem src="/img/tech/Ruby.svg" name="Ruby" />
+                    <TechItem src="/img/tech/Node.svg" name="Node.JS" />
+                    <TechItem src="/img/tech/NET.svg" name=".NET" />
+                    <TechItem src="/img/tech/Java.svg" name="Java" />
+                  </div>
                 </div>
               </div>
 
               <div>
                 <h4 className="text-xl text-white mb-6">Frontend</h4>
-                <div className="lg:grid lg:grid-cols-2 flex gap-10">
-                  <TechItem src="/img/tech/React.svg" name="React" />
-                  <TechItem src="/img/tech/Angular.svg" name="Angular" />
-                  <TechItem src="/img/tech/Vue.svg" name="Vue" />
+                <div className="lg:grid lg:grid-cols-2 flex overflow-x-auto scrollbar-hide gap-10 pb-4">
+                  <div className="flex gap-10 lg:contents scrollbar-none">
+                    <TechItem src="/img/tech/React.svg" name="React" />
+                    <TechItem src="/img/tech/Angular.svg" name="Angular" />
+                    <TechItem src="/img/tech/Vue.svg" name="Vue" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Mobile Technologies */}
-          <div className={`${activeTab === 'mobile' ? 'block' : 'hidden lg:block'}`}>
+          <div className={`${activeSection === 'mobile' ? 'block' : 'hidden lg:block'}`}>
             <h3 className="hidden lg:block text-2xl font-bold text-white mb-8">Mobile Technologies</h3>
             
-            <div className="lg:grid lg:grid-cols-2 flex justify-between gap-8">
+            <div className="lg:grid lg:grid-cols-2 flex justify-between md:flex-row sm:flex-col gap-8">
               <div>
                 <h4 className="text-xl text-white mb-6">iOS</h4>
                 <div className="flex gap-8">
