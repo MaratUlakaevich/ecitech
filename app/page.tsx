@@ -52,7 +52,7 @@ export default function Home() {
           <StackSection />
         </section>
         <section className={`${styles.section}`}>
-          <CaseSection></CaseSection>
+          
         </section>
       </main>
 

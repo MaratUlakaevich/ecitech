@@ -41,7 +41,7 @@ const Burger: FC<BurgerProps> = ({ isMenuOpen, toggleMenu }: BurgerProps) => {
       </button>
 
       <nav
-        style={{ height: isMenuOpen ? "calc(100dvh - 5.5rem)" : "0" }}
+        style={{ height: isMenuOpen ? "calc(100dvh - 3rem)" : "0" }}
         className={`lg:hidden transition-all duration-500 ease-in-out shadow-md w-full absolute top-12 left-0 z-10 overflow-hidden`}
       >
         <div className="h-full overflow-y-scroll bg-[#0a0a0a]">
@@ -66,7 +66,7 @@ const Burger: FC<BurgerProps> = ({ isMenuOpen, toggleMenu }: BurgerProps) => {
             </li>
           </ul>
 
-          <div className="absolute bottom-0 left-0 bg-black w-full h-20 flex justify-center">
+          <div className="absolute bottom-4 left-0 bg-[#0a0a0a] w-full h-32 flex justify-center">
             <Link
               href="/contact"
               className={`${liStyle} block text-white font-extrabold rounded-full bg-indigo-600 my-auto px-10 py-3`}
