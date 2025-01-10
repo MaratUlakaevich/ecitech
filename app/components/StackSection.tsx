@@ -1,12 +1,13 @@
 import React, { FC, useState } from 'react'
 import { styles } from '../constants/styles';
 import TechItem from './UI/TechItem';
+ 
 
 const StackSection: FC = () => {
   const [activeSection, setActiveSection] = useState<'web' | 'mobile'>('web');
 
   return (
-    <div className="relative -mx-12 p-10 bg-gray-800 lg:rounded-3xl">
+    <div className="relative -mx-8 lg:-mx-12 p-10 bg-gray-800 lg:rounded-3xl">
       <div className="max-w-[1128px] mx-auto">
         <h2 className={`${styles.lgh2} mx-auto text-4xl font-bold text-white mb-8`}>
           Technology Stack
@@ -47,7 +48,7 @@ const StackSection: FC = () => {
               <div className='w-full lg:w-fit'>
                 <h4 className="text-xl text-white mb-6">Backend</h4>
                 <div className="lg:grid lg:grid-cols-2 flex gap-10 pb-4">
-                  <div className="flex gap-10 lg:contents overflow-x-scroll">
+                  <div className="flex gap-10 lg:contents overflow-x-scroll scrollbar-hide">
                     <TechItem src="/img/tech/TS.svg" name="TypeScript" />
                     <TechItem src="/img/tech/Python.svg" name="Python" />
                     <TechItem src="/img/tech/Ruby.svg" name="Ruby" />
@@ -58,10 +59,10 @@ const StackSection: FC = () => {
                 </div>
               </div>
 
-              <div>
+              <div className='w-full lg:w-fit'>
                 <h4 className="text-xl text-white mb-6">Frontend</h4>
-                <div className="lg:grid lg:grid-cols-2 flex overflow-x-auto scrollbar-hide gap-10 pb-4">
-                  <div className="flex gap-10 lg:contents scrollbar-none">
+                <div className="lg:grid lg:grid-cols-2 flex gap-10 pb-4">
+                  <div className="flex gap-10 lg:contents overflow-x-scroll scrollbar-hide">
                     <TechItem src="/img/tech/React.svg" name="React" />
                     <TechItem src="/img/tech/Angular.svg" name="Angular" />
                     <TechItem src="/img/tech/Vue.svg" name="Vue" />
@@ -72,7 +73,7 @@ const StackSection: FC = () => {
           </div>
 
           {/* Mobile Technologies */}
-          <div className={`${activeSection === 'mobile' ? 'block' : 'hidden lg:block'}`}>
+          <div className={`${activeSection === 'mobile' ? 'block' : 'hidden lg:block'} w-full`}>
             <h3 className="hidden lg:block text-2xl font-bold text-white mb-8">Mobile Technologies</h3>
             
             <div className="lg:grid lg:grid-cols-2 flex justify-between md:flex-row sm:flex-col gap-8">
