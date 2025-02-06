@@ -39,9 +39,19 @@ html {
 }
 
 body {
-  margin: 0 auto;
-  max-width: 1128px;
   background-color: #0a0a0a;
   color: white;
   font-family: Montserrat,Verdana,sans-serif;
+  contain: layout;
+}
+
+.dS_G5 {
+  fill: white;
+  height: 1.6875rem;
+  transition: 0.25s ease-in-out;
+  width: 1.75rem;
+}
+
+.dS_G5:hover {
+  fill: rgba(255, 255, 255, 0.499);
 }

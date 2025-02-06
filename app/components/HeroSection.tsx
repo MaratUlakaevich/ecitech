@@ -3,7 +3,7 @@ import { styles } from '../constants/styles';
 
 const HeroSection: FC = () => {
   return (
-    <div>
+    <div className="lg:px-10">
       <div className="m-auto mt-10 py-4 lg:mx-0 lg:mt-16 lg:p-0">
             <h1 className={`${styles.lgh1} 
                             md:text-6xl 

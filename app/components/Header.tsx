@@ -34,7 +34,7 @@ const Header:FC = () => {
   return (
     <header
       ref={headerRef}
-      className={`sticky top-0 z-10 lg:mx-[-60px] py-5 lg:px-14 flex transition-transform duration-200 ease-linear lg:-mx-20`}
+      className={`sticky top-0 z-10 mx-auto max-w-[1300px] py-5 lg:px-6 flex transition-transform duration-200 ease-linear`}
     >
       <Navbar />
     </header>

@@ -36,4 +36,4 @@ const SlidingImages: FC<SlidingImagesProps> = ({ images }: SlidingImagesProps) =
   );
 }
 
-export default SlidingImages
+export default SlidingImages;

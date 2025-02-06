@@ -12,6 +12,9 @@ import IndustrySection from "./components/IndustrySection";
 import { styles } from "./constants/styles";
 import { clientImages } from "./config/images";
 import StackSection from "./components/StackSection";
+import Footer from "./components/Footer";
+import CompanySection from "./components/CompanySection";
+import ContactForm from "./components/ContactForm";
 
 export default function Home() {
 
@@ -26,8 +29,9 @@ export default function Home() {
         <meta property="og:description" content="We create solutions that solve business problems..." />
       </Head>
 
-      <main>
-        <Header></Header>
+      <Header></Header>
+      
+      <main className="max-w-[1200px] mx-auto lg:px-4">
 
         <div className="absolute overflow-hidden lg:overflow-visible w-screen lg:max-w-[1128px]">
           <Image src={headImg}
@@ -52,10 +56,14 @@ export default function Home() {
           <StackSection />
         </section>
         <section className={`${styles.section}`}>
-          
+          <CompanySection/>
+        </section>
+        <section className={`${styles.section}`}>
+          <ContactForm />
         </section>
       </main>
 
+      <Footer/>
       <ScrollButton></ScrollButton>
     </>
   );
