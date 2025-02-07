@@ -42,6 +42,9 @@ body {
   background-color: #0a0a0a;
   color: white;
   font-family: Montserrat,Verdana,sans-serif;
+}
+
+main, footer {
   contain: layout;
 }
 

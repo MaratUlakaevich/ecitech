@@ -64,8 +64,8 @@ const Footer: FC = () => {
         </div>
 
         {/* Нижний блок футера */}
-        <div className="border-t border-gray-700 mt-8 pt-6 flex flex-col  justify-between items-center">
-          <div className="flex space-x-6 mt-4 md:mt-0 mb-10">
+        <div className="border-t border-gray-700 mt-8 pt-6 flex flex-col justify-between items-center w-full">
+          <div className="flex mt-4 md:mt-0 mb-10 w-full flex-wrap justify-around">
             <Link href="https://www.linkedin.com/company/ecitech-sa" target="_blank" className="hover:text-white">LinkedIn</Link>
             <Link href="#" className="hover:text-white">Clutch</Link>
             <Link href="#" className="hover:text-white">Facebook</Link>
@@ -73,7 +73,7 @@ const Footer: FC = () => {
             <Link href="#" className="hover:text-white">Dribbble</Link>
           </div>
 
-          <div className="flex space-x-4 text-sm mt-4 md:mt-0 mb-10">
+          <div className="flex w-full flex-wrap justify-around text-sm mt-4 md:mt-0 mb-10">
             <Link href="/privacy-policy" className="hover:text-white">Privacy Policy</Link>
             <Link href="/cookies-policy" className="hover:text-white">Cookies Policy</Link>
             <Link href="/terms" className="hover:text-white">Terms & Conditions</Link>

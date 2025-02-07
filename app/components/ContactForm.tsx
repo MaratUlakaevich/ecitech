@@ -17,8 +17,8 @@ const ContactForm: FC = () => {
 
   return (
     <form className="max-w-[1000px] mx-auto p-8 bg-gray-800 rounded-3xl shadow-lg">
-      <div className='w-[40rem] mb-10'>
-        <h2 className='text-6xl font-bold'>Start growing your business with us</h2>
+      <div className='max-w-[40rem] mb-10'>
+        <h2 className='text-3xl md:text-6xl font-bold'>Start growing your business with us</h2>
       </div>
       
       <div className="flex flex-col md:flex-row md:space-x-4">

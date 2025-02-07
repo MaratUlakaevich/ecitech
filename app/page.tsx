@@ -30,6 +30,7 @@ export default function Home() {
       </Head>
 
       <Header></Header>
+
       
       <main className="max-w-[1200px] mx-auto lg:px-4">
 
@@ -61,6 +62,7 @@ export default function Home() {
         <section className={`${styles.section}`}>
           <ContactForm />
         </section>
+        
       </main>
 
       <Footer/>
