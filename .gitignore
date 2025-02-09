@@ -15,6 +15,7 @@
 
 # production
 /build
+/api
 
 # misc
 .DS_Store

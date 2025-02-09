@@ -5,10 +5,10 @@ const Footer: FC = () => {
   return (
     <footer className="text-gray-400 py-12">
       <div className="md:max-w-[1128px] max-w-[605px] mx-auto px-4">
-        {/* Основной блок футера */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+        
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           
-          {/* Услуги */}
+          
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Services</h3>
             <ul className="space-y-2">
@@ -20,7 +20,7 @@ const Footer: FC = () => {
             </ul>
           </div>
 
-          {/* Отрасли */}
+          
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Industries</h3>
             <ul className="space-y-2">
@@ -32,19 +32,7 @@ const Footer: FC = () => {
             </ul>
           </div>
 
-          {/* Блог и инсайты */}
-          <div>
-            <h3 className="text-white font-bold text-lg mb-4">Insights</h3>
-            <ul className="space-y-2">
-              <li><Link href="/blog/develop-app-cost" className="hover:text-white"></Link></li>
-              <li><Link href="/blog/build-ridesharing" className="hover:text-white"></Link></li>
-              <li><Link href="/blog/fitness-app" className="hover:text-white"></Link></li>
-              <li><Link href="/blog/crm-agriculture" className="hover:text-white font-bold"></Link></li>
-              <li><Link href="/blog/web-design" className="hover:text-white"></Link></li>
-            </ul>
-          </div>
-
-          {/* Контакты и офисы */}
+          
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Offices</h3>
             <a href="#" className="text-sm">+971 56 658 5789</a>
@@ -53,7 +41,7 @@ const Footer: FC = () => {
             <p className="text-sm">Russia, Moscow</p>
           </div>
 
-          {/* Emails */}
+          
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Emails</h3>
             <p className="text-sm">Build your team:</p>
@@ -63,7 +51,7 @@ const Footer: FC = () => {
           </div>
         </div>
 
-        {/* Нижний блок футера */}
+        
         <div className="border-t border-gray-700 mt-8 pt-6 flex flex-col justify-between items-center w-full">
           <div className="flex mt-4 md:mt-0 mb-10 w-full flex-wrap justify-around">
             <Link href="https://www.linkedin.com/company/ecitech-sa" target="_blank" className="hover:text-white">LinkedIn</Link>
