@@ -1,7 +1,37 @@
-import React, { FC, useRef } from 'react';
+import React, { FC, useRef, useState, FormEvent } from 'react';
 
 const ContactForm: FC = () => {
   const aboutRef = useRef<HTMLTextAreaElement>(null);
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [about, setAbout] = useState("");
+  const [status, setStatus] = useState("");
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("Sending...");
+    try {
+      const res = await fetch("/api/sendEmails", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ fullName, email, about })
+      });
+      if (res.ok) {
+        setStatus("Message sent successfully!");
+        setFullName("");
+        setEmail("");
+        setAbout("");
+      } else {
+        const text = await res.text();
+        setStatus("Error sending message: " + text);
+      }
+    } catch (error) {
+      console.error(error);
+      setStatus("Error sending message.");
+    }
+  };
 
   const handleAboutChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const textarea = e.target;
@@ -118,6 +148,7 @@ const ContactForm: FC = () => {
           By sending this form I confirm that I have read and accept the <a href="#" className='underline decoration-2 hover:text-white cursor-pointer duration-300'> Privacy Policy</a>
         </p>
       </div>
+      {status && <p className="mt-4 text-white">{status}</p>}
     </form>
   );
 };
