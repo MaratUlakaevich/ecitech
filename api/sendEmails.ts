@@ -8,9 +8,12 @@ interface ContactFormData {
 }
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  service: "Gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
   auth: {
-    user: process.env.GMAIL_EMAIL,
+    user: process.env.GMAIL_LOGIN,
     pass: process.env.GMAIL_PASSWORD,
   },
 });
@@ -35,7 +38,7 @@ export default async function handler(
   }
 
   const mailOptions: nodemailer.SendMailOptions = {
-    from: process.env.GMAIL_EMAIL, // Отправитель (ваш email)
+    from: process.env.GMAIL_LOGIN, // Отправитель (ваш email)
     to: "ulakaev@ecitech.online", // Замените на адрес, на который будут приходить сообщения
     subject: `New Contact Form Submission from ${fullName}`,
     text:
