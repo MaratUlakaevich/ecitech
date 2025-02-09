@@ -7,9 +7,7 @@ const Header:FC = () => {
   const headerRef = useRef<HTMLElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuOpen = (isOpened: Boolean, callback: Function) => {
-    isOpened ? setIsMenuOpen(true) : setIsMenuOpen(false);
-  }
+  
 
   useEffect(() => {
     let prevScrollPos = window.pageYOffset;
