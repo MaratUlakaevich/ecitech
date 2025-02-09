@@ -1,7 +1,9 @@
-import React, { FC, useRef, useState, FormEvent } from 'react';
+import React, { FC, useEffect, useRef, useState, FormEvent, ChangeEvent } from 'react';
 
 const ContactForm: FC = () => {
   const aboutRef = useRef<HTMLTextAreaElement>(null);
+  const statusRef = useRef<HTMLDivElement>(null);
+  const [bgColor, setBgColor] = useState("")
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [about, setAbout] = useState("");
@@ -9,6 +11,7 @@ const ContactForm: FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setBgColor("bg-gray-500");
     setStatus("Sending...");
     try {
       const res = await fetch("/api/sendEmails", {
@@ -20,20 +23,32 @@ const ContactForm: FC = () => {
       });
       if (res.ok) {
         setStatus("Message sent successfully!");
+        setBgColor("bg-green-500");
         setFullName("");
         setEmail("");
         setAbout("");
       } else {
         const text = await res.text();
         setStatus("Error sending message: " + text);
+        setBgColor("bg-red-500");
       }
     } catch (error) {
       console.error(error);
+      setBgColor("bg-red-500");
       setStatus("Error sending message.");
     }
   };
 
-  const handleAboutChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  useEffect(() => {
+    if (status) {
+      const timer = setTimeout(() => {
+        setStatus("");
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
+
+  const handleAboutChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setAbout(e.target.value);
     const textarea = e.target;
     // Сбрасываем высоту для корректного перерасчёта scrollHeight
@@ -71,7 +86,7 @@ const ContactForm: FC = () => {
             className="absolute text-sm text-gray-400 duration-300 transform origin-[0]
                       top-2 left-0 
                       peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100
-                      peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-500"
+                      peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-500 peer-valid:-translate-y-6 peer-valid:scale-75"
           >
             Full name
           </label>
@@ -95,7 +110,7 @@ const ContactForm: FC = () => {
             className="absolute text-sm text-gray-400 duration-300 transform origin-[0]
                       top-2 left-0 
                       peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100
-                      peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-500"
+                      peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-500 peer-valid:-translate-y-6 peer-valid:scale-75"
           >
             Email
           </label>
@@ -120,7 +135,7 @@ const ContactForm: FC = () => {
           className="absolute text-sm text-gray-400 duration-300 transform origin-[0] 
                      top-2 left-0 
                      peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 
-                     peer-focus:-translate-y-6 peer-focus:text-blue-500 peer-focus:scale-75"
+                     peer-focus:-translate-y-6 peer-focus:text-blue-500 peer-focus:scale-75 peer-valid:-translate-y-6 peer-valid:scale-75"
         >
           About the project
         </label>
@@ -154,7 +169,15 @@ const ContactForm: FC = () => {
           By sending this form I confirm that I have read and accept the <a href="#" className='underline decoration-2 hover:text-white cursor-pointer duration-300'> Privacy Policy</a>
         </p>
       </div>
-      {status && <p className="mt-4 text-white">{status}</p>}
+      {status && (
+        <div
+          ref={statusRef}
+          className={`fixed bottom-10 left-1/2 transform -translate-x-1/2 
+                      px-6 py-4 text-white ${bgColor} rounded-xl z-50`}
+        >
+          {status}
+        </div>
+      )}
     </form>
   );
 };
