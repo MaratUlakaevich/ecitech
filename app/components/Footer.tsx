@@ -35,9 +35,9 @@ const Footer: FC = () => {
           
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Offices</h3>
-            <a href="#" className="text-sm">+971 56 658 5789</a>
+            <Link href="#" className="text-sm">+971 56 658 5789</Link>
             <p className="text-sm mb-2">Saudi Arabia, Ar-Riyadh</p>
-            <a href="tel:+7 909 997 16 33" className="text-sm mt-2">+7 909 997 16 33</a>
+            <Link href="tel:+7 909 997 16 33" className="text-sm mt-2">+7 909 997 16 33</Link>
             <p className="text-sm">Russia, Moscow</p>
           </div>
 
@@ -45,9 +45,9 @@ const Footer: FC = () => {
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Emails</h3>
             <p className="text-sm">Build your team:</p>
-            <p className="text-sm text-white">ulakaev@ecitech.online</p>
+            <Link href="mailto:ulakaev@ecitech.online" className="text-sm text-white">ulakaev@ecitech.online</Link>
             <p className="text-sm mt-3">We are hiring:</p>
-            <p className="text-sm text-white">ulakaev@ecitech.online</p>
+            <Link href="mailto:ulakaev@ecitech.online" className="text-sm text-white">ulakaev@ecitech.online</Link>
           </div>
         </div>
 

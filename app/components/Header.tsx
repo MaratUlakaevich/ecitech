@@ -1,10 +1,15 @@
 'use client'
-import React, {useRef, useEffect, FC} from 'react';
+import React, {useRef, useEffect, FC, useState} from 'react';
 import Navbar from './UI/Navbar';
 
 
 const Header:FC = () => {
   const headerRef = useRef<HTMLElement>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const menuOpen = (isOpened: Boolean, callback: Function) => {
+    isOpened ? setIsMenuOpen(true) : setIsMenuOpen(false);
+  }
 
   useEffect(() => {
     let prevScrollPos = window.pageYOffset;

@@ -25,7 +25,7 @@ const Navbar: FC = () => {
   const liStyle = "text-white-500 duration-300 font-medium text-lg tracking-wide hover:bg-grey-400";
   
   return (
-    <div className="relative flex justify-between items-center w-full lg:bg-transparent">
+    <div className={`relative flex justify-between items-center w-full lg:bg-transparent`}>
       <Link href="/" className="ml-8 lg:ml-0">
         <Image src={logo} alt="ECITech Logo" className="w-40 lg:w-44" unoptimized></Image>
       </Link>
