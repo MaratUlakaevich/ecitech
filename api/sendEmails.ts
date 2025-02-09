@@ -36,7 +36,7 @@ export default async function handler(
 
   const mailOptions: nodemailer.SendMailOptions = {
     from: process.env.GMAIL_EMAIL, // Отправитель (ваш email)
-    to: "your-receiving-email@example.com", // Замените на адрес, на который будут приходить сообщения
+    to: "ulakaev@ecitech.online", // Замените на адрес, на который будут приходить сообщения
     subject: `New Contact Form Submission from ${fullName}`,
     text:
       "You have a new contact form submission:\n\n" +
