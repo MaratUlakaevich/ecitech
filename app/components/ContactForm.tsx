@@ -34,6 +34,7 @@ const ContactForm: FC = () => {
   };
 
   const handleAboutChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setAbout(e.target.value);
     const textarea = e.target;
     // Сбрасываем высоту для корректного перерасчёта scrollHeight
     textarea.style.height = 'auto';
@@ -46,7 +47,7 @@ const ContactForm: FC = () => {
   };
 
   return (
-    <form className="max-w-[1000px] mx-auto p-8 bg-gray-800 rounded-3xl shadow-lg">
+    <form onSubmit={handleSubmit} className="max-w-[1000px] mx-auto p-8 bg-gray-800 rounded-3xl shadow-lg">
       <div className='max-w-[40rem] mb-10'>
         <h2 className='text-3xl md:text-6xl font-bold'>Start growing your business with us</h2>
       </div>
@@ -58,6 +59,8 @@ const ContactForm: FC = () => {
             type="text"
             name="fullName"
             id="fullName"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
             placeholder=" "
             className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-400 appearance-none 
                       focus:outline-none focus:ring-0 focus:border-blue-500 peer"
@@ -81,6 +84,8 @@ const ContactForm: FC = () => {
             name="email"
             id="email"
             placeholder=" "
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-400 appearance-none 
                       focus:outline-none focus:ring-0 focus:border-blue-500 peer"
             required
@@ -104,6 +109,7 @@ const ContactForm: FC = () => {
           id="about"
           rows={1}
           ref={aboutRef}
+          value={about}
           onChange={handleAboutChange}
           className="block py-2.5 pr-12 pl-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-400 resize-none appearance-none focus:outline-none focus:ring-0 focus:border-blue-500 peer"
           placeholder=" "
