@@ -3,11 +3,10 @@ import React, {useRef, useEffect, FC, useState} from 'react';
 import Navbar from './UI/Navbar';
 
 
-const Header:FC = () => {
-  const headerRef = useRef<HTMLElement>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  
+
+const Header:FC = () => {
+  const headerRef = useRef<HTMLElement>(null);  
 
   useEffect(() => {
     let prevScrollPos = window.pageYOffset;
@@ -37,7 +36,7 @@ const Header:FC = () => {
   return (
     <header
       ref={headerRef}
-      className={`sticky top-0 z-10 mx-auto max-w-[1300px] py-5 lg:px-6 flex transition-transform duration-200 ease-linear`}
+      className={`sticky top-0 z-10 mx-auto max-w-[1300px] py-5 lg:px-6 flex transition-transform duration-200 ease-linea`}
     >
       <Navbar />
     </header>

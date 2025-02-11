@@ -7,26 +7,45 @@ const ContactForm: FC = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [about, setAbout] = useState("");
+  const [nda, setNda] = useState(false);
   const [status, setStatus] = useState("");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setBgColor("bg-gray-500");
     setStatus("Sending...");
+  
+    // Собираем FormData вручную из текущих полей
+    const formData = new FormData();
+    formData.append("fullName", fullName);
+    formData.append("email", email);
+    formData.append("about", about);
+    formData.append("nda", nda ? "true" : "false");
+  
+    // Ищем <input type="file" id="projectFile">, забираем файл
+    const fileInput = e.currentTarget.querySelector(
+      "#projectFile"
+    ) as HTMLInputElement;
+  
+    if (fileInput?.files && fileInput.files.length > 0) {
+      formData.append("projectFile", fileInput.files[0]);
+    }
+  
     try {
+      // Отправляем запрос на /api/sendEmails
       const res = await fetch("/api/sendEmails", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ fullName, email, about })
+        body: formData,
+        // Не указываем headers: "Content-Type" — fetch сам выставит boundary
       });
+  
       if (res.ok) {
         setStatus("Message sent successfully!");
         setBgColor("bg-green-500");
         setFullName("");
         setEmail("");
         setAbout("");
+        setNda(false);
       } else {
         const text = await res.text();
         setStatus("Error sending message: " + text);
@@ -62,7 +81,7 @@ const ContactForm: FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-[1000px] mx-auto p-8 bg-gray-800 rounded-3xl shadow-lg">
+    <form onSubmit={handleSubmit} encType="multipart/form-data" className="max-w-[1000px] mx-auto p-8 bg-gray-800 rounded-3xl shadow-lg">
       <div className='max-w-[40rem] mb-10'>
         <h2 className='text-3xl md:text-6xl font-bold'>Start growing your business with us</h2>
       </div>
@@ -144,6 +163,7 @@ const ContactForm: FC = () => {
           type="file"
           name="projectFile"
           id="projectFile"
+
           className="hidden"
         />
         {/* Иконка-скрепка, размещённая в правой части поля */}
@@ -155,6 +175,26 @@ const ContactForm: FC = () => {
             <path d="M13.5381849,8.3455903 L8.07733533,13.7020126 C7.8263481,13.9397466 7.72568926,14.2917947 7.81404712,14.622847 C7.90240498,14.9538993 8.166029,15.2124364 8.50359507,15.2990893 C8.84116115,15.3857421 9.20013615,15.2870256 9.44254773,15.0408815 L14.9043628,9.68540604 C16.0356084,8.57598928 16.0356084,6.77726932 14.9043628,5.66785256 C13.7731172,4.5584358 11.9390057,4.5584358 10.8077601,5.66785256 L5.34594504,11.0242749 C4.10069262,12.2151002 3.60488822,13.9707932 4.0480634,15.6202036 C4.49123859,17.269614 5.80487132,18.5577163 7.4867981,18.9921066 C9.16872488,19.4264969 10.9588927,18.9400113 12.1729725,17.7186193 L17.6347876,12.3631438 L19,13.7020126 L13.5381849,19.058435 C11.830738,20.7329345 9.34207998,21.3869011 7.00966413,20.7739917 C4.67724829,20.1610824 2.85542414,18.3744126 2.23045521,16.0870038 C1.60548628,13.7995949 2.27232023,11.3589587 3.97976715,9.68445917 L9.44254773,4.32898369 C11.3367504,2.53480372 14.3476804,2.56046302 16.2098041,4.38665458 C18.0719277,6.21284615 18.0980919,9.16567642 16.2686097,11.023328 L10.8077601,16.3816441 C10.0758001,17.099311 9.00903705,17.3795015 8.00931036,17.1166708 C7.00958368,16.85384 6.2287756,16.0879182 5.96100899,15.1074206 C5.69324238,14.126923 5.97919736,13.0808106 6.71115744,12.3631438 L12.1729725,7.00672143 L13.5381849,8.3455903 Z" id="Path"></path>
           </svg>
         </label>
+
+        <input
+          type="checkbox"
+          id="nda"
+          name="nda"
+          onChange={(e) => setNda(e.target.checked)}
+          className="peer hidden"
+        />
+
+        <label
+          htmlFor="nda"
+          className="
+            relative cursor-pointer pl-8 text-gray-600 before:content-[''] before:absolute before:left-0 before:top-0.5
+            before:h-5 before:w-5 before:rounded before:bg-gray-400 peer-checked:before:bg-gray-400 before:bg-no-repeat before:bg-center
+            peer-checked:before:bg-[url('/img/checkmark-white.svg')]
+          "
+        >
+          Send me NDA
+        </label>
+
       </div>
 
       {/* Кнопка отправки и текст подтверждения */}

@@ -6,13 +6,14 @@ import Image from "next/image";
 import Burger from "./Burger";
 import logo from "../../../public/img/Logo.png";
 
-
 const Navbar: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  
 
   useEffect(() => {
     if (isMenuOpen) {

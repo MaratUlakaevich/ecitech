@@ -15,6 +15,7 @@ import StackSection from "./components/StackSection";
 import Footer from "./components/Footer";
 import CompanySection from "./components/CompanySection";
 import ContactForm from "./components/ContactForm";
+import ChatWidget from "./components/ChatWidget";
 
 export default function Home() {
 
@@ -29,7 +30,7 @@ export default function Home() {
         <meta property="og:description" content="We create solutions that solve business problems..." />
       </Head>
 
-      <Header></Header>
+      <Header />
 
       
       <main className="max-w-[1200px] mx-auto lg:px-4">
@@ -66,7 +67,7 @@ export default function Home() {
       </div>
       
       <Footer/>
-      <ScrollButton></ScrollButton>
+      <ScrollButton />
     </>
   );
 }
