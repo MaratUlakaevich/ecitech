@@ -13,7 +13,6 @@ export default function Home() {
 
       <main>
         <Header></Header>
-
       </main>
     </>
   );

@@ -1,12 +1,9 @@
-'use client'
-import React, {useRef, useEffect, FC, useState} from 'react';
-import Navbar from './UI/Navbar';
+"use client";
+import React, { useRef, useEffect, FC } from "react";
+import Navbar from "./UI/Navbar";
 
-
-
-
-const Header:FC = () => {
-  const headerRef = useRef<HTMLElement>(null);  
+const Header: FC = () => {
+  const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     let prevScrollPos = window.pageYOffset;
@@ -19,18 +16,26 @@ const Header:FC = () => {
       if (!headerElement) return;
 
       const deltaY = currentScrollPos - prevScrollPos;
-      const newTranslateY = Math.max(maxTranslateY, Math.min(0, parseFloat(headerElement.style.transform.split('(')[1] || '0') - deltaY));
+      const newTranslateY = Math.max(
+        maxTranslateY,
+        Math.min(
+          0,
+          parseFloat(headerElement.style.transform.split("(")[1] || "0") -
+            deltaY
+        )
+      );
 
       headerElement.style.transform = `translateY(${newTranslateY}px)`;
-      headerElement.style.backgroundColor = currentScrollPos > 100 ? '#0a0a0a' : 'transparent';
+      headerElement.style.backgroundColor =
+        currentScrollPos > 100 ? "#0a0a0a" : "transparent";
       prevScrollPos = currentScrollPos;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     handleScroll();
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -41,7 +46,6 @@ const Header:FC = () => {
       <Navbar />
     </header>
   );
-}
+};
 
 export default Header;
-

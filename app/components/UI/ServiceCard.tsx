@@ -10,6 +10,6 @@ const ServiceCard: FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default ServiceCard;

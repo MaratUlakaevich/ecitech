@@ -18,14 +18,20 @@ export default function PrivacyPolicy() {
       <Header />
       <main className="max-w-7xl mx-auto p-8 my-10">
         <PoliciesButtons />
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gray-100">
-              Privacy Policy
-            </h1>
-            <h2 className="text-lg font-medium mb-8 w-[50rem]">
-            We respect your personal data. That’s why we’ve created a straightforward Privacy Policy explaining what information we collect when you visit cleveroad.com or communicate with us by any means (including email, phone, messengers, and more). The Privacy Policy reveals how you control the collected information, how we use this data, and how to contact us. It also describes what measures we take to protect your data like the rules requested by General Data Protection Regulation (GDPR).
-            </h2>
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gray-100">
+          Privacy Policy
+        </h1>
+        <h2 className="text-lg font-medium mb-8 w-[50rem]">
+          We respect your personal data. That’s why we’ve created a
+          straightforward Privacy Policy explaining what information we collect
+          when you visit cleveroad.com or communicate with us by any means
+          (including email, phone, messengers, and more). The Privacy Policy
+          reveals how you control the collected information, how we use this
+          data, and how to contact us. It also describes what measures we take
+          to protect your data like the rules requested by General Data
+          Protection Regulation (GDPR).
+        </h2>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
           {/* Основное содержимое */}
           <div className="md:col-span-2">
             <section id="contact-details" className="mb-8">
@@ -33,43 +39,54 @@ export default function PrivacyPolicy() {
                 Contact details
               </h2>
               <p className="text-gray-200">
-                If you have any questions about the privacy policy, feel free to contact us. We’ll get back to you in 24 hours.
+                If you have any questions about the privacy policy, feel free to
+                contact us. We’ll get back to you in 24 hours.
               </p>
               <br />
               <h3 className="text-xl font-semibold text-gray-100 mb-2">
                 Offices
               </h3>
-              <Link href="#" className="text-sm">+971 56 658 5789</Link>
+              <Link href="#" className="text-sm">
+                +971 56 658 5789
+              </Link>
               <p className="text-sm mb-2">Saudi Arabia, Ar-Riyadh</p>
-              <Link href="tel:+7 909 997 16 33" className="text-sm mt-2">+7 909 997 16 33</Link>
+              <Link href="tel:+7 909 997 16 33" className="text-sm mt-2">
+                +7 909 997 16 33
+              </Link>
               <p className="text-sm">Russia, Moscow</p>
               <h3 className="text-xl font-semibold text-gray-100 mb-2 mt-4">
                 Emails
               </h3>
-                        
-              <Link href="mailto:ulakaev@ecitech.online" className="text-sm text-white">ulakaev@ecitech.online</Link>
+
+              <Link
+                href="mailto:ulakaev@ecitech.online"
+                className="text-sm text-white"
+              >
+                ulakaev@ecitech.online
+              </Link>
             </section>
             <section id="who-are-we" className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-100 mb-4">
                 Who are we?
               </h2>
               <p className="text-gray-200">
-                Era Cloud of Information Technologies Org. is a Saudi-Arabia registered software development company with R&D offices in Russia.
+                Era Cloud of Information Technologies Org. is a Saudi-Arabia
+                registered software development company with R&D offices in
+                Russia.
               </p>
               <br />
-              <p className="text-gray-200">
-                Here’s how you can contact us:
-              </p>
+              <p className="text-gray-200">Here’s how you can contact us:</p>
               <div className="mt-2">
                 <p className="relative before:inherit before:bg-white before:rounded-xl before:h-[.5rem] before:left-0 before:top-[.5rem] before:min-w-[.5rem] before:absolute before:w-[.5rem] pl-4 ">
                   Using the
-                  <Link href="/contact"> contact form </Link> 
+                  <Link href="/contact"> contact form </Link>
                   on our website
                 </p>
               </div>
               <div className="mt-2">
                 <p className="relative before:inherit before:bg-white before:rounded-xl before:h-[.5rem] before:left-0 before:top-[.5rem] before:min-w-[.5rem] before:absolute before:w-[.5rem] pl-4 ">
-                  Calling the contact number published on our website from 9 AM to 9 PM
+                  Calling the contact number published on our website from 9 AM
+                  to 9 PM
                 </p>
               </div>
               <div className="mt-2">
@@ -83,11 +100,12 @@ export default function PrivacyPolicy() {
                 Why do we collect personal information?
               </h2>
               <p className="text-gray-200">
-                Era Cloud of Information Technologies collects personal information to enhance our services,
-                deliver personalized experiences, and build strong client
-                relationships. Whether you contact us, subscribe to our updates,
-                or request additional information, your data helps us tailor our
-                offerings to your needs.
+                Era Cloud of Information Technologies collects personal
+                information to enhance our services, deliver personalized
+                experiences, and build strong client relationships. Whether you
+                contact us, subscribe to our updates, or request additional
+                information, your data helps us tailor our offerings to your
+                needs.
               </p>
             </section>
             <section id="what-personal-information" className="mb-8">
@@ -95,7 +113,8 @@ export default function PrivacyPolicy() {
                 What personal information do we collect?
               </h2>
               <p className="text-gray-200 mb-4">
-                We may collect, store, and use the following personal information:
+                We may collect, store, and use the following personal
+                information:
               </p>
               <div className="text-gray-200">
                 <p className="relative before:inherit before:bg-white before:rounded-xl before:h-[.5rem] before:left-0 before:top-[.5rem] before:min-w-[.5rem] before:absolute before:w-[.5rem] pl-4 ">
@@ -112,25 +131,22 @@ export default function PrivacyPolicy() {
               </div>
               <div className="text-gray-200">
                 <p className="relative before:inherit before:bg-white before:rounded-xl before:h-[.5rem] before:left-0 before:top-[.5rem] before:min-w-[.5rem] before:absolute before:w-[.5rem] pl-4 ">
-                  Data you provide when subscribing to our email notifications or
-                  newsletters.
+                  Data you provide when subscribing to our email notifications
+                  or newsletters.
                 </p>
               </div>
               <div className="text-gray-200">
                 <p className="relative before:inherit before:bg-white before:rounded-xl before:h-[.5rem] before:left-0 before:top-[.5rem] before:min-w-[.5rem] before:absolute before:w-[.5rem] pl-4 ">
-                  Information you provide when applying for a job or contacting us
-                  for business inquiries.
+                  Information you provide when applying for a job or contacting
+                  us for business inquiries.
                 </p>
               </div>
-
             </section>
             <section id="how-use" className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-100 mb-4">
                 How do we use the collected information?
               </h2>
-              <p className="text-gray-200">
-                We use your information to:
-              </p>
+              <p className="text-gray-200">We use your information to:</p>
               <div className="text-gray-200 mt-2">
                 <p className="relative before:inherit before:bg-white before:rounded-xl before:h-[.5rem] before:left-0 before:top-[.5rem] before:min-w-[.5rem] before:absolute before:w-[.5rem] pl-4 ">
                   Personalize our website and services for you.
@@ -154,11 +170,10 @@ export default function PrivacyPolicy() {
               </div>
               <div className="text-gray-200">
                 <p className="relative before:inherit before:bg-white before:rounded-xl before:h-[.5rem] before:left-0 before:top-[.5rem] before:min-w-[.5rem] before:absolute before:w-[.5rem] pl-4 ">
-                  Send you newsletters and marketing communications (which you can
-                  unsubscribe from at any time).
+                  Send you newsletters and marketing communications (which you
+                  can unsubscribe from at any time).
                 </p>
               </div>
-              
             </section>
             <section id="access-to-information" className="mb-8">
               <h2 className="text-2xl font-semibold text-gray-100 mb-4">
@@ -167,8 +182,8 @@ export default function PrivacyPolicy() {
               <p className="text-gray-200">
                 Access to your personal data is limited to authorized employees,
                 our trusted partners, and third-party vendors who assist us in
-                delivering our services. We may also disclose your information if
-                required by law or in connection with legal proceedings.
+                delivering our services. We may also disclose your information
+                if required by law or in connection with legal proceedings.
               </p>
             </section>
             <section id="storage" className="mb-8">
@@ -178,7 +193,8 @@ export default function PrivacyPolicy() {
               <p className="text-gray-200">
                 We store your personal information securely on our servers using
                 industry-standard security measures. We retain your data only as
-                long as necessary for our business purposes or as required by law.
+                long as necessary for our business purposes or as required by
+                law.
               </p>
             </section>
             <section id="security" className="mb-8">
@@ -187,8 +203,8 @@ export default function PrivacyPolicy() {
               </h2>
               <p className="text-gray-200">
                 We implement robust security protocols—including encryption,
-                firewalls, and access controls—to protect your personal data from
-                unauthorized access or disclosure.
+                firewalls, and access controls—to protect your personal data
+                from unauthorized access or disclosure.
               </p>
             </section>
             <section id="your-rights" className="mb-8">
@@ -197,8 +213,9 @@ export default function PrivacyPolicy() {
               </h2>
               <p className="text-gray-200">
                 You have the right to access, update, or request the deletion of
-                your personal data. You may also restrict or object to the processing
-                of your information. To exercise these rights, please contact us.
+                your personal data. You may also restrict or object to the
+                processing of your information. To exercise these rights, please
+                contact us.
               </p>
             </section>
             <section id="policy-updates" className="mb-8">
@@ -206,9 +223,10 @@ export default function PrivacyPolicy() {
                 Do we update this Privacy Policy?
               </h2>
               <p className="text-gray-200">
-                We periodically update our Privacy Policy to reflect changes in our
-                practices or legal requirements. The updated policy will be posted on
-                this page, and you may be notified of significant changes.
+                We periodically update our Privacy Policy to reflect changes in
+                our practices or legal requirements. The updated policy will be
+                posted on this page, and you may be notified of significant
+                changes.
               </p>
             </section>
             <section id="cookies" className="mb-8">
@@ -216,20 +234,25 @@ export default function PrivacyPolicy() {
                 What about cookies?
               </h2>
               <p className="text-gray-200 mb-4">
-                Our website uses cookies to enhance your browsing experience, analyze
-                site usage, and assist in our marketing efforts. You can manage your
-                cookie preferences through your browser settings.
+                Our website uses cookies to enhance your browsing experience,
+                analyze site usage, and assist in our marketing efforts. You can
+                manage your cookie preferences through your browser settings.
               </p>
-              <Link href="/cookies-policy" className="text-sm underline">Read more</Link>
+              <Link href="/cookies-policy" className="text-sm underline">
+                Read more
+              </Link>
             </section>
-            <Link href="/contact" className="text-base text-blue-500  hover:text-blue-700 font-bold">Contact us</Link>
+            <Link
+              href="/contact"
+              className="text-base text-blue-500  hover:text-blue-700 font-bold"
+            >
+              Contact us
+            </Link>
           </div>
           {/* Оглавление */}
           <div className="lg:col-span-1 hidden lg:block">
             <div className="sticky top-4">
-              <h3 className="text-xl font-semibold mb-4">
-                Table of Contents
-              </h3>
+              <h3 className="text-xl font-semibold mb-4">Table of Contents</h3>
               <ul className="space-y-2">
                 <li>
                   <a

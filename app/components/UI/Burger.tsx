@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 import React, { FC } from "react";
@@ -41,7 +41,7 @@ const Burger: FC<BurgerProps> = ({ isMenuOpen, toggleMenu }: BurgerProps) => {
       </button>
 
       <nav
-        style={{ height: isMenuOpen ? 'calc(100dvh - 48px)' : '0' }}
+        style={{ height: isMenuOpen ? "calc(100dvh - 48px)" : "0" }}
         className={`lg:hidden transition-all duration-500 ease-in-out w-full absolute top-12 left-0 z-10 overflow-hidden`}
       >
         <div className="h-full overflow-y-scroll bg-[#0a0a0a]">
@@ -78,6 +78,6 @@ const Burger: FC<BurgerProps> = ({ isMenuOpen, toggleMenu }: BurgerProps) => {
       </nav>
     </>
   );
-}
+};
 
 export default Burger;

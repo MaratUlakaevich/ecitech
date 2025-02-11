@@ -1,21 +1,20 @@
-'use client';
+"use client";
 
-import { FC, useRef } from 'react';
-import Image from 'next/image';
+import { FC, useRef } from "react";
+import Image from "next/image";
 
 type SlidingImagesProps = {
   images: string[];
 };
 
-const SlidingImages: FC<SlidingImagesProps> = ({ images }: SlidingImagesProps) => {
+const SlidingImages: FC<SlidingImagesProps> = ({
+  images,
+}: SlidingImagesProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="relative overflow-hidden lg:w-[900px] md:w-[750px] h-[130px] mt-4 mx-auto">
-      <div
-        ref={scrollRef}
-        className="flex scroll"
-      >
+      <div ref={scrollRef} className="flex scroll">
         <div className="flex gap-4 w-[max-content] animate-infinite_scroll items-center space-x-8 align-center flex-nowrap">
           {images.concat(images).map((src, index) => (
             <div key={index} className="w-[100px] flex-shrink-0">
@@ -34,6 +33,6 @@ const SlidingImages: FC<SlidingImagesProps> = ({ images }: SlidingImagesProps) =
       </div>
     </div>
   );
-}
+};
 
 export default SlidingImages;

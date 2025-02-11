@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import isBusinessHours from "../functions/WorkingHours"; 
+import isBusinessHours from "../functions/WorkingHours";
 
 interface ChatWindowProps {
   onClose: () => void;
@@ -34,13 +34,7 @@ const ChatWindow: FC<ChatWindowProps> = ({ onClose }) => {
       </div>
 
       {/* Основной контент: либо «чат», либо «форма» */}
-      <div className="">
-        {workingTime ? (
-          <OnlineChat />
-        ) : (
-          <OfflineForm />
-        )}
-      </div>
+      <div className="">{workingTime ? <OnlineChat /> : <OfflineForm />}</div>
     </div>
   );
 };
@@ -49,14 +43,14 @@ const ChatWindow: FC<ChatWindowProps> = ({ onClose }) => {
 const OnlineChat: FC = () => {
   return (
     <>
-    <div className="text-sm text-gray-800 px-4 py-4">
-      <p className="mb-4 bg-gray-200 px-4 py-2 rounded-xl">
-        Hello! Thank you for contacting ECITech. Our consultants are here to
-        help you.
-      </p>
-      {/* Здесь — реализация реального чата или бот */}
-      <p className="mb-2">[Chat interface / messages go here]</p>
-    </div>
+      <div className="text-sm text-gray-800 px-4 py-4">
+        <p className="mb-4 bg-gray-200 px-4 py-2 rounded-xl">
+          Hello! Thank you for contacting ECITech. Our consultants are here to
+          help you.
+        </p>
+        {/* Здесь — реализация реального чата или бот */}
+        <p className="mb-2">[Chat interface / messages go here]</p>
+      </div>
       <div className="flex space-x-2 bg-gray-100 p-2">
         <input
           type="text"
@@ -67,7 +61,7 @@ const OnlineChat: FC = () => {
           Send
         </button>
       </div>
-      </>
+    </>
   );
 };
 

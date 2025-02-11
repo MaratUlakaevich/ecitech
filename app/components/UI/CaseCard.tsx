@@ -7,15 +7,13 @@ const CaseCardSchema = z.object({
   image: z.string().url(),
   title: z.string().min(1),
   description: z.string().min(1),
-  link: z.string().url()
+  link: z.string().url(),
 });
 
 type CaseCardProps = z.infer<typeof CaseCardSchema>;
 
 const CaseCard: FC<CaseCardProps> = ({ image, title, description, link }) => {
-  
   return (
-
     <div className="flex flex-col lg:flex-row items-center outline-none ring-1 ring-slate-500 bg-gradient-to-r from-slate-600 to-slate-950  rounded-3xl shadow-md overflow-hidden max-h-fit lg:max-h-[30.25rem]">
       <div className="flex hidden px-2 md:flex w-full lg:w-1/2 relative md:h-[32rem] lg:h-[24rem]">
         <ErrorBoundary fallback={<div>Error loading image</div>}>
@@ -33,7 +31,9 @@ const CaseCard: FC<CaseCardProps> = ({ image, title, description, link }) => {
         </ErrorBoundary>
       </div>
       <div className="w-full lg:w-1/2 p-6 text-left">
-        <h3 className="text-xl lg:text-2xl font-bold text-white mb-2">{title}</h3>
+        <h3 className="text-xl lg:text-2xl font-bold text-white mb-2">
+          {title}
+        </h3>
         <p className="text-sm lg:text-base text-gray-400 mb-4">{description}</p>
         <a
           href={link}
@@ -46,6 +46,6 @@ const CaseCard: FC<CaseCardProps> = ({ image, title, description, link }) => {
       </div>
     </div>
   );
-}
+};
 
 export default CaseCard;

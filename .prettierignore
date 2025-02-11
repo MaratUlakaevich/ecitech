@@ -1,0 +1,9 @@
+node_modules
+.next
+.git
+out
+.vscode
+.vercel
+.cache
+.aider*
+.env

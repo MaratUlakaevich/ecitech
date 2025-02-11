@@ -30,10 +30,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export default async function handler(
-  req: VercelRequest,
-  res: VercelResponse
-) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
     return res.status(405).send("Method Not Allowed");
   }
@@ -61,7 +58,7 @@ export default async function handler(
     // Подготавливаем опции письма
     let mailOptions: nodemailer.SendMailOptions = {
       from: process.env.GMAIL_LOGIN,
-      to: "ulakaev@ecitech.online", 
+      to: "ulakaev@ecitech.online",
       subject: `New Contact Form Submission from ${fullName}`,
       text: `
         You have a new contact form submission:
@@ -70,7 +67,7 @@ export default async function handler(
         Email: ${email}
         Message: ${about}
         NDA: ${nda ? "Yes" : "No"}`,
-              html: `
+      html: `
         <p>You have a new contact form submission:</p>
         <p><strong>Full Name: </strong> ${fullName}</p>
         <p><strong>Email: </strong> ${email}</p>
@@ -84,7 +81,9 @@ export default async function handler(
     if (projectFile) {
       // Если пользователь мог прикрепить несколько файлов с тем же name,
       // надо учесть, что projectFile может быть массивом
-      const fileData = Array.isArray(projectFile) ? projectFile[0] : projectFile;
+      const fileData = Array.isArray(projectFile)
+        ? projectFile[0]
+        : projectFile;
 
       // Читаем файл в буфер
       const buffer = fs.readFileSync(fileData.filepath);
