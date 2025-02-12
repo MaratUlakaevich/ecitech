@@ -18,10 +18,10 @@ export default function PrivacyPolicy() {
       <Header />
       <main className="max-w-7xl mx-auto p-8 my-10">
         <PoliciesButtons />
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gray-100">
+        <h1 className="text-3xl md:text-6xl font-bold mb-6 text-gray-100">
           Privacy Policy
         </h1>
-        <h2 className="text-lg font-medium mb-8 w-[50rem]">
+        <h2 className="text-base md:text-lg font-medium mb-8 w-full lg:w-[50rem]">
           We respect your personal data. That’s why we’ve created a
           straightforward Privacy Policy explaining what information we collect
           when you visit cleveroad.com or communicate with us by any means

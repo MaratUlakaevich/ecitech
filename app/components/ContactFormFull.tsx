@@ -1,5 +1,3 @@
-"use client";
-
 import React, {
   FC,
   useEffect,
@@ -12,12 +10,14 @@ import React, {
 const ContactForm: FC = () => {
   const aboutRef = useRef<HTMLTextAreaElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
-  const [bgColor, setBgColor] = useState<string>("");
-  const [fullName, setFullName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [about, setAbout] = useState<string>("");
-  const [nda, setNda] = useState<boolean>(false);
-  const [status, setStatus] = useState<string>("");
+  const [bgColor, setBgColor] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [company, setCompany] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [about, setAbout] = useState("");
+  const [nda, setNda] = useState(false);
+  const [status, setStatus] = useState("");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,7 +27,9 @@ const ContactForm: FC = () => {
     // Собираем FormData вручную из текущих полей
     const formData = new FormData();
     formData.append("fullName", fullName);
+    formData.append("company", company);
     formData.append("email", email);
+    formData.append("phone", phone);
     formData.append("about", about);
     formData.append("nda", nda ? "true" : "false");
 
@@ -52,7 +54,9 @@ const ContactForm: FC = () => {
         setStatus("Message sent successfully!");
         setBgColor("bg-green-500");
         setFullName("");
+        setCompany("");
         setEmail("");
+        setPhone("");
         setAbout("");
         setNda(false);
       } else {
@@ -93,7 +97,7 @@ const ContactForm: FC = () => {
     <form
       onSubmit={handleSubmit}
       encType="multipart/form-data"
-      className="max-w-[1000px] mx-auto px-6 py-8 md:p-8 bg-gray-800 rounded-3xl shadow-lg"
+      className="max-w-[1000px] mx-auto p-8 bg-gray-800 rounded-3xl shadow-lg"
     >
       <div className="max-w-[40rem] mb-10">
         <h2 className="text-3xl md:text-6xl font-bold">
@@ -126,6 +130,31 @@ const ContactForm: FC = () => {
           </label>
         </div>
 
+        <div className="relative z-0 w-full md:w-1/2 mb-6 group">
+          <input
+            type="text"
+            name="company"
+            id="company"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            placeholder=" "
+            className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-400 appearance-none 
+                      focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+            required
+          />
+          <label
+            htmlFor="company"
+            className="absolute text-sm text-gray-400 duration-300 transform origin-[0]
+                      top-2 left-0 
+                      peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100
+                      peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-500 peer-valid:-translate-y-6 peer-valid:scale-75"
+          >
+            Company
+          </label>
+        </div>        
+      </div>
+
+      <div className="flex flex-col md:flex-row md:space-x-4">
         {/* Поле Email */}
         <div className="relative z-0 w-full md:w-1/2 mb-6 group">
           <input
@@ -149,10 +178,33 @@ const ContactForm: FC = () => {
             Email
           </label>
         </div>
+
+        <div className="relative z-0 w-full md:w-1/2 mb-6 group">
+          <input
+            type="phone"
+            name="phone"
+            id="phone"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder=" "
+            className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-400 appearance-none 
+                      focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+            required
+          />
+          <label
+            htmlFor="phone"
+            className="absolute text-sm text-gray-400 duration-300 transform origin-[0]
+                      top-2 left-0 
+                      peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100
+                      peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-500 peer-valid:-translate-y-6 peer-valid:scale-75"
+          >
+            Phone
+          </label>
+        </div>
       </div>
 
       {/* About the Project Field with Integrated File Upload Icon */}
-      <div className="relative z-0 w-full mb-10 group mt-4">
+      <div className="relative z-0 w-full mb-10 group">
         <textarea
           name="about"
           id="about"
@@ -206,7 +258,7 @@ const ContactForm: FC = () => {
           className="
             relative cursor-pointer pl-8 text-gray-400 before:content-[''] before:absolute before:left-0 before:top-0
             before:h-5 before:w-5 before:rounded before:bg-gray-400 peer-checked:before:bg-gray-400 before:bg-no-repeat before:bg-center
-            peer-checked:before:bg-[url('/img/checkmark-white.svg')] top-8
+            peer-checked:before:bg-[url('/img/checkmark-white.svg')] top-4
           "
         >
           Send me NDA

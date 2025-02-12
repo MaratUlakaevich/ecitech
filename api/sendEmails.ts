@@ -3,17 +3,16 @@ import nodemailer from "nodemailer";
 import formidable from "formidable";
 import fs from "fs";
 
-// Важная настройка: отключаем встроенный bodyParser, так как используем formidable
 export const config = {
   api: {
     bodyParser: false,
   },
 };
 
-export default async function handler(
+const handler = (
   req: VercelRequest,
   res: VercelResponse
-) {
+) => {
   if (req.method !== "POST") {
     return res.status(405).send("Method Not Allowed");
   }
@@ -30,7 +29,7 @@ export default async function handler(
       }
 
       // Извлекаем поля
-      const { fullName, email, about, nda } = fields;
+      const { fullName, company, email, phone, about, nda } = fields;
 
       // Проверяем обязательные поля
       if (!fullName || !email || !about) {
@@ -55,21 +54,25 @@ export default async function handler(
       let mailOptions: nodemailer.SendMailOptions = {
         from: process.env.GMAIL_LOGIN,
         to: "ulakaev@ecitech.online",
-        subject: `New Contact Form Submission from ${fullName}`,
+        subject: `New Contact Form Submission from ${fullName} ${company ? "- " + company : ""}`,
         text: `
-You have a new contact form submission:
+          You have a new contact form submission:
 
-Full Name: ${fullName}
-Email: ${email}
-Message: ${about}
-NDA: ${nda ? "Yes" : "No"}
+          Full Name: ${fullName}
+          ${company ? "Company: " + company : ""}
+          Email: ${email}
+          ${phone ? "Phone number: " + phone : ""}
+          Message: ${about}
+          NDA: ${nda ? "Yes" : "No"}
         `,
         html: `
-<p>You have a new contact form submission:</p>
-<p><strong>Full Name:</strong> ${fullName}</p>
-<p><strong>Email:</strong> ${email}</p>
-<p><strong>Message:</strong><br>${about}</p>
-<p><strong>NDA:</strong> ${nda ? "Yes" : "No"}</p>
+          <p>You have a new contact form submission:</p>
+          <p><strong>Full Name:</strong> ${fullName}</p>
+          ${company ? "<p><strong>Company:</strong> " + company + "</p>": ""}
+          <p><strong>Email:</strong> ${email}</p>
+          ${phone ? "<p><strong>Phone number:</strong> " + phone + "</p>": ""}
+          <p><strong>Message:</strong><br>${about}</p>
+          <p><strong>NDA:</strong> ${nda ? "Yes" : "No"}</p>
         `,
       };
 
@@ -107,3 +110,5 @@ NDA: ${nda ? "Yes" : "No"}
     res.status(500).send("Internal server error");
   }
 }
+
+export default handler;

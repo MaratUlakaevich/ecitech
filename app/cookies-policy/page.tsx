@@ -21,7 +21,7 @@ export default function CookiesPolicy() {
           <PoliciesButtons />
           {/* Основной контент */}
           <div className="md:col-span-2">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-gray-100">
+            <h1 className="text-3xl md:text-6xl font-bold mb-6 text-gray-100">
               Cookies Policy
             </h1>
 

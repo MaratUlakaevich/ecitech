@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC, useState } from "react";
 import { styles } from "../constants/styles";
 import TechItem from "./UI/TechItem";

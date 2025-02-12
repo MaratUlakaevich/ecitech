@@ -4,7 +4,7 @@ import Link from "next/link";
 const Footer: FC = () => {
   return (
     <footer className="text-gray-400 py-12">
-      <div className="md:max-w-[1128px] max-w-[605px] mx-auto px-4">
+      <div className="md:max-w-[1128px] max-w-[605px] mx-auto px-8 lg:px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Services</h3>
@@ -116,32 +116,32 @@ const Footer: FC = () => {
             <Link
               href="https://www.linkedin.com/company/ecitech-sa"
               target="_blank"
-              className="hover:text-white"
+              className="hover:text-white m-2"
             >
               LinkedIn
             </Link>
-            <Link href="#" className="hover:text-white">
+            <Link href="#" className="hover:text-white m-2">
               Clutch
             </Link>
-            <Link href="#" className="hover:text-white">
+            <Link href="#" className="hover:text-white m-2">
               Facebook
             </Link>
-            <Link href="#" className="hover:text-white">
+            <Link href="#" className="hover:text-white m-2">
               Twitter
             </Link>
-            <Link href="#" className="hover:text-white">
+            <Link href="#" className="hover:text-white m-2">
               Dribbble
             </Link>
           </div>
 
           <div className="flex w-full flex-wrap justify-around text-sm mt-4 md:mt-0 mb-10">
-            <Link href="/privacy-policy" className="hover:text-white">
+            <Link href="/privacy-policy" className="hover:text-white m-2">
               Privacy Policy
             </Link>
-            <Link href="/cookies-policy" className="hover:text-white">
+            <Link href="/cookies-policy" className="hover:text-white m-2">
               Cookies Policy
             </Link>
-            <Link href="/terms" className="hover:text-white">
+            <Link href="/terms" className="hover:text-white m-2">
               Terms & Conditions
             </Link>
           </div>

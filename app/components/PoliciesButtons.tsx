@@ -15,12 +15,13 @@ export default function PoliciesButtons() {
   const isActive = (path: string) => pathname === path;
 
   return (
-    <div className="flex gap-4 items-center mx-auto mb-10 w-[40rem] justify-between">
+    <div className="flex w-full">
+    <div className="flex gap-4 items-center mx-auto mb-10 w-fit overflow-x-scroll scrollbar-hide">
       {/* Terms and Conditions */}
       <Link
         href="/terms"
         className={`
-          px-6 py-3 rounded-full font-medium transition-colors
+          px-6 min-w-fit py-3 rounded-full font-medium transition-colors
           ${
             isActive("/terms")
               ? "bg-blue-600 text-white hover:bg-blue-700"
@@ -35,7 +36,7 @@ export default function PoliciesButtons() {
       <Link
         href="/cookies-policy"
         className={`
-          px-6 py-3 rounded-full font-medium transition-colors
+          px-6 py-3 min-w-fit rounded-full font-medium transition-colors
           ${
             isActive("/cookies-policy")
               ? "bg-blue-600 text-white hover:bg-blue-800"
@@ -50,7 +51,7 @@ export default function PoliciesButtons() {
       <Link
         href="/privacy-policy"
         className={`
-          px-6 py-3 rounded-full font-medium transition-colors
+          px-6 py-3 min-w-fit rounded-full font-medium transition-colors
           ${
             isActive("/privacy-policy")
               ? "bg-blue-600 text-white hover:bg-blue-800"
@@ -60,6 +61,7 @@ export default function PoliciesButtons() {
       >
         Privacy policy
       </Link>
+    </div>
     </div>
   );
 }
