@@ -10,6 +10,7 @@ const HeroSection: FC = () => {
                             md:text-6xl 
                             md:leading-snug 
                             md:w-[40rem] 
+                            lg:w-[50rem]
                             text-3xl 
                             leading-tight 
                             font-bold 
@@ -17,12 +18,12 @@ const HeroSection: FC = () => {
                             text-white-500 
                             my-4`}
         >
-          Unlocking Your Tech Potential
+          We create solutions that solve business problems
         </h1>
         <p
           className={`${styles.lgp} md:w-[44rem] text-lg font-medium text-left text-white-500 my-4`}
         >
-          We create solutions that solve business problems, meet requirements,
+          The solutions, that meet requirements,
           respond to market needs, and transform internal operations.
         </p>
       </div>
@@ -31,7 +32,7 @@ const HeroSection: FC = () => {
                               hover:bg-blue-800 duration-300 focus:outline-none font-medium rounded-full 
                               text-xl px-10 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700`}
       >
-        Connect with us
+        Learn more
       </button>
       <div className=" mx-8 mt-10 lg:mx-0 lg:mt-10">
         <h4 className="text-slate-400">Our Clients</h4>

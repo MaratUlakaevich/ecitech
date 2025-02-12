@@ -52,13 +52,7 @@ const Navbar: FC = () => {
               </button>
             </Link>
           </li>
-          <li className={liStyle}>
-            <Link href="/expertise">
-              <button className="p-1 px-3 rounded-full bg-black-500 hover:bg-blue-800 duration-300 active:bg-blue-700">
-                Expertise
-              </button>
-            </Link>
-          </li>
+          
           <li className={liStyle}>
             <Link href="/company">
               <button className="p-1 px-3 rounded-full bg-black-500 hover:bg-blue-800 duration-300 active:bg-blue-700">
@@ -80,12 +74,11 @@ const Navbar: FC = () => {
               </button>
             </Link>
           </li>
-          <li
-            className={`${liStyle} text-white bg-blue-700 hover:bg-blue-800 duration-300 font-medium rounded-full text-xl px-10 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700`}
-          >
-            <Link href="/contact">Contact us</Link>
-          </li>
+          
         </ul>
+        <Link href="/contact" className={`${liStyle} ml-6 text-white bg-blue-700 hover:bg-blue-800 duration-300 font-medium rounded-full text-xl px-10 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700`}>
+          Contact us
+        </Link>
       </nav>
       <Burger isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
     </div>

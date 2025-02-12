@@ -9,7 +9,7 @@ type BurgerProps = {
 };
 
 const Burger: FC<BurgerProps> = ({ isMenuOpen, toggleMenu }: BurgerProps) => {
-  const liStyle = "mx-8 text-white-500 font-medium text-xl ";
+  const liStyle = "mx-8 text-white-500 font-medium text-xl md:text-3xl";
   const burger = "block w-10 h-1 bg-white rounded duration-300 ease-in-out";
 
   return (
@@ -53,9 +53,6 @@ const Burger: FC<BurgerProps> = ({ isMenuOpen, toggleMenu }: BurgerProps) => {
               <Link href="/industries">Industries</Link>
             </li>
             <li className={liStyle}>
-              <Link href="/expertise">Expertise</Link>
-            </li>
-            <li className={liStyle}>
               <Link href="/company">Company</Link>
             </li>
             <li className={liStyle}>
@@ -69,7 +66,7 @@ const Burger: FC<BurgerProps> = ({ isMenuOpen, toggleMenu }: BurgerProps) => {
           <div className="absolute bottom-4 left-0 bg-[#0a0a0a] w-full h-32 flex justify-center">
             <Link
               href="/contact"
-              className={`${liStyle} block text-white font-extrabold rounded-full bg-indigo-600 my-auto px-10 py-3`}
+              className={`${liStyle} md:text-xl block text-white font-extrabold rounded-full bg-indigo-600 my-auto px-10 py-3`}
             >
               Contact us
             </Link>
