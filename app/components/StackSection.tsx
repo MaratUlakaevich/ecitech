@@ -16,7 +16,7 @@ const StackSection: FC = () => {
           Technology Stack
         </h2>
         <p
-          className={`${styles.lgp} lg:w-[50rem] text-gray-400 mb-12 lg:mb-20`}
+          className={`${styles.lgp} lg:w-[55rem] text-gray-400 mb-12 lg:mb-20`}
         >
           The development team working on a project uses only modern and
           scalable technologies to implement mobile and web applications the way

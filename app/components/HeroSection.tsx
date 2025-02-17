@@ -23,8 +23,7 @@ const HeroSection: FC = () => {
         <p
           className={`${styles.lgp} md:w-[44rem] text-lg font-medium text-left text-white-500 my-4`}
         >
-          The solutions, that meet requirements,
-          respond to market needs, and transform internal operations.
+          We&apos;re a full-cycle web and mobile application development company that creates software solutions tailored to the demands of businesses
         </p>
       </div>
       <button
