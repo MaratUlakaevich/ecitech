@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { styles } from "../constants/styles";
 import parse from "html-react-parser";
 import FaqItem from "./FaqItem";
@@ -57,7 +57,7 @@ const faqData = [
                     </li>
                     <br>
                     <li>
-                      <strong>Skillset. <strong>Most offshore companies are focused on certain industries or technologies, so it'll be easy to find engineers with specific skills.
+                      <strong>Skillset. </strong>Most offshore companies are focused on certain industries or technologies, so it'll be easy to find engineers with specific skills.
                     </li>
                   </ul>
                 `),
@@ -85,18 +85,7 @@ const faqData = [
 
 export default function FaqSection() {
   // Храним состояние (раскрыт/не раскрыт) для каждого вопроса
-  const [openStates, setOpenStates] = useState<boolean[]>(
-    faqData.map(() => false)
-  );
-
-
-  const toggleFAQ = (index: number) => {
-    setOpenStates((prev) => {
-      const newArr = [...prev];
-      newArr[index] = !newArr[index];
-      return newArr;
-    });
-  };
+  
 
   return (
     <section className={`${styles.section}`}>
