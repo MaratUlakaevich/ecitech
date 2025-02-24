@@ -65,7 +65,7 @@ export default function Home() {
           <CompanySection />
         </section>
       </main>
-      <div className="px-8 lg:px-0 mt-20">
+      <div className="px-8 lg:px-0 mt-20 mb-20">
         <ContactForm />
       </div>
 

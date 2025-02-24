@@ -26,7 +26,7 @@ const Navbar: FC = () => {
 
   return (
     <div
-      className={`relative flex justify-between items-center w-full lg:bg-transparent`}
+      className={`relative flex justify-between items-center w-[1150px] mx-auto lg:bg-transparent`}
     >
       <Link href="/" className="ml-8 lg:ml-0">
         <Image

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import CaseCard from "./UI/CaseCard";
-import { cases } from "../config/caseData";
+import { cases } from "../config/mockData";
 import { styles } from "../constants/styles";
 
 const CaseSection: FC = () => {
