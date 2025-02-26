@@ -1,5 +1,8 @@
 import Head from "next/head";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
+import ContactForm from "../components/ContactFormFull";
+import ConnectWithTeam from "../components/ConnectSection";
 
 export default function Home() {
   return (
@@ -12,8 +15,12 @@ export default function Home() {
       </Head>
 
       <Header />
-      <main>
+      <main className="container mx-auto px-4">
+        <ContactForm />
+
+        <ConnectWithTeam />
       </main>
+      <Footer/>
     </>
   );
 }
