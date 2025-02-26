@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FC, useState } from "react";
-import { styles } from "../constants/styles";
+import { styles } from "../app/constants/styles";
 import TechItem from "./UI/TechItem";
 
 const StackSection: FC = () => {

@@ -3,7 +3,7 @@
 import React from "react";
 import ServiceCard from "./UI/ServiceCard";
 import { servicesData } from "@/app/config/mockData";
-import { styles } from "../constants/styles";
+import { styles } from "../app/constants/styles";
 
 
 export default function ServicesHero() {

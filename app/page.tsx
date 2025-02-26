@@ -1,20 +1,20 @@
 //analize the code. AI!
 
 import Head from "next/head";
-import Header from "./components/Header";
+import Header from "../components/Header";
 import Image from "next/image";
 import headImg from "../public/img/3d.svg";
-import ScrollButton from "./components/UI/ScrollButton";
-import Slider from "./components/Slider";
-import HeroSection from "./components/HeroSection";
-import CaseSection from "./components/CaseSection";
-import IndustrySection from "./components/IndustrySection";
+import ScrollButton from "../components/UI/ScrollButton";
+import Slider from "../components/Slider";
+import HeroSection from "../components/HeroSection";
+import CaseSection from "../components/CaseSection";
+import IndustrySection from "../components/IndustrySection";
 import { styles } from "./constants/styles";
 import { clientImages } from "./config/images";
-import StackSection from "./components/StackSection";
-import Footer from "./components/Footer";
-import CompanySection from "./components/CompanySection";
-import ContactForm from "./components/ContactForm";
+import StackSection from "../components/StackSection";
+import Footer from "../components/Footer";
+import CompanySection from "../components/CompanySection";
+import ContactForm from "../components/ContactForm";
 
 export default function Home() {
   return (

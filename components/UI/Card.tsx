@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import Image from "next/image";
-import arrow from "../../../public/img/card/arrow.svg";
+import arrow from "../../public/img/card/arrow.svg";
 import Link from "next/link";
 
 type CardProps = {

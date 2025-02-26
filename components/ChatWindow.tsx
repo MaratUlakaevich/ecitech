@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import isBusinessHours from "../functions/WorkingHours";
+import isBusinessHours from "../app/functions/WorkingHours";
 
 interface ChatWindowProps {
   onClose: () => void;

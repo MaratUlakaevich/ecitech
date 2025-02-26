@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
-import Header from "../components/Header";
-import ServicesHero from "../components/ServicesHero";
-import Footer from "../components/Footer";
-import ContactForm from "../components/ContactForm";
-import FaqSection from "../components/FaqSection";
+import Header from "../../components/Header";
+import ServicesHero from "../../components/ServicesHero";
+import Footer from "../../components/Footer";
+import ContactForm from "../../components/ContactForm";
+import FaqSection from "../../components/FaqSection";
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { styles } from "../constants/styles";
+import { styles } from "../app/constants/styles";
 import parse from "html-react-parser";
 import FaqItem from "./FaqItem";
 
