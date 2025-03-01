@@ -28,6 +28,7 @@ export default function Home() {
           content="ECITech - Unlocking Your Tech Potential"
         />
         <meta property="og:title" content="ECITech" />
+        
         <meta
           property="og:description"
           content="We create solutions that solve business problems..."

@@ -4,6 +4,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "ECITech - Programming The Future of Your Business",
   description: "",
+  icons: {
+    icon: "/img/favicon.ico",
+  }
+
 };
 
 export default function RootLayout({

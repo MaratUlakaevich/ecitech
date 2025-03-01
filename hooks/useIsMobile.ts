@@ -13,7 +13,6 @@ export function useIsMobile(breakpoint: number = 768) {
     function checkWidth() {
       setIsMobile(window.innerWidth < breakpoint);
     }
-
     // Начальная проверка
     checkWidth();
 
