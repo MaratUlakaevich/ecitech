@@ -120,13 +120,21 @@ const Footer: FC = () => {
             >
               LinkedIn
             </Link>
-            <Link href="#" className="hover:text-white m-2">
+            <Link 
+              href="https://clutch.co/profile/ecitech"
+              target="_blank"
+              className="hover:text-white m-2"
+            >
               Clutch
             </Link>
             <Link href="#" className="hover:text-white m-2">
               Facebook
             </Link>
-            <Link href="#" className="hover:text-white m-2">
+            <Link 
+              href="https://x.com/ecitech_online"
+              target="_blank"
+              className="hover:text-white m-2"
+            >
               Twitter
             </Link>
             <Link href="#" className="hover:text-white m-2">
