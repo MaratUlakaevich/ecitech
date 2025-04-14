@@ -4,16 +4,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getArticleBySlug, getAllArticles } from '@/lib/api/strapi';
+import { getArticleBySlug, getAllArticles } from '@/api/strapi';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Head from 'next/head';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Params } from '@/lib/types/params';
 
 export const revalidate = 3600;
 
 // Генерация метаданных для каждой статьи
-export async function generateMetadata({ params }: any) {
+export async function generateMetadata({ params }: {params: Params}) {
   const article = await getArticleBySlug(params.slug);
   
   if (!article) {
@@ -44,18 +45,39 @@ export async function generateMetadata({ params }: any) {
   };
 }
 
-
+interface Article {
+  title: string;
+  description: string;
+  slug: string;
+  seo: {
+    metaTitle: string;
+    metaDescription: string;
+  };
+  img: {
+    data: {
+      url: string;
+    };
+  };
+  publishedAt: string;
+  category: {
+    data: {
+      name: string;
+      slug: string;
+    };
+  };
+  content: string;
+}
 
 // Генерация статических путей для всех статей
 export async function generateStaticParams() {
   const { data: articles } = await getAllArticles(1, 100);
   
-  return articles.map((article: any) => ({
+  return articles.map((article: Article) => ({
     slug: article.slug,
   }));
 }
 
-export default async function ArticlePage({ params }: any) {
+export default async function ArticlePage({ params }: {params: Params}) {
   const article = await getArticleBySlug(params.slug);
   
   if (!article) {

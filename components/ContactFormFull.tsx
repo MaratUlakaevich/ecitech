@@ -2,7 +2,6 @@
 
 import React, {
   FC,
-  useEffect,
   useRef,
   useState,
   FormEvent,
@@ -12,8 +11,6 @@ import { toast } from "sonner"
 
 const ContactForm: FC = () => {
   const aboutRef = useRef<HTMLTextAreaElement>(null);
-  const statusRef = useRef<HTMLDivElement>(null);
-  const [bgColor, setBgColor] = useState("");
   const [fullName, setFullName] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
@@ -23,7 +20,6 @@ const ContactForm: FC = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setBgColor("bg-gray-500");
     toast("Sending...");
 
     // Собираем FormData вручную из текущих полей
@@ -54,7 +50,6 @@ const ContactForm: FC = () => {
 
       if (res.ok) {
         toast("Message sent successfully!");
-        setBgColor("bg-green-500");
         setFullName("");
         setCompany("");
         setEmail("");
@@ -63,12 +58,10 @@ const ContactForm: FC = () => {
         setNda(false);
       } else {
         const text = await res.text();
-        toast.error("Error sending message.");
-        setBgColor("bg-red-500");
+        toast.error("Error sending message. " + text);
       }
     } catch (error) {
       console.error(error);
-      setBgColor("bg-red-500");
       toast.error("Error sending message.")
     }
   };

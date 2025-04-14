@@ -2,20 +2,22 @@
 // Страница категории с статьями
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getAllCategories, getArticlesByCategory } from '@/lib/api/strapi';
+import { getAllCategories, getArticlesByCategory } from '@/api/strapi';
 import ArticleCard from '@/components/ArticleCard';
 import Head from 'next/head';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { Params } from '@/lib/types/params';
+import { Category } from '@/lib/types/category';
+import { Article } from '@/lib/types/article';
 
 export const revalidate = 3600;
 
 // Генерация метаданных для каждой категории
-export async function generateMetadata({ params }: any) {
+export async function generateMetadata({ params }: {params: Params}) {
   const categoriesResponse = await getAllCategories();
-  const category = categoriesResponse.data.find((cat: any) => cat.slug === params.slug);
+  const category = categoriesResponse.data.find((cat: Category) => cat.slug === params.slug);
   
   if (!category) {
     return {
@@ -34,16 +36,16 @@ export async function generateMetadata({ params }: any) {
 export async function generateStaticParams() {
   const { data: categories } = await getAllCategories();
   
-  return categories.map((category: any) => ({
+  return categories.map((category: Category) => ({
     slug: category.slug,
   }));
 }
 
-export default async function CategoryPage({ params, searchParams }: any) {
+export default async function CategoryPage({ params, searchParams }: { params: Params, searchParams: { page?: string } }) {
   const page = searchParams.page ? parseInt(searchParams.page) : 1;
   
   const categoriesResponse = await getAllCategories();
-  const category = categoriesResponse.data.find((cat: any) => cat.slug === params.slug);
+  const category = categoriesResponse.data.find((cat: Category) => cat.slug === params.slug);
   
   if (!category) {
     notFound();
@@ -72,7 +74,7 @@ export default async function CategoryPage({ params, searchParams }: any) {
         )}
         
         <div className="flex flex-col space-y-6">
-          {articles.map((article: any) => (
+          {articles.map((article: Article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
         </div>

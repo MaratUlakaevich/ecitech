@@ -3,11 +3,12 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllArticles } from '@/lib/api/strapi';
+import { getAllArticles } from '@/api/strapi';
 import Head from 'next/head';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ArticleCard from '@/components/ArticleCard';
+import { Article } from '@/lib/types/article';
 
 export const metadata = {
   title: 'Блог',
@@ -48,7 +49,7 @@ export default async function BlogPage() {
         <h1 className="text-3xl font-bold mb-6">Recent Posts</h1>
         
         <div className="flex flex-col space-y-6">
-          {articles.map((article: any) => (
+          {articles.map((article: Article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
         </div>

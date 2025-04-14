@@ -17,7 +17,7 @@ export function getStrapiMedia(media: any) {
 }
 
 // Базовый fetcher для данных из Strapi
-export async function fetchAPI(path: any, options = {}, locale?: string) {
+export async function fetchAPI(path: string, options = {}) {
   const defaultOptions = {
     headers: {
       'Content-Type': 'application/json',
@@ -42,14 +42,14 @@ export async function fetchAPI(path: any, options = {}, locale?: string) {
 }
 
 // Получение всех статей с пагинацией
-export async function getAllArticles(page = 1, pageSize = 10, locale?: string) {
+export async function getAllArticles(page = 1, pageSize = 10) {
   const path = `/articles?&populate[seo][populate]=img&populate=categories&pagination[page]=${page}&pagination[pageSize]=${pageSize}&sort=publishedAt:desc`;
   const response = await fetchAPI(path);
   return response;
 }
 
 // Получение статьи по slug
-export async function getArticleBySlug(slug: any) {
+export async function getArticleBySlug(slug: string) {
   const path = `/articles?filters[slug][$eq]=${slug}&populate[seo][populate]=img&populate=categories`;
   const response = await fetchAPI(path);
   return response.data?.[0] || null;
@@ -63,7 +63,7 @@ export async function getAllCategories() {
 }
 
 // Получение статей по категории
-export async function getArticlesByCategory(categorySlug: any, page = 1, pageSize = 10) {
+export async function getArticlesByCategory(categorySlug: string, page = 1, pageSize = 10) {
   const path = `/articles?filters[categories][slug][$eq]=${categorySlug}&populate[seo][populate]=img&populate=categories&pagination[page]=${page}&pagination[pageSize]=${pageSize}&sort=publishedAt:desc`;
   const response = await fetchAPI(path);
   return response;

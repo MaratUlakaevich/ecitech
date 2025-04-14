@@ -1,7 +1,9 @@
 // app/sitemap.js
 // Sitemap для всего сайта, включая блог
 
-import { getAllArticles, getAllCategories } from '@/lib/api/strapi';
+import { getAllArticles, getAllCategories } from '@/api/strapi';
+import { Article } from '@/lib/types/article';
+import { Category } from '@/lib/types/category';
 
 export default async function sitemap() {
   const baseUrl = 'https://ecitech.online';
@@ -24,18 +26,18 @@ export default async function sitemap() {
 
   // Получаем все статьи
   const articlesResponse = await getAllArticles(1, 100);
-  const articlesUrls = articlesResponse.data.map((article: any) => ({
-    url: `${baseUrl}/blog/${article.attributes.slug}`,
-    lastModified: new Date(article.attributes.updatedAt),
+  const articlesUrls = articlesResponse.data.map((article: Article) => ({
+    url: `${baseUrl}/blog/${article.slug}`,
+    lastModified: new Date(article.updatedAt),
     changeFrequency: 'weekly',
     priority: 0.8,
   }));
 
   // Получаем все категории
   const categoriesResponse = await getAllCategories();
-  const categoriesUrls = categoriesResponse.data.map((category: any) => ({
-    url: `${baseUrl}/blog/category/${category.attributes.slug}`,
-    lastModified: new Date(category.attributes.updatedAt),
+  const categoriesUrls = categoriesResponse.data.map((category: Category) => ({
+    url: `${baseUrl}/blog/category/${category.slug}`,
+    lastModified: new Date(category.updatedAt),
     changeFrequency: 'weekly',
     priority: 0.7,
   }));

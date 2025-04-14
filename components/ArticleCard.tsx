@@ -4,20 +4,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { Article } from '@/lib/types/article';
+import { Category } from '@/lib/types/category';
 
-export default function ArticleCard({ article }: any) {
+export default function ArticleCard( { article } : { article: Article }) {
   const { title, description, slug, seo, categories, publishedAt } = article;
   const router = useRouter();
-  
-  const formattedDate = new Date(publishedAt).toLocaleDateString('ru-RU', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric'
-  });
 
-  const handleClick = (e: any) => {
-    if (e.target.tagName.toLowerCase() === 'a' || 
-        e.target.closest('a') !== null) {
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>): void => {
+    if (e.target instanceof Element && 
+        (e.target.tagName.toLowerCase() === 'a' || 
+        e.target.closest('a') !== null)) {
       return;
     }
 
@@ -45,7 +42,7 @@ export default function ArticleCard({ article }: any) {
         <div>
           {categories && categories.length > 0 && (
             <div className="mb-4">
-              {categories.map((category: any) => (
+              {categories.map((category: Category) => (
                 <Link
                   key={category.id}
                   href={`/blog/category/${category.slug}`}
@@ -67,7 +64,7 @@ export default function ArticleCard({ article }: any) {
         </div>
         
         <div className="text-gray-500 text-right">
-          {formattedDate}
+          {publishedAt}
         </div>
       </div>
     </div>
