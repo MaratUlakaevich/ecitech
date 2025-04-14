@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Toaster } from "@/components/ui/sonner"
 
 export const metadata: Metadata = {
   title: "ECITech - Programming The Future of Your Business",
@@ -30,6 +32,7 @@ export default function RootLayout({
         </Script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="" />
+        <meta name="apple-mobile-web-app-title" content="ECITech" />
         <link rel="icon" href="/img/favicon.ico" />
         <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
         <link rel="manifest" href="/img/site.webmanifest" />
@@ -45,6 +48,8 @@ export default function RootLayout({
           </iframe>
         </noscript>
         {children}
+        <Toaster />
+        <SpeedInsights />
       </body>
     </html>
   );

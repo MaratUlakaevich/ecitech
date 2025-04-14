@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useEffect, FC } from "react";
-import Navbar from "./UI/Navbar";
+import Navbar from "./ui/Navbar";
 
 const Header: FC = () => {
   const headerRef = useRef<HTMLElement>(null);

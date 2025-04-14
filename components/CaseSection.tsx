@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import CaseCard from "./UI/CaseCard";
+import CaseCard from "./ui/CaseCard";
 import { cases } from "../app/config/mockData";
 import { styles } from "../app/constants/styles";
 

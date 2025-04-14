@@ -19,17 +19,17 @@ export default function Home() {
       <Header />
       <main className="max-w-[1200px] mx-auto lg:px-4">
         <div className="absolute overflow-hidden lg:overflow-visible w-screen lg:max-w-[1128px]">
-            <Image
-              src="img/3d.svg"
-              width={2000}
-              height={2000}
-              unoptimized
-              loading="lazy"
-              alt="ECITech Main 3d img"
-              className="relative rotate-[150deg] max-w-[900px] left-[4%] md:max-w-[1200px] left-[0%] lg:left-[-3%] lg:max-w-[1600px]
-                         -z-10 md:-top-4 lg:-top-4"
-            ></Image>
-          </div>
+          <Image
+            src="img/3d.svg"
+            width={2000}
+            height={2000}
+            unoptimized
+            loading="lazy"
+            alt="ECITech Main 3d img"
+            className="relative rotate-[150deg] max-w-[900px] left-[4%] md:max-w-[1200px] left-[0%] lg:left-[-3%] lg:max-w-[1600px]
+                       -z-10 md:-top-4 lg:-top-4"
+          ></Image>
+        </div>
         <ServicesHero />
         <FaqSection />
       </main>

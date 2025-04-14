@@ -55,6 +55,33 @@ footer {
   contain: layout;
 }
 
+.mdx-content ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.mdx-content ol {
+  list-style-type: decimal;
+  margin-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.mdx-content li {
+  margin-bottom: 0.5rem;
+}
+
+.mdx-content p {
+  margin-bottom: 1rem;
+}
+
+.mdx-content h1 {font-size: 2rem !important; font-weight: bold; margin-top: 1.5rem; margin-bottom: 1rem;}
+.mdx-content h2 {font-size: 1.5rem !important; font-weight: bold; margin-top: 1.5rem; margin-bottom: 1rem;}
+.mdx-content h3 {font-size: 1.17rem !important; font-weight: bold; margin-top: 1rem; margin-bottom: 0.5rem;}
+.mdx-content h4 {font-size: 1rem !important; font-weight: bold; margin-top: 1rem; margin-bottom: 0.5rem;}
+.mdx-content h5 {font-size: 0.83rem !important; font-weight: bold; margin-top: 1rem; margin-bottom: 0.5rem;}
+.mdx-content h6 {font-size: 0.67rem !important; font-weight: bold; margin-top: 1rem; margin-bottom: 0.5rem;}
+
 .dS_G5 {
   fill: white;
   height: 1.6875rem;

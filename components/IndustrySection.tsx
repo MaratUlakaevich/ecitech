@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { styles } from "../app/constants/styles";
-import Card from "./UI/Card";
+import Card from "./ui/Card";
 
 const IndustrySection: FC = () => {
   return (

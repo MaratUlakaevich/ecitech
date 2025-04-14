@@ -12,13 +12,21 @@
   },
   "dependencies": {
     "@vercel/node": "^2.3.0",
+    "@vercel/speed-insights": "^1.2.0",
+    "axios": "^1.8.4",
     "formidable": "^3.5.2",
     "html-react-parser": "^5.2.2",
     "next": "^14.2.24",
+    "next-mdx-remote": "^5.0.0",
+    "next-sitemap": "^4.2.3",
+    "next-themes": "^0.4.6",
     "nodemailer": "^6.10.0",
     "react": "^18",
     "react-dom": "^18",
     "react-error-boundary": "^4.1.2",
+    "remark-breaks": "^4.0.0",
+    "sonner": "^2.0.3",
+    "strapi-plugin-populate-deep": "^3.0.1",
     "zod": "^3.24.1"
   },
   "devDependencies": {
