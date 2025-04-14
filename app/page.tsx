@@ -4,7 +4,7 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Image from "next/image";
 import headImg from "../public/img/3d.svg";
-import ScrollButton from "../components/ui/ScrollButton";
+import ScrollButton from "../components/UI/ScrollButton";
 import Slider from "../components/Slider";
 import HeroSection from "../components/HeroSection";
 import CaseSection from "../components/CaseSection";

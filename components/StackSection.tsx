@@ -2,7 +2,7 @@
 
 import React, { FC, useState } from "react";
 import { styles } from "../app/constants/styles";
-import TechItem from "./ui/TechItem";
+import TechItem from "./UI/TechItem";
 
 const StackSection: FC = () => {
   const [activeSection, setActiveSection] = useState<"web" | "mobile">("web");

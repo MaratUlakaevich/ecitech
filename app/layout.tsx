@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/UI/sonner"
 
 export const metadata: Metadata = {
   title: "ECITech - Programming The Future of Your Business",
