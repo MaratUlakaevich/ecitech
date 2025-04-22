@@ -4,6 +4,7 @@ export type Article = {
   id: number;
   title: string;
   locale: string;
+  content: string;
   description: string;
   slug: string;
   img: {

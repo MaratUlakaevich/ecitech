@@ -1,6 +1,8 @@
 // lib/api/strapi.js
 // Утилита для работы с API Strapi
 
+import { Article } from "@/lib/types/article";
+
 const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
 
 // Функция для получения полного URL API Strapi
@@ -9,7 +11,7 @@ export function getStrapiURL(path = '') {
 }
 
 // Функция для получения URL медиа-файлов
-export function getStrapiMedia(media: any) {
+export function getStrapiMedia(media: {url: string}) {
   if (!media) return null;
   
   const { url } = media;
@@ -43,14 +45,14 @@ export async function fetchAPI(path: string, options = {}) {
 
 // Получение всех статей с пагинацией
 export async function getAllArticles(page = 1, pageSize = 10) {
-  const path = `/articles?&populate[seo][populate]=img&populate=categories&pagination[page]=${page}&pagination[pageSize]=${pageSize}&sort=publishedAt:desc`;
+  const path = `/articles?&populate[0]=seo&populate[1]=seo.img&populate[2]=img&populate[3]=categories&pagination[page]=${page}&pagination[pageSize]=${pageSize}&sort=publishedAt:desc`;
   const response = await fetchAPI(path);
   return response;
 }
 
 // Получение статьи по slug
-export async function getArticleBySlug(slug: string) {
-  const path = `/articles?filters[slug][$eq]=${slug}&populate[seo][populate]=img&populate=categories`;
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  const path = `/articles?filters[slug][$eq]=${slug}&populate[0]=seo&populate[1]=seo.img&populate[2]=img&populate[3]=categories`;
   const response = await fetchAPI(path);
   return response.data?.[0] || null;
 }
@@ -64,7 +66,7 @@ export async function getAllCategories() {
 
 // Получение статей по категории
 export async function getArticlesByCategory(categorySlug: string, page = 1, pageSize = 10) {
-  const path = `/articles?filters[categories][slug][$eq]=${categorySlug}&populate[seo][populate]=img&populate=categories&pagination[page]=${page}&pagination[pageSize]=${pageSize}&sort=publishedAt:desc`;
+  const path = `/articles?filters[categories][slug][$eq]=${categorySlug}&populate[0]=seo&populate[1]=seo.img&populate[2]=img&populate[3]=categories&pagination[page]=${page}&pagination[pageSize]=${pageSize}&sort=publishedAt:desc`;
   const response = await fetchAPI(path);
   return response;
 }

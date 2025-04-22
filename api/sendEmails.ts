@@ -51,7 +51,7 @@ const handler = (
       });
 
       // Формируем письмо
-      let mailOptions: nodemailer.SendMailOptions = {
+      const mailOptions: nodemailer.SendMailOptions = {
         from: process.env.GMAIL_LOGIN,
         to: "ulakaev@ecitech.online",
         subject: `New Contact Form Submission from ${fullName} ${company ? "- " + company : ""}`,

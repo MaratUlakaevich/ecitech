@@ -10,6 +10,8 @@ import Head from 'next/head';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Params } from '@/lib/types/params';
+import { Article } from '@/lib/types/article';
+import ImageByIndex from '@/components/ImageByIndex';
 
 export const revalidate = 3600;
 
@@ -33,9 +35,9 @@ export async function generateMetadata({ params }: {params: Params}) {
       title: seo?.metaTitle || title,
       description: seo?.metaDescription || description,
       type: 'article',
-      ...(article.image?.data && {
+      ...(article.img && {
         images: [{
-          url: `http://localhost:1337${article.img.data.url}`,
+          url: `http://localhost:1337${article.img[0].url}`,
           width: 1200,
           height: 630,
           alt: title,
@@ -43,29 +45,6 @@ export async function generateMetadata({ params }: {params: Params}) {
       }),
     },
   };
-}
-
-interface Article {
-  title: string;
-  description: string;
-  slug: string;
-  seo: {
-    metaTitle: string;
-    metaDescription: string;
-  };
-  img: {
-    data: {
-      url: string;
-    };
-  };
-  publishedAt: string;
-  category: {
-    data: {
-      name: string;
-      slug: string;
-    };
-  };
-  content: string;
 }
 
 // Генерация статических путей для всех статей
@@ -84,28 +63,33 @@ export default async function ArticlePage({ params }: {params: Params}) {
     notFound();
   }
   
-  const { title, content, publishedAt, category, img } = article;
+  const { title, content, publishedAt, categories, img, seo } = article;
+
+  const DynamicImage = ({ index }: {index: number}) => (
+    <ImageByIndex url={img[index]?.url} />
+  );
   
   return (
     <>
       <Head>
-        <title>ECITech</title>
-        <meta name="description" content="" />
+        <title>{seo.metaTitle}</title>
+        <meta name="description" content={seo.metaDescription} />
+        <meta name="keywords" content={seo.keywords} />
         <link rel="icon" href="#" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
       <Header />
-      <main className="mx-auto py-8 px-6 w-[90%] md:w-[80%] bg-gradient-to-r from-slate-600 to-slate-950 rounded-xl shadow-lg">
-        <Link href="/blog" className="text-blue-300 hover:underline mb-4 inline-block">
+      <main className="mx-auto py-8 px-6 w-[90%] md:w-[80%] bg-gradient-to-r from-slate-800 to-slate-950 rounded-xl shadow-lg">
+        <Link href="/blog" className="text-blue-500 hover:underline mb-4 inline-block">
           ← Back
         </Link>
         
         <article className="max-w-3xl mx-auto">
           <header className="mb-8">
-            <h1 className="text-4xl font-bold mb-4">{title}</h1>
+            <h1 className="text-xl md:text-3xl lg:text-4xl font-bold mb-4">{title}</h1>
             
-            <div className="flex items-center text-gray-400 mb-6">
+            <div className="flex flex-col md:flex-row justify-between md:items-center text-gray-400 text-sm md:text-base lg:text-lg mb-6">
               <time dateTime={publishedAt}>
                 {new Date(publishedAt).toLocaleDateString('ru-RU', {
                   day: 'numeric',
@@ -113,34 +97,37 @@ export default async function ArticlePage({ params }: {params: Params}) {
                   year: 'numeric',
                 })}
               </time>
-              {category?.data && (
+              <div className='flex flex-col md:flex-row mt-4 md:mt-0'>
+              {categories.map((category) =>
                 <>
-                  <span className="mx-2">•</span>
                   <Link 
-                    href={`/blog/category/${category.data.attributes.slug}`}
-                    className="text-blue-500 hover:underline"
+                    key={category.id}
+                    href={`/blog/category/${category.slug}`}
+                    className="text-blue-500 hover:underline md:ml-4"
                   >
-                    {category.data.name}
+                    {category.name}
                   </Link>
                 </>
               )}
+              </div>
             </div>
             
-            {img?.data && (
+            {img && (
               <div className="relative w-full h-80 mb-8 rounded-lg overflow-hidden">
                 <Image
-                  src={`http://localhost:1337${img.data.url}`}
+                  src={`http://localhost:1337${img[0].url}`}
                   alt={title}
                   fill
                   className="object-cover"
-                  priority
+                  unoptimized
+                  loading='lazy'
                 />
               </div>
             )}
           </header>
           
           <div className="mdx-content">
-            <MDXRemote source={content} />
+            <MDXRemote source={content} components={{DynamicImage}}/>
           </div>
         </article>
       </main>
