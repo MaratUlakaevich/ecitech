@@ -27,7 +27,7 @@ export default function ArticleCard( { article } : { article: Article }) {
         {seo.img && (
             <div className="relative w-full h-full">
               <Image
-                src={`http://localhost:1337${seo.img.url}`}
+                src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'}${seo.img.url}`}
                 alt={title}
                 fill
                 loading='lazy'
