@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Industries We Serve | ECITech",
   description:
-    "Discover the industries ECITech empowers through tailored web, mobile, and AI development — from fintech to healthcare and logistics.",
+    "We create industry-specific software for fintech, logistics, healthcare, education, and other growing sectors.",
   keywords: [
     "industries we serve",
     "software development industries",
@@ -34,10 +34,8 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: "summary_large_image",
     title: "Industries We Serve | ECITech",
-    description:
-      "Explore how ECITech helps fintech, logistics, healthcare and more with custom software solutions.",
+    description: "Explore how ECITech helps fintech, logistics, healthcare and more with custom software solutions.",
     images: ["/img/og/default.png"],
   },
 };

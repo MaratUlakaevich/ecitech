@@ -8,7 +8,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Web & Mobile Development Services — ECITech",
-  description: "Explore our full-cycle development services tailored for startups and growing businesses.",
+  description:
+    "Explore our services — full-cycle web, mobile, DevOps, and UI/UX design tailored to help your business grow and scale.",
   keywords: [
     "custom software services",
     "web app development",

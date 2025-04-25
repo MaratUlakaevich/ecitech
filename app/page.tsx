@@ -17,7 +17,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "ECITech — Programming The Future of Your Business",
   description:
-    "We design and build custom web and mobile applications tailored to your business. From idea to scalable product — with strong UI, clean code, and full-cycle development.",
+    "We build custom web and mobile apps tailored to your business — with great UI, clean code, and full-cycle development.",
   keywords: [
     "ECITech",
     "custom software development",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     description:
       "We help companies bring their digital ideas to life — from web/mobile apps to AI-powered platforms.",
     images: ["/img/og/default.png"],
-    creator: "@ecitech", // если есть, можно добавить
+    creator: "@ecitech_online", // если есть, можно добавить
   },
   icons: {
     icon: "/img/favicon.ico",
@@ -70,7 +70,6 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-
       <Header />
 
       <main className="max-w-[1200px] mx-auto lg:px-4">

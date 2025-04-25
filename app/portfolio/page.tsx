@@ -6,7 +6,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Our Work — ECITech Portfolio",
-  description: "See the custom web and mobile projects we’ve successfully launched.",
+  description:
+    "Browse our portfolio of web and mobile solutions — real projects for real businesses across multiple industries.",
   keywords: [
     "ECITech portfolio",
     "case studies",

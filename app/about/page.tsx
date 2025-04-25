@@ -7,7 +7,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About ECITech — Your Technology Partner",
-  description: "Learn more about ECITech, our mission, and the people behind your digital success.",
+  description:
+    "Learn more about ECITech — who we are, our values, and how we turn ideas into powerful digital solutions for modern businesses.",
   keywords: [
     "about ECITech",
     "software development company",

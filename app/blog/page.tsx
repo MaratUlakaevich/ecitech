@@ -12,7 +12,8 @@ import { Article } from '@/lib/types/article';
 
 export const metadata = {
   title: 'Blog',
-  description: 'The ECITech blog is where you can learn about our workflow, values, pastimes and find practical advice on mobile & web development and design. Follow us!',
+  description:
+    "Insights, guides, and expert tips on web development, product design, and building tech products that scale.",
   keywords: [
     "software development blog",
     "web development insights",
