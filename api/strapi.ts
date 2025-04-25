@@ -24,6 +24,9 @@ export async function fetchAPI(path: string, options = {}) {
     headers: {
       'Content-Type': 'application/json',
     },
+    next: {
+      revalidate: 60, // Ревалидация данных на стороне клиента (Next.js)
+    },
   };
 
   const mergedOptions = {

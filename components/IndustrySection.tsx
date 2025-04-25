@@ -5,9 +5,9 @@ import Card from "./UI/Card";
 const IndustrySection: FC = () => {
   return (
     <>
-      <h1 className={`${styles.lgh2} mt-10 text-3xl font-bold`}>
+      <h2 className={`${styles.lgh2} mt-10 text-3xl font-bold`}>
         Core industry expertise
-      </h1>
+      </h2>
       <h3 className="mt-4 mb-10 lg:text-xl md:text-base text-sm">
         Decade of experience accumulated in sophisticated web platforms, mobile
         applications, and complex systems in line with the latest industry

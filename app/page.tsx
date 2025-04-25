@@ -1,6 +1,3 @@
-//analize the code. AI!
-
-import Head from "next/head";
 import Header from "../components/Header";
 import Image from "next/image";
 import headImg from "../public/img/3d.svg";
@@ -15,26 +12,64 @@ import StackSection from "../components/StackSection";
 import Footer from "../components/Footer";
 import CompanySection from "../components/CompanySection";
 import ContactForm from "../components/ContactForm";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ECITech — Programming The Future of Your Business",
+  description:
+    "We design and build custom web and mobile applications tailored to your business. From idea to scalable product — with strong UI, clean code, and full-cycle development.",
+  keywords: [
+    "ECITech",
+    "custom software development",
+    "web development",
+    "mobile development",
+    "AI development",
+    "startup software",
+    "DevOps services",
+    "UI UX design",
+    "outsourcing development",
+    "software agency",
+    "software engineers",
+    "digital product development",
+    "MVP development",
+    "B2B software solutions",
+  ],
+  metadataBase: new URL("https://ecitech.online"),
+  openGraph: {
+    title: "ECITech — Programming The Future of Your Business",
+    description:
+      "Custom software development company. We build smart, scalable and user-friendly solutions for web and mobile.",
+    url: "https://ecitech.online",
+    siteName: "ECITech",
+    images: [
+      {
+        url: "/img/og/default.png", // желательно заменить на баннер
+        width: 1200,
+        height: 630,
+        alt: "ECITech OpenGraph Image",
+      },
+    ],
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ECITech — Programming The Future of Your Business",
+    description:
+      "We help companies bring their digital ideas to life — from web/mobile apps to AI-powered platforms.",
+    images: ["/img/og/default.png"],
+    creator: "@ecitech", // если есть, можно добавить
+  },
+  icons: {
+    icon: "/img/favicon.ico",
+    apple: "/img/apple-touch-icon.png",
+    shortcut: "/img/favicon.ico",
+  },
+};
 
 export default function Home() {
   return (
     <>
-      <Head>
-
-        <title>ECITech</title>
-        <link rel="icon" href="#" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-          name="description"
-          content="ECITech - Unlocking Your Tech Potential"
-        />
-        <meta property="og:title" content="ECITech" />
-        
-        <meta
-          property="og:description"
-          content="We create solutions that solve business problems..."
-        />
-      </Head>
 
       <Header />
 

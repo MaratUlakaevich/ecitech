@@ -1,20 +1,51 @@
-import Head from "next/head";
 import Image from "next/image";
 import Header from "../../components/Header";
 import ServicesHero from "../../components/ServicesHero";
 import Footer from "../../components/Footer";
 import ContactForm from "../../components/ContactForm";
 import FaqSection from "../../components/FaqSection";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Web & Mobile Development Services — ECITech",
+  description: "Explore our full-cycle development services tailored for startups and growing businesses.",
+  keywords: [
+    "custom software services",
+    "web app development",
+    "mobile app development",
+    "DevOps services",
+    "UI UX design",
+    "software architecture",
+    "cross-platform development",
+    "backend development",
+    "frontend development",
+    "ECITech services",
+  ],
+  
+  openGraph: {
+    title: "Custom Software Development Services",
+    description: "From idea to deployment — we craft software that scales.",
+    url: "https://ecitech.online/services",
+    images: [
+      {
+        url: "/img/og/default.png",
+        width: 1200,
+        height: 630,
+        alt: "Our Services",
+      },
+    ],
+  },
+  twitter: {
+    title: "Software Development Services by ECITech",
+    description: "We design, build, and maintain digital products that deliver results.",
+    images: ["/img/og/default.png"],
+  },
+};
+
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>ECITech</title>
-        <meta name="description" content="" />
-        <link rel="icon" href="#" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
 
       <Header />
       <main className="max-w-[1200px] mx-auto lg:px-4">

@@ -1,38 +1,40 @@
+
 import Image from "next/image";
 import Header from "../../components/Header";
-import Footer from "@/components/Footer";
-import ContactForm from "@/components/ContactForm";
+import Footer from "../../components/Footer";
+import ContactForm from "../../components/ContactForm";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Work — ECITech Portfolio",
-  description: "See the custom web and mobile projects we’ve successfully launched.",
+  title: "About ECITech — Your Technology Partner",
+  description: "Learn more about ECITech, our mission, and the people behind your digital success.",
   keywords: [
-    "ECITech portfolio",
-    "case studies",
-    "software project examples",
-    "custom development projects",
-    "web app examples",
-    "mobile app portfolio",
-    "startup case studies",
-    "AI solution portfolio",
-  ],  
+    "about ECITech",
+    "software development company",
+    "software engineers team",
+    "ECITech team",
+    "development agency",
+    "IT experts",
+    "software development values",
+    "our mission",
+  ],
+  
   openGraph: {
-    title: "Explore Our Software Projects",
-    description: "Real case studies of how we helped businesses grow with technology.",
-    url: "https://ecitech.online/portfolio",
+    title: "About ECITech",
+    description: "We're more than developers — we're your long-term tech partner.",
+    url: "https://ecitech.online/about",
     images: [
       {
         url: "/img/og/default.png",
         width: 1200,
         height: 630,
-        alt: "ECITech Portfolio",
+        alt: "About ECITech",
       },
     ],
   },
   twitter: {
-    title: "ECITech Portfolio",
-    description: "From concept to launch — we deliver digital products that scale.",
+    title: "About ECITech",
+    description: "Meet your dedicated software development team.",
     images: ["/img/og/default.png"],
   },
 };

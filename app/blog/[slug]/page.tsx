@@ -26,8 +26,8 @@ export async function generateMetadata({ params }: {params: Params}) {
   
   if (!article) {
     return {
-      title: 'Статья не найдена',
-      description: 'Запрашиваемая статья не существует',
+      title: 'Page not found',
+      description: 'This page does not exist',
     };
   }
   
@@ -36,6 +36,7 @@ export async function generateMetadata({ params }: {params: Params}) {
   return {
     title: seo?.metaTitle || title,
     description: seo?.metaDescription || description,
+    keywords: seo?.keywords || [],
     openGraph: {
       title: seo?.metaTitle || title,
       description: seo?.metaDescription || description,

@@ -54,7 +54,7 @@ const Navbar: FC = () => {
           </li>
           
           <li className={liStyle}>
-            <Link href="/company">
+            <Link href="/about">
               <button className="p-1 px-3 rounded-full bg-black-500 hover:bg-blue-800 duration-300 active:bg-blue-700">
                 Company
               </button>

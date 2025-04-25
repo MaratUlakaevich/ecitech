@@ -13,6 +13,16 @@ import { Article } from '@/lib/types/article';
 export const metadata = {
   title: 'Blog',
   description: 'The ECITech blog is where you can learn about our workflow, values, pastimes and find practical advice on mobile & web development and design. Follow us!',
+  keywords: [
+    "software development blog",
+    "web development insights",
+    "mobile development tips",
+    "AI in business",
+    "startup advice",
+    "IT blog ECITech",
+    "custom development articles",
+  ],
+  
 };
 
 // Обновляем данные каждый час
