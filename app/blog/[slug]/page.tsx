@@ -5,13 +5,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getAllArticles } from '@/api/strapi';
-import { MDXRemote } from 'next-mdx-remote/rsc';
+import dynamic from 'next/dynamic';
+import { serialize } from 'next-mdx-remote/serialize';
+import remarkGfm from 'remark-gfm';
 import Head from 'next/head';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Params } from '@/lib/types/params';
 import { Article } from '@/lib/types/article';
-import ImageByIndex from '@/components/ImageByIndex';
+
+const ClientMDX = dynamic(() => import('@/components/ClientMDX'), {
+  ssr: false,   // ensure this runs only on the client
+});
 
 export const revalidate = 3600;
 
@@ -65,10 +70,17 @@ export default async function ArticlePage({ params }: {params: Params}) {
   
   const { title, content, publishedAt, categories, img, seo } = article;
 
-  const DynamicImage = ({ index }: {index: number}) => (
-    <ImageByIndex url={img[index]?.url} />
-  );
-  
+  const imagesUrls = img?.map((image) => image.url)
+
+  const mdxSource = await serialize(content, 
+    {
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+        format: 'mdx',
+      },
+    }
+  )
+
   return (
     <>
       <Head>
@@ -91,7 +103,7 @@ export default async function ArticlePage({ params }: {params: Params}) {
             
             <div className="flex flex-col md:flex-row justify-between md:items-center text-gray-400 text-sm md:text-base lg:text-lg mb-6">
               <time dateTime={publishedAt}>
-                {new Date(publishedAt).toLocaleDateString('ru-RU', {
+                {new Date(publishedAt).toLocaleDateString('en-EU', {
                   day: 'numeric',
                   month: 'long',
                   year: 'numeric',
@@ -127,7 +139,10 @@ export default async function ArticlePage({ params }: {params: Params}) {
           </header>
           
           <div className="mdx-content">
-            <MDXRemote source={content} components={{DynamicImage}}/>
+            <ClientMDX 
+              {...mdxSource}
+              images={imagesUrls}
+            />
           </div>
         </article>
       </main>

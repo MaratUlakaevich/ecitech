@@ -11,8 +11,8 @@ import ArticleCard from '@/components/ArticleCard';
 import { Article } from '@/lib/types/article';
 
 export const metadata = {
-  title: 'Блог',
-  description: 'Список всех статей нашего блога',
+  title: 'Blog',
+  description: 'The ECITech blog is where you can learn about our workflow, values, pastimes and find practical advice on mobile & web development and design. Follow us!',
 };
 
 // Обновляем данные каждый час

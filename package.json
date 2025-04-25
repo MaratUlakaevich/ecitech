@@ -24,7 +24,9 @@
     "react": "^18",
     "react-dom": "^18",
     "react-error-boundary": "^4.1.2",
+    "rehype-raw": "^7.0.0",
     "remark-breaks": "^4.0.0",
+    "remark-gfm": "^4.0.1",
     "sonner": "^2.0.3",
     "strapi-plugin-populate-deep": "^3.0.1",
     "zod": "^3.24.1"

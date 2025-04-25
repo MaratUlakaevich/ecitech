@@ -64,7 +64,13 @@ export default function ArticleCard( { article } : { article: Article }) {
         </div>
         
         <div className="text-gray-500 text-right">
-          {publishedAt}
+          <time dateTime={publishedAt}>
+            {new Date(publishedAt).toLocaleDateString('en-EU', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })}
+          </time>
         </div>
       </div>
     </div>
