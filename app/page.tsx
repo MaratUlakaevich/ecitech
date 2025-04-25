@@ -85,7 +85,7 @@ export default function Home() {
           ></Image>
         </div>
         <section className={`${styles.section}`}>
-          <HeroSection></HeroSection>
+          <HeroSection />
           <Slider images={clientImages}></Slider>
         </section>
         <section className={`${styles.section}`}>
