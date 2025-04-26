@@ -156,7 +156,7 @@ export default async function ArticlePage({ params }: {params: Params}) {
           <h3 className='text-2xl font-bold'>Latest insights</h3>
           <ul className='flex flex-col md:flex-row w-full'>
             {latestArticles.map((a: Article) => (
-              <li key={a.id} className='max-w-[40%]'>
+              <li key={a.id} className='w-full md:max-w-[40%]'>
                 <SmallArticleCard key={a.id} article={a} />
               </li>
             ))}

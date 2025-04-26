@@ -53,7 +53,7 @@ export default function ArticleCard( { article } : { article: Article }) {
               ))}
             </div>
           )}
-          <h2 className="text-2xl md:text-xl font-bold text-gray-100 mb-3 transition-colors">
+          <h2 className="text-lg md:text-xl font-bold text-gray-100 mb-3 transition-colors">
             {title}
           </h2>
         </div>
