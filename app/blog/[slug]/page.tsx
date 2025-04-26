@@ -13,6 +13,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Params } from '@/lib/types/params';
 import { Article } from '@/lib/types/article';
+import SmallArticleCard from '@/components/SmallArticleCard';
 
 const ClientMDX = dynamic(() => import('@/components/ClientMDX'), {
   ssr: false,   // ensure this runs only on the client
@@ -64,10 +65,15 @@ export async function generateStaticParams() {
 
 export default async function ArticlePage({ params }: {params: Params}) {
   const article = await getArticleBySlug(params.slug);
-  
-  if (!article) {
+  const { data: articles } = await getAllArticles(1, 3);
+
+  if (!articles || !article) {
     notFound();
   }
+  
+  const latestArticles = articles.filter((a: Article) => a.id !== article.id);
+  
+  console.log("Removed", latestArticles);
   
   const { title, content, publishedAt, categories, img, seo } = article;
 
@@ -147,6 +153,17 @@ export default async function ArticlePage({ params }: {params: Params}) {
           </div>
         </article>
       </main>
+        <aside className='w-[80%] mx-auto my-10'>
+          <h3 className='text-2xl font-bold'>Latest insights</h3>
+          <ul className='flex flex-col md:flex-row w-full'>
+            {latestArticles.map((a: Article) => (
+              <li key={a.id} className='max-w-[40%]'>
+                <SmallArticleCard key={a.id} article={a} />
+              </li>
+            ))}
+            
+          </ul>
+        </aside>
 
       <Footer />
     </>

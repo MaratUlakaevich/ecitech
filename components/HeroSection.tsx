@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import { styles } from "../app/constants/styles";
+import CTAButton from "./UI/CTAButton";
 
 const HeroSection: FC = () => {
   return (
@@ -26,13 +27,7 @@ const HeroSection: FC = () => {
           We&apos;re a full-cycle web and mobile application development company that creates software solutions tailored to the demands of businesses
         </p>
       </div>
-      <button
-        className={`flex m-auto lg:mx-0 lg:mt-10 md:items-left md:m-0 text-white bg-blue-700 
-                              hover:bg-blue-800 duration-300 focus:outline-none font-medium rounded-full 
-                              text-xl px-10 py-3 text-center dark:bg-blue-600 dark:hover:bg-blue-700`}
-      >
-        Learn more
-      </button>
+      <CTAButton />
       <div className=" mx-8 mt-10 lg:mx-0 lg:mt-10">
         <h4 className="text-slate-400">Our Clients</h4>
         <h3>We&apos;ve Worked with</h3>

@@ -3,12 +3,12 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllArticles } from '@/api/strapi';
+import { getAllArticles, getAllCategories } from '@/api/strapi';
 import Head from 'next/head';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ArticleCard from '@/components/ArticleCard';
-import { Article } from '@/lib/types/article';
+import { Category } from '@/lib/types/category';
+import BlogSearch from '@/components/BlogSearch';
 
 export const metadata = {
   title: 'Blog',
@@ -31,6 +31,7 @@ export const revalidate = 3600;
 
 export default async function BlogPage() {
   const { data: articles, meta } = await getAllArticles(1, 10);
+  const { data: categories } = await getAllCategories();
 
   return (
     <>
@@ -44,7 +45,7 @@ export default async function BlogPage() {
       <Header />
       <main className="lg:w-[80%] mx-auto py-8 px-6">
 
-        <div className="absolute overflow-hidden -z-10 lg:overflow-visible lg:overflow-y-hidden w-full max-h-[400px]">
+        <div className="absolute overflow-hidden -z-10 lg:overflow-y-hidden w-full max-h-[400px]">
           <Image
             src="img/3d.svg"
             width={2000}
@@ -57,13 +58,38 @@ export default async function BlogPage() {
           ></Image>
           <div className='absolute bottom-0 h-20 w-full bg-gradient-to-b from-transparent to-[#0a0a0a]'></div>
         </div>
-        <h1 className="text-3xl font-bold mb-6">Recent Posts</h1>
         
-        <div className="flex flex-col space-y-6">
+        <div className="mb-10">
+            {/* Categories */}
+            <div className="flex-1">
+              <div className="flex flex-wrap gap-2">
+                <Link 
+                  href="/blog" 
+                  className="px-3 py-1 bg-blue-600 text-white rounded-full text-sm hover:bg-blue-700 transition"
+                >
+                  All
+                </Link>
+                {categories.map((category: Category) => (
+                  <Link 
+                    key={category.id} 
+                    href={`/blog/category/${category.slug}`}
+                    className="px-3 py-1 bg-gray-800 text-white rounded-full text-sm hover:bg-gray-700 transition"
+                  >
+                    {category.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+        </div>
+        
+        <h1 className="text-2xl font-bold mb-6">Latest insights</h1>
+        
+        {/* <div className="flex flex-col space-y-6">
           {articles.map((article: Article) => (
             <ArticleCard key={article.id} article={article} />
           ))}
-        </div>
+        </div> */}
+        <BlogSearch initialArticles={articles} />
         
         {meta.pagination.pageCount > 1 && (
           <div className="flex justify-center mt-8">
