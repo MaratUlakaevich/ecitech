@@ -42,27 +42,13 @@ export async function generateMetadata({ params }: {params: Params}) {
       title: seo?.metaTitle || title,
       description: seo?.metaDescription || description,
       type: 'article',
-      ...(article.img && {
-        images: [{
-          url: `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.img[0].url}`,
-          width: 1200,
-          height: 630,
-          alt: title,
-        }],
-      }),
+      images: [`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${seo.img.url}`]
     },
     twitter: {
       title: seo?.metaTitle || title,
       description: seo?.metaDescription || description,
       card: 'summary_large_image',
-      ...(article.img && {
-        images: [{
-          url: `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.img[0].url}`,
-          width: 1200,
-          height: 630,
-          alt: title,
-        }]
-      })
+      images: [`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${seo.img.url}`]
     }
   };
 }
