@@ -44,13 +44,26 @@ export async function generateMetadata({ params }: {params: Params}) {
       type: 'article',
       ...(article.img && {
         images: [{
-          url: `http://localhost:1337${article.img[0].url}`,
+          url: `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.img[0].url}`,
           width: 1200,
           height: 630,
           alt: title,
         }],
       }),
     },
+    twitter: {
+      title: seo?.metaTitle || title,
+      description: seo?.metaDescription || description,
+      card: 'summary_large_image',
+      ...(article.img && {
+        images: [{
+          url: `${process.env.NEXT_PUBLIC_STRAPI_API_URL}${article.img[0].url}`,
+          width: 1200,
+          height: 630,
+          alt: title,
+        }]
+      })
+    }
   };
 }
 
