@@ -45,6 +45,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="apple-mobile-web-app-title" content="ECITech" />
+        <link rel="alternate" type="application/rss+xml" href="/rss" title="ECITech Blog RSS" />
         <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
         <link rel="icon" href="/img/favicon.ico" />
         <link rel="manifest" href="/img/site.webmanifest" />

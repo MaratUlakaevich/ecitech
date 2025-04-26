@@ -21,14 +21,14 @@ export async function generateMetadata({ params }: {params: Params}) {
   
   if (!category) {
     return {
-      title: 'Категория не найдена',
-      description: 'Запрашиваемая категория не существует',
+      title: 'Category Not Found',
+      description: 'The category you are looking for does not exist',
     };
   }
   
   return {
-    title: `${category.name} - Блог`,
-    description: category.description || `Статьи из категории ${category.name}`,
+    title: `${category.name} - Blog`,
+    description: category.description || `Articles from category ${category.name}`,
   };
 }
 
@@ -80,7 +80,7 @@ export default async function CategoryPage({ params, searchParams }: { params: P
         </div>
         
         {articles.length === 0 && (
-          <p className="text-center py-8">В этой категории пока нет статей.</p>
+          <p className="text-center py-8">No articles in this category</p>
         )}
         
         {meta.pagination.pageCount > 1 && (
