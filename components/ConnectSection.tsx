@@ -38,7 +38,7 @@ export default function ConnectWithTeam() {
             href="mailto:ulakaev@ecitech.online"
             className="text-blue-500 text-lg font-medium"
           >
-            ulakaev@ecitech.online
+            info@ecitech.online
           </a>
           <p className="text-white">
             Discuss your project with us. We’re open to questions

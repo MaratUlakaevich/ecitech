@@ -83,7 +83,7 @@ const Footer: FC = () => {
           <div>
             <h3 className="text-white font-bold text-lg mb-4">Offices</h3>
             <Link href="#" className="text-sm">
-              +971 56 658 5789
+              +966 53 700 0805
             </Link>
             <p className="text-sm mb-2">Saudi Arabia, Ar-Riyadh</p>
             <Link href="tel:+7 909 997 16 33" className="text-sm mt-2">
@@ -99,7 +99,7 @@ const Footer: FC = () => {
               href="mailto:ulakaev@ecitech.online"
               className="text-sm text-white"
             >
-              ulakaev@ecitech.online
+              info@ecitech.online
             </Link>
             <p className="text-sm mt-3">We are hiring:</p>
             <Link
