@@ -24,7 +24,7 @@ export default function ConnectWithTeam() {
             href="mailto:ulakaev@ecitech.online"
             className="text-blue-500 text-lg font-medium"
           >
-            ulakaev@ecitech.online
+            sales@ecitech.online
           </a>
           <p className="text-white">
             Tell us more about your business idea to get consulted
@@ -52,7 +52,7 @@ export default function ConnectWithTeam() {
             href="mailto:ulakaev@ecitech.online"
             className="text-blue-500 text-lg font-medium"
           >
-            ulakaev@ecitech.online
+            hr@ecitech.online
           </a>
           <p className="text-white">
             We do more for your career. <br />

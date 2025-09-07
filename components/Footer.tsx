@@ -106,7 +106,7 @@ const Footer: FC = () => {
               href="mailto:ulakaev@ecitech.online"
               className="text-sm text-white"
             >
-              ulakaev@ecitech.online
+              hr@ecitech.online
             </Link>
           </div>
         </div>
