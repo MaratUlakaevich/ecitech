@@ -1,8 +1,7 @@
 export const clientImages = [
-  "/img/peopleAI.svg",
-  "/img/ecosyst.svg",
-  "/img/wardiere.svg",
-  "/img/uipath.svg",
-  "/img/walletconnect.svg",
-  "/img/salford.svg",
+  "/img/1000hands.png",
+  "/img/Metahub.png",
+  "/img/d3.png",
+  "/img/Kabema.png",
+  "/img/Relate.png",
 ];

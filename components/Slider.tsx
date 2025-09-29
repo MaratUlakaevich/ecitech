@@ -17,7 +17,7 @@ const SlidingImages: FC<SlidingImagesProps> = ({
       <div ref={scrollRef} className="flex scroll">
         <div className="flex gap-4 w-[max-content] animate-infinite_scroll items-center space-x-8 align-center flex-nowrap">
           {images.concat(images).map((src, index) => (
-            <div key={index} className="w-[100px] flex-shrink-0">
+            <div key={index} className="w-[160px] flex-shrink-0 mt-10">
               <Image
                 src={src}
                 alt={`Sliding Image ${index}`}
