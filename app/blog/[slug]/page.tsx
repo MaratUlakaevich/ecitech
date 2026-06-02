@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getArticleBySlug, getAllArticles } from '@/api/strapi';
-import dynamic from 'next/dynamic';
 import { serialize } from 'next-mdx-remote/serialize';
 import remarkGfm from 'remark-gfm';
 import Head from 'next/head';
@@ -14,10 +13,11 @@ import Footer from '@/components/Footer';
 import { Params } from '@/lib/types/params';
 import { Article } from '@/lib/types/article';
 import SmallArticleCard from '@/components/SmallArticleCard';
-
-const ClientMDX = dynamic(() => import('@/components/ClientMDX'), {
-  ssr: false,   // ensure this runs only on the client
-});
+import ClientMDX from '@/components/ClientMDX';
+import { getStrapiImageUrl } from '@/lib/utils/strapiUrl';
+import BreadcrumbsLd from '@/components/seo/BreadcrumbsLd';
+import ArticleLd from '@/components/seo/ArticleLd';
+import BlogReadTimer from '@/components/BlogReadTimer';
 
 export const revalidate = 3600;
 
@@ -55,11 +55,16 @@ export async function generateMetadata({ params }: {params: Params}) {
 
 // Генерация статических путей для всех статей
 export async function generateStaticParams() {
-  const { data: articles } = await getAllArticles(1, 100);
-  
-  return articles.map((article: Article) => ({
-    slug: article.slug,
-  }));
+  try {
+    const { data: articles } = await getAllArticles(1, 100);
+    return articles.map((article: Article) => ({
+      slug: article.slug,
+    }));
+  } catch {
+    // Fail-soft: if Strapi is unreachable at build time, skip pre-rendering.
+    // ISR (revalidate=3600) will fill these on first request.
+    return [];
+  }
 }
 
 export default async function ArticlePage({ params }: {params: Params}) {
@@ -97,6 +102,21 @@ export default async function ArticlePage({ params }: {params: Params}) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
+      <BreadcrumbsLd
+        items={[
+          { name: 'Home', url: '/' },
+          { name: 'Blog', url: '/blog' },
+          { name: title, url: `/blog/${params.slug}` },
+        ]}
+      />
+      <ArticleLd
+        headline={title}
+        description={seo?.metaDescription}
+        image={img && img[0] ? getStrapiImageUrl(img[0].url) : undefined}
+        datePublished={publishedAt}
+        url={`https://ecitech.online/blog/${params.slug}`}
+      />
+      <BlogReadTimer slug={params.slug} />
       <Header />
       <main className="mx-auto py-8 px-6 w-[90%] md:w-[80%] bg-gradient-to-r from-slate-800 to-slate-950 rounded-xl shadow-lg">
         <Link href="/blog" className="text-blue-500 hover:underline mb-4 inline-block">
@@ -133,11 +153,10 @@ export default async function ArticlePage({ params }: {params: Params}) {
             {img && (
               <div className="relative w-full h-80 mb-8 rounded-lg overflow-hidden">
                 <Image
-                  src={`http://localhost:1337${img[0].url}`}
+                  src={getStrapiImageUrl(img[0].url)}
                   alt={title}
                   fill
                   className="object-cover"
-                  unoptimized
                   loading='lazy'
                 />
               </div>

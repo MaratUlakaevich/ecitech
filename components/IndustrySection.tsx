@@ -6,57 +6,61 @@ const IndustrySection: FC = () => {
   return (
     <>
       <h2 className={`${styles.lgh2} mt-10 text-3xl font-bold`}>
-        Core industry expertise
+        Industries we build for.
       </h2>
-      <h3 className="mt-4 mb-10 lg:text-xl md:text-base text-sm">
-        Decade of experience accumulated in sophisticated web platforms, mobile
-        applications, and complex systems in line with the latest industry
-        trends.
+      <h3 className="mt-4 mb-10 lg:text-xl md:text-base text-sm text-gray-300 lg:w-[50rem]">
+        Our team has delivered production software across AI, enterprise
+        automation, fintech, e-commerce, real estate, and education &mdash;
+        for clients from BCG and Juniper Networks to fast-growing startups.
       </h3>
       <div className="flex lg:flex-row flex-col justify-between">
         <Card
-          title="Finance"
+          title="AI & Automation"
           list={[
-            "FinTech, Blockchain",
-            "Banking, Investment",
-            "Blockchain in Finance",
+            "LLM platforms, AI dashboards",
+            "RPA & process automation",
+            "Cloud cost optimization",
           ]}
         />
         <Card
-          title="EdTech"
-          list={["Education Software", "EdTech Platform", "Digitalization"]}
+          title="Enterprise"
+          list={[
+            "Internal tools & workflow engines",
+            "Digital sales management",
+            "Data pipelines & dashboards",
+          ]}
         />
         <Card
-          title="Healthcare"
+          title="Fintech & Blockchain"
           list={[
-            "EHR, EMR, Patient Portal",
-            "Telemedecine",
-            "Mental Health Tech",
+            "Tokenized investment platforms",
+            "Payment infrastructure",
+            "DeFi & Web3 applications",
           ]}
         />
       </div>
 
       <h3 className="mt-6 mb-10 text-2xl lg:text-3xl font-bold">
-        We also have customers in these domains
+        We also build for these domains
       </h3>
 
       <div className="flex lg:flex-row flex-col">
         <Card
-          title="Travel"
+          title="E-commerce & Retail"
           list={[
-            "Booking platforms, HMS, and TMS software for hospitality and tourism",
+            "Mobile apps with premium design, real-time logistics, admin dashboards",
           ]}
         />
         <Card
-          title="Social"
+          title="Real Estate & PropTech"
           list={[
-            "Innovative platforms designed for your business goals and model",
+            "Digital management, CAD integration, building plan processing at scale",
           ]}
         />
         <Card
-          title="Retail"
+          title="EdTech"
           list={[
-            "CRM, POS, RMS, and similar software for stores and retail chains",
+            "Learning platforms, career hubs, community ecosystems with gamification",
           ]}
         />
       </div>

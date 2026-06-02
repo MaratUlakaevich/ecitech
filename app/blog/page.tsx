@@ -9,6 +9,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Category } from '@/lib/types/category';
 import BlogSearch from '@/components/BlogSearch';
+import BreadcrumbsLd from '@/components/seo/BreadcrumbsLd';
 
 export const metadata = {
   title: 'Blog',
@@ -42,6 +43,12 @@ export default async function BlogPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
+      <BreadcrumbsLd
+        items={[
+          { name: 'Home', url: '/' },
+          { name: 'Blog', url: '/blog' },
+        ]}
+      />
       <Header />
       <main className="lg:w-[80%] mx-auto py-8 px-6">
 
@@ -50,6 +57,7 @@ export default async function BlogPage() {
             src="img/3d.svg"
             width={2000}
             height={2000}
+            // SVG — unoptimized intentional
             unoptimized
             loading="lazy"
             alt="ECITech Main 3d img"

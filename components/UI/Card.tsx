@@ -23,6 +23,7 @@ const Card: FC<CardProps> = ({ title, list }) => {
             href={`/industries/${title}`}
             className="absolute top-2 right-6 mt-4 bg-blue-500 text-white py-2 px-2 rounded-md hover:bg-blue-600 hover:bg-blue-700 transition duration-300"
           >
+            {/* SVG — unoptimized intentional */}
             <Image src={arrow} alt="arrow" unoptimized />
           </Link>
         </div>

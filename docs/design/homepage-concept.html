@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ECITech — An engineering studio for the businesses that built the Gulf</title>
+  <meta name="description" content="ECITech builds AI workflows for mid-market businesses across the UAE and Saudi Arabia. Our engineers shipped systems for BCG Gamma, Juniper Networks, Cisco, and Google." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..900,0..100;1,9..144,200..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Fraunces', 'serif'],
+            sans: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace']
+          },
+          colors: {
+            cream: {
+              50:  '#FBF7EE',
+              100: '#F5EFE3',
+              200: '#EEE5D1',
+              300: '#E1D3B4'
+            },
+            ink: {
+              900: '#13161F',
+              800: '#1A1D2E',
+              700: '#2A2F42',
+              500: '#545B70',
+              400: '#8A91A3',
+              300: '#B7BCC9'
+            },
+            copper: {
+              500: '#C46E3F',
+              600: '#B8633A',
+              700: '#964E2B'
+            },
+            sage:   { 500: '#6B7A5A' },
+            brass:  { 500: '#A08A5A' },
+            claret: { 500: '#7A2A2A' }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --cream: #F5EFE3;
+      --cream-deep: #EEE5D1;
+      --ink: #1A1D2E;
+      --ink-soft: #545B70;
+      --copper: #B8633A;
+      --brass: #A08A5A;
+      --rule: rgba(26, 29, 46, 0.14);
+    }
+
+    html { font-feature-settings: "kern" 1, "liga" 1, "ss01" 1; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Instrument Sans', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      letter-spacing: -0.005em;
+    }
+
+    /* Fine grain texture — premium paper feel */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.05;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.11 0 0 0 0 0.18 0 0 0 0.7 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    }
+
+    /* Display serif refined — specific axis settings for Fraunces */
+    .display {
+      font-family: 'Fraunces', serif;
+      font-weight: 380;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      letter-spacing: -0.025em;
+      line-height: 0.98;
+    }
+    .display-italic {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+    .numeral {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      font-variation-settings: "opsz" 144, "SOFT" 20;
+      font-feature-settings: "ss01" 1, "lnum" 1;
+      letter-spacing: -0.045em;
+      line-height: 0.9;
+    }
+
+    .mono-eyebrow {
+      font-family: 'IBM Plex Mono', monospace;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .hairline { border-color: var(--rule); }
+    .hairline-top { border-top: 1px solid var(--rule); }
+    .hairline-bottom { border-bottom: 1px solid var(--rule); }
+
+    /* Subtle brass rule variant for editorial breaks */
+    .brass-rule {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(160,138,90,0.5) 8%, rgba(160,138,90,0.5) 92%, transparent 100%);
+    }
+
+    /* CTA button — premium editorial */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--ink);
+      color: var(--cream);
+      padding: 20px 28px;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: -0.005em;
+      transition: transform 250ms ease, background 250ms ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--copper);
+      transform: translateY(101%);
+      transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      z-index: 0;
+    }
+    .btn-primary > * { position: relative; z-index: 1; }
+    .btn-primary:hover::after { transform: translateY(0); }
+
+    .btn-primary .price-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      opacity: 0.65;
+    }
+    .btn-primary .arrow {
+      width: 18px; height: 1px; background: currentColor; position: relative;
+    }
+    .btn-primary .arrow::after {
+      content: ''; position: absolute; right: 0; top: -3px;
+      width: 7px; height: 7px;
+      border-top: 1px solid currentColor; border-right: 1px solid currentColor;
+      transform: rotate(45deg);
+    }
+
+    .link-editorial {
+      font-family: 'Instrument Sans', sans-serif;
+      color: var(--ink);
+      font-size: 15px;
+      border-bottom: 1px solid rgba(26,29,46,0.3);
+      padding-bottom: 2px;
+      transition: border-color 200ms ease, color 200ms ease;
+    }
+    .link-editorial:hover {
+      border-color: var(--copper);
+      color: var(--copper);
+    }
+
+    /* Drop cap for editorial opener */
+    .dropcap::first-letter {
+      font-family: 'Fraunces', serif;
+      font-weight: 400;
+      font-variation-settings: "opsz" 144, "SOFT" 40;
+      float: left;
+      font-size: 84px;
+      line-height: 0.82;
+      padding: 8px 14px 0 0;
+      color: var(--copper);
+    }
+
+    /* Staggered reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      animation: reveal 900ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    @keyframes reveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reveal-1  { animation-delay: 100ms; }
+    .reveal-2  { animation-delay: 250ms; }
+    .reveal-3  { animation-delay: 400ms; }
+    .reveal-4  { animation-delay: 550ms; }
+    .reveal-5  { animation-delay: 700ms; }
+    .reveal-6  { animation-delay: 850ms; }
+    .reveal-7  { animation-delay: 1000ms; }
+
+    /* Copper seal — tiny masthead flourish */
+    .seal {
+      width: 14px; height: 14px;
+      border: 1.5px solid var(--copper);
+      border-radius: 50%;
+      position: relative;
+      display: inline-block;
+    }
+    .seal::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background: var(--copper);
+      border-radius: 50%;
+    }
+
+    /* Service card hover shift */
+    .service-card {
+      transition: background 300ms ease, transform 400ms ease;
+      cursor: pointer;
+    }
+    .service-card:hover {
+      background: var(--cream-deep);
+    }
+    .service-card:hover .service-arrow {
+      transform: translateX(6px);
+      color: var(--copper);
+    }
+
+    .service-arrow {
+      transition: transform 300ms ease, color 300ms ease;
+    }
+
+    /* Column rule — editorial multi-column separator */
+    .col-rule {
+      border-left: 1px solid var(--rule);
+    }
+
+    /* Masthead ticker */
+    .ticker {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.2em;
+    }
+
+    /* Industry plate — blackand-white warm overlay placeholder */
+    .photo-plate {
+      background: linear-gradient(135deg, #3B3428 0%, #5B4C38 40%, #8A6E4A 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .photo-plate::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(245,239,227,0.15), transparent 70%);
+    }
+    .photo-plate.plate-healthcare {
+      background: linear-gradient(135deg, #2E3842 0%, #4A5563 50%, #7C8A99 100%);
+    }
+    .photo-plate.plate-realestate {
+      background: linear-gradient(135deg, #3F2E28 0%, #6B4A3A 50%, #A0735A 100%);
+    }
+
+    /* Arabic numeral decorative */
+    .arabic-dec {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      letter-spacing: 0.15em;
+      color: var(--brass);
+      opacity: 0.8;
+    }
+
+    /* Scroll indicator */
+    .scroll-ind {
+      animation: scrollPulse 2.4s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { transform: translateY(0); opacity: 0.4; }
+      50% { transform: translateY(8px); opacity: 1; }
+    }
+
+    /* Hero — single column, full width (sidebar removed) */
+    .hero-content { max-width: 1100px; }
+
+    /* Measure width for editorial body */
+    .measure { max-width: 520px; }
+    .measure-wide { max-width: 680px; }
+
+    /* Small caps refinement */
+    .smallcaps {
+      font-variant: small-caps;
+      letter-spacing: 0.06em;
+    }
+
+    /* ========== SYSTEM SCHEMATIC (hero) ========== */
+    /* Honest engineering artifact, rendered as editorial content.
+       Not an AI "look", the actual shape of one of our workflows. */
+
+    .schematic-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 8px;
+    }
+    .schematic-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 5px 0;
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 13.5px;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+    }
+    .schematic-row .dot {
+      flex-shrink: 0;
+      width: 7px; height: 7px;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      background: var(--cream);
+    }
+    .schematic-row .label-mono {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-soft);
+      margin-left: auto;
+      letter-spacing: 0.04em;
+    }
+
+    .schematic-trunk {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 10px 0 10px 3px;
+      padding-left: 12px;
+      border-left: 1px dashed rgba(26,29,46,0.3);
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+    .schematic-trunk-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+
+    .schematic-core {
+      position: relative;
+      border: 1px solid var(--ink);
+      background: var(--cream-deep);
+      padding: 18px 22px;
+      margin: 14px 0;
+    }
+    .schematic-core::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border: 1px solid var(--copper);
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    .schematic-core-tag {
+      position: absolute;
+      top: -9px; left: 16px;
+      background: var(--cream);
+      padding: 0 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--copper);
+      text-transform: uppercase;
+    }
+    .schematic-core-title {
+      font-family: 'Fraunces', serif;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-size: 22px;
+      line-height: 1.05;
+      color: var(--ink-900);
+      letter-spacing: -0.02em;
+    }
+    .schematic-core-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-top: 10px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .schematic-core-meta span.sep { opacity: 0.35; }
+
+    .schematic-section-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--copper);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .schematic-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    /* ========================================================== */
+    /* THEME VARIANTS — switchable via [data-theme] on body        */
+    /* Base (:root) = Copper / Mediterranean editorial             */
+    /* ========================================================== */
+
+    [data-theme="najd"] {
+      --cream:      #F2E9D3;
+      --cream-deep: #E6DBBE;
+      --cream-soft: #F7F1DE;
+      --ink:        #2A1E13;
+      --ink-soft:   #5A4533;
+      --copper:     #BE943C;
+      --brass:      #8B7540;
+      --rule:       rgba(42,30,19,0.18);
+    }
+
+    [data-theme="archive"] {
+      --cream:      #ECE7DE;
+      --cream-deep: #DDD7CC;
+      --cream-soft: #F3EFE7;
+      --ink:        #0F1624;
+      --ink-soft:   #4A535F;
+      --copper:     #B55A35;
+      --brass:      #7A7264;
+      --rule:       rgba(15,22,36,0.14);
+    }
+
+    /* Paper — pure B&W + hot accent (Swiss modern) */
+    [data-theme="paper"] {
+      --cream:      #FFFFFF;
+      --cream-deep: #F1F1EE;
+      --cream-soft: #FAFAF8;
+      --ink:        #07070A;
+      --ink-soft:   #54545A;
+      --copper:     #D4522E;
+      --brass:      #8A8A80;
+      --rule:       rgba(0,0,0,0.10);
+    }
+
+    /* Ink — warm dark, evening library */
+    [data-theme="ink"] {
+      --cream:      #0F1316;       /* dark bg */
+      --cream-deep: #181D22;
+      --cream-soft: #0A0D10;
+      --ink:        #EFE8D4;       /* light text */
+      --ink-soft:   #9A9280;
+      --copper:     #C89A4A;       /* warm gold */
+      --brass:      #6F5E42;
+      --rule:       rgba(239,232,212,0.14);
+    }
+
+    /* Midnight — cool graphite, black-tie museum */
+    [data-theme="midnight"] {
+      --cream:      #14161B;
+      --cream-deep: #1D2027;
+      --cream-soft: #0E1015;
+      --ink:        #EAE8E2;
+      --ink-soft:   #8A8682;
+      --copper:     #D99968;       /* pale warm copper */
+      --brass:      #6B5E4F;
+      --rule:       rgba(234,232,226,0.14);
+    }
+
+    /* Theme cascades — override hardcoded tailwind color classes */
+    [data-theme] body { background: var(--cream); color: var(--ink); }
+
+    [data-theme] .bg-cream-50  { background-color: var(--cream-soft) !important; }
+    [data-theme] .bg-cream-100 { background-color: var(--cream)      !important; }
+    [data-theme] .bg-cream-200 { background-color: var(--cream-deep) !important; }
+    [data-theme] .bg-ink-900   { background-color: var(--ink)        !important; }
+
+    [data-theme] .text-ink-900,
+    [data-theme] .text-ink-800,
+    [data-theme] .text-ink-700 { color: var(--ink) !important; }
+
+    [data-theme] .text-ink-500,
+    [data-theme] .text-ink-400,
+    [data-theme] .text-ink-300 { color: var(--ink-soft) !important; }
+
+    [data-theme] .text-cream-50,
+    [data-theme] .text-cream-100,
+    [data-theme] .text-cream-200,
+    [data-theme] .text-cream-300 { color: var(--cream) !important; }
+
+    [data-theme] .text-copper-500,
+    [data-theme] .text-copper-600,
+    [data-theme] .text-copper-700 { color: var(--copper) !important; }
+
+    [data-theme] .text-brass-500 { color: var(--brass) !important; }
+
+    /* Borders */
+    [data-theme] .hairline,
+    [data-theme] .hairline-top,
+    [data-theme] .hairline-bottom { border-color: var(--rule) !important; }
+    [data-theme] .col-rule { border-left-color: var(--rule) !important; }
+
+    /* Photo plates — tone to theme */
+    [data-theme="najd"] .plate-healthcare  { background: linear-gradient(135deg, #2A2018 0%, #4A3B2A 50%, #7A6548 100%); }
+    [data-theme="najd"] .plate-realestate  { background: linear-gradient(135deg, #2E221A 0%, #5B4530 50%, #8F6E47 100%); }
+
+    [data-theme="archive"] .plate-healthcare  { background: linear-gradient(135deg, #1A2230 0%, #394759 50%, #65758A 100%); }
+    [data-theme="archive"] .plate-realestate  { background: linear-gradient(135deg, #3A2720 0%, #664832 50%, #8F6A4F 100%); }
+
+    [data-theme="paper"] .plate-healthcare    { background: linear-gradient(135deg, #CCCCCC 0%, #888888 50%, #2A2A2A 100%); }
+    [data-theme="paper"] .plate-realestate    { background: linear-gradient(135deg, #BDB8AE 0%, #7F7A72 50%, #2E2B27 100%); }
+
+    [data-theme="ink"] .plate-healthcare      { background: linear-gradient(135deg, #1A2531 0%, #2F4155 50%, #547190 100%); }
+    [data-theme="ink"] .plate-realestate      { background: linear-gradient(135deg, #241810 0%, #473226 50%, #7A5F45 100%); }
+
+    [data-theme="midnight"] .plate-healthcare { background: linear-gradient(135deg, #1F242C 0%, #3C4552 50%, #6D7A8C 100%); }
+    [data-theme="midnight"] .plate-realestate { background: linear-gradient(135deg, #251E17 0%, #473C30 50%, #7A6B55 100%); }
+
+    /* Dark themes — invert grain texture (multiply → screen so noise shows) */
+    [data-theme="ink"] body::before,
+    [data-theme="midnight"] body::before {
+      mix-blend-mode: screen;
+      opacity: 0.06;
+    }
+
+    /* Buttons + schematic pick up theme accent */
+    [data-theme] .btn-primary          { background: var(--ink); color: var(--cream); }
+    [data-theme] .btn-primary::after   { background: var(--copper); }
+    [data-theme] .schematic-core       { border-color: var(--ink); background: var(--cream-deep); }
+    [data-theme] .schematic-core::before { border-color: var(--copper); }
+    [data-theme] .schematic-core-tag   { background: var(--cream); color: var(--copper); }
+    [data-theme] .schematic-core-title { color: var(--ink); }
+    [data-theme] .dropcap::first-letter { color: var(--copper); }
+    [data-theme] .seal                 { border-color: var(--copper); }
+    [data-theme] .seal::after          { background: var(--copper); }
+    [data-theme] .link-editorial       { color: var(--ink); border-bottom-color: color-mix(in srgb, var(--ink) 30%, transparent); }
+    [data-theme] .link-editorial:hover { color: var(--copper); border-bottom-color: var(--copper); }
+    [data-theme] .arabic-dec           { color: var(--brass); }
+
+    /* Hand-tuned inversions inside dark final-CTA section */
+    [data-theme] section.bg-ink-900 .\!text-copper-500 { color: var(--copper) !important; }
+    [data-theme] section.bg-ink-900 .\!text-cream-300  { color: color-mix(in srgb, var(--cream) 75%, transparent) !important; }
+
+    /* ============================================================== */
+    /* PAPER + COPPER CLOSE — Paper site with section 06 in Copper      */
+    /* Tonal shift: cool Swiss-minimal body → warm editorial close-out. */
+    /* ============================================================== */
+
+    /* Section 06 background reverts to Copper's warm ink */
+    [data-theme="paper"] #audit.bg-ink-900 {
+      background-color: #1A1D2E !important;
+    }
+
+    /* Base text in section 06 — Copper cream */
+    [data-theme="paper"] #audit.text-cream-100,
+    [data-theme="paper"] #audit .text-cream-100 {
+      color: #F5EFE3 !important;
+    }
+
+    /* Headline display + italic accent — Copper warm copper */
+    [data-theme="paper"] #audit h2,
+    [data-theme="paper"] #audit h2 .display-italic { color: #F5EFE3 !important; }
+    [data-theme="paper"] #audit .display-italic.text-copper-500,
+    [data-theme="paper"] #audit .\!text-copper-500,
+    [data-theme="paper"] #audit .text-copper-500 {
+      color: #B8633A !important;
+    }
+
+    /* Eyebrow "What happens in the first call" — Copper cream at 65% */
+    [data-theme="paper"] #audit .\!text-cream-300 {
+      color: rgba(245, 239, 227, 0.65) !important;
+    }
+
+    /* Primary CTA button — Copper cream bg, Copper ink text, Copper hover */
+    [data-theme="paper"] #audit .btn-primary.\!bg-cream-100 {
+      background-color: #F5EFE3 !important;
+      color: #1A1D2E !important;
+    }
+    [data-theme="paper"] #audit .btn-primary.\!bg-cream-100::after {
+      background: #B8633A !important;
+    }
+    [data-theme="paper"] #audit .btn-primary.\!bg-cream-100:hover {
+      color: #F5EFE3 !important;
+    }
+
+    /* List text (right aside) — Copper cream at 85% */
+    [data-theme="paper"] #audit .text-cream-100\/85,
+    [data-theme="paper"] #audit ol.text-cream-100\/85 {
+      color: rgba(245, 239, 227, 0.85) !important;
+    }
+
+    /* Top border on aside — Copper cream at 30% */
+    [data-theme="paper"] #audit aside.\!border-cream-100\/30,
+    [data-theme="paper"] #audit .\!border-cream-100\/30 {
+      border-top-color: rgba(245, 239, 227, 0.3) !important;
+    }
+
+    /* ========================================================== */
+    /* THEME SWITCHER UI                                            */
+    /* ========================================================== */
+    .theme-switch {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 50;
+      background: var(--cream);
+      border: 1px solid var(--rule);
+      padding: 12px 14px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 24px 50px -24px rgba(0,0,0,0.22);
+      min-width: 160px;
+    }
+    .theme-switch-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .theme-btn {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--ink);
+      padding: 7px 10px;
+      border: 1px solid transparent;
+      text-align: left;
+      background: transparent;
+      cursor: pointer;
+      transition: border-color 200ms ease, background 200ms ease, color 200ms ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .theme-btn:hover { border-color: var(--rule); }
+    .theme-btn .dot {
+      width: 12px; height: 12px;
+      border: 1px solid var(--rule);
+      border-radius: 50%;
+    }
+    .theme-btn[data-set-theme="copper"]   .dot { background: #B8633A; }
+    .theme-btn[data-set-theme="najd"]     .dot { background: #BE943C; }
+    .theme-btn[data-set-theme="archive"]  .dot { background: #B55A35; }
+    .theme-btn[data-set-theme="paper"]    .dot { background: #D4522E; border-color: #07070A; }
+    .theme-btn[data-set-theme="ink"]      .dot { background: #C89A4A; box-shadow: inset 0 0 0 3px #0F1316; }
+    .theme-btn[data-set-theme="midnight"] .dot { background: #D99968; box-shadow: inset 0 0 0 3px #14161B; }
+    .theme-btn.is-active {
+      background: var(--ink);
+      color: var(--cream);
+    }
+    .theme-btn.is-active .dot { border-color: var(--cream); }
+
+    .theme-group-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      margin-top: 8px;
+      margin-bottom: 2px;
+      padding-left: 10px;
+      opacity: 0.75;
+    }
+    .theme-group-label:first-of-type { margin-top: 2px; }
+
+    /* ========================================================== */
+    /* HERO BACKGROUND GRAPH — Ink theme only                       */
+    /* Architectural blueprint of a real AI workflow, drawn slowly. */
+    /* Hair-thin, labeled with real system components, copper       */
+    /* pulses flowing through edges. Not a particle decoration —    */
+    /* an editorial illustration of what we build.                  */
+    /* ========================================================== */
+
+    .hero-graph {
+      display: none;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      /* Fade edges so it feels atmospheric, not a forced rectangle */
+      mask-image: linear-gradient(to bottom,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom,
+        transparent 0%,
+        black 18%,
+        black 82%,
+        transparent 100%);
+    }
+
+    [data-theme="ink"] .hero-graph { display: block; }
+
+    /* ========================================================== */
+    /* HERO BACKGROUND WORKFLOW — Paper theme only                  */
+    /* n8n-style workflow: rounded rectangle nodes, curved bezier   */
+    /* connections, pulse dots traveling along paths. Exactly the   */
+    /* kind of diagram the studio ships in client engagements —     */
+    /* rendered as honest editorial illustration, not AI decoration.*/
+    /* ========================================================== */
+
+    .hero-workflow {
+      display: none;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      mask-image: linear-gradient(to bottom,
+        transparent 0%, black 15%, black 85%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom,
+        transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+    [data-theme="paper"] .hero-workflow { display: block; }
+    /* Copper is the default theme (no data-theme attribute set) */
+    body:not([data-theme]) .hero-workflow { display: block; }
+
+    /* Node rectangles — white fill, hair-thin black border */
+    .hero-workflow .wf-rect {
+      fill: var(--cream);
+      stroke: var(--ink);
+      stroke-width: 0.8;
+      opacity: 0;
+      animation: wf-node-fade 0.7s ease-out forwards;
+    }
+    @keyframes wf-node-fade { to { opacity: 0.18; } }
+
+    /* Accent bars — copper/orange stripe on left edge of each node */
+    .hero-workflow .wf-accent {
+      fill: var(--copper);
+      opacity: 0;
+      animation: wf-accent-fade 0.7s ease-out forwards;
+    }
+    @keyframes wf-accent-fade { to { opacity: 0.42; } }
+
+    /* Node title (mono caps) */
+    .hero-workflow .wf-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      fill: var(--ink);
+      opacity: 0;
+      animation: wf-text-fade 0.7s ease-out forwards;
+    }
+
+    /* Node subtitle (sans) */
+    .hero-workflow .wf-sub {
+      font-family: 'Instrument Sans', sans-serif;
+      font-size: 11px;
+      fill: var(--ink-soft);
+      opacity: 0;
+      animation: wf-text-fade 0.7s ease-out forwards;
+    }
+    @keyframes wf-text-fade { to { opacity: 0.40; } }
+
+    /* Stagger node appearances — gives a "workflow being assembled" feel */
+    .hero-workflow .wf-node:nth-of-type(1) .wf-rect,
+    .hero-workflow .wf-node:nth-of-type(1) .wf-accent,
+    .hero-workflow .wf-node:nth-of-type(1) .wf-title,
+    .hero-workflow .wf-node:nth-of-type(1) .wf-sub { animation-delay: 0.3s; }
+
+    .hero-workflow .wf-node:nth-of-type(2) .wf-rect,
+    .hero-workflow .wf-node:nth-of-type(2) .wf-accent,
+    .hero-workflow .wf-node:nth-of-type(2) .wf-title,
+    .hero-workflow .wf-node:nth-of-type(2) .wf-sub { animation-delay: 0.5s; }
+
+    .hero-workflow .wf-node:nth-of-type(4) .wf-rect,
+    .hero-workflow .wf-node:nth-of-type(4) .wf-accent,
+    .hero-workflow .wf-node:nth-of-type(4) .wf-title,
+    .hero-workflow .wf-node:nth-of-type(4) .wf-sub { animation-delay: 1.2s; }
+
+    .hero-workflow .wf-node:nth-of-type(5) .wf-rect,
+    .hero-workflow .wf-node:nth-of-type(5) .wf-accent,
+    .hero-workflow .wf-node:nth-of-type(5) .wf-title,
+    .hero-workflow .wf-node:nth-of-type(5) .wf-sub { animation-delay: 1.4s; }
+
+    .hero-workflow .wf-node:nth-of-type(6) .wf-rect,
+    .hero-workflow .wf-node:nth-of-type(6) .wf-accent,
+    .hero-workflow .wf-node:nth-of-type(6) .wf-title,
+    .hero-workflow .wf-node:nth-of-type(6) .wf-sub { animation-delay: 1.7s; }
+
+    /* Primary node (AI AGENT, 3rd in order) — slightly higher presence + subtle pulse */
+    .hero-workflow .wf-node-primary .wf-rect {
+      animation: wf-node-fade-primary 0.7s ease-out 0.85s forwards;
+    }
+    @keyframes wf-node-fade-primary { to { opacity: 0.26; } }
+
+    .hero-workflow .wf-node-primary .wf-accent {
+      animation:
+        wf-accent-fade-primary 0.7s ease-out 0.85s forwards,
+        wf-accent-pulse         3.8s ease-in-out 4.2s infinite;
+    }
+    @keyframes wf-accent-fade-primary { to { opacity: 0.58; } }
+    @keyframes wf-accent-pulse {
+      0%, 100% { opacity: 0.58; }
+      50%      { opacity: 0.88; }
+    }
+
+    .hero-workflow .wf-title-primary {
+      fill: var(--copper);
+      animation: wf-text-fade-primary 0.7s ease-out 0.85s forwards;
+    }
+    @keyframes wf-text-fade-primary { to { opacity: 0.82; } }
+
+    .hero-workflow .wf-node-primary .wf-sub {
+      animation: wf-text-fade 0.7s ease-out 0.85s forwards;
+    }
+
+    /* Edges — curved bezier, draw in after nodes are placed */
+    .hero-workflow .wf-edge {
+      fill: none;
+      stroke: var(--ink);
+      stroke-width: 0.9;
+      stroke-linecap: round;
+      opacity: 0;
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      animation: wf-edge-draw 1.2s cubic-bezier(0.22, 0.8, 0.2, 1) forwards;
+    }
+    .hero-workflow .we1 { animation-delay: 1.0s; }
+    .hero-workflow .we2 { animation-delay: 1.2s; }
+    .hero-workflow .we3 { animation-delay: 2.0s; }
+    .hero-workflow .we4 { animation-delay: 2.2s; }
+    .hero-workflow .we5 { animation-delay: 2.6s; }
+
+    @keyframes wf-edge-draw {
+      0%   { opacity: 0;    stroke-dashoffset: 600; }
+      20%  { opacity: 0.24; }
+      100% { opacity: 0.24; stroke-dashoffset: 0; }
+    }
+
+    /* Pulse dots travelling along paths — data flowing through the workflow */
+    .hero-workflow .wf-pulse {
+      fill: var(--copper);
+      opacity: 0;
+      animation: wf-pulse-show 3.5s ease-in-out infinite;
+    }
+    .hero-workflow .wp1 { animation-delay: 3.2s; }
+    .hero-workflow .wp2 { animation-delay: 4.0s; }
+    .hero-workflow .wp3 { animation-delay: 4.8s; }
+    .hero-workflow .wp4 { animation-delay: 5.4s; }
+    .hero-workflow .wp5 { animation-delay: 6.0s; }
+
+    @keyframes wf-pulse-show {
+      0%, 5%    { opacity: 0; }
+      20%, 80%  { opacity: 0.78; }
+      95%, 100% { opacity: 0; }
+    }
+
+    /* Edges — hair-thin, stagger-drawn */
+    .hero-graph .edge {
+      fill: none;
+      stroke: var(--ink);
+      stroke-width: 0.6;
+      stroke-linecap: round;
+      opacity: 0;
+      stroke-dasharray: 800;
+      stroke-dashoffset: 800;
+      animation: graph-edge-draw 2.8s cubic-bezier(0.22, 0.8, 0.2, 1) forwards;
+    }
+    .hero-graph .e1  { animation-delay: 0.30s; }
+    .hero-graph .e2  { animation-delay: 0.50s; }
+    .hero-graph .e3  { animation-delay: 0.70s; }
+    .hero-graph .e4  { animation-delay: 0.90s; }
+    .hero-graph .e5  { animation-delay: 1.10s; }
+    .hero-graph .e6  { animation-delay: 1.30s; }
+    .hero-graph .e7  { animation-delay: 1.50s; }
+    .hero-graph .e8  { animation-delay: 1.70s; }
+    .hero-graph .e9  { animation-delay: 1.90s; }
+    .hero-graph .e10 { animation-delay: 2.10s; }
+    .hero-graph .e11 { animation-delay: 2.30s; }
+    .hero-graph .e12 { animation-delay: 2.50s; }
+    .hero-graph .e13 { animation-delay: 2.70s; }
+    .hero-graph .e14 { animation-delay: 2.90s; }
+
+    @keyframes graph-edge-draw {
+      0%   { opacity: 0;    stroke-dashoffset: 800; }
+      15%  { opacity: 0.14; }
+      100% { opacity: 0.14; stroke-dashoffset: 0; }
+    }
+
+    /* Node dots */
+    .hero-graph .dot {
+      fill: var(--ink);
+      opacity: 0;
+      animation: graph-node-in 0.8s ease-out 2.4s forwards;
+    }
+    @keyframes graph-node-in { to { opacity: 0.24; } }
+
+    /* Node labels */
+    .hero-graph .lbl {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      fill: var(--brass);
+      text-anchor: middle;
+      opacity: 0;
+      animation: graph-label-in 0.8s ease-out 2.8s forwards;
+    }
+    @keyframes graph-label-in { to { opacity: 0.42; } }
+
+    /* Primary AGENT node — the center of everything, subtly alive */
+    .hero-graph .dot-primary {
+      fill: var(--copper);
+      opacity: 0;
+      animation:
+        graph-node-in 0.8s ease-out 2.2s forwards,
+        graph-primary-pulse 4.2s ease-in-out 3s infinite;
+      transform-origin: center;
+    }
+    @keyframes graph-primary-pulse {
+      0%, 100% { opacity: 0.42; }
+      50%      { opacity: 0.72; }
+    }
+
+    .hero-graph .lbl-primary {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.26em;
+      fill: var(--copper);
+      font-weight: 500;
+      text-anchor: middle;
+      opacity: 0;
+      animation: graph-label-primary-in 0.8s ease-out 2.4s forwards;
+    }
+    @keyframes graph-label-primary-in { to { opacity: 0.85; } }
+
+    /* Pulse dots — data flowing through the system */
+    .hero-graph .pulse {
+      fill: var(--copper);
+      opacity: 0;
+      animation: graph-pulse-visible 5s ease-in-out infinite;
+    }
+    .hero-graph .pulse.p2 { animation-delay: 1.8s; }
+    .hero-graph .pulse.p3 { animation-delay: 3.2s; }
+    .hero-graph .pulse.p4 { animation-delay: 4.6s; }
+
+    @keyframes graph-pulse-visible {
+      0%, 5%    { opacity: 0; }
+      15%, 85%  { opacity: 0.78; }
+      95%, 100% { opacity: 0; }
+    }
+
+    /* Graph shows only on Ink; Paper uses workflow diagram instead */
+    body:not([data-theme="ink"]) .hero-graph { display: none; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- ====================================================================== -->
+  <!-- MASTHEAD (nav)                                                         -->
+  <!-- ====================================================================== -->
+  <header class="relative z-10">
+    <!-- Masthead ticker bar -->
+    <div class="hairline-bottom">
+      <div class="max-w-[1480px] mx-auto px-8 lg:px-14 py-3 flex items-center justify-between">
+        <div class="ticker flex items-center gap-6 text-ink-500">
+          <span>VOLUME 01</span>
+          <span class="opacity-40">·</span>
+          <span>RIYADH</span>
+          <span class="opacity-40">·</span>
+          <span>EST. 2024</span>
+        </div>
+        <div class="ticker flex items-center gap-6 text-ink-500">
+          <span class="arabic-dec">٢٠٢٦ ربيع</span>
+          <span class="opacity-40 hidden md:inline">·</span>
+          <span class="hidden md:inline">AI ENGINEERING STUDIO</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Primary masthead -->
+    <div class="max-w-[1480px] mx-auto px-8 lg:px-14 py-8 flex items-center justify-between">
+      <a href="/" class="flex items-baseline gap-3">
+        <span class="display text-3xl tracking-tight text-ink-800">ECITech</span>
+        <span class="seal"></span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-10">
+        <a href="#work"       class="text-[14.5px] text-ink-700 hover:text-copper-600 transition">Work</a>
+        <a href="#practice"   class="text-[14.5px] text-ink-700 hover:text-copper-600 transition">Practice</a>
+        <a href="#industries" class="text-[14.5px] text-ink-700 hover:text-copper-600 transition">Industries</a>
+        <a href="#journal"    class="text-[14.5px] text-ink-700 hover:text-copper-600 transition">Journal</a>
+        <a href="#studio"     class="text-[14.5px] text-ink-700 hover:text-copper-600 transition">Studio</a>
+      </nav>
+
+      <a href="#audit" class="hidden md:inline-flex items-center gap-3 text-[14.5px] text-ink-800 group">
+        <span class="smallcaps">Begin</span>
+        <span class="w-8 h-px bg-ink-800 group-hover:bg-copper-600 group-hover:w-12 transition-all duration-300"></span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ====================================================================== -->
+  <!-- HERO                                                                   -->
+  <!-- ====================================================================== -->
+  <section class="relative z-10 max-w-[1480px] mx-auto px-8 lg:px-14 pt-20 pb-32 lg:pb-40">
+
+    <!-- Background workflow — Paper theme only. n8n-style, editorial rendering. -->
+    <svg class="hero-workflow" viewBox="0 0 1400 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <!-- Connection paths (reused by edges + pulses)
+             Left lines intentionally longer — Agent sits right of the
+             hero H1 text, freeing the mid-left area for typography. -->
+        <path id="wf-path-1" d="M 270 230 C 430 230, 430 310, 600 310" />
+        <path id="wf-path-2" d="M 270 390 C 430 390, 430 310, 600 310" />
+        <path id="wf-path-3" d="M 780 310 C 805 310, 805 170, 830 170" />
+        <path id="wf-path-4" d="M 780 310 C 805 310, 805 450, 830 450" />
+        <path id="wf-path-5" d="M 1010 450 L 1150 450" />
+      </defs>
+
+      <!-- Connection edges drawn behind nodes -->
+      <g class="wf-edges">
+        <use href="#wf-path-1" class="wf-edge we1" />
+        <use href="#wf-path-2" class="wf-edge we2" />
+        <use href="#wf-path-3" class="wf-edge we3" />
+        <use href="#wf-path-4" class="wf-edge we4" />
+        <use href="#wf-path-5" class="wf-edge we5" />
+      </g>
+
+      <!-- Nodes -->
+      <g class="wf-nodes">
+        <!-- 1. WhatsApp trigger -->
+        <g transform="translate(90 196)" class="wf-node">
+          <rect width="180" height="68" rx="6" class="wf-rect" />
+          <rect width="5"   height="68"        class="wf-accent" />
+          <text x="20" y="28" class="wf-title">WHATSAPP</text>
+          <text x="20" y="50" class="wf-sub">intake</text>
+        </g>
+
+        <!-- 2. Portal trigger -->
+        <g transform="translate(90 356)" class="wf-node">
+          <rect width="180" height="68" rx="6" class="wf-rect" />
+          <rect width="5"   height="68"        class="wf-accent" />
+          <text x="20" y="28" class="wf-title">PORTAL</text>
+          <text x="20" y="50" class="wf-sub">bayut · pf</text>
+        </g>
+
+        <!-- 3. AI AGENT (primary) — moved right to clear the hero H1 -->
+        <g transform="translate(600 276)" class="wf-node wf-node-primary">
+          <rect width="180" height="68" rx="6" class="wf-rect" />
+          <rect width="5"   height="68"        class="wf-accent" />
+          <text x="20" y="28" class="wf-title wf-title-primary">AI AGENT</text>
+          <text x="20" y="50" class="wf-sub">claude · tools</text>
+        </g>
+
+        <!-- 4. Calendar output -->
+        <g transform="translate(830 136)" class="wf-node">
+          <rect width="180" height="68" rx="6" class="wf-rect" />
+          <rect width="5"   height="68"        class="wf-accent" />
+          <text x="20" y="28" class="wf-title">CALENDAR</text>
+          <text x="20" y="50" class="wf-sub">cal.com</text>
+        </g>
+
+        <!-- 5. CRM output -->
+        <g transform="translate(830 416)" class="wf-node">
+          <rect width="180" height="68" rx="6" class="wf-rect" />
+          <rect width="5"   height="68"        class="wf-accent" />
+          <text x="20" y="28" class="wf-title">NOTION CRM</text>
+          <text x="20" y="50" class="wf-sub">record</text>
+        </g>
+
+        <!-- 6. Telegram notify -->
+        <g transform="translate(1150 416)" class="wf-node">
+          <rect width="180" height="68" rx="6" class="wf-rect" />
+          <rect width="5"   height="68"        class="wf-accent" />
+          <text x="20" y="28" class="wf-title">TELEGRAM</text>
+          <text x="20" y="50" class="wf-sub">handoff</text>
+        </g>
+      </g>
+
+      <!-- Pulse dots — data flowing through the system -->
+      <circle class="wf-pulse wp1" r="4">
+        <animateMotion dur="3.5s" begin="3.2s" repeatCount="indefinite"><mpath href="#wf-path-1"/></animateMotion>
+      </circle>
+      <circle class="wf-pulse wp2" r="4">
+        <animateMotion dur="3.8s" begin="4.0s" repeatCount="indefinite"><mpath href="#wf-path-2"/></animateMotion>
+      </circle>
+      <circle class="wf-pulse wp3" r="4">
+        <animateMotion dur="3.2s" begin="4.8s" repeatCount="indefinite"><mpath href="#wf-path-3"/></animateMotion>
+      </circle>
+      <circle class="wf-pulse wp4" r="4">
+        <animateMotion dur="3.4s" begin="5.4s" repeatCount="indefinite"><mpath href="#wf-path-4"/></animateMotion>
+      </circle>
+      <circle class="wf-pulse wp5" r="4">
+        <animateMotion dur="2.2s" begin="6.0s" repeatCount="indefinite"><mpath href="#wf-path-5"/></animateMotion>
+      </circle>
+    </svg>
+
+    <!-- Background graph — Ink theme only. Architectural blueprint, not decoration. -->
+    <svg class="hero-graph" viewBox="0 0 1400 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <!-- Edges drawn first (behind nodes) -->
+      <g class="graph-edges">
+        <line class="edge e1"  x1="140"  y1="160" x2="480"  y2="240" />
+        <line class="edge e2"  x1="140"  y1="280" x2="480"  y2="240" />
+        <line class="edge e3"  x1="140"  y1="400" x2="480"  y2="240" />
+        <line class="edge e4"  x1="140"  y1="520" x2="480"  y2="440" />
+        <line class="edge e5"  x1="480"  y1="240" x2="720"  y2="340" />
+        <line class="edge e6"  x1="480"  y1="440" x2="720"  y2="340" />
+        <line class="edge e7"  x1="720"  y1="340" x2="960"  y2="240" />
+        <line class="edge e8"  x1="720"  y1="340" x2="960"  y2="440" />
+        <line class="edge e9"  x1="960"  y1="240" x2="1260" y2="160" />
+        <line class="edge e10" x1="960"  y1="240" x2="1260" y2="300" />
+        <line class="edge e11" x1="960"  y1="440" x2="1260" y2="420" />
+        <line class="edge e12" x1="960"  y1="440" x2="1260" y2="540" />
+        <line class="edge e13" x1="720"  y1="340" x2="1260" y2="300" />
+        <line class="edge e14" x1="720"  y1="340" x2="1260" y2="160" />
+      </g>
+
+      <!-- Named paths for pulse dot animations (invisible, reused via mpath) -->
+      <defs>
+        <path id="graph-path-1" d="M 140  160 L 480  240" />
+        <path id="graph-path-2" d="M 480  240 L 720  340" />
+        <path id="graph-path-3" d="M 720  340 L 1260 300" />
+        <path id="graph-path-4" d="M 720  340 L 960  440" />
+      </defs>
+
+      <!-- Nodes + labels -->
+      <g class="graph-nodes">
+        <g transform="translate(140 160)"><circle r="4" class="dot"/><text y="22" class="lbl">WHATSAPP</text></g>
+        <g transform="translate(140 280)"><circle r="4" class="dot"/><text y="22" class="lbl">CALLS</text></g>
+        <g transform="translate(140 400)"><circle r="4" class="dot"/><text y="22" class="lbl">PORTAL</text></g>
+        <g transform="translate(140 520)"><circle r="4" class="dot"/><text y="22" class="lbl">FORMS</text></g>
+
+        <g transform="translate(480 240)"><circle r="4" class="dot"/><text y="22" class="lbl">RAG</text></g>
+        <g transform="translate(480 440)"><circle r="4" class="dot"/><text y="22" class="lbl">POLICY</text></g>
+
+        <g transform="translate(720 340)">
+          <circle r="8" class="dot-primary"/>
+          <text y="28" class="lbl-primary">AGENT</text>
+        </g>
+
+        <g transform="translate(960 240)"><circle r="4" class="dot"/><text y="22" class="lbl">TOOLS</text></g>
+        <g transform="translate(960 440)"><circle r="4" class="dot"/><text y="22" class="lbl">MEMORY</text></g>
+
+        <g transform="translate(1260 160)"><circle r="4" class="dot"/><text y="22" class="lbl">CALENDAR</text></g>
+        <g transform="translate(1260 300)"><circle r="4" class="dot"/><text y="22" class="lbl">CRM</text></g>
+        <g transform="translate(1260 420)"><circle r="4" class="dot"/><text y="22" class="lbl">SLACK</text></g>
+        <g transform="translate(1260 540)"><circle r="4" class="dot"/><text y="22" class="lbl">REPORTS</text></g>
+      </g>
+
+      <!-- Pulse dots traveling along edges (data flowing through system) -->
+      <circle class="pulse p1" r="2.5">
+        <animateMotion dur="4.8s" begin="0s"   repeatCount="indefinite"><mpath href="#graph-path-1"/></animateMotion>
+      </circle>
+      <circle class="pulse p2" r="2.5">
+        <animateMotion dur="4.2s" begin="1.8s" repeatCount="indefinite"><mpath href="#graph-path-2"/></animateMotion>
+      </circle>
+      <circle class="pulse p3" r="2.5">
+        <animateMotion dur="5.4s" begin="3.2s" repeatCount="indefinite"><mpath href="#graph-path-3"/></animateMotion>
+      </circle>
+      <circle class="pulse p4" r="2.5">
+        <animateMotion dur="4.6s" begin="4.6s" repeatCount="indefinite"><mpath href="#graph-path-4"/></animateMotion>
+      </circle>
+    </svg>
+
+    <div class="hero-content relative" style="z-index:1;">
+      <div class="reveal reveal-1 mono-eyebrow mb-12">
+        <span>01 </span>
+        <span class="mx-2 opacity-40">—</span>
+        <span>AI engineering studio · Riyadh</span>
+      </div>
+
+      <h1 class="reveal reveal-2 display text-[64px] sm:text-[88px] lg:text-[128px] text-ink-900 mb-14 lg:mb-20">
+        AI workflows,<br/>
+        engineered for the<br/>
+        <span class="display-italic text-copper-600">businesses</span> that<br/>
+        built the Gulf.
+      </h1>
+
+      <p class="reveal reveal-3 measure-wide text-[19px] lg:text-[21px] leading-[1.55] text-ink-700 mb-12 dropcap">
+        ECITech is a Riyadh-based AI engineering studio. We build agents, retrieval systems, and workflow automations for mid-market businesses across the UAE and Saudi Arabia. Our engineers shipped systems for BCG Gamma, Juniper Networks, Cisco, and Google — now operating quietly, for the companies that actually run the region.
+      </p>
+
+      <div class="reveal reveal-4 flex flex-wrap items-center gap-10">
+        <a href="#audit" class="btn-primary">
+          <span>Book a 30-minute AI Readiness Audit</span>
+          <span class="arrow"></span>
+        </a>
+        <a href="#ai-sdr-case" class="link-editorial">
+          Read how we built our own AI SDR →
+        </a>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="reveal reveal-7 absolute left-8 lg:left-14 bottom-10 flex items-center gap-3 mono-eyebrow text-ink-400">
+      <span class="scroll-ind inline-block w-px h-8 bg-ink-400"></span>
+      <span>Continue reading</span>
+    </div>
+  </section>
+
+  <!-- ====================================================================== -->
+  <!-- CREDENTIALS BAND                                                       -->
+  <!-- ====================================================================== -->
+  <section class="relative z-10 hairline-top hairline-bottom bg-cream-50">
+    <div class="max-w-[1480px] mx-auto px-8 lg:px-14 py-14">
+      <div class="grid lg:grid-cols-[300px_1fr] gap-10 items-center">
+        <div>
+          <div class="mono-eyebrow mb-2">02 — Credentials</div>
+          <p class="text-[16px] leading-snug text-ink-700 measure">
+            Our engineers have<br/>shipped systems for.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-x-14 gap-y-8 lg:justify-end">
+          <span class="display text-[28px] text-ink-800 tracking-tight opacity-75 hover:opacity-100 transition">BCG&thinsp;GAMMA</span>
+          <span class="display text-[28px] text-ink-800 tracking-tight opacity-75 hover:opacity-100 transition">Juniper</span>
+          <span class="display text-[28px] text-ink-800 tracking-tight opacity-75 hover:opacity-100 transition italic">Cisco</span>
+          <span class="display text-[28px] text-ink-800 tracking-tight opacity-75 hover:opacity-100 transition">Google</span>
+          <span class="display text-[28px] text-ink-800 tracking-tight opacity-75 hover:opacity-100 transition">LUCID</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================== -->
+  <!-- PRACTICE / SERVICES                                                    -->
+  <!-- ====================================================================== -->
+  <section id="practice" class="relative z-10 max-w-[1480px] mx-auto px-8 lg:px-14 py-32">
+    <!-- Section header -->
+    <div class="grid lg:grid-cols-[1fr_600px] gap-14 mb-20 items-end">
+      <div>
+        <div class="mono-eyebrow mb-6">03 — Practice</div>
+        <h2 class="display text-[52px] lg:text-[80px] text-ink-900 leading-[0.95]">
+          Four ways to<br/>
+          <span class="display-italic text-copper-600">engage</span> the studio.
+        </h2>
+      </div>
+      <p class="text-[18px] leading-[1.6] text-ink-700 measure-wide">
+        We start small and earn scope. Every full engagement begins with a five-day audit, so both sides know what we're signing up for before anything bigger is committed.
+      </p>
+    </div>
+
+    <!-- Tripwire: AI Readiness Audit (featured) -->
+    <a href="#audit" class="block service-card hairline-top hairline-bottom py-12 lg:py-16 px-4 lg:px-10 -mx-4 lg:-mx-10 mb-0 group">
+      <div class="grid lg:grid-cols-[80px_220px_1fr_160px] gap-10 items-center">
+        <div class="mono-eyebrow text-copper-600">00<br/><span class="text-ink-500 normal-case !tracking-[0.2em]">audit</span></div>
+        <div>
+          <h3 class="display text-[34px] lg:text-[40px] text-ink-900 leading-[1]">AI Readiness<br/>Audit</h3>
+        </div>
+        <div>
+          <p class="text-[15.5px] leading-[1.6] text-ink-700 measure">
+            Five days, a senior engineer, and three recommended pilots with honest ROI math. Delivered as a 15-page report your partners can actually read.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3 mono-eyebrow !text-[10px] text-ink-500">
+            <span>5 DAYS</span>
+            <span class="opacity-40">·</span>
+            <span>FIXED FEE</span>
+            <span class="opacity-40">·</span>
+            <span>NO OBLIGATION TO CONTINUE</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-end gap-3 service-arrow text-ink-700">
+          <span class="smallcaps">Begin here</span>
+          <span class="w-7 h-px bg-current"></span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Three core services -->
+    <a href="#ai-agents" class="block service-card hairline-bottom py-12 lg:py-16 px-4 lg:px-10 -mx-4 lg:-mx-10 group">
+      <div class="grid lg:grid-cols-[80px_220px_1fr_160px] gap-10 items-center">
+        <div class="mono-eyebrow">01<br/><span class="text-ink-500 normal-case !tracking-[0.2em]">agents</span></div>
+        <div>
+          <h3 class="display text-[34px] lg:text-[40px] text-ink-900 leading-[1]">AI Agent<br/>Implementation</h3>
+        </div>
+        <div>
+          <p class="text-[15.5px] leading-[1.6] text-ink-700 measure">
+            One agent that does one thing well — lead qualification, appointment rescheduling, insurance pre-authorisation — integrated into the tools your team already lives in.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3 mono-eyebrow !text-[10px] text-ink-500">
+            <span>4–6 WEEKS</span>
+            <span class="opacity-40">·</span>
+            <span>RETAINER OPTION</span>
+            <span class="opacity-40">·</span>
+            <span>WHATSAPP · CRM · CALL</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-end gap-3 service-arrow text-ink-700">
+          <span class="smallcaps">Read more</span>
+          <span class="w-7 h-px bg-current"></span>
+        </div>
+      </div>
+    </a>
+
+    <a href="#rag" class="block service-card hairline-bottom py-12 lg:py-16 px-4 lg:px-10 -mx-4 lg:-mx-10 group">
+      <div class="grid lg:grid-cols-[80px_220px_1fr_160px] gap-10 items-center">
+        <div class="mono-eyebrow">02<br/><span class="text-ink-500 normal-case !tracking-[0.2em]">knowledge</span></div>
+        <div>
+          <h3 class="display text-[34px] lg:text-[40px] text-ink-900 leading-[1]">RAG Knowledge<br/>System</h3>
+        </div>
+        <div>
+          <p class="text-[15.5px] leading-[1.6] text-ink-700 measure">
+            Your contracts, SOPs, clinical protocols, and historical deal memory — indexed, governed, and queryable in English and Arabic by the people who actually need them.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3 mono-eyebrow !text-[10px] text-ink-500">
+            <span>3–5 WEEKS</span>
+            <span class="opacity-40">·</span>
+            <span>ARABIC + ENGLISH</span>
+            <span class="opacity-40">·</span>
+            <span>ON-REGION HOSTING</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-end gap-3 service-arrow text-ink-700">
+          <span class="smallcaps">Read more</span>
+          <span class="w-7 h-px bg-current"></span>
+        </div>
+      </div>
+    </a>
+
+    <a href="#automation" class="block service-card hairline-bottom py-12 lg:py-16 px-4 lg:px-10 -mx-4 lg:-mx-10 group">
+      <div class="grid lg:grid-cols-[80px_220px_1fr_160px] gap-10 items-center">
+        <div class="mono-eyebrow">03<br/><span class="text-ink-500 normal-case !tracking-[0.2em]">workflow</span></div>
+        <div>
+          <h3 class="display text-[34px] lg:text-[40px] text-ink-900 leading-[1]">Workflow<br/>Automation Sprint</h3>
+        </div>
+        <div>
+          <p class="text-[15.5px] leading-[1.6] text-ink-700 measure">
+            A short, surgical engagement: we sit with your team, map where the hours actually go, and automate the one or two processes that quietly cost the most.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3 mono-eyebrow !text-[10px] text-ink-500">
+            <span>2–4 WEEKS</span>
+            <span class="opacity-40">·</span>
+            <span>AUDIT + BUILD</span>
+            <span class="opacity-40">·</span>
+            <span>HANDOFF INCLUDED</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-end gap-3 service-arrow text-ink-700">
+          <span class="smallcaps">Read more</span>
+          <span class="w-7 h-px bg-current"></span>
+        </div>
+      </div>
+    </a>
+  </section>
+
+  <!-- ====================================================================== -->
+  <!-- INDUSTRIES                                                             -->
+  <!-- ====================================================================== -->
+  <section id="industries" class="relative z-10 bg-cream-200 hairline-top hairline-bottom">
+    <div class="max-w-[1480px] mx-auto px-8 lg:px-14 py-32">
+      <div class="grid lg:grid-cols-[1fr_600px] gap-14 mb-16 items-end">
+        <div>
+          <div class="mono-eyebrow mb-6">04 — Industries</div>
+          <h2 class="display text-[52px] lg:text-[80px] text-ink-900 leading-[0.95]">
+            Where the<br/>
+            <span class="display-italic">work</span> is right now.
+          </h2>
+        </div>
+        <p class="text-[18px] leading-[1.6] text-ink-700 measure-wide">
+          We concentrate on two sectors where the maths actually works out — where a mid-sized operator can recover the cost of a pilot inside a single quarter.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <!-- Healthcare plate -->
+        <article class="bg-cream-50 hairline">
+          <div class="photo-plate plate-healthcare aspect-[4/3] relative">
+            <div class="absolute top-6 left-6 mono-eyebrow !text-cream-100 opacity-80">
+              PLATE I · HEALTHCARE
+            </div>
+            <div class="absolute bottom-8 left-8 right-8">
+              <div class="numeral text-[88px] text-cream-50 leading-none">41%</div>
+              <div class="mono-eyebrow !text-cream-200 mt-2 !normal-case !tracking-[0.12em] opacity-80">
+                no-show rate at Riyadh dental clinics <span class="opacity-60">— peer-reviewed</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-10">
+            <h3 class="display text-[36px] text-ink-900 leading-[1.02] mb-6">
+              Clinics that live and die<br/>by the calendar.
+            </h3>
+            <p class="text-[16px] leading-[1.65] text-ink-700 mb-8">
+              Dental, aesthetic, fertility. Owner-operators running twelve to sixty staff across one or two locations. Every empty chair is a loss; every missed WhatsApp is a patient who rebooked elsewhere. And 15–25% of insurance claims in the Kingdom get rejected before they're paid. We build the systems that close those gaps.
+            </p>
+            <div class="hairline-top pt-6 flex items-center justify-between">
+              <div class="mono-eyebrow">
+                DENTAL · AESTHETIC · FERTILITY
+              </div>
+              <a href="#healthcare" class="link-editorial text-[14.5px]">Healthcare practice →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Real estate plate -->
+        <article class="bg-cream-50 hairline">
+          <div class="photo-plate plate-realestate aspect-[4/3] relative">
+            <div class="absolute top-6 left-6 mono-eyebrow !text-cream-100 opacity-80">
+              PLATE II · REAL ESTATE
+            </div>
+            <div class="absolute bottom-8 left-8 right-8">
+              <div class="numeral text-[88px] text-cream-50 leading-none">2–5%</div>
+              <div class="mono-eyebrow !text-cream-200 mt-2 !normal-case !tracking-[0.12em] opacity-80">
+                portal lead-to-sale conversion <span class="opacity-60">— Bayut, Property Finder</span>
+              </div>
+            </div>
+          </div>
+          <div class="p-10">
+            <h3 class="display text-[36px] text-ink-900 leading-[1.02] mb-6">
+              Brokerages drowning<br/>in their own pipeline.
+            </h3>
+            <p class="text-[16px] leading-[1.65] text-ink-700 mb-8">
+              5,933 licensed brokers in Dubai alone moved AED&thinsp;761B last year. Thousands of portal leads a month, half never answered inside the hour that matters. Bilingual agents, RERA and REGA compliance, brokers who won't touch a CRM. We build what actually sticks.
+            </p>
+            <div class="hairline-top pt-6 flex items-center justify-between">
+              <div class="mono-eyebrow">
+                BROKERAGES · SMALL DEVELOPERS
+              </div>
+              <a href="#real-estate" class="link-editorial text-[14.5px]">Real estate practice →</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================== -->
+  <!-- EDITORIAL PULL QUOTE / PHILOSOPHY                                      -->
+  <!-- ====================================================================== -->
+  <section class="relative z-10 max-w-[1480px] mx-auto px-8 lg:px-14 py-36">
+    <div class="grid lg:grid-cols-[180px_1fr] gap-12">
+      <div class="mono-eyebrow">
+        05 — On method<br/>
+        <span class="text-brass-500">Notes from the studio</span>
+      </div>
+      <blockquote>
+        <p class="display text-[40px] lg:text-[62px] leading-[1.08] text-ink-900">
+          We are not trying<br/>
+          to &ldquo;add AI&rdquo; to your business.<br/>
+          <span class="display-italic text-copper-600">We are trying</span> to make your<br/>
+          Tuesday morning quieter —<br/>
+          and your Friday ledger fuller.
+        </p>
+
+        <div class="brass-rule mt-12 mb-8 max-w-md"></div>
+
+        <p class="text-[16px] leading-[1.7] text-ink-700 max-w-2xl">
+          Most AI shops sell tools. We sell workflow design. The tools are commodity now; the judgement about which thirty per cent of a business to automate, and which seventy per cent to leave alone, is not.
+        </p>
+
+        <footer class="mt-8 mono-eyebrow flex items-center gap-3 text-ink-500">
+          <span class="w-4 h-px bg-ink-400"></span>
+          <span>The studio, Riyadh · 2026</span>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ====================================================================== -->
+  <!-- FINAL CTA                                                              -->
+  <!-- ====================================================================== -->
+  <section id="audit" class="relative z-10 bg-ink-900 text-cream-100">
+    <div class="max-w-[1480px] mx-auto px-8 lg:px-14 py-32 lg:py-40">
+      <div class="grid lg:grid-cols-[1fr_420px] gap-16 items-end">
+        <div>
+          <div class="mono-eyebrow !text-copper-500 mb-8">06 — Begin</div>
+          <h2 class="display text-[56px] lg:text-[104px] leading-[0.95] mb-14">
+            Five days.<br/>
+            One senior engineer.<br/>
+            <span class="display-italic text-copper-500">A real plan.</span>
+          </h2>
+
+          <a href="#book" class="btn-primary !bg-cream-100 !text-ink-900 hover:!text-cream-100">
+            <span>Book a 30-minute introduction</span>
+            <span class="arrow"></span>
+          </a>
+        </div>
+
+        <aside class="hairline pt-10 border-t !border-cream-100/30">
+          <div class="mono-eyebrow !text-cream-300 mb-6">
+            What happens in the first call
+          </div>
+          <ol class="space-y-5 text-[15px] text-cream-100/85 leading-[1.55]">
+            <li class="flex gap-4">
+              <span class="mono-eyebrow !text-copper-500 pt-0.5">I</span>
+              <span>You describe the part of the business that quietly costs the most.</span>
+            </li>
+            <li class="flex gap-4">
+              <span class="mono-eyebrow !text-copper-500 pt-0.5">II</span>
+              <span>We say honestly whether AI is the right tool, or whether you need something simpler.</span>
+            </li>
+            <li class="flex gap-4">
+              <span class="mono-eyebrow !text-copper-500 pt-0.5">III</span>
+              <span>If it's a fit, we scope a five-day audit on the spot. If not, we point you elsewhere.</span>
+            </li>
+            <li class="flex gap-4">
+              <span class="mono-eyebrow !text-copper-500 pt-0.5">IV</span>
+              <span>No decks. No sales theatre.</span>
+            </li>
+          </ol>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================== -->
+  <!-- FOOTER                                                                 -->
+  <!-- ====================================================================== -->
+  <footer class="relative z-10 bg-cream-100">
+    <div class="max-w-[1480px] mx-auto px-8 lg:px-14 pt-20 pb-10">
+      <!-- Masthead reprise -->
+      <div class="grid lg:grid-cols-[2fr_1fr_1fr_1fr] gap-12 mb-20">
+        <div>
+          <div class="flex items-baseline gap-3 mb-4">
+            <span class="display text-4xl tracking-tight text-ink-800">ECITech</span>
+            <span class="seal"></span>
+          </div>
+          <p class="text-[15px] leading-[1.6] text-ink-700 max-w-md">
+            An engineering studio for the businesses that built the Gulf.<br/>
+            Quiet, small, meticulous. Based in Riyadh, operating across UAE and KSA.
+          </p>
+          <div class="mt-6 arabic-dec">شركة هندسة الذكاء الاصطناعي · الرياض</div>
+        </div>
+
+        <div>
+          <div class="mono-eyebrow mb-5">Practice</div>
+          <ul class="space-y-3 text-[14.5px] text-ink-700">
+            <li><a href="#audit" class="hover:text-copper-600">AI Readiness Audit</a></li>
+            <li><a href="#ai-agents" class="hover:text-copper-600">AI Agent Implementation</a></li>
+            <li><a href="#rag" class="hover:text-copper-600">RAG Knowledge System</a></li>
+            <li><a href="#automation" class="hover:text-copper-600">Workflow Automation</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="mono-eyebrow mb-5">Industries</div>
+          <ul class="space-y-3 text-[14.5px] text-ink-700">
+            <li><a href="#healthcare" class="hover:text-copper-600">Healthcare Clinics</a></li>
+            <li><a href="#real-estate" class="hover:text-copper-600">Real Estate</a></li>
+            <li><a href="#journal" class="hover:text-copper-600">Journal</a></li>
+            <li><a href="#studio" class="hover:text-copper-600">The Studio</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="mono-eyebrow mb-5">Correspondence</div>
+          <ul class="space-y-3 text-[14.5px] text-ink-700">
+            <li>hello@ecitech.online</li>
+            <li>Riyadh · Saudi Arabia</li>
+            <li class="pt-3 mono-eyebrow">MON–THU · 09 — 18 AST</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Copyline -->
+      <div class="hairline-top pt-6 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 mono-eyebrow text-ink-500">
+        <div>© 2026 ECITECH · VOLUME 01 · PRINTED IN RIYADH</div>
+        <div class="flex items-center gap-6">
+          <a href="#privacy" class="hover:text-copper-600">Privacy</a>
+          <a href="#terms"   class="hover:text-copper-600">Terms</a>
+          <a href="#linkedin"class="hover:text-copper-600">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================================================================== -->
+  <!-- THEME SWITCHER — evaluation aid                                        -->
+  <!-- ====================================================================== -->
+  <div class="theme-switch" aria-label="Palette">
+    <div class="theme-switch-label">Palette</div>
+
+    <div class="theme-group-label">Light</div>
+    <button class="theme-btn is-active" data-set-theme="copper">
+      <span class="dot"></span><span>Copper</span>
+    </button>
+    <button class="theme-btn" data-set-theme="najd">
+      <span class="dot"></span><span>Najd</span>
+    </button>
+    <button class="theme-btn" data-set-theme="archive">
+      <span class="dot"></span><span>Archive</span>
+    </button>
+    <button class="theme-btn" data-set-theme="paper">
+      <span class="dot"></span><span>Paper</span>
+    </button>
+
+    <div class="theme-group-label">Dark</div>
+    <button class="theme-btn" data-set-theme="ink">
+      <span class="dot"></span><span>Ink</span>
+    </button>
+    <button class="theme-btn" data-set-theme="midnight">
+      <span class="dot"></span><span>Midnight</span>
+    </button>
+  </div>
+
+  <script>
+    (function () {
+      const VALID = ['copper','najd','archive','paper','ink','midnight'];
+      const buttons = document.querySelectorAll('[data-set-theme]');
+      const apply = (theme) => {
+        if (theme === 'copper') {
+          document.body.removeAttribute('data-theme');
+        } else {
+          document.body.setAttribute('data-theme', theme);
+        }
+        buttons.forEach(b => {
+          b.classList.toggle('is-active', b.dataset.setTheme === theme);
+        });
+        try { localStorage.setItem('ecitech:palette', theme); } catch (_) {}
+      };
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => apply(btn.dataset.setTheme));
+      });
+      const saved = (() => { try { return localStorage.getItem('ecitech:palette'); } catch (_) { return null; } })();
+      if (saved && VALID.includes(saved)) apply(saved);
+    })();
+  </script>
+</body>
+</html>

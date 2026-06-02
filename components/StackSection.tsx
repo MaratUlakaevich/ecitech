@@ -11,16 +11,16 @@ const StackSection: FC = () => {
     <div className="relative -mx-8 lg:-mx-12 p-10 bg-gray-800 lg:rounded-3xl">
       <div className="max-w-[1128px] mx-auto">
         <h2
-          className={`${styles.lgh2} mx-auto text-4xl font-bold text-white mb-8`}
+          className={`${styles.lgh2} mx-auto text-4xl font-bold text-white mb-4`}
         >
-          Technology Stack
+          A stack picked for outcomes, not trends.
         </h2>
         <p
           className={`${styles.lgp} lg:w-[55rem] text-gray-400 mb-12 lg:mb-20`}
         >
-          The development team working on a project uses only modern and
-          scalable technologies to implement mobile and web applications the way
-          you mean it
+          We build on battle-tested, widely supported tools so your product
+          stays fast to ship, easy to hire for, and cheap to run three years
+          after launch.
         </p>
 
         <div className="flex lg:hidden mb-8">

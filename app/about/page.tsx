@@ -1,8 +1,14 @@
-
 import Image from "next/image";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ContactForm from "../../components/ContactForm";
+import AboutHero from "../../components/about/AboutHero";
+import StatsRow from "../../components/about/StatsRow";
+import TeamGrid from "../../components/about/TeamGrid";
+import LocationsSection from "../../components/about/LocationsSection";
+import ValuesSection from "../../components/about/ValuesSection";
+import BreadcrumbsLd from "../../components/seo/BreadcrumbsLd";
+import { styles } from "../constants/styles";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -19,7 +25,7 @@ export const metadata: Metadata = {
     "software development values",
     "our mission",
   ],
-  
+
   openGraph: {
     title: "About ECITech",
     description: "We're more than developers — we're your long-term tech partner.",
@@ -40,30 +46,57 @@ export const metadata: Metadata = {
   },
 };
 
-
-export default function Home() {
+export default function AboutPage() {
   return (
     <>
+      <BreadcrumbsLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "About", url: "/about" },
+        ]}
+      />
       <Header />
       <main className="max-w-[1200px] mx-auto lg:px-4">
-        <div className="absolute overflow-hidden lg:overflow-visible w-screen lg:max-w-[1128px]">
+        <div className="absolute overflow-hidden lg:overflow-visible w-screen lg:max-w-[1128px] pointer-events-none">
           <Image
-            src="img/3d.svg"
+            src="/img/3d.svg"
             width={2000}
             height={2000}
+            // SVG — unoptimized intentional
             unoptimized
             loading="lazy"
-            alt="ECITech Main 3d img"
-            className="relative rotate-[150deg] max-w-[900px] left-[4%] md:max-w-[1200px] left-[0%] lg:left-[-3%] lg:max-w-[1600px]
-                       -z-10 md:-top-4 lg:-top-4"
-          ></Image>
+            alt=""
+            aria-hidden="true"
+            className="relative rotate-[150deg] max-w-[900px] left-[4%] md:max-w-[1200px] md:left-[0%] lg:left-[-3%] lg:max-w-[1600px]
+                       -z-10 opacity-60 md:-top-4 lg:-top-4"
+          />
         </div>
+
+        <section className={`${styles.section}`}>
+          <AboutHero />
+        </section>
+
+        <section className={`${styles.section}`}>
+          <StatsRow />
+        </section>
+
+        <section className={`${styles.section}`}>
+          <TeamGrid />
+        </section>
+
+        <section className={`${styles.section}`}>
+          <LocationsSection />
+        </section>
+
+        <section className={`${styles.section}`}>
+          <ValuesSection />
+        </section>
       </main>
+
       <div className="px-8 lg:px-0 mt-20 mb-20">
         <ContactForm />
       </div>
 
-      
       <Footer />
     </>
   );

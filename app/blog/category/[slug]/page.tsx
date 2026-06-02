@@ -34,11 +34,16 @@ export async function generateMetadata({ params }: {params: Params}) {
 
 // Генерация статических путей для всех категорий
 export async function generateStaticParams() {
-  const { data: categories } = await getAllCategories();
-  
-  return categories.map((category: Category) => ({
-    slug: category.slug,
-  }));
+  try {
+    const { data: categories } = await getAllCategories();
+    return categories.map((category: Category) => ({
+      slug: category.slug,
+    }));
+  } catch {
+    // Fail-soft: if Strapi is unreachable at build time, skip pre-rendering.
+    // ISR (revalidate=3600) will fill these on first request.
+    return [];
+  }
 }
 
 export default async function CategoryPage({ params, searchParams }: { params: Params, searchParams: { page?: string } }) {

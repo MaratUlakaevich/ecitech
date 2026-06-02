@@ -1,52 +1,56 @@
-import Header from "../components/Header";
-import Image from "next/image";
-import headImg from "../public/img/3d.svg";
-import ScrollButton from "../components/UI/ScrollButton";
-import Slider from "../components/Slider";
-import HeroSection from "../components/HeroSection";
-import CaseSection from "../components/CaseSection";
-import IndustrySection from "../components/IndustrySection";
-import { styles } from "./constants/styles";
-import { clientImages } from "./config/images";
-import StackSection from "../components/StackSection";
-import Footer from "../components/Footer";
-import CompanySection from "../components/CompanySection";
-import ContactForm from "../components/ContactForm";
 import type { Metadata } from "next";
+import HeroSection from "../components/HeroSection";
+import SelectedWork from "../components/SelectedWork";
+import ServiceLadder from "../components/ServiceLadder";
+import ProcessSection from "../components/ProcessSection";
+import StudioAbout from "../components/StudioAbout";
+import FinalCTA from "../components/FinalCTA";
+import EditorialFooter from "../components/EditorialFooter";
+
+/**
+ * ECITech home page — Phase 2 (full assembly).
+ *
+ *   01  Hero            (Paper, workflow SVG bg, masthead + nav)
+ *   02  Selected Work   (6 portfolio cases as editorial plates)
+ *   03  Practice        (Service ladder: Audit / Sites / Automation / Integration)
+ *   04  Process         (Brief → Sprint → Launch → Operate + pull-quote)
+ *   05  The Studio      (Founder narrative, stats, locations)
+ *   06  Begin           (Copper warm close — final CTA)
+ *      Footer           (Editorial masthead reprise)
+ */
 
 export const metadata: Metadata = {
-  title: "ECITech — Programming The Future of Your Business",
+  title:
+    "ECITech — An independent digital studio. Sites, automation, AI integration.",
   description:
-    "We build custom web and mobile apps tailored to your business — with great UI, clean code, and full-cycle development.",
+    "ECITech is an independent digital studio. We build websites, workflow automation, and AI integration for businesses across Russia, the UAE, and Saudi Arabia. Built by engineers who shipped for BCG Gamma, Juniper Networks, Cisco, and Google.",
   keywords: [
     "ECITech",
-    "custom software development",
-    "web development",
-    "mobile development",
-    "AI development",
-    "startup software",
-    "DevOps services",
-    "UI UX design",
-    "outsourcing development",
-    "software agency",
-    "software engineers",
-    "digital product development",
-    "MVP development",
-    "B2B software solutions",
+    "boutique digital studio",
+    "Next.js development agency",
+    "AI integration",
+    "workflow automation",
+    "Telegram bot development",
+    "amoCRM integration",
+    "Bitrix24 integration",
+    "RAG system",
+    "Gulf digital studio",
+    "Moscow digital studio",
+    "AI workflow partner",
   ],
   metadataBase: new URL("https://ecitech.online"),
   openGraph: {
-    title: "ECITech — Programming The Future of Your Business",
+    title: "ECITech — Sites · Automation · AI Integration",
     description:
-      "Custom software development company. We build smart, scalable and user-friendly solutions for web and mobile.",
+      "An independent digital studio for mid-market teams across Russia and the Gulf.",
     url: "https://ecitech.online",
     siteName: "ECITech",
     images: [
       {
-        url: "/img/og/default.png", // желательно заменить на баннер
+        url: "/img/og/default.png",
         width: 1200,
         height: 630,
-        alt: "ECITech OpenGraph Image",
+        alt: "ECITech — independent digital studio",
       },
     ],
     type: "website",
@@ -54,11 +58,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ECITech — Programming The Future of Your Business",
+    title: "ECITech — Sites · Automation · AI Integration",
     description:
-      "We help companies bring their digital ideas to life — from web/mobile apps to AI-powered platforms.",
+      "Independent digital studio. Built by engineers who shipped for BCG Gamma, Juniper, Cisco, and Google.",
     images: ["/img/og/default.png"],
-    creator: "@ecitech_online", // если есть, можно добавить
+    creator: "@ecitech_online",
   },
   icons: {
     icon: "/img/favicon.ico",
@@ -70,43 +74,15 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Header />
-
-      <main className="max-w-[1200px] mx-auto lg:px-4">
-        <div className="absolute overflow-hidden lg:overflow-visible w-screen lg:max-w-[1128px]">
-          <Image
-            src={headImg}
-            priority={true}
-            unoptimized
-            loading="eager"
-            alt="ECITech Main 3d img"
-            className="relative rotate-[6deg] max-w-[600px] left-[4%] md:max-w-[800px] md:left-[20%] lg:max-w-full 
-                            lg:w-fit -z-10 md:-top-9 lg:-top-20 g:left-40"
-          ></Image>
-        </div>
-        <section className={`${styles.section}`}>
-          <HeroSection />
-          <Slider images={clientImages}></Slider>
-        </section>
-        <section className={`${styles.section}`}>
-          <CaseSection></CaseSection>
-        </section>
-        <section className={`${styles.section}`}>
-          <IndustrySection></IndustrySection>
-        </section>
-        <section className={`${styles.section}`}>
-          <StackSection />
-        </section>
-        <section className={`${styles.section}`}>
-          <CompanySection />
-        </section>
+      <main className="relative">
+        <HeroSection />
+        <SelectedWork />
+        <ServiceLadder />
+        <ProcessSection />
+        <StudioAbout />
+        <FinalCTA />
       </main>
-      <div className="px-8 lg:px-0 mt-20 mb-20">
-        <ContactForm />
-      </div>
-
-      <Footer />
-      <ScrollButton />
+      <EditorialFooter />
     </>
   );
 }

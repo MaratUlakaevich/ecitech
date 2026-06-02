@@ -36,7 +36,10 @@ const Footer: FC = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/services/seo" className="hover:text-white">
+                <Link
+                  href="/services/custom-software"
+                  className="hover:text-white"
+                >
                   Custom Software Development
                 </Link>
               </li>
@@ -47,34 +50,34 @@ const Footer: FC = () => {
             <h3 className="text-white font-bold text-lg mb-4">Industries</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/industries/fintech" className="hover:text-white">
+                <Link href="/industries#fintech" className="hover:text-white">
                   FinTech
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/industries/healthcare"
-                  className="hover:text-white"
-                >
-                  Healthcare
+                <Link href="/industries#medtech" className="hover:text-white">
+                  MedTech
                 </Link>
               </li>
               <li>
-                <Link href="/industries/education" className="hover:text-white">
+                <Link href="/industries#edtech" className="hover:text-white">
                   EdTech
                 </Link>
               </li>
               <li>
-                <Link href="/industries/ecommerce" className="hover:text-white">
-                  Travel
+                <Link
+                  href="/industries#hospitality"
+                  className="hover:text-white"
+                >
+                  Hospitality
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/industries/real-estate"
+                  href="/industries#enterprise"
                   className="hover:text-white"
                 >
-                  Social
+                  Enterprise
                 </Link>
               </li>
             </ul>
@@ -127,7 +130,12 @@ const Footer: FC = () => {
             >
               Clutch
             </Link>
-            <Link href="#" className="hover:text-white m-2">
+            <Link
+              href="#"
+              aria-disabled="true"
+              tabIndex={-1}
+              className="hover:text-white m-2 opacity-50 cursor-not-allowed"
+            >
               Facebook
             </Link>
             <Link 
@@ -137,7 +145,12 @@ const Footer: FC = () => {
             >
               Twitter
             </Link>
-            <Link href="#" className="hover:text-white m-2">
+            <Link
+              href="#"
+              aria-disabled="true"
+              tabIndex={-1}
+              className="hover:text-white m-2 opacity-50 cursor-not-allowed"
+            >
               Dribbble
             </Link>
           </div>

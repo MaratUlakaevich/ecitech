@@ -33,7 +33,6 @@ const Navbar: FC = () => {
           src={logo}
           alt="ECITech Logo"
           className="w-40 lg:w-44"
-          unoptimized
         ></Image>
       </Link>
       <nav className="lg:flex hidden items-center py-4 lg:bg-transparent">

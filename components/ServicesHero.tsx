@@ -10,8 +10,8 @@ export default function ServicesHero() {
   return (
     <section className={`${styles.section}`}>
       <div className="flex flex-col lg:flex-row justify-between lg:space-x-10 lg:items-center px-6 mb-10">
-        <h2 className="text-3xl font-bold lg:w-[30rem] mb-10 lg:mb-0">Custom Software Solutions we offer</h2>
-        <div className="text-xl lg:w-[40rem]">Our team supports you at every stage of the software development life-cycle: from product discovery to deployment and post-release support</div>
+        <h2 className="text-3xl font-bold lg:w-[30rem] mb-10 lg:mb-0">Services built around business outcomes.</h2>
+        <div className="text-xl lg:w-[40rem]">Pick a sprint, a scope, or a full-cycle engagement. The same senior team designs, builds, and supports your product &mdash; from discovery through post-launch iterations.</div>
       </div>
       <div className="flex flex-col gap-8">
       

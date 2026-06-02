@@ -36,3 +36,23 @@ yarn-error.log*
 next-env.d.ts
 .aider*
 .env
+
+*.pdf
+
+/claude
+CLAUDE.md
+
+# Playwright MCP screenshots + console logs
+.playwright-mcp/
+/*.png
+/*.jpeg
+/*.jpg
+!public/**/*.png
+!public/**/*.jpeg
+!public/**/*.jpg
+
+# Claude Code — local-only artifacts
+.claude/settings.local.json
+.claude/worktrees/
+# Build log scratch
+/tmp-build.log

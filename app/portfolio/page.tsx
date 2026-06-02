@@ -2,6 +2,16 @@ import Image from "next/image";
 import Header from "../../components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
+import PortfolioFilters from "../../components/portfolio/PortfolioFilters";
+import { cases } from "../config/mockData";
+import {
+  caseTags,
+  IndustrySlug,
+  TaggedCase,
+  industryFilters,
+} from "../config/portfolio-filters";
+import BreadcrumbsLd from "../../components/seo/BreadcrumbsLd";
+import { styles } from "../constants/styles";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,7 +27,7 @@ export const metadata: Metadata = {
     "mobile app portfolio",
     "startup case studies",
     "AI solution portfolio",
-  ],  
+  ],
   openGraph: {
     title: "Explore Our Software Projects",
     description: "Real case studies of how we helped businesses grow with technology.",
@@ -38,30 +48,89 @@ export const metadata: Metadata = {
   },
 };
 
+type PortfolioPageProps = {
+  searchParams?: { industry?: string };
+};
 
-export default function Home() {
+function isIndustrySlug(value: string | undefined): value is IndustrySlug {
+  if (!value) return false;
+  return industryFilters.some((f) => f.slug === value);
+}
+
+export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
+  const initialIndustry = isIndustrySlug(searchParams?.industry)
+    ? (searchParams!.industry as IndustrySlug)
+    : null;
+
+  // Merge the shared case data with taxonomy tags. If a case is missing a tag,
+  // fall back to "enterprise" so it still renders.
+  const taggedCases: TaggedCase[] = cases.map((c) => {
+    const tag = caseTags[c.link];
+    return {
+      image: c.image,
+      title: c.title,
+      description: c.description,
+      link: c.link,
+      challenge: c.challenge,
+      solution: c.solution,
+      results: c.results,
+      industry: tag?.industry ?? "enterprise",
+      stacks: tag?.stacks ?? ["web"],
+    };
+  });
+
   return (
     <>
+      <BreadcrumbsLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Portfolio", url: "/portfolio" },
+        ]}
+      />
       <Header />
       <main className="max-w-[1200px] mx-auto lg:px-4">
-        <div className="absolute overflow-hidden lg:overflow-visible w-screen lg:max-w-[1128px]">
+        <div className="absolute overflow-hidden lg:overflow-visible w-screen lg:max-w-[1128px] pointer-events-none">
           <Image
-            src="img/3d.svg"
+            src="/img/3d.svg"
             width={2000}
             height={2000}
+            // SVG — unoptimized intentional
             unoptimized
             loading="lazy"
-            alt="ECITech Main 3d img"
-            className="relative rotate-[150deg] max-w-[900px] left-[4%] md:max-w-[1200px] left-[0%] lg:left-[-3%] lg:max-w-[1600px]
-                       -z-10 md:-top-4 lg:-top-4"
-          ></Image>
+            alt=""
+            aria-hidden="true"
+            className="relative rotate-[150deg] max-w-[900px] left-[4%] md:max-w-[1200px] md:left-[0%] lg:left-[-3%] lg:max-w-[1600px]
+                       -z-10 opacity-60 md:-top-4 lg:-top-4"
+          />
         </div>
+
+        <section className={`${styles.section}`}>
+          <h1
+            className={`${styles.lgh1} text-4xl md:text-5xl font-bold text-white leading-tight`}
+          >
+            Our work
+          </h1>
+          <p
+            className={`${styles.lgp} mt-6 text-base md:text-lg text-gray-300 max-w-2xl`}
+          >
+            A selection of products we have designed, built, and shipped for
+            clients across fintech, medtech, hospitality, and enterprise. Filter
+            by industry or stack to see the projects most relevant to yours.
+          </p>
+        </section>
+
+        <section className={`${styles.section}`}>
+          <PortfolioFilters
+            cases={taggedCases}
+            initialIndustry={initialIndustry}
+          />
+        </section>
       </main>
+
       <div className="px-8 lg:px-0 mt-20 mb-20">
         <ContactForm />
       </div>
 
-      
       <Footer />
     </>
   );

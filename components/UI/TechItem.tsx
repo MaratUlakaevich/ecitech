@@ -15,6 +15,7 @@ const TechItem: FC<TechItemProps> = ({ src, name }) => {
         width={80}
         height={80}
         className="shrink-0"
+        // SVG — unoptimized intentional
         unoptimized
       />
       <span className="text-sm text-gray-400">{name}</span>

@@ -7,10 +7,17 @@ const CaseSection: FC = () => {
   return (
     <>
       <h2
-        className={`${styles.lgh2} mx-auto text-4xl font-bold text-white mb-8`}
+        className={`${styles.lgh2} mx-auto text-4xl font-bold text-white mb-4`}
       >
-        Case Studies
+        Selected projects.
       </h2>
+      <p
+        className={`${styles.lgp} text-lg text-gray-300 mb-10 lg:mb-12 lg:w-[50rem]`}
+      >
+        From AI dashboards for BCG to blockchain platforms and enterprise
+        automation &mdash; here are some of the products our team has designed,
+        built, and shipped.
+      </p>
       <div className="space-y-6">
         {cases.map((caseData, index) => (
           <CaseCard
@@ -19,6 +26,9 @@ const CaseSection: FC = () => {
             title={caseData.title}
             description={caseData.description}
             link={caseData.link}
+            challenge={caseData.challenge}
+            solution={caseData.solution}
+            results={caseData.results}
           />
         ))}
       </div>

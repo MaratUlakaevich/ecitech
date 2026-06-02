@@ -2,6 +2,9 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ContactForm from "../../components/ContactFormFull";
 import ConnectWithTeam from "../../components/ConnectSection";
+import CalcomEmbed from "../../components/CalcomEmbed";
+import MeetingBookedTracker from "../../components/MeetingBookedTracker";
+import BreadcrumbsLd from "../../components/seo/BreadcrumbsLd";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -41,9 +44,16 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-
+      <BreadcrumbsLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Contact", url: "/contact" },
+        ]}
+      />
       <Header />
+      <MeetingBookedTracker />
       <main className="container mx-auto px-4">
+        <CalcomEmbed />
         <ContactForm />
 
         <ConnectWithTeam />

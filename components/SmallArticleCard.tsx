@@ -31,8 +31,7 @@ export default function ArticleCard( { article } : { article: Article }) {
                 alt={title}
                 fill
                 loading='lazy'
-                unoptimized
-                className="object-cover rounded-2xl" 
+                className="object-cover rounded-2xl"
               />
             </div>
         )}

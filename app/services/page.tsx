@@ -4,6 +4,9 @@ import ServicesHero from "../../components/ServicesHero";
 import Footer from "../../components/Footer";
 import ContactForm from "../../components/ContactForm";
 import FaqSection from "../../components/FaqSection";
+import BreadcrumbsLd from "../../components/seo/BreadcrumbsLd";
+import ServiceLd from "../../components/seo/ServiceLd";
+import FaqPageLd from "../../components/seo/FaqPageLd";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -47,7 +50,20 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-
+      <BreadcrumbsLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+        ]}
+      />
+      <ServiceLd
+        name="Custom Software Development"
+        description="Full-cycle web, mobile, DevOps, and UI/UX design services tailored to help businesses grow and scale."
+        url="https://ecitech.online/services"
+        serviceType="Software Development"
+        areaServed={["SA", "AE", "GB", "US"]}
+      />
+      <FaqPageLd />
       <Header />
       <main className="max-w-[1200px] mx-auto lg:px-4">
         <div className="absolute overflow-hidden lg:overflow-visible w-screen lg:max-w-[1128px]">
@@ -55,6 +71,7 @@ export default function Home() {
             src="img/3d.svg"
             width={2000}
             height={2000}
+            // SVG — unoptimized intentional
             unoptimized
             loading="lazy"
             alt="ECITech Main 3d img"

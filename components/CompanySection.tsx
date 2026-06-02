@@ -8,18 +8,19 @@ const CompanySection: FC = () => {
       {/* Текстовая часть */}
       <div className="md:w-1/2">
         <h2 className="text-4xl font-bold text-white mb-4">
-          About Our Company
+          Founder-led team. Enterprise-grade delivery.
         </h2>
         <p className="text-gray-300 mb-6">
-          We are a cutting-edge technology company committed to delivering
-          innovative solutions and unparalleled service. Our team leverages
-          modern technologies to empower businesses and shape the future.
+          You work directly with the people who write the code and make the
+          decisions. Our engineers have shipped production software for BCG,
+          Juniper Networks, Cisco, and Google &mdash; now we bring that same
+          discipline to every project we take on.
         </p>
         <Link
-          href="/company"
+          href="/about"
           className="inline-block bg-blue-700 hover:bg-blue-800 text-white font-medium py-2 px-6 rounded-full transition-colors"
         >
-          More about company &rarr;
+          Meet the team &rarr;
         </Link>
       </div>
       {/* Фотографии */}
@@ -30,7 +31,6 @@ const CompanySection: FC = () => {
             alt="Company Photo 1"
             width={500}
             height={300}
-            unoptimized
             className="rounded-lg object-cover"
           />
         </div>
@@ -40,7 +40,6 @@ const CompanySection: FC = () => {
             alt="Company Photo 2"
             width={500}
             height={300}
-            unoptimized
             className="rounded-lg object-cover"
           />
         </div>
