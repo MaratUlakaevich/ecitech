@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import MastheadHeader from "../../components/MastheadHeader";
+import EditorialFooter from "../../components/EditorialFooter";
 import Link from "next/link";
 import PoliciesButtons from "../../components/PoliciesButtons";
 
@@ -15,7 +15,7 @@ export default function PrivacyPolicy() {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Header />
+      <MastheadHeader />
       <main className="max-w-7xl mx-auto p-8 my-10">
         <PoliciesButtons />
         <h1 className="text-3xl md:text-6xl font-bold mb-6 text-gray-100">
@@ -347,7 +347,7 @@ export default function PrivacyPolicy() {
           </div>
         </div>
       </main>
-      <Footer />
+      <EditorialFooter />
     </>
   );
 }

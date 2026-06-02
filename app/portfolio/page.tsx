@@ -1,137 +1,265 @@
-import Image from "next/image";
-import Header from "../../components/Header";
-import Footer from "@/components/Footer";
-import ContactForm from "@/components/ContactForm";
-import PortfolioFilters from "../../components/portfolio/PortfolioFilters";
-import { cases } from "../config/mockData";
-import {
-  caseTags,
-  IndustrySlug,
-  TaggedCase,
-  industryFilters,
-} from "../config/portfolio-filters";
-import BreadcrumbsLd from "../../components/seo/BreadcrumbsLd";
-import { styles } from "../constants/styles";
 import type { Metadata } from "next";
+import Link from "next/link";
+import MastheadHeader from "../../components/MastheadHeader";
+import EditorialFooter from "../../components/EditorialFooter";
+import FinalCTA from "../../components/FinalCTA";
+import BreadcrumbsLd from "../../components/seo/BreadcrumbsLd";
 
 export const metadata: Metadata = {
-  title: "Our Work — ECITech Portfolio",
+  title: "Work — Selected projects · ECITech",
   description:
-    "Browse our portfolio of web and mobile solutions — real projects for real businesses across multiple industries.",
+    "Nine production projects across Russia, the UAE, and Saudi Arabia. Floral boutique, medical practice, cultural space, DJ portfolio, construction firm, design service, and more.",
   keywords: [
     "ECITech portfolio",
-    "case studies",
-    "software project examples",
-    "custom development projects",
-    "web app examples",
-    "mobile app portfolio",
-    "startup case studies",
-    "AI solution portfolio",
+    "Next.js projects",
+    "boutique studio work",
+    "Moscow studio portfolio",
+    "Riyadh studio portfolio",
+    "Saudi Arabia construction website",
   ],
   openGraph: {
-    title: "Explore Our Software Projects",
-    description: "Real case studies of how we helped businesses grow with technology.",
+    title: "Work — ECITech",
+    description: "Nine production projects across RU and the Gulf.",
     url: "https://ecitech.online/portfolio",
     images: [
       {
         url: "/img/og/default.png",
         width: 1200,
         height: 630,
-        alt: "ECITech Portfolio",
+        alt: "ECITech selected work",
       },
     ],
   },
   twitter: {
-    title: "ECITech Portfolio",
-    description: "From concept to launch — we deliver digital products that scale.",
+    title: "Work — ECITech",
+    description: "Nine production projects across Russia, UAE, and Saudi Arabia.",
     images: ["/img/og/default.png"],
   },
 };
 
-type PortfolioPageProps = {
-  searchParams?: { industry?: string };
+type Case = {
+  number: string;
+  niche: string;
+  brand: string;
+  emphasis?: string;
+  story: string;
+  stack: string;
+  href: string;
+  region: string;
+  plate: string;
 };
 
-function isIndustrySlug(value: string | undefined): value is IndustrySlug {
-  if (!value) return false;
-  return industryFilters.some((f) => f.slug === value);
-}
+const CASES: Case[] = [
+  {
+    number: "I",
+    niche: "Floral boutique",
+    brand: "Pompon",
+    emphasis: "Pompon",
+    story:
+      "Catalog-led B2C site for a floral boutique. Bilingual EN/RU, product taxonomy, instant Telegram order routing.",
+    stack: "Next.js · Strapi · Vercel",
+    region: "Russia",
+    href: "https://v0-flower-shop-website-opal.vercel.app/",
+    plate: "plate-rose",
+  },
+  {
+    number: "II",
+    niche: "Medical practice",
+    brand: "Aida Isaeva",
+    story:
+      "Editorial portfolio for a Moscow plastic surgeon. Quiet typographic restraint, monochrome photography, trust before motion.",
+    stack: "Next.js · Vercel",
+    region: "Russia",
+    href: "https://aida-isaeva.vercel.app/",
+    plate: "plate-bone",
+  },
+  {
+    number: "III",
+    niche: "Cultural space",
+    brand: "Zerno",
+    story:
+      "Museum × restaurant × master class venue in Chelyabinsk. Long-form bread-and-history hero, three programmatic halls, single ticket flow.",
+    stack: "Next.js · Vercel",
+    region: "Russia",
+    href: "https://zerno-sigma.vercel.app/",
+    plate: "plate-amber",
+  },
+  {
+    number: "IV",
+    niche: "Premium DJ portfolio",
+    brand: "DJ Tallamie",
+    emphasis: "Tallamie",
+    story:
+      "Custom domain personal brand for an international DJ. Booking form, set archive with wave-form players, premium press kit.",
+    stack: "Next.js · Vercel · custom domain",
+    region: "International",
+    href: "https://www.tallamie.com/",
+    plate: "plate-violet",
+  },
+  {
+    number: "V",
+    niche: "KSA construction",
+    brand: "Investment Floors",
+    story:
+      "Bilingual EN + AR landing for a Saudi contracting firm. Featured project gallery, services taxonomy, calibrated for Vision 2030 procurement.",
+    stack: "Next.js · Vercel · EN/AR",
+    region: "Saudi Arabia",
+    href: "https://v0-saudi-construction-landing-page.vercel.app/",
+    plate: "plate-sand",
+  },
+  {
+    number: "VI",
+    niche: "Design service",
+    brand: "48/лого",
+    emphasis: "48",
+    story:
+      "Productized logo design — brief, AI generation, designer polish, delivery in 48 hours. Editorial pricing transparency at the entry tier.",
+    stack: "Next.js · Vercel",
+    region: "Russia",
+    href: "https://logo48.vercel.app/",
+    plate: "plate-walnut",
+  },
+  {
+    number: "VII",
+    niche: "Strategy consulting",
+    brand: "GBS",
+    story:
+      "Multi-page corporate site for a strategy advisory firm. Service taxonomy, leadership grid, gated case studies.",
+    stack: "Next.js · Vercel",
+    region: "International",
+    href: "https://gbs-beta.vercel.app/",
+    plate: "plate-slate",
+  },
+  {
+    number: "VIII",
+    niche: "Beverage producer",
+    brand: "ERA",
+    emphasis: "ERA",
+    story:
+      "Russian beverage manufacturer site with bilingual catalog, distributor portal, contact routing into national sales.",
+    stack: "Next.js · Vercel · custom domain",
+    region: "Russia",
+    href: "https://era-zavod.ru/",
+    plate: "plate-moss",
+  },
+  {
+    number: "IX",
+    niche: "AI workflow studio (this site)",
+    brand: "ECITech",
+    story:
+      "Our own studio site — the editorial system you are reading, ahead of the rest of the network.",
+    stack: "Next.js · Vercel · in-house",
+    region: "Studio",
+    href: "https://ecitech.online/",
+    plate: "plate-paper",
+  },
+];
 
-export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
-  const initialIndustry = isIndustrySlug(searchParams?.industry)
-    ? (searchParams!.industry as IndustrySlug)
-    : null;
+const plateStyles: Record<string, React.CSSProperties> = {
+  "plate-rose":   { background: "linear-gradient(135deg, #F5E0D9 0%, #D89B89 50%, #5B2E26 100%)" },
+  "plate-bone":   { background: "linear-gradient(135deg, #E8E4DC 0%, #B5B1A8 50%, #2E2C28 100%)" },
+  "plate-amber":  { background: "linear-gradient(135deg, #E4C892 0%, #A47935 50%, #2E1F0C 100%)" },
+  "plate-violet": { background: "linear-gradient(135deg, #D8CCE5 0%, #7E68A6 50%, #2A1F44 100%)" },
+  "plate-sand":   { background: "linear-gradient(135deg, #ECDEC1 0%, #B7986A 50%, #4A3618 100%)" },
+  "plate-walnut": { background: "linear-gradient(135deg, #E8DAC8 0%, #A07A57 50%, #3C281B 100%)" },
+  "plate-slate":  { background: "linear-gradient(135deg, #DCE0E6 0%, #7E8BA1 50%, #1F2A3E 100%)" },
+  "plate-moss":   { background: "linear-gradient(135deg, #DDE2C8 0%, #88996B 50%, #2E3722 100%)" },
+  "plate-paper":  { background: "linear-gradient(135deg, #FAFAF8 0%, #C4C0B5 50%, #07070A 100%)" },
+};
 
-  // Merge the shared case data with taxonomy tags. If a case is missing a tag,
-  // fall back to "enterprise" so it still renders.
-  const taggedCases: TaggedCase[] = cases.map((c) => {
-    const tag = caseTags[c.link];
-    return {
-      image: c.image,
-      title: c.title,
-      description: c.description,
-      link: c.link,
-      challenge: c.challenge,
-      solution: c.solution,
-      results: c.results,
-      industry: tag?.industry ?? "enterprise",
-      stacks: tag?.stacks ?? ["web"],
-    };
-  });
-
+export default function PortfolioPage() {
   return (
     <>
       <BreadcrumbsLd
         items={[
           { name: "Home", url: "/" },
-          { name: "Portfolio", url: "/portfolio" },
+          { name: "Work", url: "/portfolio" },
         ]}
       />
-      <Header />
-      <main className="max-w-[1200px] mx-auto lg:px-4">
-        <div className="absolute overflow-hidden lg:overflow-visible w-screen lg:max-w-[1128px] pointer-events-none">
-          <Image
-            src="/img/3d.svg"
-            width={2000}
-            height={2000}
-            // SVG — unoptimized intentional
-            unoptimized
-            loading="lazy"
-            alt=""
-            aria-hidden="true"
-            className="relative rotate-[150deg] max-w-[900px] left-[4%] md:max-w-[1200px] md:left-[0%] lg:left-[-3%] lg:max-w-[1600px]
-                       -z-10 opacity-60 md:-top-4 lg:-top-4"
-          />
-        </div>
 
-        <section className={`${styles.section}`}>
-          <h1
-            className={`${styles.lgh1} text-4xl md:text-5xl font-bold text-white leading-tight`}
-          >
-            Our work
+      <MastheadHeader />
+
+      <main className="relative">
+        {/* Page hero */}
+        <section className="max-w-[1480px] mx-auto px-8 lg:px-14 pt-16 pb-16 lg:pt-24 lg:pb-20">
+          <div className="mono-eyebrow mb-8">Selected work · Nine projects</div>
+          <h1 className="display text-[48px] sm:text-[68px] lg:text-[96px] text-ink-900 leading-[0.98] max-w-hero">
+            Different worlds.<br />
+            <span className="display-italic text-copper-500">One studio.</span>
           </h1>
-          <p
-            className={`${styles.lgp} mt-6 text-base md:text-lg text-gray-300 max-w-2xl`}
-          >
-            A selection of products we have designed, built, and shipped for
-            clients across fintech, medtech, hospitality, and enterprise. Filter
-            by industry or stack to see the projects most relevant to yours.
+          <p className="mt-12 max-w-reading text-[19px] lg:text-[21px] leading-[1.6] text-ink-700">
+            A floral boutique in Russia. A plastic surgeon in Moscow. A construction firm in Riyadh. A DJ on tour. A cultural venue in the Urals. A producer of mineral water. Below are the nine projects we currently put our name on.
           </p>
         </section>
 
-        <section className={`${styles.section}`}>
-          <PortfolioFilters
-            cases={taggedCases}
-            initialIndustry={initialIndustry}
-          />
+        {/* Grid */}
+        <section className="max-w-[1480px] mx-auto px-8 lg:px-14 pb-24 lg:pb-32">
+          <ol className="grid gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {CASES.map((c) => (
+              <li key={c.brand} className="group">
+                <a
+                  href={c.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block hairline border bg-paper-50 transition-colors hover:bg-paper-100"
+                >
+                  <div
+                    className="aspect-[4/3] relative overflow-hidden"
+                    style={plateStyles[c.plate]}
+                    aria-hidden="true"
+                  >
+                    <div className="absolute top-5 left-5 mono-eyebrow !text-paper-50 opacity-80">
+                      PLATE {c.number} · {c.niche.toUpperCase()}
+                    </div>
+                    <div className="absolute top-5 right-5 mono-eyebrow !text-paper-50 opacity-70 !text-[9.5px]">
+                      {c.region.toUpperCase()}
+                    </div>
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <div className="display text-[42px] sm:text-[48px] lg:text-[54px] text-paper-50 leading-[0.94]">
+                        {c.emphasis ? (
+                          <>
+                            <span className="display-italic text-paper-100/95">
+                              {c.brand.replace(c.emphasis, "")}
+                            </span>
+                            {c.emphasis}
+                          </>
+                        ) : (
+                          c.brand
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-8 lg:p-9">
+                    <p className="text-[15px] leading-[1.6] text-ink-700 mb-6 min-h-[7em]">
+                      {c.story}
+                    </p>
+
+                    <div className="hairline-top pt-5 flex items-center justify-between">
+                      <div className="mono-eyebrow !text-[10px]">{c.stack}</div>
+                      <span className="text-[13.5px] text-ink-800 transition-colors group-hover:text-copper-500">
+                        View live &rarr;
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-20 hairline-top pt-10 flex flex-col lg:flex-row gap-6 lg:items-end lg:justify-between">
+            <p className="display text-[26px] lg:text-[32px] text-ink-900 leading-[1.1] max-w-[640px]">
+              A tenth project is the one we&apos;d <span className="display-italic text-copper-500">build with you.</span>
+            </p>
+            <Link href="/contact" className="link-editorial whitespace-nowrap">
+              Talk to the studio &rarr;
+            </Link>
+          </div>
         </section>
       </main>
 
-      <div className="px-8 lg:px-0 mt-20 mb-20">
-        <ContactForm />
-      </div>
-
-      <Footer />
+      <FinalCTA />
+      <EditorialFooter />
     </>
   );
 }

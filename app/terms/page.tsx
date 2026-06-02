@@ -1,6 +1,6 @@
 import Head from "next/head";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
+import MastheadHeader from "../../components/MastheadHeader";
+import EditorialFooter from "../../components/EditorialFooter";
 import Link from "next/link";
 import PoliciesButtons from "../../components/PoliciesButtons";
 
@@ -15,7 +15,7 @@ export default function Terms() {
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Header />
+      <MastheadHeader />
       <main className="max-w-7xl mx-auto p-8 my-10">
         <div className="gap-8">
           <PoliciesButtons />
@@ -403,7 +403,7 @@ export default function Terms() {
           </div>
         </div>
       </main>
-      <Footer />
+      <EditorialFooter />
     </>
   );
 }

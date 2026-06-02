@@ -248,13 +248,13 @@ const ContactForm: FC = () => {
               placeholder=" "
               aria-invalid={Boolean(errors.fullName)}
               aria-describedby={errors.fullName ? errId("fullName") : undefined}
-              className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-400 appearance-none
-                        focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+              className="block py-2.5 px-0 w-full text-sm text-ink-900 bg-transparent border-0 border-b-2 border-ink-500/40 appearance-none
+                        focus:outline-none focus:ring-0 focus:border-copper-500 peer"
               required
             />
             <label
               htmlFor="fullName"
-              className="absolute text-sm text-gray-400 duration-300 transform origin-[0]
+              className="absolute text-sm text-ink-500 duration-300 transform origin-[0]
                         top-2 left-0
                         peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100
                         peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-500 peer-valid:-translate-y-6 peer-valid:scale-75"
@@ -282,13 +282,13 @@ const ContactForm: FC = () => {
               onChange={(e) => setEmail(e.target.value)}
               aria-invalid={Boolean(errors.email)}
               aria-describedby={errors.email ? errId("email") : undefined}
-              className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-400 appearance-none
-                        focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+              className="block py-2.5 px-0 w-full text-sm text-ink-900 bg-transparent border-0 border-b-2 border-ink-500/40 appearance-none
+                        focus:outline-none focus:ring-0 focus:border-copper-500 peer"
               required
             />
             <label
               htmlFor="email"
-              className="absolute text-sm text-gray-400 duration-300 transform origin-[0]
+              className="absolute text-sm text-ink-500 duration-300 transform origin-[0]
                         top-2 left-0
                         peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100
                         peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-500 peer-valid:-translate-y-6 peer-valid:scale-75"
@@ -317,13 +317,13 @@ const ContactForm: FC = () => {
             onChange={handleMessageChange}
             aria-invalid={Boolean(errors.message)}
             aria-describedby={errors.message ? errId("message") : undefined}
-            className="block py-2.5 pr-12 pl-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-400 resize-none appearance-none focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+            className="block py-2.5 pr-12 pl-0 w-full text-sm text-ink-900 bg-transparent border-0 border-b-2 border-ink-500/40 resize-none appearance-none focus:outline-none focus:ring-0 focus:border-copper-500 peer"
             placeholder=" "
             required
           />
           <label
             htmlFor="message"
-            className="absolute text-sm text-gray-400 duration-300 transform origin-[0]
+            className="absolute text-sm text-ink-500 duration-300 transform origin-[0]
                        top-2 left-0
                        peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100
                        peer-focus:-translate-y-6 peer-focus:text-blue-500 peer-focus:scale-75 peer-valid:-translate-y-6 peer-valid:scale-75"
@@ -346,7 +346,7 @@ const ContactForm: FC = () => {
           <button
             type="button"
             onClick={() => setShowDetails((s) => !s)}
-            className="text-sm text-gray-400 hover:text-white underline decoration-dotted transition-colors"
+            className="text-sm text-ink-500 hover:text-ink-900 underline decoration-dotted transition-colors"
             aria-expanded={showDetails}
             aria-controls="contact-details-panel"
           >
@@ -370,12 +370,12 @@ const ContactForm: FC = () => {
                   aria-describedby={
                     errors.company ? errId("company") : undefined
                   }
-                  className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-400 appearance-none
-                            focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+                  className="block py-2.5 px-0 w-full text-sm text-ink-900 bg-transparent border-0 border-b-2 border-ink-500/40 appearance-none
+                            focus:outline-none focus:ring-0 focus:border-copper-500 peer"
                 />
                 <label
                   htmlFor="company"
-                  className="absolute text-sm text-gray-400 duration-300 transform origin-[0]
+                  className="absolute text-sm text-ink-500 duration-300 transform origin-[0]
                             top-2 left-0
                             peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100
                             peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-500 peer-[:not(:placeholder-shown)]:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-75"
@@ -403,12 +403,12 @@ const ContactForm: FC = () => {
                   placeholder=" "
                   aria-invalid={Boolean(errors.phone)}
                   aria-describedby={errors.phone ? errId("phone") : undefined}
-                  className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-400 appearance-none
-                            focus:outline-none focus:ring-0 focus:border-blue-500 peer"
+                  className="block py-2.5 px-0 w-full text-sm text-ink-900 bg-transparent border-0 border-b-2 border-ink-500/40 appearance-none
+                            focus:outline-none focus:ring-0 focus:border-copper-500 peer"
                 />
                 <label
                   htmlFor="phone"
-                  className="absolute text-sm text-gray-400 duration-300 transform origin-[0]
+                  className="absolute text-sm text-ink-500 duration-300 transform origin-[0]
                             top-2 left-0
                             peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100
                             peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-blue-500 peer-[:not(:placeholder-shown)]:-translate-y-6 peer-[:not(:placeholder-shown)]:scale-75"
@@ -429,7 +429,7 @@ const ContactForm: FC = () => {
               <div className="relative z-0 w-full mb-6 group md:col-span-2">
                 <label
                   htmlFor="industry"
-                  className="block text-xs text-gray-400 mb-1"
+                  className="block text-xs text-ink-500 mb-1"
                 >
                   Industry
                 </label>
@@ -444,7 +444,7 @@ const ContactForm: FC = () => {
                   aria-describedby={
                     errors.industry ? errId("industry") : undefined
                   }
-                  className="block py-2.5 px-0 w-full text-sm text-white bg-transparent border-0 border-b-2 border-gray-400 focus:outline-none focus:ring-0 focus:border-blue-500"
+                  className="block py-2.5 px-0 w-full text-sm text-ink-900 bg-transparent border-0 border-b-2 border-ink-500/40 focus:outline-none focus:ring-0 focus:border-copper-500"
                 >
                   <option value="" className="bg-gray-800">
                     Select industry (optional)
@@ -478,7 +478,7 @@ const ContactForm: FC = () => {
           <button
             type="button"
             onClick={() => setShowNdaSection((s) => !s)}
-            className="text-sm text-gray-400 hover:text-white underline decoration-dotted transition-colors"
+            className="text-sm text-ink-500 hover:text-ink-900 underline decoration-dotted transition-colors"
             aria-expanded={showNdaSection}
             aria-controls="contact-nda-panel"
           >
@@ -502,7 +502,7 @@ const ContactForm: FC = () => {
               />
               <label
                 htmlFor="projectFile"
-                className="inline-flex items-center gap-2 cursor-pointer text-sm text-gray-300 hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 cursor-pointer text-sm text-ink-700 hover:text-ink-900 transition-colors"
               >
                 <svg
                   className="w-5 h-5 fill-current"
@@ -526,7 +526,7 @@ const ContactForm: FC = () => {
                 />
                 <label
                   htmlFor="nda"
-                  className="relative cursor-pointer pl-8 text-gray-400 before:content-[''] before:absolute before:left-0 before:top-0
+                  className="relative cursor-pointer pl-8 text-ink-500 before:content-[''] before:absolute before:left-0 before:top-0
                     before:h-5 before:w-5 before:rounded before:bg-gray-400 peer-checked:before:bg-gray-400 before:bg-no-repeat before:bg-center
                     peer-checked:before:bg-[url('/img/checkmark-white.svg')]"
                 >
@@ -563,11 +563,11 @@ const ContactForm: FC = () => {
         </div>
 
         <div className="flex flex-col md:flex-row md:justify-between md:items-center mt-10 w-full">
-          <p className="text-gray-400 text-sm md:mb-0 mb-4">
+          <p className="text-ink-500 text-sm md:mb-0 mb-4">
             By sending this form I confirm that I have read and accept the{" "}
             <a
               href="/privacy-policy"
-              className="underline decoration-2 hover:text-white cursor-pointer duration-300"
+              className="underline decoration-2 hover:text-ink-900 cursor-pointer duration-300"
             >
               Privacy Policy
             </a>
@@ -575,7 +575,7 @@ const ContactForm: FC = () => {
           <button
             type="submit"
             disabled={submitting}
-            className="min-w-52 md:min-w-72 md:text-lg bg-blue-700 md:ml-20 hover:bg-blue-800 disabled:opacity-60 disabled:cursor-not-allowed text-white font-medium py-3 px-10 rounded-full transition-colors"
+            className="min-w-52 md:min-w-72 md:text-lg bg-blue-700 md:ml-20 hover:bg-blue-800 disabled:opacity-60 disabled:cursor-not-allowed text-ink-900 font-medium py-3 px-10 rounded-full transition-colors"
           >
             {submitting ? "Sending..." : "Send Message"}
           </button>
