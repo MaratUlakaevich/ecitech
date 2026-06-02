@@ -21,14 +21,10 @@ const EditorialFooter: FC = () => {
               <span className="seal" aria-hidden="true"></span>
             </div>
             <p className="text-[15px] leading-[1.65] text-ink-700 max-w-md">
-              An independent digital studio for the businesses that built the
-              Gulf and the mid-market shaping Russia.
+              An independent digital studio for the mid-market.
               <br />
-              Quiet, small, meticulous. Based in Moscow and Riyadh.
+              Quiet, small, meticulous.
             </p>
-            <div className="mt-6 font-mono text-[10.5px] tracking-[0.15em] text-brass-500">
-              شركة هندسة الذكاء الاصطناعي · موسكو · الرياض
-            </div>
           </div>
 
           <div>
@@ -94,9 +90,8 @@ const EditorialFooter: FC = () => {
                   hello@ecitech.online
                 </a>
               </li>
-              <li>Moscow · Riyadh</li>
               <li className="pt-3 mono-eyebrow !text-[10px]">
-                MON–THU · 09 — 18 AST
+                MON–THU · 09 — 18
               </li>
             </ul>
           </div>

@@ -20,23 +20,9 @@ export default function OrganizationLd() {
     contactPoint: [
       {
         "@type": "ContactPoint",
-        telephone: "+966-53-700-0805",
-        email: "info@ecitech.online",
+        email: "hello@ecitech.online",
         contactType: "sales",
-        areaServed: ["SA", "AE", "GB", "US"],
-        availableLanguage: ["English", "Arabic", "Russian"],
-      },
-    ],
-    address: [
-      {
-        "@type": "PostalAddress",
-        addressLocality: "Riyadh",
-        addressCountry: "SA",
-      },
-      {
-        "@type": "PostalAddress",
-        addressLocality: "Moscow",
-        addressCountry: "RU",
+        availableLanguage: ["English", "Russian", "Arabic"],
       },
     ],
   };

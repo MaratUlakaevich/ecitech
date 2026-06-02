@@ -8,15 +8,14 @@ import BreadcrumbsLd from "../../components/seo/BreadcrumbsLd";
 export const metadata: Metadata = {
   title: "Industries — Where ECITech works",
   description:
-    "ECITech delivers boutique sites and AI integration for healthcare, real estate, construction, hospitality, retail, and cultural institutions across Russia and the Gulf.",
+    "ECITech delivers boutique sites and AI integration for healthcare, real estate, construction, hospitality, retail, and cultural institutions.",
   keywords: [
     "industries served",
     "healthcare digital studio",
     "real estate AI agency",
     "construction website agency",
     "hospitality AI integration",
-    "Moscow boutique studio",
-    "Riyadh boutique studio",
+    "boutique digital studio",
   ],
   openGraph: {
     title: "Industries — ECITech",
@@ -34,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Industries — ECITech",
-    description: "Where we work — RU and the Gulf.",
+    description: "Six sectors we know well.",
     images: ["/img/og/default.png"],
   },
 };
@@ -46,8 +45,7 @@ const INDUSTRIES = [
     title: "Healthcare practice",
     sub: "Clinics, surgeons, fertility, aesthetic",
     body:
-      "Editorial sites for owner-operated medical practices. Quiet typographic restraint, structured trust signals, multilingual intake. Live: Aida Isaeva, Moscow.",
-    geos: ["Russia", "UAE"],
+      "Editorial sites for owner-operated medical practices. Quiet typographic restraint, structured trust signals, multilingual intake. Live: Aida Isaeva.",
   },
   {
     n: "II",
@@ -55,8 +53,7 @@ const INDUSTRIES = [
     title: "Real estate & construction",
     sub: "Brokerages, developers, contracting firms",
     body:
-      "Bilingual EN/AR landings calibrated for Vision 2030 procurement, multi-page corporate sites with featured-project galleries. Live: Investment Floors, Riyadh.",
-    geos: ["Saudi Arabia", "UAE"],
+      "Bilingual EN/AR landings calibrated for Vision 2030 procurement, multi-page corporate sites with featured-project galleries. Live: Investment Floors.",
   },
   {
     n: "III",
@@ -64,8 +61,7 @@ const INDUSTRIES = [
     title: "Hospitality & cultural",
     sub: "Restaurants, hotels, museums, venues",
     body:
-      "Long-form editorial homes for places that already have a story. Single-ticket flows, RU/EN copy, event programming. Live: Zerno cultural space, Chelyabinsk.",
-    geos: ["Russia"],
+      "Long-form editorial homes for places that already have a story. Single-ticket flows, RU/EN copy, event programming. Live: Zerno cultural space.",
   },
   {
     n: "IV",
@@ -74,7 +70,6 @@ const INDUSTRIES = [
     sub: "Catalog brands, boutiques, premium producers",
     body:
       "Catalog-led commerce with Telegram order routing and amoCRM follow-up. Bilingual where the audience is mixed. Live: Pompon floral boutique; ERA beverage producer.",
-    geos: ["Russia"],
   },
   {
     n: "V",
@@ -83,7 +78,6 @@ const INDUSTRIES = [
     sub: "Consulting, design, advisory, agencies",
     body:
       "Corporate sites with service taxonomies, leadership grids, gated case studies. Productised offers when the firm has a wedge. Live: GBS strategy advisory; 48/лого design service.",
-    geos: ["International", "Russia"],
   },
   {
     n: "VI",
@@ -91,8 +85,7 @@ const INDUSTRIES = [
     title: "Culture & personal brand",
     sub: "DJs, performers, founders, public figures",
     body:
-      "Custom-domain personal sites with press kits, booking flows, set archives, and a single, beautifully wired contact form. Live: DJ Tallamie, international touring.",
-    geos: ["International"],
+      "Custom-domain personal sites with press kits, booking flows, set archives, and a single, beautifully wired contact form. Live: DJ Tallamie.",
   },
 ];
 
@@ -128,12 +121,7 @@ export default function IndustriesPage() {
               <li key={ind.slug} className="hairline border bg-paper-50 p-8 lg:p-10">
                 <div className="flex items-start justify-between mb-6">
                   <span className="numeral text-[44px] text-copper-500 leading-none">{ind.n}</span>
-                  <div className="text-right">
-                    <div className="mono-eyebrow !text-[10px]">INDUSTRY</div>
-                    <div className="mono-eyebrow !text-[9.5px] !tracking-[0.1em] text-brass-500 mt-1">
-                      {ind.geos.join(" · ").toUpperCase()}
-                    </div>
-                  </div>
+                  <span className="mono-eyebrow !text-[10px]">SECTOR</span>
                 </div>
                 <h3 className="display text-[28px] sm:text-[32px] text-ink-900 mb-2 leading-[1.05]">
                   {ind.title}

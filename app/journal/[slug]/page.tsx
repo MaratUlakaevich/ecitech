@@ -1,4 +1,4 @@
-// app/blog/[slug]/page.tsx
+// app/journal/[slug]/page.tsx
 // Article page — Paper editorial aesthetic.
 
 import Image from "next/image";
@@ -88,8 +88,8 @@ export default async function ArticlePage({ params }: { params: Params }) {
       <BreadcrumbsLd
         items={[
           { name: "Home", url: "/" },
-          { name: "Journal", url: "/blog" },
-          { name: title, url: `/blog/${params.slug}` },
+          { name: "Journal", url: "/journal" },
+          { name: title, url: `/journal/${params.slug}` },
         ]}
       />
       <ArticleLd
@@ -97,7 +97,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
         description={seo?.metaDescription}
         image={img && img[0] ? getStrapiImageUrl(img[0].url) : undefined}
         datePublished={publishedAt}
-        url={`https://ecitech.online/blog/${params.slug}`}
+        url={`https://ecitech.online/journal/${params.slug}`}
       />
       <BlogReadTimer slug={params.slug} />
 
@@ -107,7 +107,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
         <article className="max-w-[1480px] mx-auto px-8 lg:px-14 pt-12 pb-16 lg:pt-20 lg:pb-24">
           {/* Back link */}
           <Link
-            href="/blog"
+            href="/journal"
             className="inline-flex items-center gap-2 text-[13.5px] text-ink-500 hover:text-copper-500 transition-colors mb-12 lg:mb-16"
           >
             <span className="w-6 h-px bg-current"></span>
@@ -130,7 +130,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
                   {categories.map((category) => (
                     <Link
                       key={category.id}
-                      href={`/blog/category/${category.slug}`}
+                      href={`/journal/category/${category.slug}`}
                       className="text-copper-500 hover:underline"
                     >
                       {category.name}
@@ -166,7 +166,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
           <div className="max-w-reading mx-auto mt-16 lg:mt-20 pt-10 hairline-top">
             <div className="mono-eyebrow mb-2">From the studio</div>
             <div className="text-[15px] leading-[1.65] text-ink-700">
-              Written by <span className="text-ink-900">Marat Ulakaev</span>, founder of ECITech &mdash; an independent digital studio between Moscow and Riyadh.
+              Written by <span className="text-ink-900">Marat Ulakaev</span>, founder of ECITech &mdash; an independent digital studio.
             </div>
           </div>
         </article>

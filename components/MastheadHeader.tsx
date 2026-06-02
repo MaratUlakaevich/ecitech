@@ -21,13 +21,11 @@ const MastheadHeader: FC = () => {
           <div className="flex items-center gap-6 font-mono text-[10.5px] tracking-[0.2em] text-ink-500">
             <span>VOLUME 02</span>
             <span className="opacity-40">·</span>
-            <span>MOSCOW + RIYADH</span>
+            <span>SPRING 2026</span>
             <span className="opacity-40">·</span>
             <span className="hidden md:inline">EST. 2024</span>
           </div>
           <div className="flex items-center gap-6 font-mono text-[10.5px] tracking-[0.2em] text-ink-500">
-            <span className="text-brass-500 tracking-[0.15em]">٢٠٢٦ ربيع</span>
-            <span className="opacity-40 hidden md:inline">·</span>
             <span className="hidden md:inline">INDEPENDENT DIGITAL STUDIO</span>
           </div>
         </div>
@@ -50,7 +48,7 @@ const MastheadHeader: FC = () => {
           <Link href="/industries" className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">
             Industries
           </Link>
-          <Link href="/blog" className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">
+          <Link href="/journal" className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">
             Journal
           </Link>
           <Link href="/about" className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">

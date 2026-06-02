@@ -120,7 +120,7 @@ const ProcessSection: FC = () => {
             </p>
             <footer className="mt-6 mono-eyebrow flex items-center gap-3 text-ink-500">
               <span className="w-4 h-px bg-ink-400"></span>
-              <span>The studio · Moscow · Riyadh · 2026</span>
+              <span>The studio · 2026</span>
             </footer>
           </blockquote>
         </div>

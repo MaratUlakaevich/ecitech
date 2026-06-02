@@ -43,26 +43,14 @@ export default function PrivacyPolicy() {
                 contact us. We’ll get back to you in 24 hours.
               </p>
               <br />
-              <h3 className="text-xl font-semibold text-gray-100 mb-2">
-                Offices
+              <h3 className="text-xl font-semibold mb-2">
+                Contact
               </h3>
-              <Link href="#" className="text-sm">
-                +971 56 658 5789
-              </Link>
-              <p className="text-sm mb-2">Saudi Arabia, Ar-Riyadh</p>
-              <Link href="tel:+7 909 997 16 33" className="text-sm mt-2">
-                +7 909 997 16 33
-              </Link>
-              <p className="text-sm">Russia, Moscow</p>
-              <h3 className="text-xl font-semibold text-gray-100 mb-2 mt-4">
-                Emails
-              </h3>
-
               <Link
-                href="mailto:ulakaev@ecitech.online"
-                className="text-sm text-white"
+                href="mailto:hello@ecitech.online"
+                className="text-sm"
               >
-                ulakaev@ecitech.online
+                hello@ecitech.online
               </Link>
             </section>
             <section id="who-are-we" className="mb-8">

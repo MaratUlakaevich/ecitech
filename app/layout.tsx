@@ -33,12 +33,12 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "ECITech — An independent digital studio. Sites, automation, AI integration.",
   description:
-    "ECITech is an independent digital studio. We build sites, automation, and AI integration for businesses across Russia, the UAE, and Saudi Arabia.",
+    "ECITech is an independent digital studio. We build sites, automation, and AI integration for mid-market businesses.",
   metadataBase: new URL("https://ecitech.online"),
   openGraph: {
     title: "ECITech — Sites · Automation · AI Integration",
     description:
-      "An independent digital studio for the businesses that built the Gulf and the mid-market shaping Russia.",
+      "An independent digital studio for mid-market teams.",
     url: "https://ecitech.online",
     siteName: "ECITech",
     images: [

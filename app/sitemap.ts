@@ -49,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/blog`,
+      url: `${baseUrl}/journal`,
       lastModified: now,
       changeFrequency: 'daily' as const,
       priority: 0.9,
@@ -79,7 +79,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const articlesResponse = await getAllArticles(1, 100);
     articlesUrls = articlesResponse.data.map((article: Article) => ({
-      url: `${baseUrl}/blog/${article.slug}`,
+      url: `${baseUrl}/journal/${article.slug}`,
       lastModified: new Date(article.updatedAt),
       changeFrequency: 'weekly' as const,
       priority: 0.8,
@@ -95,7 +95,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const categoriesResponse = await getAllCategories();
     categoriesUrls = categoriesResponse.data.map((category: Category) => ({
-      url: `${baseUrl}/blog/category/${category.slug}`,
+      url: `${baseUrl}/journal/category/${category.slug}`,
       lastModified: new Date(category.updatedAt),
       changeFrequency: 'weekly' as const,
       priority: 0.7,

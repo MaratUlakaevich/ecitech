@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   title:
     "ECITech — An independent digital studio. Sites, automation, AI integration.",
   description:
-    "ECITech is an independent digital studio. We build websites, workflow automation, and AI integration for businesses across Russia, the UAE, and Saudi Arabia. Built by engineers who shipped for BCG Gamma, Juniper Networks, Cisco, and Google.",
+    "ECITech is an independent digital studio. We build websites, workflow automation, and AI integration for mid-market businesses. Built by engineers who shipped for BCG Gamma, Juniper Networks, Cisco, and Google.",
   keywords: [
     "ECITech",
     "boutique digital studio",
@@ -34,15 +34,13 @@ export const metadata: Metadata = {
     "amoCRM integration",
     "Bitrix24 integration",
     "RAG system",
-    "Gulf digital studio",
-    "Moscow digital studio",
     "AI workflow partner",
   ],
   metadataBase: new URL("https://ecitech.online"),
   openGraph: {
     title: "ECITech — Sites · Automation · AI Integration",
     description:
-      "An independent digital studio for mid-market teams across Russia and the Gulf.",
+      "An independent digital studio for mid-market teams.",
     url: "https://ecitech.online",
     siteName: "ECITech",
     images: [

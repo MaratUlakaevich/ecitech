@@ -1,4 +1,4 @@
-// app/blog/page.tsx
+// app/journal/page.tsx
 // Journal index — Paper aesthetic. Strapi-backed.
 
 import Link from "next/link";
@@ -32,7 +32,7 @@ export default async function BlogPage() {
       <BreadcrumbsLd
         items={[
           { name: "Home", url: "/" },
-          { name: "Journal", url: "/blog" },
+          { name: "Journal", url: "/journal" },
         ]}
       />
 
@@ -57,7 +57,7 @@ export default async function BlogPage() {
             <div className="max-w-[1480px] mx-auto px-8 lg:px-14 py-6 flex flex-wrap items-center gap-3">
               <span className="mono-eyebrow mr-2 !text-[10px]">Filter</span>
               <Link
-                href="/blog"
+                href="/journal"
                 className="px-3 py-1.5 hairline border bg-paper-50 text-[13px] text-ink-900 hover:border-copper-500 hover:text-copper-500 transition-colors"
               >
                 All
@@ -65,7 +65,7 @@ export default async function BlogPage() {
               {categories.map((category: Category) => (
                 <Link
                   key={category.id}
-                  href={`/blog/category/${category.slug}`}
+                  href={`/journal/category/${category.slug}`}
                   className="px-3 py-1.5 hairline border bg-paper-50 text-[13px] text-ink-700 hover:border-copper-500 hover:text-copper-500 transition-colors"
                 >
                   {category.name}
@@ -101,7 +101,7 @@ export default async function BlogPage() {
               {Array.from({ length: meta.pagination.pageCount }, (_, i) => (
                 <Link
                   key={i + 1}
-                  href={`/blog?page=${i + 1}`}
+                  href={`/journal?page=${i + 1}`}
                   className="px-3 py-1.5 hairline border text-[13px] text-ink-700 hover:border-copper-500 hover:text-copper-500 transition-colors"
                 >
                   {i + 1}

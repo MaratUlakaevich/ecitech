@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import Link from "next/link";
 import HeroWorkflowBg from "./HeroWorkflowBg";
 
 /**
@@ -22,13 +23,11 @@ const HeroSection: FC = () => {
           <div className="flex items-center gap-6 font-mono text-[10.5px] tracking-[0.2em] text-ink-500">
             <span>VOLUME 02</span>
             <span className="opacity-40">·</span>
-            <span>MOSCOW + RIYADH</span>
+            <span>SPRING 2026</span>
             <span className="opacity-40">·</span>
             <span className="hidden md:inline">EST. 2024</span>
           </div>
           <div className="flex items-center gap-6 font-mono text-[10.5px] tracking-[0.2em] text-ink-500">
-            <span className="text-brass-500 tracking-[0.15em]">٢٠٢٦ ربيع</span>
-            <span className="opacity-40 hidden md:inline">·</span>
             <span className="hidden md:inline">INDEPENDENT DIGITAL STUDIO</span>
           </div>
         </div>
@@ -36,26 +35,26 @@ const HeroSection: FC = () => {
 
       {/* ------- Primary masthead ------- */}
       <div className="max-w-[1480px] mx-auto px-8 lg:px-14 py-8 flex items-center justify-between">
-        <a href="/" className="flex items-baseline gap-3" aria-label="ECITech home">
+        <Link href="/" className="flex items-baseline gap-3" aria-label="ECITech home">
           <span className="display text-3xl tracking-tight text-ink-900">ECITech</span>
           <span className="seal" aria-hidden="true"></span>
-        </a>
+        </Link>
 
         <nav className="hidden lg:flex items-center gap-10" aria-label="Primary">
-          <a href="#work"        className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">Work</a>
-          <a href="#practice"    className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">Practice</a>
-          <a href="#process"     className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">Process</a>
-          <a href="#journal"     className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">Journal</a>
-          <a href="#studio"      className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">Studio</a>
+          <Link href="/portfolio"  className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">Work</Link>
+          <Link href="/services"   className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">Practice</Link>
+          <Link href="/industries" className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">Industries</Link>
+          <Link href="/journal"    className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">Journal</Link>
+          <Link href="/about"      className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">Studio</Link>
         </nav>
 
-        <a
-          href="#begin"
+        <Link
+          href="/contact"
           className="hidden md:inline-flex items-center gap-3 text-[14.5px] text-ink-900 group"
         >
           <span className="smallcaps">Begin</span>
           <span className="w-8 h-px bg-ink-900 transition-all duration-300 group-hover:bg-copper-500 group-hover:w-12"></span>
-        </a>
+        </Link>
       </div>
 
       {/* ------- Hero canvas ------- */}
@@ -68,7 +67,7 @@ const HeroSection: FC = () => {
           <div className="reveal reveal-1 mono-eyebrow mb-12">
             <span>01</span>
             <span className="mx-2 opacity-40">—</span>
-            <span>Independent digital studio · Moscow + Riyadh</span>
+            <span>Independent digital studio</span>
           </div>
 
           <h1 className="reveal reveal-2 display text-[64px] sm:text-[88px] lg:text-[128px] text-ink-900 mb-14 lg:mb-20">
@@ -78,17 +77,17 @@ const HeroSection: FC = () => {
           </h1>
 
           <p className="reveal reveal-3 max-w-reading text-[19px] lg:text-[21px] leading-[1.55] text-ink-700 mb-12 dropcap">
-            ECITech is an independent digital studio. We build websites, workflow automation, and AI integration for businesses across Russia, the UAE, and Saudi Arabia. Our engineers shipped systems for BCG Gamma, Juniper Networks, Cisco, and Google &mdash; we now run those same engineering practices for mid-market teams.
+            ECITech is an independent digital studio. We build websites, workflow automation, and AI integration for mid-market businesses. Our engineers shipped systems for BCG Gamma, Juniper Networks, Cisco, and Google &mdash; we now run those same engineering practices for boutique-scale teams.
           </p>
 
           <div className="reveal reveal-4 flex flex-wrap items-center gap-10">
-            <a href="#begin" className="btn-primary">
+            <Link href="/contact" className="btn-primary">
               <span>Book a 30-minute introduction</span>
               <span className="arrow" aria-hidden="true"></span>
-            </a>
-            <a href="#work" className="link-editorial">
+            </Link>
+            <Link href="/portfolio" className="link-editorial">
               View selected work &rarr;
-            </a>
+            </Link>
           </div>
         </div>
 

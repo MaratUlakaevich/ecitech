@@ -39,7 +39,7 @@ const CASES: Case[] = [
     niche: "Medical practice",
     brand: "Aida Isaeva",
     story:
-      "Editorial portfolio for a Moscow plastic surgeon. Quiet typographic restraint, monochrome photography, trust before motion.",
+      "Editorial portfolio for a plastic surgeon. Quiet typographic restraint, monochrome photography, trust before motion.",
     stack: "Next.js · Vercel",
     href: "https://aida-isaeva.vercel.app/",
     plate: "plate-bone",
@@ -49,7 +49,7 @@ const CASES: Case[] = [
     niche: "Cultural space",
     brand: "Zerno",
     story:
-      "Museum × restaurant × master class venue in Chelyabinsk. Long-form bread-and-history hero, three programmatic halls, single ticket flow.",
+      "Museum × restaurant × master-class venue. Long-form bread-and-history hero, three programmatic halls, single ticket flow.",
     stack: "Next.js · Vercel",
     href: "https://zerno-sigma.vercel.app/",
     plate: "plate-amber",
@@ -70,7 +70,7 @@ const CASES: Case[] = [
     niche: "KSA construction",
     brand: "Investment Floors",
     story:
-      "Bilingual EN + AR landing for a Saudi contracting firm. Featured project gallery, services taxonomy, calibrated for Vision 2030 procurement.",
+      "Bilingual EN + AR landing for a contracting firm. Featured project gallery, services taxonomy, calibrated for enterprise procurement.",
     stack: "Next.js · Vercel · EN/AR",
     href: "https://v0-saudi-construction-landing-page.vercel.app/",
     plate: "plate-sand",
@@ -115,7 +115,7 @@ const SelectedWork: FC = () => {
             </h2>
           </div>
           <p className="text-[17px] lg:text-[18px] leading-[1.65] text-ink-700 max-w-reading">
-            A floral boutique in Russia. A plastic surgeon in Moscow. A construction firm in Riyadh. A cultural venue in the Urals. A DJ on tour. The work below is the breadth, not the limit.
+            A floral boutique. A plastic surgeon. A construction firm. A cultural venue. A DJ on tour. The work below is the breadth, not the limit.
           </p>
         </div>
 

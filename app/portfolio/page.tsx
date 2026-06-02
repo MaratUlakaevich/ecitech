@@ -8,18 +8,17 @@ import BreadcrumbsLd from "../../components/seo/BreadcrumbsLd";
 export const metadata: Metadata = {
   title: "Work — Selected projects · ECITech",
   description:
-    "Nine production projects across Russia, the UAE, and Saudi Arabia. Floral boutique, medical practice, cultural space, DJ portfolio, construction firm, design service, and more.",
+    "Nine production projects: floral boutique, medical practice, cultural space, DJ portfolio, construction firm, design service, beverage producer, strategy consulting, and our own studio site.",
   keywords: [
     "ECITech portfolio",
     "Next.js projects",
     "boutique studio work",
-    "Moscow studio portfolio",
-    "Riyadh studio portfolio",
-    "Saudi Arabia construction website",
+    "studio portfolio",
+    "construction website",
   ],
   openGraph: {
     title: "Work — ECITech",
-    description: "Nine production projects across RU and the Gulf.",
+    description: "Nine production projects across very different worlds.",
     url: "https://ecitech.online/portfolio",
     images: [
       {
@@ -32,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Work — ECITech",
-    description: "Nine production projects across Russia, UAE, and Saudi Arabia.",
+    description: "Nine production projects. Different worlds, one studio.",
     images: ["/img/og/default.png"],
   },
 };
@@ -45,7 +44,6 @@ type Case = {
   story: string;
   stack: string;
   href: string;
-  region: string;
   plate: string;
 };
 
@@ -56,9 +54,8 @@ const CASES: Case[] = [
     brand: "Pompon",
     emphasis: "Pompon",
     story:
-      "Catalog-led B2C site for a floral boutique. Bilingual EN/RU, product taxonomy, instant Telegram order routing.",
+      "Catalog-led B2C site for a floral boutique. Bilingual product taxonomy, instant Telegram order routing, calm typographic restraint.",
     stack: "Next.js · Strapi · Vercel",
-    region: "Russia",
     href: "https://v0-flower-shop-website-opal.vercel.app/",
     plate: "plate-rose",
   },
@@ -67,9 +64,8 @@ const CASES: Case[] = [
     niche: "Medical practice",
     brand: "Aida Isaeva",
     story:
-      "Editorial portfolio for a Moscow plastic surgeon. Quiet typographic restraint, monochrome photography, trust before motion.",
+      "Editorial portfolio for a plastic surgeon. Quiet typographic restraint, monochrome photography, trust before motion.",
     stack: "Next.js · Vercel",
-    region: "Russia",
     href: "https://aida-isaeva.vercel.app/",
     plate: "plate-bone",
   },
@@ -78,9 +74,8 @@ const CASES: Case[] = [
     niche: "Cultural space",
     brand: "Zerno",
     story:
-      "Museum × restaurant × master class venue in Chelyabinsk. Long-form bread-and-history hero, three programmatic halls, single ticket flow.",
+      "Museum × restaurant × master-class venue. Long-form bread-and-history hero, three programmatic halls, a single ticket flow.",
     stack: "Next.js · Vercel",
-    region: "Russia",
     href: "https://zerno-sigma.vercel.app/",
     plate: "plate-amber",
   },
@@ -90,20 +85,18 @@ const CASES: Case[] = [
     brand: "DJ Tallamie",
     emphasis: "Tallamie",
     story:
-      "Custom domain personal brand for an international DJ. Booking form, set archive with wave-form players, premium press kit.",
+      "Custom-domain personal brand for an international DJ. Booking form, set archive with wave-form players, premium press kit.",
     stack: "Next.js · Vercel · custom domain",
-    region: "International",
     href: "https://www.tallamie.com/",
     plate: "plate-violet",
   },
   {
     number: "V",
-    niche: "KSA construction",
+    niche: "Construction firm",
     brand: "Investment Floors",
     story:
-      "Bilingual EN + AR landing for a Saudi contracting firm. Featured project gallery, services taxonomy, calibrated for Vision 2030 procurement.",
+      "Bilingual EN + AR landing for a contracting firm. Featured project gallery, services taxonomy, calibrated for enterprise procurement.",
     stack: "Next.js · Vercel · EN/AR",
-    region: "Saudi Arabia",
     href: "https://v0-saudi-construction-landing-page.vercel.app/",
     plate: "plate-sand",
   },
@@ -115,7 +108,6 @@ const CASES: Case[] = [
     story:
       "Productized logo design — brief, AI generation, designer polish, delivery in 48 hours. Editorial pricing transparency at the entry tier.",
     stack: "Next.js · Vercel",
-    region: "Russia",
     href: "https://logo48.vercel.app/",
     plate: "plate-walnut",
   },
@@ -126,7 +118,6 @@ const CASES: Case[] = [
     story:
       "Multi-page corporate site for a strategy advisory firm. Service taxonomy, leadership grid, gated case studies.",
     stack: "Next.js · Vercel",
-    region: "International",
     href: "https://gbs-beta.vercel.app/",
     plate: "plate-slate",
   },
@@ -136,9 +127,8 @@ const CASES: Case[] = [
     brand: "ERA",
     emphasis: "ERA",
     story:
-      "Russian beverage manufacturer site with bilingual catalog, distributor portal, contact routing into national sales.",
+      "Manufacturer site with bilingual catalog, distributor portal, contact routing into national sales.",
     stack: "Next.js · Vercel · custom domain",
-    region: "Russia",
     href: "https://era-zavod.ru/",
     plate: "plate-moss",
   },
@@ -149,7 +139,6 @@ const CASES: Case[] = [
     story:
       "Our own studio site — the editorial system you are reading, ahead of the rest of the network.",
     stack: "Next.js · Vercel · in-house",
-    region: "Studio",
     href: "https://ecitech.online/",
     plate: "plate-paper",
   },
@@ -188,7 +177,7 @@ export default function PortfolioPage() {
             <span className="display-italic text-copper-500">One studio.</span>
           </h1>
           <p className="mt-12 max-w-reading text-[19px] lg:text-[21px] leading-[1.6] text-ink-700">
-            A floral boutique in Russia. A plastic surgeon in Moscow. A construction firm in Riyadh. A DJ on tour. A cultural venue in the Urals. A producer of mineral water. Below are the nine projects we currently put our name on.
+            A floral boutique. A plastic surgeon. A construction firm. A DJ on tour. A cultural venue. A producer of mineral water. A strategy advisory. A design service. Below are the nine projects we currently put our name on.
           </p>
         </section>
 
@@ -210,9 +199,6 @@ export default function PortfolioPage() {
                   >
                     <div className="absolute top-5 left-5 mono-eyebrow !text-paper-50 opacity-80">
                       PLATE {c.number} · {c.niche.toUpperCase()}
-                    </div>
-                    <div className="absolute top-5 right-5 mono-eyebrow !text-paper-50 opacity-70 !text-[9.5px]">
-                      {c.region.toUpperCase()}
                     </div>
                     <div className="absolute bottom-6 left-6 right-6">
                       <div className="display text-[42px] sm:text-[48px] lg:text-[54px] text-paper-50 leading-[0.94]">

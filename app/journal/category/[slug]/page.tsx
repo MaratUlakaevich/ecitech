@@ -1,4 +1,4 @@
-// app/blog/category/[slug]/page.tsx
+// app/journal/category/[slug]/page.tsx
 // Category index — Paper aesthetic.
 
 import Link from "next/link";
@@ -64,8 +64,8 @@ export default async function CategoryPage({
       <BreadcrumbsLd
         items={[
           { name: "Home", url: "/" },
-          { name: "Journal", url: "/blog" },
-          { name: category.name, url: `/blog/category/${category.slug}` },
+          { name: "Journal", url: "/journal" },
+          { name: category.name, url: `/journal/category/${category.slug}` },
         ]}
       />
 
@@ -74,7 +74,7 @@ export default async function CategoryPage({
       <main className="relative">
         <section className="max-w-[1480px] mx-auto px-8 lg:px-14 pt-16 pb-12 lg:pt-24 lg:pb-16">
           <Link
-            href="/blog"
+            href="/journal"
             className="inline-flex items-center gap-2 text-[13.5px] text-ink-500 hover:text-copper-500 transition-colors mb-10"
           >
             <span className="w-6 h-px bg-current"></span>
@@ -98,7 +98,7 @@ export default async function CategoryPage({
               <p className="display text-[22px] sm:text-[28px] text-ink-900 mb-3">
                 No articles in this category yet.
               </p>
-              <Link href="/blog" className="link-editorial">
+              <Link href="/journal" className="link-editorial">
                 Back to journal &rarr;
               </Link>
             </div>
@@ -117,7 +117,7 @@ export default async function CategoryPage({
               {Array.from({ length: meta.pagination.pageCount }, (_, i) => (
                 <Link
                   key={i + 1}
-                  href={`/blog/category/${params.slug}?page=${i + 1}`}
+                  href={`/journal/category/${params.slug}?page=${i + 1}`}
                   className="px-3 py-1.5 hairline border text-[13px] text-ink-700 hover:border-copper-500 hover:text-copper-500 transition-colors"
                 >
                   {i + 1}

@@ -59,7 +59,7 @@ const Burger: FC<BurgerProps> = ({ isMenuOpen, toggleMenu }: BurgerProps) => {
               <Link href="/portfolio">Portfolio</Link>
             </li>
             <li className={liStyle}>
-              <Link href="/blog">Blog</Link>
+              <Link href="/journal">Journal</Link>
             </li>
           </ul>
 

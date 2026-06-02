@@ -14,8 +14,7 @@ export const metadata: Metadata = {
     "contact ECITech",
     "begin a project",
     "AI workflow consultation",
-    "Moscow studio contact",
-    "Riyadh studio contact",
+    "boutique digital studio contact",
   ],
   openGraph: {
     title: "Begin — ECITech",
@@ -99,14 +98,8 @@ export default function ContactPage() {
                   </a>
                 </li>
                 <li>
-                  <div className="mono-eyebrow !text-[10px] mb-1">Studio locations</div>
-                  Moscow, Russia
-                  <br />
-                  Riyadh, Saudi Arabia
-                </li>
-                <li>
                   <div className="mono-eyebrow !text-[10px] mb-1">Working hours</div>
-                  MON–THU · 09 — 18 AST
+                  MON–THU · 09 — 18
                 </li>
               </ul>
 

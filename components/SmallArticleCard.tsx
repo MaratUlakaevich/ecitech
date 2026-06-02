@@ -18,7 +18,7 @@ export default function ArticleCard( { article } : { article: Article }) {
       return;
     }
 
-    router.push(`/blog/${slug}`);
+    router.push(`/journal/${slug}`);
   };
 
   return (
@@ -44,7 +44,7 @@ export default function ArticleCard( { article } : { article: Article }) {
               {categories.map((category: Category) => (
                 <Link
                   key={category.id}
-                  href={`/blog/category/${category.slug}`}
+                  href={`/journal/category/${category.slug}`}
                   className="text-sm text-blue-400 hover:text-blue-900 mr-2"
                 >
                   {category.name}

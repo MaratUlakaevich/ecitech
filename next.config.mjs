@@ -56,6 +56,22 @@ const nextConfig = {
       },
     ],
   },
+  // /blog has been retired in favour of /journal — preserve link equity
+  // and incoming RSS/email links by 301-redirecting the entire tree.
+  async redirects() {
+    return [
+      {
+        source: '/blog',
+        destination: '/journal',
+        permanent: true,
+      },
+      {
+        source: '/blog/:path*',
+        destination: '/journal/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

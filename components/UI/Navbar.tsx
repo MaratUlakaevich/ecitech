@@ -67,7 +67,7 @@ const Navbar: FC = () => {
             </Link>
           </li>
           <li className={liStyle}>
-            <Link href="/blog">
+            <Link href="/journal">
               <button className="p-1 px-3 rounded-full bg-black-500 hover:bg-blue-800 duration-300 active:bg-blue-700">
                 Blog
               </button>

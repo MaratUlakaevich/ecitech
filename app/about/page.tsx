@@ -8,13 +8,12 @@ import BreadcrumbsLd from "../../components/seo/BreadcrumbsLd";
 export const metadata: Metadata = {
   title: "Studio — ECITech",
   description:
-    "ECITech is an independent digital studio founded by Marat Ulakaev. Sites, automation, and AI integration for the mid-market across Russia and the Gulf.",
+    "ECITech is an independent digital studio founded by Marat Ulakaev. Sites, automation, and AI integration for the mid-market.",
   keywords: [
     "about ECITech",
     "Marat Ulakaev",
     "boutique digital studio",
     "founder-led studio",
-    "Moscow Riyadh studio",
     "Next.js developer founder",
   ],
   openGraph: {
@@ -33,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Studio — ECITech",
-    description: "Independent digital studio. Founded 2024. Moscow + Riyadh.",
+    description: "Independent digital studio. Founded 2024.",
     images: ["/img/og/default.png"],
   },
 };
@@ -61,7 +60,7 @@ const VALUES = [
     n: "IV",
     title: "Bilingual delivery",
     body:
-      "Russian, English, Arabic. We build the same quality for a Moscow clinic and a Riyadh contractor.",
+      "English, Russian, Arabic. We build the same quality for every client, regardless of language or sector.",
   },
 ];
 
@@ -94,7 +93,7 @@ export default function AboutPage() {
             <span className="display-italic text-copper-500">intentionally small.</span>
           </h1>
           <p className="mt-12 max-w-reading text-[19px] lg:text-[21px] leading-[1.6] text-ink-700 dropcap">
-            ECITech is an independent digital studio operating between Moscow and Riyadh. We build sites, workflow automation, and AI integration for mid-market businesses — about three to five projects in flight at a time, all run personally by the founder.
+            ECITech is an independent digital studio. We build sites, workflow automation, and AI integration for mid-market businesses &mdash; about three to five projects in flight at a time, all run personally by the founder.
           </p>
         </section>
 
@@ -140,10 +139,6 @@ export default function AboutPage() {
               </ul>
               <div className="brass-rule mt-10 mb-6"></div>
               <div className="space-y-5 text-[14px] text-ink-700">
-                <div>
-                  <div className="mono-eyebrow !text-[10px] mb-1">Locations</div>
-                  Moscow, Russia &nbsp;·&nbsp; Riyadh, Saudi Arabia
-                </div>
                 <div>
                   <div className="mono-eyebrow !text-[10px] mb-1">Correspondence</div>
                   <a

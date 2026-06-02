@@ -17,8 +17,8 @@ export async function GET() {
     const { title, slug, publishedAt, description } = article;
     feed.addItem({
       title,
-      id: `${baseUrl}/blog/${slug}`,
-      link: `${baseUrl}/blog/${slug}`,
+      id: `${baseUrl}/journal/${slug}`,
+      link: `${baseUrl}/journal/${slug}`,
       date: new Date(publishedAt),
       description,
     });

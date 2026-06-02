@@ -10,10 +10,10 @@ import type { FC } from "react";
  */
 
 const STATS = [
-  { value: "9", suffix: "", label: "Live projects across RU + Gulf" },
+  { value: "9", suffix: "", label: "Live production projects" },
   { value: "5", suffix: "yrs", label: "Combined Next.js + AI delivery" },
-  { value: "2", suffix: "", label: "Cities: Moscow, Riyadh" },
-  { value: "3", suffix: "", label: "Languages: RU · EN · AR" },
+  { value: "3", suffix: "", label: "Languages we ship in" },
+  { value: "1", suffix: "", label: "Founder per project" },
 ];
 
 const StudioAbout: FC = () => {
@@ -33,7 +33,7 @@ const StudioAbout: FC = () => {
 
           <div className="space-y-5 text-[17px] leading-[1.65] text-ink-700 max-w-reading">
             <p>
-              ECITech is an independent digital studio, founded by Marat Ulakaev &mdash; an engineer with a decade in software and AI. Marat shipped systems for BCG&thinsp;Gamma, Juniper Networks, Cisco, and Google before opening the studio between Moscow and Riyadh.
+              ECITech is an independent digital studio, founded by Marat Ulakaev &mdash; an engineer with a decade in software and AI. Marat shipped systems for BCG&thinsp;Gamma, Juniper Networks, Cisco, and Google before opening the studio.
             </p>
             <p>
               We work as <span className="text-ink-900">a studio of one plus a network</span>: every project is led by the founder, supported by trusted specialists &mdash; designer, copywriter, devops &mdash; activated when the scope asks for them. We are not an agency. We do not run a sales floor.
@@ -69,14 +69,8 @@ const StudioAbout: FC = () => {
             ))}
           </div>
 
-          {/* Studio meta — locations + correspondence */}
+          {/* Studio meta — correspondence + working hours */}
           <div className="hairline-top pt-8 space-y-6">
-            <div>
-              <div className="mono-eyebrow mb-2 !text-[10px]">Studio locations</div>
-              <p className="text-[15px] text-ink-800">
-                Moscow, Russia &nbsp;·&nbsp; Riyadh, Saudi Arabia
-              </p>
-            </div>
             <div>
               <div className="mono-eyebrow mb-2 !text-[10px]">Correspondence</div>
               <a
@@ -89,7 +83,7 @@ const StudioAbout: FC = () => {
             <div>
               <div className="mono-eyebrow mb-2 !text-[10px]">Working hours</div>
               <p className="text-[14px] text-ink-700">
-                MON&ndash;THU · 09 &mdash; 18 AST
+                MON&ndash;THU · 09 &mdash; 18
               </p>
             </div>
           </div>
