@@ -1,0 +1,122 @@
+---
+title: "Sites, automation, and the agents that run them: the ECITech service ladder"
+description: "Why we built ECITech as one trajectory in three layers — sites first, then the operations that run them, then the AI that scales them — and how to know which step is yours."
+date: "2026-06-02"
+category: "Method"
+tags: ["service ladder", "AI integration", "automation", "boutique studio", "method"]
+excerpt: "Most studios stop at the site. We start there, then earn the right to automate it, then earn the right to make it intelligent. Each tier ships on its own with a fixed scope; the ladder is optional, not pushed."
+readingTime: 9
+---
+
+There is a tidy bit of theatre most digital agencies will perform for you on a first call. They will ask, with great seriousness, what you really need.
+
+"A website?" Pause. "Or a brand?" Longer pause. "Or, perhaps, **a digital transformation**?"
+
+It is supposed to sound like attentiveness. It mostly sounds like an agency trying to figure out which template to pull off the shelf.
+
+We built ECITech around the opposite instinct: most businesses we work with do not need to choose between a site, an automation, and an AI integration. They need all three — but only one of them at a time, in the right order, with the next two earned rather than sold.
+
+That order is what we call the service ladder. It is the entire shape of the studio. This essay is the founder's note on how it works, why we structured the practice this way, and how to know which step is yours.
+
+## The shape: one trajectory, three layers
+
+The ladder reads, from the bottom:
+
+1. **Sites** &mdash; the editorial surface. Where attention lands, where credibility is decided, where the first revenue events happen.
+2. **Automation** &mdash; the operational layer. CRM, messengers, ticket routing, the boring tubing behind a calm Monday.
+3. **Integration** &mdash; the intelligence layer. AI agents, retrieval systems, custom workflows; the part that turns a working business into a more leveraged one.
+
+A reasonable studio could pick any one of these three and make a career of it. Many do. Our hypothesis is that the *transitions between them* are where most of the value compounds, and that those transitions are best handled by the same team that scoped the lower layer.
+
+A built well, the site is not just a marketing object &mdash; it is the data ingest for the automation that comes after. The automation, in turn, is the operational substrate the agents will eventually reach into. Each layer is a complete deliverable on its own, but each is engineered to make the next layer cheaper to build.
+
+That is the ladder. The contract you sign with us at any layer is finite, fixed-scope, and walks away cleanly. The compounding only happens if you choose to keep climbing.
+
+## Layer 01 &mdash; Sites
+
+Most engagements begin here. We build custom Next.js websites for businesses that have outgrown the template tier &mdash; the kind of operation where the founder has stopped being charmed by Tilda and started being annoyed at the inflexibility of it.
+
+What that looks like in practice:
+
+- **Editorial design**, drawn for the brand, not unfolded from a kit.
+- **Performance that the Lighthouse panel can verify** &mdash; 100/100 is the target, not the boast.
+- **Bilingual or trilingual structure** when the audience asks for it. RU, EN, AR.
+- **A proper SEO substrate** &mdash; sitemap, structured data, OG and Twitter cards, hreflang where it matters.
+- **Analytics that anyone in the company can read** &mdash; Yandex.Metrica, GA4, and the discipline to track only the events that change a decision.
+
+The mistake the volume-tier studios make is treating the site as a marketing artefact. It is also the **operational front door** &mdash; the place where the first lead form fires, the first chat opens, the first tour gets booked. Built right, it is wired so that the next layer (automation) has somewhere clean to plug in. Built wrong, you spend the next six months retrofitting integrations into a CMS that was never going to host them.
+
+You can stop here. Most clients do, for a season. The site does its job, the founder gets a bit of quiet, and the question of automation gets revisited when the calendar starts hurting.
+
+## Layer 02 &mdash; Automation
+
+This is the layer that gets sold worst and bought wrongest. The phrase "let's automate it" is usually a sign that nobody has yet sat down with the operator and watched a real day from start to finish.
+
+When we automate, we are doing two specific things:
+
+1. **Removing repetition from the people who shouldn't be doing it.** The front-desk receptionist who is also the appointment confirmer, the CRM data-entry clerk, the broker who has retyped the same WhatsApp answer thirty times today.
+2. **Closing the gap between a lead arriving and the right person seeing it.** Almost every SMB I have audited is leaking 20&ndash;40% of inbound interest in the first hour because nobody owns the routing.
+
+The pieces we end up shipping at this layer:
+
+- **Telegram bot + lead routing** &mdash; every new lead from the site lands in the operator's pocket within seconds, with the right context, with a one-tap claim button so it is clear who is on it.
+- **amoCRM or Bitrix24 integration** &mdash; not as a religion, as a discipline. We pick whichever the team will actually open. If you are not opening the CRM you bought, we will help you migrate to one you will.
+- **WhatsApp Business cloud API** &mdash; the operating system of mid-market sales in much of the world. We get it onto the same cloud as the CRM and the site, so conversations stop dying in private phones.
+- **n8n pipelines** for the boring stuff &mdash; SLA reminders, the weekly digest the owner secretly reads on the train, the gentle nudge to the operator who hasn't replied to a hot lead in 12 hours.
+- **SEO and content ops** as a retainer, for clients whose site is starting to earn organic compounding and would like more of it.
+
+A successful automation engagement looks suspiciously boring from the outside. The site stops feeling like the bottleneck. The owner stops doing things on Sundays. Lead-to-call latency drops from "we'll get back to you" to "Marat from ECITech &mdash; thanks for the message, can we book a call this Thursday?" within four minutes.
+
+You can also stop here. Many of our clients do. Automation pays for itself in operator-hours saved long before AI enters the conversation.
+
+## Layer 03 &mdash; Integration
+
+This is the layer where the studio's name actually pays off. It is also the layer where the rest of the market loses the plot most quickly, because it is the layer where the phrase "let's add AI" gets uttered with the most confidence and the least intent.
+
+We do not "add AI". We integrate intelligence into a workflow that already exists and is well-instrumented. There is an order of operations there that is not negotiable:
+
+- A workflow has to **already exist** before we automate it. Otherwise you are codifying chaos.
+- A workflow has to **already be automated** before we make it intelligent. Otherwise the agent is making decisions inside a system it cannot observe or affect.
+- A workflow has to **already be measured** before we let an agent touch it in production. Otherwise the safety mechanism is "the founder reads the logs", and the founder is human and busy.
+
+When those three conditions are met, integration is where the leverage stops being linear.
+
+What we ship at this layer:
+
+- **RAG knowledge systems on private corpora** &mdash; the institutional memory of a firm, indexed and queryable, accessible to operators in the tools they already use.
+- **Conversational agents on top of the CRM and messengers** &mdash; not the bolt-on chatbot, the agent that can actually read the deal, look up the client, write the email, and book the next step.
+- **Custom CRM extensions and account dashboards** &mdash; where the client portal is a real product rather than an afterthought.
+- **Embedding pipelines with governance** &mdash; because eventually somebody is going to ask "what data is the model seeing about me?", and you are going to want an answer.
+- **Bilingual delivery as a first-class concern**, not a translation layer added at the end.
+
+The clients who climb to this layer are usually the ones who have started thinking of the studio as part of the operating system rather than as a vendor. We are okay with that. It is a high-trust relationship by the time it gets here.
+
+## How to know which step is yours
+
+If you have read this far you are almost certainly on one of three steps. Here is how to tell.
+
+**You're on step zero if** the question you are trying to answer is "do we even need a site, or is Instagram enough?" In which case &mdash; honestly &mdash; the site we would build is probably overkill for this season, and we are happy to say so on a call. Come back in a year.
+
+**You're on step one if** you have outgrown the current site and you can name two specific things it is failing to do. Maybe the catalog can't carry the SKU growth, maybe the form is silently dropping leads, maybe the brand has moved on and the site hasn't. The conversation we are going to have is about how big the gap is and how fast we close it.
+
+**You're on step two if** the site is fine but the operations behind it are eating the calendar. Manual lead routing, WhatsApp conversations dying in private phones, the CRM that nobody actually opens. The conversation is about which two or three flows return the most hours per ruble of integration.
+
+**You're on step three if** you have a working site, a working operations layer, and you have started looking at AI not because it is fashionable but because there is a specific role &mdash; usually a knowledge worker or a first-line responder &mdash; whose work is bottlenecked on retrieval, classification, or first-draft. The conversation we are going to have is the slowest of the three, because the cost of getting it wrong is the highest.
+
+## What this means for how we sell
+
+The ladder is also a sales discipline. We do not push it. We do not run a "schedule a complimentary growth audit" funnel. The Audit we do sell (five days, fixed fee) is the first paragraph of a real engagement, not a vehicle to manufacture interest in the next one.
+
+That means most calls end one of three ways:
+
+- "What we do isn't right for this season. Here are two studios we'd suggest instead."
+- "Step one is the right step. Here's what a fixed-scope engagement would look like."
+- "You're further up the ladder than you realised. Let's start with the audit and decide which step is the high-leverage one."
+
+We will, in any of those three outcomes, write down the recommendation and send it to you within the next business day. Not because we are obsequious, but because writing things down is the foundation of being trustworthy on a call you cannot remember six months later.
+
+If the ladder makes sense to you, the next move is straightforward: [book a thirty-minute introduction](/contact). The first call is short, structured, and honest. If we are not the right studio for your step, we will say so on the call.
+
+---
+
+*Marat Ulakaev is the founder of ECITech, an independent digital studio for the mid-market. Before founding the studio, he shipped systems at BCG Gamma, Juniper Networks, Cisco, and Google.*
