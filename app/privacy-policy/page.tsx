@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import LegalDoc, { type Section } from "@/components/legal/LegalDoc";
-import { LEGAL_UPDATED, SA_OPERATOR } from "@/lib/legal";
+import { isFilled, LEGAL_UPDATED, SA_OPERATOR } from "@/lib/legal";
 
 export const metadata: Metadata = {
   title: "Privacy Policy — ECITech",
@@ -14,7 +14,9 @@ const SECTIONS: Section[] = [
     id: "who",
     title: "Who we are",
     body: [
-      `The controller of your personal data on ecitech.online is ${SA_OPERATOR.legalName}, Commercial Registration No. ${SA_OPERATOR.cr}, ${SA_OPERATOR.address} ("ECITech", "we").`,
+      isFilled(SA_OPERATOR.cr)
+        ? `The controller of your personal data on ecitech.online is ${SA_OPERATOR.legalName}, Commercial Registration No. ${SA_OPERATOR.cr}, ${SA_OPERATOR.address} ("ECITech", "we").`
+        : `The controller of your personal data on ecitech.online is ECITech, a company registered in ${SA_OPERATOR.address} ("ECITech", "we").`,
       `Questions and requests about your data: ${SA_OPERATOR.email}.`,
       "This policy covers the English pages of the site. The Russian pages (ecitech.online/ru) have their own policy and a different operator, under Russian law.",
     ],

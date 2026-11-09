@@ -17,12 +17,12 @@ export const RU_OPERATOR = {
   /** "ip" = индивидуальный предприниматель, "npd" = самозанятый (плательщик НПД). */
   kind: "ip" as RuOperatorKind,
   /** Full name, e.g. "Улакаев Марат ...". */
-  name: "[ФИО полностью]",
-  inn: "[ИНН]",
+  name: "Улакаев Марат Улакаевич",
+  inn: "057120272272",
   /** ОГРНИП, only for kind "ip". */
-  ogrnip: "[ОГРНИП]",
-  /** Postal address for written requests from data subjects. */
-  address: "[почтовый адрес для обращений]",
+  ogrnip: "325508100630127",
+  /** Postal address for written requests (optional: requests also go by email). Leave "" to hide. */
+  address: "",
   email: CONTACT_EMAIL,
 };
 
