@@ -12,24 +12,24 @@ import { typo } from "@/lib/typo";
 const T = {
   en: {
     crumbs: ["Home", "Work"],
-    h1a: "Ten projects.",
+    h1a: "Twelve projects.",
     h1b: "Very different",
     h1c: " markets.",
     lead:
-      "Built by our team for a floral boutique, a perfume house, a B2B software product, a plastic surgeon, a Saudi construction firm, a touring DJ, a cultural venue, a mineral-water producer, a strategy advisory, and a design service.",
+      "Built by our team for a floral boutique, a perfume house, a B2B software product, a plastic surgeon, a Saudi construction firm, a beachfront residence in Ras Al Khaimah, a Riyadh marketing agency, a touring DJ, a cultural venue, a mineral-water producer, a strategy advisory, and a design service.",
     all: "All projects",
-    nextA: "An eleventh project is the one we’d ",
+    nextA: "A thirteenth project is the one we’d ",
     nextB: "build with you.",
   },
   ru: {
     crumbs: ["Главная", "Работы"],
-    h1a: "Десять проектов.",
+    h1a: "Двенадцать проектов.",
     h1b: "Очень разные",
     h1c: " рынки.",
     lead:
-      "Наша команда сделала их для цветочного бутика, парфюмерного дома, B2B-продукта, пластического хирурга, саудовской строительной компании, гастролирующего диджея, культурного пространства, производителя минеральной воды, консалтинговой компании и дизайн-сервиса.",
+      "Наша команда сделала их для цветочного бутика, парфюмерного дома, B2B-продукта, пластического хирурга, саудовской строительной компании, жилого комплекса в Рас-эль-Хайме, маркетингового агентства из Эр-Рияда, гастролирующего диджея, культурного пространства, производителя минеральной воды, консалтинговой компании и дизайн-сервиса.",
     all: "Все проекты",
-    nextA: "Одиннадцатый проект — тот, что мы ",
+    nextA: "Тринадцатый проект — тот, что мы ",
     nextB: "сделаем вместе с вами.",
   },
 };

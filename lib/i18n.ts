@@ -1,6 +1,7 @@
 /**
  * Minimal two-locale setup. English lives at the root, Russian under /ru.
- * Only the marketing pages are translated; the journal and legal pages
+ * The marketing pages and the privacy/cookies documents are translated
+ * (the RU documents name a different operator); the journal and the terms
  * stay English-only and are linked as-is from the Russian site.
  */
 export type Locale = "en" | "ru";
@@ -15,6 +16,8 @@ export const LOCALIZED_PATHS = [
   "/industries",
   "/about",
   "/contact",
+  "/privacy-policy",
+  "/cookies-policy",
 ] as const;
 
 const isLocalized = (path: string) =>

@@ -3,7 +3,7 @@ import { Fraunces, Instrument_Sans, IBM_Plex_Mono, Literata, IBM_Plex_Sans } fro
 import { headers } from "next/headers";
 import { localeFromPath } from "@/lib/i18n";
 import "./globals.css";
-import Script from "next/script";
+import SiteScripts from "@/components/SiteScripts";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/UI/sonner";
 import OrganizationLd from "@/components/seo/OrganizationLd";
@@ -107,28 +107,13 @@ export default function RootLayout({
         <meta name="theme-color" content="#FAFAF8" />
         <OrganizationLd />
         <LanguageAlternates />
-        <Script id="gtm-init" strategy="afterInteractive">
-          {`
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','GTM-KMRP9WR8');
-          `}
-        </Script>
       </head>
       <body className="overscroll-none min-h-screen antialiased">
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-KMRP9WR8"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          ></iframe>
-        </noscript>
         {children}
         <Toaster />
-        <SpeedInsights />
+        {/* Analytics load only after consent; RU pages get Yandex Metrica, never Google/Vercel. */}
+        <SiteScripts ymId={process.env.NEXT_PUBLIC_YM_ID} />
+        {lang === "en" && <SpeedInsights />}
       </body>
     </html>
   );

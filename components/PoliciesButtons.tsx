@@ -2,24 +2,32 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { localeFromPath } from "@/lib/i18n";
 
-const POLICIES = [
-  { href: "/terms", label: "Terms" },
-  { href: "/cookies-policy", label: "Cookies" },
-  { href: "/privacy-policy", label: "Privacy" },
-];
+const POLICIES = {
+  en: [
+    { href: "/terms", label: "Terms" },
+    { href: "/cookies-policy", label: "Cookies" },
+    { href: "/privacy-policy", label: "Privacy" },
+  ],
+  ru: [
+    { href: "/ru/privacy-policy", label: "Политика обработки персональных данных" },
+    { href: "/ru/cookies-policy", label: "Согласие на cookies" },
+  ],
+};
 
 /**
  * Tabs between the three legal pages. The active page gets an ink
  * underline and aria-current; the row wraps on narrow screens.
  */
 export default function PoliciesButtons() {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/";
+  const ru = localeFromPath(pathname) === "ru";
 
   return (
-    <nav aria-label="Legal" className="mb-10 lg:mb-14 hairline-bottom">
+    <nav aria-label={ru ? "Документы" : "Legal"} className="mb-10 lg:mb-14 hairline-bottom">
       <ul className="flex flex-wrap gap-x-6 sm:gap-x-8">
-        {POLICIES.map((p) => {
+        {POLICIES[ru ? "ru" : "en"].map((p) => {
           const active = pathname === p.href;
           return (
             <li key={p.href}>

@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import Link from "next/link";
-import { book, CONTACT_EMAIL } from "@/lib/site";
+import { book } from "@/lib/site";
+import { contactEmail } from "@/lib/legal";
 import type { Locale } from "@/lib/i18n";
 import { CASES } from "@/lib/cases";
 import { typo } from "@/lib/typo";
@@ -121,10 +122,10 @@ const StudioAbout: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
               <dt className="mono-eyebrow mb-2">Email</dt>
               <dd>
                 <a
-                  href={`mailto:${CONTACT_EMAIL}`}
+                  href={`mailto:${contactEmail(locale)}`}
                   className="inline-flex items-center min-h-11 text-[15px] text-ink-800 hover:text-copper-ink transition-colors"
                 >
-                  {CONTACT_EMAIL}
+                  {contactEmail(locale)}
                 </a>
               </dd>
             </div>

@@ -21,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const ruPages: MetadataRoute.Sitemap = ["", "/about", "/services", "/portfolio", "/industries", "/contact"].map(
+  const ruPages: MetadataRoute.Sitemap = ["", "/about", "/services", "/portfolio", "/industries", "/contact", "/privacy-policy", "/cookies-policy"].map(
     (p) => ({ url: `${baseUrl}/ru${p}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 }),
   );
 

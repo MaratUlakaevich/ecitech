@@ -115,8 +115,8 @@ export const CASES: Case[] = ([
       story:
         "Двуязычный лендинг (EN + AR) для саудовской подрядной компании. Галерея ключевых объектов и структура услуг, написанная для корпоративных заказчиков.",
     },
-    href: "https://v0-saudi-construction-landing-page.vercel.app/",
-    shot: "/img/work/investment-floors.jpg",
+    href: "https://www.tawabekalistithmar.com/",
+    shot: "/img/work/tawabek.jpg",
     plate: "plate-sand",
     featured: true,
   },
@@ -135,6 +135,36 @@ export const CASES: Case[] = ([
     shot: "/img/work/zerno.jpg",
     plate: "plate-amber",
     featured: true,
+  },
+  {
+    niche: "Real estate, UAE",
+    brand: "Soléva",
+    story:
+      "Sales landing for beachfront residences on Al Marjan Island, Ras Al Khaimah. Unit types with starting prices, the payment plan, and every enquiry routed to WhatsApp or a price request.",
+    stack: "Next.js, Vercel",
+    ru: {
+      niche: "Недвижимость, ОАЭ",
+      story:
+        "Продающий лендинг жилого комплекса у моря на острове Аль-Марджан в Рас-эль-Хайме. Типы квартир со стартовыми ценами, план рассрочки и заявки в WhatsApp или через запрос цен.",
+    },
+    href: "https://www.solevaresidence.com/",
+    shot: "/img/work/soleva.jpg",
+    plate: "plate-sand",
+  },
+  {
+    niche: "Marketing agency, KSA",
+    brand: "OGP Digital",
+    story:
+      "Arabic-first site for a Riyadh performance-marketing agency, with an English version. Services, method and results, a live growth calculator, and leads straight into WhatsApp.",
+    stack: "Next.js, AR/EN",
+    ru: {
+      niche: "Маркетинговое агентство, КСА",
+      story:
+        "Сайт эр-риядского агентства performance-маркетинга: сначала на арабском, с английской версией. Услуги, методика, результаты, интерактивный калькулятор роста и заявки сразу в WhatsApp.",
+    },
+    href: "https://www.ogpdigital.com/",
+    shot: "/img/work/ogp-digital.jpg",
+    plate: "plate-moss",
   },
   {
     niche: "DJ portfolio",

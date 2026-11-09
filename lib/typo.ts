@@ -19,7 +19,7 @@ export function typoString(s: string): string {
   // Numbers glue to their units / currency: "5 дней", "70 000 ₽".
   out = out.replace(/(\d) (?=\d{3}\b)/g, `$1${NBSP}`);
   out = out.replace(/(\d) (?=[А-Яа-яЁё₽$%])/g, `$1${NBSP}`);
-  out = out.replace(/(\$|от|до) (?=\d)/g, `$1${NBSP}`);
+  out = out.replace(/(\$|от|до|№|ст\.|ч\.|п\.) (?=\d)/g, `$1${NBSP}`);
   // Short hyphenated words never break at the hyphen.
   out = out.replace(/(^|[\s(«])([A-Za-zА-Яа-яЁё0-9]{1,4})-(?=[A-Za-zА-Яа-яЁё])/g, `$1$2${NB_HYPHEN}`);
   return out;

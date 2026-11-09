@@ -1,8 +1,10 @@
 import type { FC } from "react";
 import Link from "next/link";
-import { book, CONTACT_EMAIL } from "@/lib/site";
+import { book } from "@/lib/site";
 import { href, type Locale } from "@/lib/i18n";
 import { typo } from "@/lib/typo";
+import { contactEmail, ruOperatorIds, ruOperatorTitle } from "@/lib/legal";
+import CookieSettingsButton from "./CookieSettingsButton";
 
 /**
  * Editorial footer — masthead reprise.
@@ -36,6 +38,10 @@ const COPY = {
     contactH: "Contact",
     copy: "\u00a9 2026 ECITech. Riyadh, Saudi Arabia.",
     privacy: "Privacy",
+    privacyHref: "/privacy-policy",
+    cookies: "Cookies",
+    cookiesHref: "/cookies-policy",
+    cookieSettings: "Cookie settings",
     terms: "Terms",
   },
   ru: {
@@ -57,7 +63,11 @@ const COPY = {
     studioH: "Студия",
     contactH: "Контакты",
     copy: "\u00a9 2026 ECITech. Эр-Рияд, Саудовская Аравия.",
-    privacy: "Конфиденциальность",
+    privacy: "Обработка персональных данных",
+    privacyHref: "/ru/privacy-policy",
+    cookies: "Cookies",
+    cookiesHref: "/ru/cookies-policy",
+    cookieSettings: "Настройки cookies",
     terms: "Условия",
   },
 };
@@ -66,6 +76,7 @@ COPY.ru = typo(COPY.ru);
 
 const EditorialFooter: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   const t = COPY[locale];
+  const hasMetrica = Boolean(process.env.NEXT_PUBLIC_YM_ID);
   const b = book(locale);
   return (
     <footer className="relative z-10 bg-paper-soft hairline-top">
@@ -114,8 +125,8 @@ const EditorialFooter: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
             <h2 className="mono-eyebrow mb-3">{t.contactH}</h2>
             <ul className="text-[15px] text-ink-700">
               <li>
-                <a href={`mailto:${CONTACT_EMAIL}`} className={linkClass}>
-                  {CONTACT_EMAIL}
+                <a href={`mailto:${contactEmail(locale)}`} className={linkClass}>
+                  {contactEmail(locale)}
                 </a>
               </li>
               <li>
@@ -129,18 +140,37 @@ const EditorialFooter: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
 
         {/* Copyline */}
         <div className="hairline-top pt-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-2 lg:gap-4 text-[13.5px] text-ink-500">
-          <p className="py-2">{t.copy}</p>
+          <div className="py-2">
+            <p>{t.copy}</p>
+            {locale === "ru" && (
+              <p className="mt-1">
+                Оператор персональных данных на русской версии сайта: {ruOperatorTitle()}, {ruOperatorIds()}.
+              </p>
+            )}
+          </div>
           <ul className="flex flex-wrap items-center gap-x-6">
             <li>
-              <Link href="/privacy-policy" className={linkClass}>
+              <Link href={t.privacyHref} className={linkClass}>
                 {t.privacy}
               </Link>
             </li>
             <li>
-              <Link href="/terms" className={linkClass}>
-                {t.terms}
+              <Link href={t.cookiesHref} className={linkClass}>
+                {t.cookies}
               </Link>
             </li>
+            {(locale === "en" || hasMetrica) && (
+              <li>
+                <CookieSettingsButton label={t.cookieSettings} className={linkClass} />
+              </li>
+            )}
+            {locale === "en" && (
+              <li>
+                <Link href="/terms" className={linkClass}>
+                  {t.terms}
+                </Link>
+              </li>
+            )}
             <li>
               <a
                 href="https://www.linkedin.com/company/ecitech"

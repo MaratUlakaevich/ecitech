@@ -41,7 +41,8 @@ const STR = {
     hideNda: "Hide NDA and attachment",
     attach: "Attach a brief",
     nda: "Send me your NDA first",
-    acceptA: "By sending this form you accept the",
+    acceptA: "I agree to ECITech processing the details in this form to reply to my request, as described in the",
+    consentErr: "Tick the box to agree, or write to us by email instead.",
     privacy: "Privacy Policy",
     sending: "Sending\u2026",
     send: "Send message",
@@ -75,7 +76,8 @@ const STR = {
     hideNda: "Скрыть NDA и вложение",
     attach: "Приложить бриф",
     nda: "Сначала пришлите ваш NDA",
-    acceptA: "Отправляя форму, вы принимаете",
+    acceptA: "Я согласен на обработку данных из этой формы для ответа на мой запрос в соответствии с",
+    consentErr: "Отметьте согласие или напишите нам на почту.",
     privacy: "Политику конфиденциальности",
     sending: "Отправляем\u2026",
     send: "Отправить",
@@ -155,6 +157,8 @@ const ContactForm: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   const [message, setMessage] = useState("");
   const [industry, setIndustry] = useState<Industry | "">("");
   const [nda, setNda] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);
 
   const [showDetails, setShowDetails] = useState(false);
@@ -211,6 +215,8 @@ const ContactForm: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
     setMessage("");
     setIndustry("");
     setNda(false);
+    setConsent(false);
+    setConsentError(false);
     setFileName(null);
     setErrors({});
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -263,6 +269,14 @@ const ContactForm: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
         form_id: FORM_ID,
         error_code: "client-validation",
       });
+      return;
+    }
+
+    if (!consent) {
+      setErrors({});
+      setConsentError(true);
+      setStatus({ kind: "invalid", count: 1 });
+      formRef.current?.querySelector<HTMLElement>('[name="consent"]')?.focus();
       return;
     }
 
@@ -584,16 +598,42 @@ const ContactForm: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
         </div>
 
         <div className="mt-10 flex flex-col-reverse gap-6 md:flex-row md:items-center md:justify-between">
-          <p className="text-[13.5px] leading-[1.55] text-ink-500 max-w-[22rem]">
-            {S.acceptA}{" "}
-            <a
-              href="/privacy-policy"
-              className="text-ink-700 underline underline-offset-4 hover:text-ink-900"
+          <div className="max-w-[26rem]">
+            <label
+              htmlFor="consent"
+              className="flex items-start gap-3 cursor-pointer text-[13.5px] leading-[1.55] text-ink-700"
             >
-              {S.privacy}
-            </a>
-            .
-          </p>
+              <input
+                type="checkbox"
+                id="consent"
+                name="consent"
+                required
+                checked={consent}
+                aria-invalid={consentError || undefined}
+                aria-describedby={consentError ? "contact-consent-error" : undefined}
+                onChange={(e) => {
+                  setConsent(e.target.checked);
+                  if (e.target.checked) setConsentError(false);
+                }}
+                className="mt-[3px] h-[18px] w-[18px] shrink-0 accent-[#07070A] cursor-pointer"
+              />
+              <span>
+                {S.acceptA}{" "}
+                <a
+                  href={locale === "ru" ? "/ru/privacy-policy" : "/privacy-policy"}
+                  className="text-ink-900 underline underline-offset-4 hover:text-copper-ink"
+                >
+                  {S.privacy}
+                </a>
+                .
+              </span>
+            </label>
+            {consentError && (
+              <p id="contact-consent-error" className={errorClass}>
+                {S.consentErr}
+              </p>
+            )}
+          </div>
           <button
             type="submit"
             disabled={submitting}

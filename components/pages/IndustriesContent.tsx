@@ -32,7 +32,7 @@ const T = {
         title: "Real estate & construction",
         sub: "Brokerages, developers, contracting firms",
         body: "Bilingual EN/AR landing pages and multi-page corporate sites with featured-project galleries, written for enterprise buyers.",
-        example: "Investment Floors",
+        example: "Investment Floors contracting, Soléva beach residences",
       },
       {
         slug: "hospitality-cultural",
@@ -53,7 +53,7 @@ const T = {
         title: "Professional services & B2B",
         sub: "Consulting, design, agencies, SaaS",
         body: "Corporate sites with service taxonomies and gated case studies, productised offers, and the internal software that runs the firm.",
-        example: "Relate Business ERP, GBS strategy advisory, 48/лого design service",
+        example: "Relate Business ERP, OGP Digital marketing agency, GBS strategy advisory, 48/лого design service",
       },
       {
         slug: "culture-personal",
@@ -86,7 +86,7 @@ const T = {
         title: "Недвижимость и строительство",
         sub: "Агентства, девелоперы, подрядчики",
         body: "Двуязычные лендинги (EN/AR) и многостраничные корпоративные сайты с галереями объектов, написанные для корпоративных заказчиков.",
-        example: "Investment Floors",
+        example: "подрядчик Investment Floors, жилой комплекс Soléva",
       },
       {
         slug: "hospitality-cultural",
@@ -107,7 +107,7 @@ const T = {
         title: "Профессиональные услуги и B2B",
         sub: "Консалтинг, дизайн, агентства, SaaS",
         body: "Корпоративные сайты со структурой услуг и кейсами по запросу, продуктовые офферы и внутренний софт, на котором работает компания.",
-        example: "ERP Relate Business, консалтинг GBS, дизайн-сервис 48/лого",
+        example: "ERP Relate Business, маркетинговое агентство OGP Digital, консалтинг GBS, дизайн-сервис 48/лого",
       },
       {
         slug: "culture-personal",

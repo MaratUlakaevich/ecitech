@@ -32,9 +32,13 @@ export default function CookiesPolicy() {
                 cookies.
               </p>
               <p className="text-ink-700 leading-[1.65]">
-                1.2 We will ask you to consent to our use of cookies in
-                accordance with the terms of this policy when you first visit
-                our website.
+                1.2 Analytics cookies are set only after you press
+                &ldquo;Accept&rdquo; in the cookie banner. If you press
+                &ldquo;Decline&rdquo;, no analytics scripts load and the site
+                works in full. You can change or withdraw your choice at any
+                time with &ldquo;Cookie settings&rdquo; at the bottom of every
+                page. The site also keeps a record of your choice in your
+                browser&apos;s local storage, which contains no personal data.
               </p>
             </section>
 

@@ -3,7 +3,8 @@ import MastheadHeader from "../MastheadHeader";
 import EditorialFooter from "../EditorialFooter";
 import FinalCTA from "../FinalCTA";
 import BreadcrumbsLd from "../seo/BreadcrumbsLd";
-import { book, CONTACT_EMAIL } from "@/lib/site";
+import { book } from "@/lib/site";
+import { contactEmail } from "@/lib/legal";
 import { href, type Locale } from "@/lib/i18n";
 import { typo } from "@/lib/typo";
 
@@ -146,10 +147,10 @@ export default function AboutContent({ locale }: { locale: Locale }) {
                   <dt className="mono-eyebrow mb-1">{t.email}</dt>
                   <dd>
                     <a
-                      href={`mailto:${CONTACT_EMAIL}`}
+                      href={`mailto:${contactEmail(locale)}`}
                       className="inline-flex items-center min-h-11 text-ink-800 hover:text-copper-ink transition-colors"
                     >
-                      {CONTACT_EMAIL}
+                      {contactEmail(locale)}
                     </a>
                   </dd>
                 </div>
