@@ -22,7 +22,13 @@ const HeroSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
 
       {/* Content column — relative + z-index above workflow */}
       <div className="hero-content relative max-w-hero" style={{ zIndex: 1 }}>
-        <h1 className="display text-[clamp(2.75rem,8.6vw,7rem)] text-ink-900 mb-10 lg:mb-12 text-balance">
+        <h1
+          className={`display ${
+            locale === "ru"
+              ? "text-[clamp(2.25rem,6.2vw,5.25rem)]"
+              : "text-[clamp(2.75rem,8.6vw,7rem)]"
+          } text-ink-900 mb-10 lg:mb-12 text-balance`}
+        >
           {locale === "ru" ? (
             <>
               Сайты, процессы<br />
