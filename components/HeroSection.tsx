@@ -3,6 +3,7 @@ import Link from "next/link";
 import HeroWorkflowBg from "./HeroWorkflowBg";
 import { book } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
+import { typoString as ty } from "@/lib/typo";
 
 /**
  * Hero section — home page, directly under the shared MastheadHeader.
@@ -24,9 +25,9 @@ const HeroSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
         <h1 className="display text-[clamp(2.75rem,8.6vw,7rem)] text-ink-900 mb-10 lg:mb-12 text-balance">
           {locale === "ru" ? (
             <>
-              Сайты, автоматизация<br />
-              и <span className="display-italic text-copper-500">ИИ-агенты</span>,<br />
-              которые ими управляют.
+              Сайты, процессы<br />
+              и <span className="display-italic text-copper-500">{ty("ИИ-агенты")}</span>,<br />
+              {ty("которые их ведут.")}
             </>
           ) : (
             <>
@@ -39,7 +40,7 @@ const HeroSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
 
         <p className="reveal reveal-1 max-w-[34rem] text-[19px] lg:text-[21px] leading-[1.55] text-ink-700 mb-10">
           {locale === "ru"
-            ? "Сайты, автоматизация процессов и ИИ-агенты для компаний среднего бизнеса. Делают инженеры, которые работали на BCG Gamma, Juniper, Cisco и Google."
+            ? ty("Для компаний среднего бизнеса, которые выросли из шаблонов и ручной рутины. Делают инженеры с опытом в BCG Gamma, Juniper, Cisco и Google.")
             : "Websites, workflow automation, and AI agents for mid-market teams. Built by engineers who shipped for BCG Gamma, Juniper, Cisco, and Google."}
         </p>
 

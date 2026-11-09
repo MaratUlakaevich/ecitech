@@ -22,6 +22,7 @@ import {
 import { pushEvent } from "@/lib/analytics/gtm";
 import { CONTACT_EMAIL } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
+import { typo } from "@/lib/typo";
 
 const STR = {
   en: {
@@ -96,6 +97,8 @@ const STR = {
 
 const FORM_ID = "contact";
 
+STR.ru = typo(STR.ru);
+
 type FieldKey =
   | "fullName"
   | "email"
@@ -137,7 +140,7 @@ const inputClass =
   "aria-[invalid=true]:border-[#B42318] aria-[invalid=true]:shadow-[0_1px_0_0_#B42318] transition-[border-color,box-shadow] duration-150";
 const errorClass = "mt-2 text-[13.5px] leading-[1.45] text-[#B42318]";
 const toggleClass =
-  "inline-flex items-center min-h-11 text-[14.5px] text-ink-700 underline decoration-dotted underline-offset-4 hover:text-ink-900 transition-colors";
+  "inline-flex items-center min-h-11 text-left text-[14.5px] text-ink-700 underline decoration-dotted underline-offset-4 hover:text-ink-900 transition-colors";
 
 const ContactForm: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   const S = STR[locale];

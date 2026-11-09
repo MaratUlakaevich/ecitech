@@ -1,3 +1,5 @@
+import { typo } from "./typo";
+
 /**
  * Portfolio cases — single source for the home "Selected work" grid
  * (featured only) and the /portfolio page (all). Work by the founder
@@ -14,6 +16,8 @@ export type Case = {
   ru: { niche: string; story: string; stack?: string };
   href: string;
   plate: keyof typeof PLATES;
+  /** First-screen capture of the live site in /public/img/work (1440x1080). */
+  shot?: string;
   featured?: boolean;
 };
 
@@ -33,7 +37,7 @@ export const PLATES = {
   "plate-ink":    "linear-gradient(180deg, #DEE3EA 0%, #6F8399 42%, #13202F 100%)",
 } as const;
 
-export const CASES: Case[] = [
+export const CASES: Case[] = ([
   {
     niche: "Floral boutique, Dubai",
     brand: "Pompon",
@@ -47,6 +51,7 @@ export const CASES: Case[] = [
         "Интернет-магазин цветочного бутика в Дубае. Каталог на английском, арабском и русском, размеры букетов, оплата через Stripe и панель заказов для команды.",
     },
     href: "https://www.pompon.ae/",
+    shot: "/img/work/pompon.jpg",
     plate: "plate-rose",
     featured: true,
   },
@@ -63,6 +68,7 @@ export const CASES: Case[] = [
         "Интернет-магазин парфюмерного дома из Дубая: кремы для тела и уд для дома. Видео в первом экране, EN/AR/RU с полным RTL, Stripe или оплата курьеру, админка для владелицы.",
     },
     href: "https://bait-al-choki.vercel.app/",
+    shot: "/img/work/bait-al-choki.jpg",
     plate: "plate-oud",
     featured: true,
   },
@@ -94,6 +100,7 @@ export const CASES: Case[] = [
         "Сайт-портфолио пластического хирурга. Сдержанная типографика, монохромная съёмка, сначала доверие, потом анимация.",
     },
     href: "https://aida-isaeva.vercel.app/",
+    shot: "/img/work/aida-isaeva.jpg",
     plate: "plate-bone",
     featured: true,
   },
@@ -109,6 +116,7 @@ export const CASES: Case[] = [
         "Двуязычный лендинг (EN + AR) для саудовской подрядной компании. Галерея ключевых объектов и структура услуг, написанная для корпоративных заказчиков.",
     },
     href: "https://v0-saudi-construction-landing-page.vercel.app/",
+    shot: "/img/work/investment-floors.jpg",
     plate: "plate-sand",
     featured: true,
   },
@@ -124,6 +132,7 @@ export const CASES: Case[] = [
         "Музей, ресторан и мастер-классы под одной крышей. Длинный первый экран об истории хлеба, три зала, единый путь покупки билета.",
     },
     href: "https://zerno-sigma.vercel.app/",
+    shot: "/img/work/zerno.jpg",
     plate: "plate-amber",
     featured: true,
   },
@@ -141,6 +150,7 @@ export const CASES: Case[] = [
       stack: "Next.js, Vercel, свой домен",
     },
     href: "https://www.tallamie.com/",
+    shot: "/img/work/tallamie.jpg",
     plate: "plate-night",
   },
   {
@@ -156,6 +166,7 @@ export const CASES: Case[] = [
         "Логотип как продукт: бриф, генерация с ИИ, доводка дизайнером, готово за 48 часов. Цены видны сразу, уже на входном тарифе.",
     },
     href: "https://logo48.vercel.app/",
+    shot: "/img/work/logo48.jpg",
     plate: "plate-walnut",
   },
   {
@@ -170,6 +181,7 @@ export const CASES: Case[] = [
         "Многостраничный корпоративный сайт консалтинговой компании. Структура услуг, команда партнёров, кейсы по запросу.",
     },
     href: "https://gbs-beta.vercel.app/",
+    shot: "/img/work/gbs.jpg",
     plate: "plate-slate",
   },
   {
@@ -186,20 +198,7 @@ export const CASES: Case[] = [
       stack: "Next.js, Vercel, свой домен",
     },
     href: "https://era-zavod.ru/",
+    shot: "/img/work/era.jpg",
     plate: "plate-moss",
   },
-  {
-    niche: "This site",
-    brand: "ECITech",
-    story:
-      "Our own studio site: the editorial system you are reading, with booking and lead routing behind it.",
-    stack: "Next.js, Vercel",
-    ru: {
-      niche: "Этот сайт",
-      story:
-        "Сайт нашей студии: редакционная система, которую вы сейчас читаете, с записью на звонок и маршрутизацией заявок.",
-    },
-    href: "https://ecitech.online/",
-    plate: "plate-paper",
-  },
-];
+] as Case[]).map((c) => ({ ...c, ru: typo(c.ru) }));

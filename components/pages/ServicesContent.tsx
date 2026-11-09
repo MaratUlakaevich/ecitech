@@ -5,6 +5,7 @@ import FinalCTA from "../FinalCTA";
 import BreadcrumbsLd from "../seo/BreadcrumbsLd";
 import { book } from "@/lib/site";
 import { href, type Locale } from "@/lib/i18n";
+import { typo } from "@/lib/typo";
 
 type Layer = {
   slug: string;
@@ -30,6 +31,8 @@ const T = {
     priceB: "$10,000",
     priceBody:
       "We price per project, not per hour. Every engagement begins with the fixed-fee audit ($3,000), and you keep the plan whether or not you continue. Bilingual English and Arabic delivery is included where the scope needs it.",
+    tiers: [] as { name: string; what: string; price: string; time: string }[],
+    extras: "",
     layers: [
       {
         slug: "sites",
@@ -84,12 +87,20 @@ const T = {
     auditLink: "Как устроен аудит",
     auditTitle: ["Аудит готовности", "к ИИ"],
     auditBody:
-      "Пять дней работы с одним senior-инженером. На выходе — три пилота с расчётом ожидаемого ROI в отчёте на пятнадцать страниц, написанном для тех, кто принимает решение. Фиксированная цена $3 000, без обязательств продолжать.",
+      "Пять дней работы с одним senior-инженером. На выходе — три пилота с расчётом ожидаемого ROI в отчёте на пятнадцать страниц, написанном для тех, кто принимает решение. Цена фиксированная и известна до старта, без обязательств продолжать.",
     timeline: "Обычный срок",
-    priceA: "Проекты — от ",
-    priceB: "$10 000",
+    priceA: "Сайты — от ",
+    priceB: "70 000 ₽",
     priceBody:
-      "Мы считаем стоимость за проект, а не за час. Каждый проект начинается с аудита по фиксированной цене ($3 000), и план остаётся у вас, даже если дальше вы не пойдёте. Мультиязычная версия (русский, английский, арабский) входит в работу, если она нужна по задаче.",
+      "Мы считаем стоимость за проект, а не за час, и называем точную сумму до начала работы. Мультиязычная версия (русский, английский, арабский) входит в работу, если она нужна по задаче.",
+    tiers: [
+      { name: "Старт", what: "Лендинг на одну страницу", price: "70 000 – 90 000 ₽", time: "2–4 недели" },
+      { name: "Бизнес", what: "Многосекционный сайт и автоматизация заявок", price: "150 000 – 200 000 ₽", time: "4–6 недель" },
+      { name: "Профи", what: "Каталог, много страниц, интеграции", price: "280 000 – 380 000 ₽", time: "6–10 недель" },
+      { name: "Enterprise", what: "Сложные системы, ИИ-агенты, личные кабинеты", price: "от 500 000 ₽", time: "8–16 недель" },
+    ],
+    extras:
+      "Отдельно: Telegram-бот — от 90 000 ₽, настройка amoCRM или Bitrix24 — 30 000–80 000 ₽, ИИ-ассистент для сайта — от 100 000 ₽, поддержка — от 5 000 ₽ в месяц.",
     layers: [
       {
         slug: "sites",
@@ -136,6 +147,8 @@ const T = {
     ] as Layer[],
   },
 };
+
+T.ru = typo(T.ru);
 
 export default function ServicesContent({ locale }: { locale: Locale }) {
   const t = T[locale];
@@ -233,6 +246,24 @@ export default function ServicesContent({ locale }: { locale: Locale }) {
             <p className="mt-6 max-w-reading text-[16px] leading-[1.65] text-ink-700">
               {t.priceBody}
             </p>
+            {t.tiers.length > 0 && (
+              <ul className="mt-12 hairline-top">
+                {t.tiers.map((tier) => (
+                  <li
+                    key={tier.name}
+                    className="hairline-bottom py-6 grid gap-2 md:grid-cols-[200px_1fr_220px_140px] md:gap-8 md:items-baseline"
+                  >
+                    <span className="display text-[26px] text-ink-900 leading-[1.1]">{tier.name}</span>
+                    <span className="text-[15px] leading-[1.55] text-ink-700">{tier.what}</span>
+                    <span className="text-[17px] text-ink-900 tabular-nums">{tier.price}</span>
+                    <span className="text-[14px] text-ink-500">{tier.time}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {t.extras && (
+              <p className="mt-8 max-w-reading text-[15px] leading-[1.65] text-ink-700">{t.extras}</p>
+            )}
           </div>
         </section>
       </main>

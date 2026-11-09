@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import type { Locale } from "@/lib/i18n";
+import { typo, typoString as ty } from "@/lib/typo";
 
 /**
  * Process — Section 04.
@@ -71,7 +72,7 @@ const STEPS_RU: Step[] = [
 
 const ProcessSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   const ru = locale === "ru";
-  const STEPS = ru ? STEPS_RU : STEPS_EN;
+  const STEPS = ru ? typo(STEPS_RU) : STEPS_EN;
   return (
     <section
       id="process"
@@ -81,11 +82,11 @@ const ProcessSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
         <div className="grid lg:grid-cols-[1fr_600px] gap-8 lg:gap-14 mb-14 lg:mb-20 items-end">
           <h2 className="display text-[40px] sm:text-[60px] lg:text-[80px] text-ink-900 leading-[0.95]">
             {ru ? "Четыре шага." : "Four steps."}<br />
-            <span className="display-italic text-copper-500">{ru ? "Всегда" : "Same order"}</span>{ru ? " в одном порядке." : " every time."}
+            {ru ? ty("Всегда в одном порядке.") : "Same order every time."}
           </h2>
           <p className="text-[17px] lg:text-[18px] leading-[1.65] text-ink-700 max-w-reading">
             {ru
-              ? "Без discovery-воркшопов и презентаций. Каждый проект проходит одни и те же четыре шага в одном и том же порядке. Меняется только объём внутри каждого."
+              ? ty("Без долгих воркшопов и презентаций. Каждый проект проходит одни и те же четыре шага в одном порядке. Меняется только объём работы внутри каждого.")
               : "No discovery workshops, no pitch decks. Every engagement follows the same four steps in the same order. Only the scope inside each one changes."}
           </p>
         </div>
@@ -111,7 +112,7 @@ const ProcessSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
               {/* Arrow connector — between items, hidden on last */}
               {i < STEPS.length - 1 && (
                 <span
-                  className="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 z-10 text-ink-400"
+                  className="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 z-10 text-ink-500"
                   aria-hidden="true"
                 >
                   <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
@@ -135,7 +136,7 @@ const ProcessSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
             <p className="display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.12] text-ink-900">
               {ru ? (
                 <>
-                  Мы не <span className="display-italic text-copper-500">&laquo;внедряем ИИ&raquo;</span> в ваш бизнес. Мы снимаем с команды рутину, которая съедает её неделю.
+                  Мы не <span className="display-italic text-copper-500">&laquo;внедряем ИИ&raquo;</span> в ваш бизнес. {ty("Мы снимаем с команды рутину, которая съедает её неделю.")}
                 </>
               ) : (
                 <>
@@ -147,7 +148,7 @@ const ProcessSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
           <div className="brass-rule mt-10 mb-6 max-w-md"></div>
           <p className="text-[16px] leading-[1.7] text-ink-700 max-w-reading">
             {ru
-              ? "Инструменты сегодня доступны всем. Суждение — нет: какие тридцать процентов бизнеса автоматизировать, а какие семьдесят оставить как есть."
+              ? ty("Инструменты сегодня доступны всем. Умение выбрать — нет: какие тридцать процентов бизнеса автоматизировать, а какие семьдесят оставить как есть.")
               : "The tools are a commodity now. The judgement is not: which thirty per cent of a business to automate, and which seventy per cent to leave alone."}
           </p>
           <figcaption className="mt-6 flex items-center gap-3 text-[14px] text-ink-500">

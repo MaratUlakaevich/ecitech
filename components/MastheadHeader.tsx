@@ -3,6 +3,7 @@ import type { FC } from "react";
 import PrimaryNav from "./PrimaryNav";
 import LangSwitch from "./LangSwitch";
 import { href, type Locale } from "@/lib/i18n";
+import { typo } from "@/lib/typo";
 
 /**
  * Editorial masthead — shared site header (home included).
@@ -12,9 +13,11 @@ import { href, type Locale } from "@/lib/i18n";
  *  - Primary masthead: ECITech wordmark + nav + book-a-call link
  */
 const T = {
-  en: { skip: "Skip to content", a: "Independent digital studio, Riyadh", b: "Saudi Arabia, UAE, the Gulf", home: "ECITech home" },
-  ru: { skip: "Перейти к содержанию", a: "Независимая digital-студия, Эр-Рияд", b: "Россия, Саудовская Аравия, ОАЭ", home: "ECITech, главная" },
+  en: { skip: "Skip to content", a: "Independent digital studio, Riyadh", s: "Digital studio, Riyadh", b: "Saudi Arabia, UAE, the Gulf", home: "ECITech home" },
+  ru: { skip: "Перейти к содержанию", a: "Независимая digital-студия, Эр-Рияд", s: "Digital-студия, Эр-Рияд", b: "Россия, Саудовская Аравия, ОАЭ", home: "ECITech, главная" },
 };
+
+T.ru = typo(T.ru);
 
 const MastheadHeader: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   const t = T[locale];
@@ -31,7 +34,8 @@ const MastheadHeader: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
       {/* Ticker bar */}
       <div className="hairline-bottom">
         <div className="max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-3 flex items-center justify-between gap-6 font-mono text-[11px] tracking-[0.16em] uppercase text-ink-500">
-          <span>{t.a}</span>
+          <span className="hidden sm:inline md:hidden lg:inline">{t.a}</span>
+          <span className="sm:hidden md:inline lg:hidden">{t.s}</span>
           <span className="flex items-center gap-6">
             <span className="hidden md:inline">{t.b}</span>
             <LangSwitch />

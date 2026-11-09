@@ -2,14 +2,15 @@ import type { FC } from "react";
 import CaseCard from "./CaseCard";
 import { CASES } from "@/lib/cases";
 import type { Locale } from "@/lib/i18n";
+import { typo } from "@/lib/typo";
 
 /**
  * Selected Work — Section 02.
  *
  * Editorial portfolio grid of 6 cases built by the founder and partner
- * team. Each card is a typographic plate rather than a screenshot tile:
- * niche + name + 1-line story + stack. Plate gradients run light (top)
- * to dark (bottom) so the niche label reads in ink and the title in white.
+ * team. Each card shows a capture of the live site under a dark scrim
+ * (brand gradient when there is no capture): niche + name + story + stack.
+
  *
  * Click-through points to live URL on Vercel/custom domain.
  */
@@ -34,10 +35,12 @@ const T = {
       "Наша команда сделала их для цветочного бутика, парфюмерного дома, B2B-продукта, пластического хирурга, строительной компании в Саудовской Аравии и культурного пространства.",
     bridgeA: "Каждый начинался с сайта. ",
     bridgeB: "Следующий слой",
-    bridgeC: " — системы, которые работают за ним.",
+    bridgeC: " — системы, на которых этот сайт работает.",
     more: "Посмотреть три слоя",
   },
 };
+
+T.ru = typo(T.ru);
 
 const SelectedWork: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   const t = T[locale];

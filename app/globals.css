@@ -123,6 +123,16 @@ body {
   font-variant: small-caps;
   letter-spacing: 0.06em;
 }
+/* IBM Plex Sans has no Cyrillic small caps; the browser fakes them unevenly. */
+html[lang="ru"] .smallcaps {
+  font-variant: normal;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+}
+
+/* Display headings break into even lines (matters most for long Russian words). */
+h1.display, h2.display, h3.display { text-wrap: balance; }
 
 /* Editorial drop cap — first letter of an article-style paragraph */
 .dropcap::first-letter {
@@ -147,13 +157,7 @@ body {
 
 .brass-rule {
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(160, 138, 90, 0.50) 8%,
-    rgba(160, 138, 90, 0.50) 92%,
-    transparent 100%
-  );
+  background: rgba(160, 138, 90, 0.5);
 }
 
 /* Subtle copper seal (used in masthead) */

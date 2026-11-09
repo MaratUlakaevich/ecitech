@@ -5,6 +5,7 @@ import FinalCTA from "../FinalCTA";
 import BreadcrumbsLd from "../seo/BreadcrumbsLd";
 import { book } from "@/lib/site";
 import { href, type Locale } from "@/lib/i18n";
+import { typo } from "@/lib/typo";
 
 type Industry = { slug: string; title: string; sub: string; body: string; example: string };
 
@@ -118,6 +119,8 @@ const T = {
     ] as Industry[],
   },
 };
+
+T.ru = typo(T.ru);
 
 export default function IndustriesContent({ locale }: { locale: Locale }) {
   const t = T[locale];

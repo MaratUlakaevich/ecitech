@@ -34,29 +34,39 @@ export default function CalcomEmbed({
   const url = resolveCalUrl(link);
   const src = `${url}${url.includes("?") ? "&" : "?"}embed=true`;
 
+  const fallback = (
+    <p className="mb-4 text-[14px] text-ink-500">
+      {ru ? "Календарь не загружается?" : "Calendar not loading?"}{" "}
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center min-h-11 text-ink-900 underline underline-offset-4 decoration-[var(--rule-strong)] hover:text-copper-ink"
+      >
+        {ru ? "Откройте в новой вкладке" : "Open it in a new tab"}
+      </a>
+    </p>
+  );
+
   return (
     <div className="w-full">
-      <div className="w-full bg-paper-50">
+      {fallback}
+      {/* The loading note sits behind the iframe; Cal.com paints over it once ready. */}
+      <div className="relative w-full bg-paper-50">
+        <p
+          aria-hidden="true"
+          className="absolute inset-x-0 top-16 text-center text-[15px] text-ink-500"
+        >
+          {ru ? "Загружаем календарь\u2026" : "Loading the calendar\u2026"}
+        </p>
         <iframe
           src={src}
           title={frameTitle}
           loading="lazy"
-          className="block w-full h-[640px] md:h-[700px] border-0"
+          className="relative block w-full h-[640px] md:h-[700px] border-0 bg-transparent"
           allow="camera; microphone; fullscreen; clipboard-write"
         />
       </div>
-      <p className="mt-5 text-[14px] text-ink-500">
-        {ru ? "Календарь не загружается?" : "Calendar not loading?"}{" "}
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-ink-900 underline underline-offset-4 decoration-[var(--rule-strong)] hover:text-copper-ink"
-        >
-          {ru ? "Откройте в новой вкладке" : "Open it in a new tab"}
-        </a>
-        .
-      </p>
     </div>
   );
 }

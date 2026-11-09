@@ -4,7 +4,7 @@ import PortfolioContent from "../../components/pages/PortfolioContent";
 export const metadata: Metadata = {
   title: "Work: selected projects by ECITech",
   description:
-    "Eleven production projects: floral boutique, perfume house, B2B ERP, medical practice, cultural space, DJ portfolio, construction firm, design service, beverage producer, strategy consulting, and our own studio site.",
+    "Ten production projects: floral boutique, perfume house, B2B ERP, medical practice, cultural space, DJ portfolio, construction firm, design service, beverage producer, and strategy consulting.",
   keywords: [
     "ECITech portfolio",
     "Next.js projects",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Work — ECITech",
-    description: "Eleven production projects across very different worlds.",
+    description: "Ten production projects across very different worlds.",
     url: "https://ecitech.online/portfolio",
     images: [
       {
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Work — ECITech",
-    description: "Eleven production projects built by our team.",
+    description: "Ten production projects built by our team.",
     images: ["/img/og/default.png"],
   },
 };

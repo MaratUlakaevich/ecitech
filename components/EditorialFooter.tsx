@@ -2,6 +2,7 @@ import type { FC } from "react";
 import Link from "next/link";
 import { book, CONTACT_EMAIL } from "@/lib/site";
 import { href, type Locale } from "@/lib/i18n";
+import { typo } from "@/lib/typo";
 
 /**
  * Editorial footer — masthead reprise.
@@ -60,6 +61,8 @@ const COPY = {
     terms: "Условия",
   },
 };
+
+COPY.ru = typo(COPY.ru);
 
 const EditorialFooter: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   const t = COPY[locale];

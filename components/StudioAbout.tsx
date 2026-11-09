@@ -3,6 +3,7 @@ import Link from "next/link";
 import { book, CONTACT_EMAIL } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
 import { CASES } from "@/lib/cases";
+import { typo } from "@/lib/typo";
 
 /**
  * Studio — Section 05.
@@ -13,8 +14,7 @@ import { CASES } from "@/lib/cases";
  * record. Editorial two-column layout with stat row anchor.
  */
 
-// Live projects = every case except the studio's own site.
-const LIVE = CASES.filter((c) => !c.href.startsWith("https://ecitech.online")).length;
+const LIVE = CASES.length;
 
 const COPY = {
   en: {
@@ -55,6 +55,8 @@ const COPY = {
   },
 };
 
+COPY.ru = typo(COPY.ru);
+
 const StudioAbout: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   const t = COPY[locale];
   const b = book(locale);
@@ -69,7 +71,7 @@ const StudioAbout: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
         <div>
           <h2 className="display text-[40px] sm:text-[60px] lg:text-[80px] text-ink-900 leading-[0.95] mb-10 lg:mb-12">
             {t.h2a}<br />
-            <span className="display-italic text-copper-500">{t.h2b}</span>
+            {t.h2b}
           </h2>
 
           <div className="space-y-5 text-[17px] leading-[1.65] text-ink-700 max-w-reading">

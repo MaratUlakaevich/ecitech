@@ -21,7 +21,7 @@ const LangSwitch: FC = () => {
         <span key={loc} className="flex items-center gap-1">
           {i > 0 && <span aria-hidden="true">·</span>}
           {loc === current ? (
-            <span aria-current="true" className="text-ink-900">
+            <span aria-current="true" className="inline-flex items-center justify-center min-w-8 text-ink-900">
               {LABELS[loc].short}
             </span>
           ) : (
@@ -30,7 +30,7 @@ const LangSwitch: FC = () => {
               hrefLang={loc}
               lang={loc}
               aria-label={LABELS[loc].name}
-              className="inline-flex items-center min-h-8 px-1 hover:text-copper-ink transition-colors"
+              className="inline-flex items-center justify-center min-h-11 min-w-11 -my-3 hover:text-copper-ink transition-colors"
             >
               {LABELS[loc].short}
             </Link>

@@ -1,6 +1,8 @@
 import type { FC } from "react";
+import Image from "next/image";
 import { PLATES, type Case } from "@/lib/cases";
 import type { Locale } from "@/lib/i18n";
+import { typo } from "@/lib/typo";
 
 /**
  * One portfolio case as a typographic plate + story + stack. Shared by
@@ -10,6 +12,8 @@ const T = {
   en: { opens: ". Opens the live site in a new tab.", self: "You are here", live: "View live" },
   ru: { opens: ". Откроется в новой вкладке.", self: "Вы здесь", live: "Открыть сайт" },
 };
+
+T.ru = typo(T.ru);
 
 const CaseCard: FC<{ c: Case; locale?: Locale }> = ({ c, locale = "en" }) => {
   const isSelf = c.href.startsWith("https://ecitech.online");
@@ -28,13 +32,30 @@ const CaseCard: FC<{ c: Case; locale?: Locale }> = ({ c, locale = "en" }) => {
         {isSelf ? "" : t.opens}
       </h3>
 
-      {/* Plate (photo-position placeholder, tuned per brand) */}
+      {/* Plate: live-site capture when we have one, brand gradient otherwise */}
       <div
         className="aspect-[4/3] relative overflow-hidden"
         style={{ background: PLATES[c.plate] }}
         aria-hidden="true"
       >
-        <div className="absolute top-5 left-5 mono-eyebrow text-ink-900/75">
+        {c.shot && (
+          <>
+            <Image
+              src={c.shot}
+              alt=""
+              fill
+              sizes="(min-width: 1140px) 33vw, (min-width: 768px) 50vw, 100vw"
+              className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+            />
+            {/* Scrim so the white title holds on any screenshot */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(7,7,10,0.82)] via-[rgba(7,7,10,0.2)] via-45% to-transparent" />
+          </>
+        )}
+        <div
+          className={`absolute top-5 left-5 mono-eyebrow ${
+            c.shot ? "bg-paper-50/90 text-ink-900 px-2 py-1" : "text-ink-900/75"
+          }`}
+        >
           {niche}
         </div>
         <div className="absolute bottom-6 left-6 right-6">

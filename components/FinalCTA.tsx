@@ -2,6 +2,7 @@ import type { FC } from "react";
 import Link from "next/link";
 import { book } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
+import { typo } from "@/lib/typo";
 
 /**
  * Section 06 — Begin.
@@ -18,19 +19,19 @@ const STEPS_EN = [
   "You describe the part of the business that costs you the most time or money.",
   "We tell you plainly whether AI is the right tool, or whether something simpler will do.",
   "If it's a fit, we scope a five-day audit on the call. If not, we point you elsewhere.",
-  "No deck, no pitch. Engagements start at $10k.",
+  "No deck, no pitch. Engagements start at $10,000.",
 ];
 
 const STEPS_RU = [
   "Вы рассказываете, какая часть бизнеса отнимает больше всего времени или денег.",
   "Мы прямо говорим, подходит ли здесь ИИ или хватит чего-то попроще.",
   "Если подходит — прямо на звонке определяем рамки пятидневного аудита. Если нет — подскажем, куда обратиться.",
-  "Без презентаций и продаж. Проекты — от $10k.",
+  "Без презентаций и продаж. Сайты — от 70 000 ₽, автоматизация и ИИ — по объёму задачи.",
 ];
 
 const FinalCTA: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   const ru = locale === "ru";
-  const STEPS = ru ? STEPS_RU : STEPS_EN;
+  const STEPS = ru ? typo(STEPS_RU) : STEPS_EN;
   const b = book(locale);
   return (
     <section
@@ -47,7 +48,7 @@ const FinalCTA: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
               style={{ color: "var(--cream)" }}
             >
               {ru ? "Пять дней." : "Five days."}<br />
-              {ru ? "Один senior-инженер." : "One senior engineer."}<br />
+              {ru ? "Один старший инженер." : "One senior engineer."}<br />
               <span
                 className="display-italic"
                 style={{ color: "var(--copper-warm)" }}

@@ -5,6 +5,7 @@ import FinalCTA from "../FinalCTA";
 import BreadcrumbsLd from "../seo/BreadcrumbsLd";
 import { book, CONTACT_EMAIL } from "@/lib/site";
 import { href, type Locale } from "@/lib/i18n";
+import { typo } from "@/lib/typo";
 
 const T = {
   en: {
@@ -74,6 +75,8 @@ const T = {
     closing: "Лучше честно закончить звонок, чем продать лишнее.",
   },
 };
+
+T.ru = typo(T.ru);
 
 export default function AboutContent({ locale }: { locale: Locale }) {
   const t = T[locale];

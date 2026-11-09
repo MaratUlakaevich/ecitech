@@ -58,3 +58,4 @@ CLAUDE.md
 /tmp-build.log
 
 /leads
+.env*

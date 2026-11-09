@@ -15,6 +15,7 @@ import type { FC } from "react";
  */
 import { book } from "@/lib/site";
 import { href, type Locale } from "@/lib/i18n";
+import { typo } from "@/lib/typo";
 
 type Tier = {
   slug: string;
@@ -56,6 +57,7 @@ const COPY = {
         meta: ["6–16 weeks", "Agents, RAG, custom builds", "Bilingual delivery"],
       },
     ] as Tier[],
+    entry: "Entry point, before the layers",
     auditCta: "How the audit works",
     tierCta: "See what's included",
     h2a: "One trajectory.",
@@ -98,6 +100,7 @@ const COPY = {
         meta: ["6–16 недель", "Агенты, RAG, разработка", "Мультиязычная поставка"],
       },
     ] as Tier[],
+    entry: "Точка входа, до трёх слоёв",
     auditCta: "Как устроен аудит",
     tierCta: "Что входит",
     h2a: "Один путь.",
@@ -110,20 +113,25 @@ const COPY = {
   },
 };
 
+COPY.ru = typo(COPY.ru);
+
 const TierRow: FC<{
   tier: Tier;
   locale: Locale;
   cta: string;
   featuredTitle?: string[];
-}> = ({ tier, locale, cta, featuredTitle }) => (
+  entryLabel?: string;
+}> = ({ tier, locale, cta, featuredTitle, entryLabel }) => (
   <a
     href={href(locale, `/services#${tier.slug}`)}
-    className={`group block hairline-bottom py-10 lg:py-14 px-4 lg:px-10 -mx-4 lg:-mx-10 transition-colors hover:bg-paper-100 ${
+    className={`group relative isolate block hairline-bottom py-10 lg:py-14 before:absolute before:inset-y-0 before:-inset-x-4 lg:before:-inset-x-10 before:-z-10 before:transition-colors hover:before:bg-paper-100 ${
       featuredTitle ? "hairline-top" : ""
     }`}
   >
-    <div className="grid lg:grid-cols-[280px_1fr_180px] gap-5 lg:gap-12 items-start lg:items-center">
-      <h3 className="display text-[32px] sm:text-[38px] lg:text-[44px] text-ink-900 leading-[1.02]">
+    {/* Hairlines stay on the page gutter; only the hover wash bleeds. */}
+    <div className="grid lg:grid-cols-[340px_1fr_180px] gap-5 lg:gap-12 items-start lg:items-center">
+      <h3 className="display text-[32px] sm:text-[38px] lg:text-[42px] text-ink-900 leading-[1.02] text-balance">
+        {entryLabel && <span className="block mono-eyebrow mb-3">{entryLabel}</span>}
         {featuredTitle ? (
           <>
             {featuredTitle[0]}<br className="hidden lg:block" /> {featuredTitle[1]}
@@ -170,7 +178,7 @@ const ServiceLadder: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
       </div>
 
       {/* Tripwire row — featured */}
-      <TierRow tier={t.audit} locale={locale} cta={t.auditCta} featuredTitle={t.auditTitle} />
+      <TierRow tier={t.audit} locale={locale} cta={t.auditCta} featuredTitle={t.auditTitle} entryLabel={t.entry} />
 
       {/* Three core tiers */}
       {t.tiers.map((tier) => (
