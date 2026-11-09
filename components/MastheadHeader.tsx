@@ -1,68 +1,54 @@
 import Link from "next/link";
 import type { FC } from "react";
+import PrimaryNav from "./PrimaryNav";
+import LangSwitch from "./LangSwitch";
+import { href, type Locale } from "@/lib/i18n";
 
 /**
- * Editorial masthead — shared site header.
+ * Editorial masthead — shared site header (home included).
  *
  * Two stacked rows:
- *  - Ticker (VOLUME 02 · MOSCOW + RIYADH · EST. 2024)
- *  - Primary masthead (ECITech wordmark + nav + Begin link)
- *
- * Used by every page that isn't the marketing home (the home page
- * inlines its own copy of this masthead at the top of HeroSection so
- * the workflow background can render flush above the fold).
+ *  - Ticker: what the studio is + where it is based (real info, not decoration)
+ *  - Primary masthead: ECITech wordmark + nav + book-a-call link
  */
-const MastheadHeader: FC = () => {
+const T = {
+  en: { skip: "Skip to content", a: "Independent digital studio, Riyadh", b: "Saudi Arabia, UAE, the Gulf", home: "ECITech home" },
+  ru: { skip: "Перейти к содержанию", a: "Независимая digital-студия, Эр-Рияд", b: "Россия, Саудовская Аравия, ОАЭ", home: "ECITech, главная" },
+};
+
+const MastheadHeader: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
+  const t = T[locale];
   return (
-    <header className="relative z-10">
+    <header className="relative z-20">
+      {/* Skip link — first focusable element on every page */}
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:bg-ink-900 focus:text-paper-50 focus:px-4 focus:py-3 focus:text-[14px]"
+      >
+        {t.skip}
+      </a>
+
       {/* Ticker bar */}
       <div className="hairline-bottom">
-        <div className="max-w-[1480px] mx-auto px-8 lg:px-14 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-6 font-mono text-[10.5px] tracking-[0.2em] text-ink-500">
-            <span>VOLUME 02</span>
-            <span className="opacity-40">·</span>
-            <span>SPRING 2026</span>
-            <span className="opacity-40">·</span>
-            <span className="hidden md:inline">EST. 2024</span>
-          </div>
-          <div className="flex items-center gap-6 font-mono text-[10.5px] tracking-[0.2em] text-ink-500">
-            <span className="hidden md:inline">INDEPENDENT DIGITAL STUDIO</span>
-          </div>
+        <div className="max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-3 flex items-center justify-between gap-6 font-mono text-[11px] tracking-[0.16em] uppercase text-ink-500">
+          <span>{t.a}</span>
+          <span className="flex items-center gap-6">
+            <span className="hidden md:inline">{t.b}</span>
+            <LangSwitch />
+          </span>
         </div>
       </div>
 
       {/* Primary masthead */}
-      <div className="max-w-[1480px] mx-auto px-8 lg:px-14 py-8 flex items-center justify-between">
-        <Link href="/" className="flex items-baseline gap-3" aria-label="ECITech home">
-          <span className="display text-3xl tracking-tight text-ink-900">ECITech</span>
-          <span className="seal" aria-hidden="true"></span>
-        </Link>
+      <div className="relative">
+        <div className="max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-6 lg:py-8 flex items-center justify-between">
+          <Link href={href(locale, "/")} className="flex items-baseline gap-3 py-2" aria-label={t.home}>
+            <span className="display text-3xl tracking-tight text-ink-900">ECITech</span>
+            <span className="seal" aria-hidden="true"></span>
+          </Link>
 
-        <nav className="hidden lg:flex items-center gap-10" aria-label="Primary">
-          <Link href="/portfolio" className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">
-            Work
-          </Link>
-          <Link href="/services" className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">
-            Practice
-          </Link>
-          <Link href="/industries" className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">
-            Industries
-          </Link>
-          <Link href="/journal" className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">
-            Journal
-          </Link>
-          <Link href="/about" className="text-[14.5px] text-ink-800 hover:text-copper-500 transition-colors">
-            Studio
-          </Link>
-        </nav>
-
-        <Link
-          href="/contact"
-          className="hidden md:inline-flex items-center gap-3 text-[14.5px] text-ink-900 group"
-        >
-          <span className="smallcaps">Begin</span>
-          <span className="w-8 h-px bg-ink-900 transition-all duration-300 group-hover:bg-copper-500 group-hover:w-12"></span>
-        </Link>
+          <PrimaryNav />
+        </div>
       </div>
     </header>
   );

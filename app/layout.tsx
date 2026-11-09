@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { Fraunces, Instrument_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Fraunces, Instrument_Sans, IBM_Plex_Mono, Literata, IBM_Plex_Sans } from "next/font/google";
+import { headers } from "next/headers";
+import { localeFromPath } from "@/lib/i18n";
 import "./globals.css";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -28,6 +30,25 @@ const plexMono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
   display: "swap",
   weight: ["400", "500", "600"],
+});
+
+// Cyrillic faces for the /ru site. Not preloaded: English pages never use them.
+const literata = Literata({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-literata",
+  display: "swap",
+  style: ["normal", "italic"],
+  axes: ["opsz"],
+  preload: false,
+});
+
+const plexSans = IBM_Plex_Sans({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-plex-sans",
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -70,10 +91,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const lang = localeFromPath(headers().get("x-pathname") ?? "/");
   return (
     <html
-      lang="en"
-      className={`${fraunces.variable} ${instrument.variable} ${plexMono.variable}`}
+      lang={lang}
+      className={`${fraunces.variable} ${instrument.variable} ${plexMono.variable} ${literata.variable} ${plexSans.variable}`}
     >
       <head>
         <meta name="apple-mobile-web-app-title" content="ECITech" />

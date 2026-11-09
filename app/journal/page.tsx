@@ -60,26 +60,25 @@ export default function JournalPage() {
 
       <MastheadHeader />
 
-      <main className="relative">
+      <main id="main" className="relative">
         {/* Hero */}
-        <section className="max-w-[1480px] mx-auto px-8 lg:px-14 pt-16 pb-12 lg:pt-24 lg:pb-16">
-          <div className="mono-eyebrow mb-8">Journal · Notes from the studio</div>
-          <h1 className="display text-[48px] sm:text-[68px] lg:text-[88px] text-ink-900 leading-[0.98] max-w-hero">
+        <section className="max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 pt-12 pb-12 lg:pt-20 lg:pb-16">
+          <h1 className="display text-[44px] sm:text-[68px] lg:text-[88px] text-ink-900 leading-[0.98] max-w-hero">
             Editorial notes,<br />
             <span className="display-italic text-copper-500">honest takes.</span>
           </h1>
           <p className="mt-10 max-w-reading text-[17px] lg:text-[19px] leading-[1.6] text-ink-700">
             What we&apos;re learning while we ship: how the service ladder works in
-            practice, the editorial side of custom Next.js, and the quiet operations
-            layer behind a calm Monday.
+            practice, the editorial side of custom Next.js, and the operations
+            layer that keeps a business running.
           </p>
         </section>
 
         {/* Topic categories — purely descriptive in v1, not filterable */}
         {categories.length > 0 && (
           <section className="hairline-top hairline-bottom bg-paper-soft">
-            <div className="max-w-[1480px] mx-auto px-8 lg:px-14 py-6 flex flex-wrap items-center gap-3">
-              <span className="mono-eyebrow mr-2 !text-[10px]">Topics</span>
+            <div className="max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-6 flex flex-wrap items-center gap-3">
+              <span className="mono-eyebrow mr-2">Topics</span>
               {categories.map((c) => (
                 <span
                   key={c}
@@ -93,7 +92,7 @@ export default function JournalPage() {
         )}
 
         {/* Articles */}
-        <section className="max-w-[1480px] mx-auto px-8 lg:px-14 py-16 lg:py-24">
+        <section className="max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-14 lg:py-24">
           {articles.length === 0 ? (
             <EmptyJournal />
           ) : (
@@ -103,8 +102,8 @@ export default function JournalPage() {
                 <Link href={`/journal/${featured.slug}`} className="group block mb-16 lg:mb-20">
                   <div className="hairline-top hairline-bottom py-10 lg:py-14 grid lg:grid-cols-[1fr_360px] gap-8 lg:gap-16">
                     <div>
-                      <div className="mono-eyebrow text-copper-500 mb-4">
-                        00 — Latest issue
+                      <div className="mono-eyebrow text-copper-ink mb-4">
+                        Latest
                       </div>
                       <h2 className="display text-[34px] sm:text-[48px] lg:text-[60px] text-ink-900 leading-[1.02] mb-6 group-hover:text-ink-700 transition-colors">
                         {featured.frontmatter.title}
@@ -112,26 +111,26 @@ export default function JournalPage() {
                       <p className="text-[17px] leading-[1.65] text-ink-700 max-w-reading">
                         {featured.frontmatter.excerpt ?? featured.frontmatter.description}
                       </p>
-                      <div className="mt-8 inline-flex items-center gap-3 text-[14px] text-ink-900 group-hover:text-copper-500 transition-colors">
+                      <div className="mt-8 inline-flex items-center gap-3 text-[14px] text-ink-900 group-hover:text-copper-ink transition-colors">
                         <span className="smallcaps">Read the essay</span>
-                        <span className="w-8 h-px bg-current transition-all duration-300 group-hover:w-14"></span>
+                        <span className="w-14 h-px bg-current origin-left scale-x-[0.57] transition-transform duration-200 ease-out group-hover:scale-x-100"></span>
                       </div>
                     </div>
                     <aside className="lg:pl-10 lg:border-l hairline-strong space-y-5">
                       <div>
-                        <div className="mono-eyebrow !text-[10px] mb-1">Category</div>
+                        <div className="mono-eyebrow mb-1">Category</div>
                         <div className="text-[15px] text-ink-900">
                           {featured.frontmatter.category}
                         </div>
                       </div>
                       <div>
-                        <div className="mono-eyebrow !text-[10px] mb-1">Published</div>
+                        <div className="mono-eyebrow mb-1">Published</div>
                         <div className="text-[15px] text-ink-700">
                           {formatArticleDate(featured.frontmatter.date)}
                         </div>
                       </div>
                       <div>
-                        <div className="mono-eyebrow !text-[10px] mb-1">Reading time</div>
+                        <div className="mono-eyebrow mb-1">Reading time</div>
                         <div className="text-[15px] text-ink-700">
                           {featured.frontmatter.readingTime} min
                         </div>
@@ -144,7 +143,7 @@ export default function JournalPage() {
               {/* Remaining articles */}
               {rest.length > 0 && (
                 <>
-                  <div className="mono-eyebrow mb-8">More from the journal</div>
+                  <h2 className="display text-[28px] lg:text-[34px] text-ink-900 leading-[1.1] mb-8">More from the journal</h2>
                   <ol className="grid gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {rest.map((a) => (
                       <li key={a.slug}>
@@ -152,7 +151,7 @@ export default function JournalPage() {
                           href={`/journal/${a.slug}`}
                           className="group block hairline border bg-paper-50 hover:bg-paper-100 transition-colors p-8 lg:p-9 h-full"
                         >
-                          <div className="mono-eyebrow !text-[10px] text-copper-500 mb-4">
+                          <div className="mono-eyebrow text-copper-ink mb-4">
                             {a.frontmatter.category}
                           </div>
                           <h3 className="display text-[24px] lg:text-[28px] text-ink-900 leading-[1.1] mb-4 group-hover:text-ink-700 transition-colors">
@@ -161,7 +160,7 @@ export default function JournalPage() {
                           <p className="text-[14.5px] leading-[1.6] text-ink-700 mb-6">
                             {a.frontmatter.excerpt ?? a.frontmatter.description}
                           </p>
-                          <div className="hairline-top pt-4 flex items-center justify-between mono-eyebrow !text-[10px]">
+                          <div className="hairline-top pt-4 flex items-center justify-between text-[13.5px] text-ink-500">
                             <span>{formatArticleDate(a.frontmatter.date)}</span>
                             <span className="text-ink-700">{a.frontmatter.readingTime} min</span>
                           </div>
@@ -188,8 +187,8 @@ function EmptyJournal() {
         The journal opens soon.
       </p>
       <p className="text-[15px] text-ink-700 max-w-md mx-auto">
-        First issue is in production. In the meantime, the work itself is the writing
-        &mdash; see <Link href="/portfolio" className="link-editorial">Selected work</Link>.
+        The first issue is in production. In the meantime, the work itself is the
+        writing: see <Link href="/portfolio" className="link-editorial">selected work</Link>.
       </p>
     </div>
   );

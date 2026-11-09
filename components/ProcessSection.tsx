@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * Process — Section 04.
@@ -14,18 +15,18 @@ type Step = {
   body: string;
 };
 
-const STEPS: Step[] = [
+const STEPS_EN: Step[] = [
   {
     number: "I",
     title: "Brief",
     body:
-      "A 30-minute call. We figure out what's actually broken — and whether AI is the right tool. If not, we say so.",
+      "A 30-minute call. We find out what is actually broken, and whether AI is the right tool. If it isn't, we say so.",
   },
   {
     number: "II",
     title: "Sprint",
     body:
-      "Fixed scope, fixed fee, weekly demos. Either Marat builds it himself, or with one specialist from the network when the project asks for it.",
+      "Fixed scope, fixed fee, weekly demos. Marat builds it himself, or with one specialist from the network when the project needs it.",
   },
   {
     number: "III",
@@ -41,23 +42,51 @@ const STEPS: Step[] = [
   },
 ];
 
-const ProcessSection: FC = () => {
+const STEPS_RU: Step[] = [
+  {
+    number: "I",
+    title: "Бриф",
+    body:
+      "Звонок на 30 минут. Разбираемся, что на самом деле не работает и нужен ли здесь ИИ. Если не нужен — так и скажем.",
+  },
+  {
+    number: "II",
+    title: "Спринт",
+    body:
+      "Фиксированный объём, фиксированная цена, демо каждую неделю. Марат делает всё сам или с одним специалистом из сети, если проекту это нужно.",
+  },
+  {
+    number: "III",
+    title: "Запуск",
+    body:
+      "Деплой на Vercel, передача доступов, обучение команды, которая будет жить с системой после нас.",
+  },
+  {
+    number: "IV",
+    title: "Поддержка",
+    body:
+      "По желанию. Небольшой ежемесячный абонемент для тех, кто не хочет думать о хостинге, правках и выходе следующей ИИ-модели.",
+  },
+];
+
+const ProcessSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
+  const ru = locale === "ru";
+  const STEPS = ru ? STEPS_RU : STEPS_EN;
   return (
     <section
       id="process"
       className="relative z-10 bg-paper-deep hairline-top hairline-bottom"
     >
-      <div className="max-w-[1480px] mx-auto px-8 lg:px-14 py-24 lg:py-32">
-        <div className="grid lg:grid-cols-[1fr_600px] gap-14 mb-16 lg:mb-20 items-end">
-          <div>
-            <div className="mono-eyebrow mb-6">04 — Process</div>
-            <h2 className="display text-[44px] sm:text-[60px] lg:text-[80px] text-ink-900 leading-[0.95]">
-              Four steps.<br />
-              <span className="display-italic text-copper-500">No theatre.</span>
-            </h2>
-          </div>
+      <div className="max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-20 lg:py-32">
+        <div className="grid lg:grid-cols-[1fr_600px] gap-8 lg:gap-14 mb-14 lg:mb-20 items-end">
+          <h2 className="display text-[40px] sm:text-[60px] lg:text-[80px] text-ink-900 leading-[0.95]">
+            {ru ? "Четыре шага." : "Four steps."}<br />
+            <span className="display-italic text-copper-500">{ru ? "Всегда" : "Same order"}</span>{ru ? " в одном порядке." : " every time."}
+          </h2>
           <p className="text-[17px] lg:text-[18px] leading-[1.65] text-ink-700 max-w-reading">
-            We don&apos;t run discovery workshops or pitch decks. We run engineering. Every engagement follows the same four beats, in the same order &mdash; only the scope inside each one changes.
+            {ru
+              ? "Без discovery-воркшопов и презентаций. Каждый проект проходит одни и те же четыре шага в одном и том же порядке. Меняется только объём внутри каждого."
+              : "No discovery workshops, no pitch decks. Every engagement follows the same four steps in the same order. Only the scope inside each one changes."}
           </p>
         </div>
 
@@ -69,11 +98,8 @@ const ProcessSection: FC = () => {
               className="relative hairline border bg-paper-50 p-8 lg:p-9"
             >
               {/* Step numeral */}
-              <div className="flex items-baseline justify-between mb-6">
+              <div className="mb-6">
                 <span className="numeral text-[52px] text-copper-500">{step.number}</span>
-                <span className="mono-eyebrow !text-[10px]">
-                  {String(i + 1).padStart(2, "0")} / 04
-                </span>
               </div>
 
               <h3 className="display text-[28px] text-ink-900 mb-4 leading-[1.05]">
@@ -104,26 +130,31 @@ const ProcessSection: FC = () => {
         </ol>
 
         {/* Editorial pull-quote anchor */}
-        <div className="mt-20 lg:mt-24 grid lg:grid-cols-[180px_1fr] gap-10 lg:gap-14">
-          <div className="mono-eyebrow text-ink-500">
-            04.1 — On method
-            <br />
-            <span className="text-brass-500">A note from the studio</span>
-          </div>
+        <figure className="mt-20 lg:mt-24 max-w-[1040px]">
           <blockquote>
-            <p className="display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-ink-900">
-              We don&apos;t try to <span className="display-italic text-copper-500">&ldquo;add AI&rdquo;</span> to your business. We try to make your Tuesday morning quieter &mdash; and your Friday ledger fuller.
+            <p className="display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.12] text-ink-900">
+              {ru ? (
+                <>
+                  Мы не <span className="display-italic text-copper-500">&laquo;внедряем ИИ&raquo;</span> в ваш бизнес. Мы снимаем с команды рутину, которая съедает её неделю.
+                </>
+              ) : (
+                <>
+                  We don&apos;t <span className="display-italic text-copper-500">&ldquo;add AI&rdquo;</span> to your business. We take the repetitive work off your team&apos;s week.
+                </>
+              )}
             </p>
-            <div className="brass-rule mt-10 mb-6 max-w-md"></div>
-            <p className="text-[15.5px] leading-[1.7] text-ink-700 max-w-reading">
-              Most agencies sell tools. We sell workflow design. The tools are commodity now; the judgement about which thirty per cent of a business to automate, and which seventy per cent to leave alone, is not.
-            </p>
-            <footer className="mt-6 mono-eyebrow flex items-center gap-3 text-ink-500">
-              <span className="w-4 h-px bg-ink-400"></span>
-              <span>The studio · 2026</span>
-            </footer>
           </blockquote>
-        </div>
+          <div className="brass-rule mt-10 mb-6 max-w-md"></div>
+          <p className="text-[16px] leading-[1.7] text-ink-700 max-w-reading">
+            {ru
+              ? "Инструменты сегодня доступны всем. Суждение — нет: какие тридцать процентов бизнеса автоматизировать, а какие семьдесят оставить как есть."
+              : "The tools are a commodity now. The judgement is not: which thirty per cent of a business to automate, and which seventy per cent to leave alone."}
+          </p>
+          <figcaption className="mt-6 flex items-center gap-3 text-[14px] text-ink-500">
+            <span className="w-4 h-px bg-ink-400" aria-hidden="true"></span>
+            <span>{ru ? "Марат Улакаев, основатель" : "Marat Ulakaev, founder"}</span>
+          </figcaption>
+        </figure>
       </div>
     </section>
   );

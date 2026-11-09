@@ -22,7 +22,7 @@ export default function OrganizationLd() {
         "@type": "ContactPoint",
         email: "hello@ecitech.online",
         contactType: "sales",
-        availableLanguage: ["English", "Russian", "Arabic"],
+        availableLanguage: ["English", "Arabic"],
       },
     ],
   };

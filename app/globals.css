@@ -20,12 +20,15 @@
 
   --copper:       #D4522E;  /* hot orange — Paper body accent */
   --copper-warm:  #B8633A;  /* warm copper — Section 06 italic + pulses */
+  --copper-ink:   #B8441F;  /* copper for small text + fills under white text (5.4:1 on paper) */
+  --copper-light: #D98A5F;  /* copper for small text on ink-warm (6.2:1) */
 
   --cream:        #F5EFE3;
   --cream-soft:   #FBF7EE;
   --cream-deep:   #EEE5D1;
 
-  --brass:        #A08A5A;
+  --brass:        #A08A5A;  /* rules only — use --brass-ink for text */
+  --brass-ink:    #7A6740;
 
   --rule:         rgba(7, 7, 10, 0.10);
   --rule-strong:  rgba(7, 7, 10, 0.18);
@@ -35,34 +38,44 @@
 }
 
 html {
-  scroll-behavior: smooth;
   font-feature-settings: "kern" 1, "liga" 1, "ss01" 1;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* Font stacks. Fraunces and Instrument Sans have no Cyrillic, so the
+   Russian site swaps in Literata and IBM Plex Sans (html[lang="ru"]). */
+:root {
+  --display-font: var(--font-fraunces), "Fraunces", ui-serif, Georgia, serif;
+  --sans-font: var(--font-instrument), "Instrument Sans", system-ui, sans-serif;
+}
+html[lang="ru"] {
+  --display-font: var(--font-literata), "Literata", ui-serif, Georgia, serif;
+  --sans-font: var(--font-plex-sans), "IBM Plex Sans", system-ui, sans-serif;
+}
+
+/* Fine paper-grain texture baked into the body background (no fixed
+   blend layer to recomposite on every scroll frame). */
 body {
-  background: var(--paper);
+  background-color: var(--paper);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.11 0 0 0 0 0.18 0 0 0 0.035 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   color: var(--ink);
-  font-family: var(--font-instrument), "Instrument Sans", system-ui, sans-serif;
+  font-family: var(--sans-font);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   letter-spacing: -0.005em;
 }
 
-/* Fine paper-grain texture — premium tactile feel */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.05;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.11 0 0 0 0 0.18 0 0 0 0.7 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+::selection {
+  background: rgba(212, 82, 46, 0.18);
+  color: var(--ink);
 }
 
-main,
-footer {
-  contain: layout;
+:focus-visible {
+  outline: 2px solid var(--copper-ink);
+  outline-offset: 3px;
 }
 
 /* ============================================================== */
@@ -70,7 +83,7 @@ footer {
 /* ============================================================== */
 
 .display {
-  font-family: var(--font-fraunces), "Fraunces", ui-serif, Georgia, serif;
+  font-family: var(--display-font);
   font-weight: 380;
   font-variation-settings: "opsz" 144, "SOFT" 30;
   letter-spacing: -0.025em;
@@ -78,7 +91,7 @@ footer {
 }
 
 .display-italic {
-  font-family: var(--font-fraunces), "Fraunces", ui-serif, Georgia, serif;
+  font-family: var(--display-font);
   font-style: italic;
   font-weight: 320;
   font-variation-settings: "opsz" 144, "SOFT" 100;
@@ -86,7 +99,7 @@ footer {
 }
 
 .numeral {
-  font-family: var(--font-fraunces), "Fraunces", ui-serif, Georgia, serif;
+  font-family: var(--display-font);
   font-weight: 320;
   font-variation-settings: "opsz" 144, "SOFT" 20;
   font-feature-settings: "ss01" 1, "lnum" 1;
@@ -94,13 +107,16 @@ footer {
   line-height: 0.9;
 }
 
-.mono-eyebrow {
-  font-family: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
+/* In the components layer so Tailwind color/size utilities can override it. */
+@layer components {
+  .mono-eyebrow {
+    font-family: var(--font-plex-mono), "IBM Plex Mono", ui-monospace, monospace;
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
 }
 
 .smallcaps {
@@ -110,7 +126,7 @@ footer {
 
 /* Editorial drop cap — first letter of an article-style paragraph */
 .dropcap::first-letter {
-  font-family: var(--font-fraunces), "Fraunces", ui-serif, Georgia, serif;
+  font-family: var(--display-font);
   font-weight: 400;
   font-variation-settings: "opsz" 144, "SOFT" 40;
   float: left;
@@ -161,42 +177,68 @@ footer {
 /* Buttons                                                          */
 /* ============================================================== */
 
-.btn-primary {
+.btn-primary,
+.btn-primary-warm {
   display: inline-flex;
   align-items: center;
   gap: 14px;
-  background: var(--ink);
-  color: var(--paper);
   padding: 20px 28px;
   font-weight: 500;
   font-size: 15px;
   letter-spacing: -0.005em;
-  transition: transform 250ms ease, background 250ms ease;
+  white-space: nowrap;
+  transition: transform 160ms ease-out, color 200ms ease;
   position: relative;
   overflow: hidden;
   border: none;
   cursor: pointer;
+  touch-action: manipulation;
 }
-.btn-primary::after {
+.btn-primary      { background: var(--ink);      color: var(--paper); }
+.btn-primary-warm { background: var(--cream);    color: var(--ink-warm); }
+
+.btn-primary::after,
+.btn-primary-warm::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: var(--copper);
   transform: translateY(101%);
-  transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 240ms cubic-bezier(0.23, 1, 0.32, 1);
   z-index: 0;
 }
-.btn-primary > * { position: relative; z-index: 1; }
-.btn-primary:hover::after { transform: translateY(0); }
+.btn-primary::after      { background: var(--copper-ink); }
+.btn-primary-warm::after { background: var(--copper-light); }
 
-.btn-primary .arrow {
+.btn-primary > *,
+.btn-primary-warm > * { position: relative; z-index: 1; }
+
+.btn-primary:focus-visible::after,
+.btn-primary-warm:focus-visible::after { transform: translateY(0); }
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover::after,
+  .btn-primary-warm:hover::after { transform: translateY(0); }
+}
+
+.btn-primary:active,
+.btn-primary-warm:active { transform: scale(0.97); }
+
+.btn-primary:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.btn-primary:disabled::after { transform: translateY(101%); }
+
+.btn-primary .arrow,
+.btn-primary-warm .arrow {
   width: 18px;
   height: 1px;
   background: currentColor;
   position: relative;
   flex-shrink: 0;
 }
-.btn-primary .arrow::after {
+.btn-primary .arrow::after,
+.btn-primary-warm .arrow::after {
   content: "";
   position: absolute;
   right: 0;
@@ -209,37 +251,45 @@ footer {
 }
 
 .link-editorial {
-  font-family: var(--font-instrument), "Instrument Sans", sans-serif;
+  font-family: var(--sans-font);
   color: var(--ink);
   font-size: 15px;
   border-bottom: 1px solid rgba(7, 7, 10, 0.3);
   padding-bottom: 2px;
+  position: relative;
   transition: border-color 200ms ease, color 200ms ease;
 }
-.link-editorial:hover {
-  border-color: var(--copper);
-  color: var(--copper);
+/* Invisible hit area: keeps the hairline tight to the text while the
+   tap target reaches 44px. */
+.link-editorial::before {
+  content: "";
+  position: absolute;
+  inset: -9px -6px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .link-editorial:hover {
+    border-color: var(--copper-ink);
+    color: var(--copper-ink);
+  }
 }
 
 /* ============================================================== */
 /* Reveal animations — staggered hero load                          */
 /* ============================================================== */
 
-.reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  animation: reveal-up 900ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+/* The H1 is never revealed: it is the LCP element and paints at once.
+   Supporting copy follows in a short stagger, motion-safe only. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: reveal-up 600ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+  .reveal-1 { animation-delay: 60ms; }
+  .reveal-2 { animation-delay: 120ms; }
+  .reveal-3 { animation-delay: 180ms; }
 }
-.reveal-1 { animation-delay: 100ms; }
-.reveal-2 { animation-delay: 250ms; }
-.reveal-3 { animation-delay: 400ms; }
-.reveal-4 { animation-delay: 550ms; }
-.reveal-5 { animation-delay: 700ms; }
-.reveal-6 { animation-delay: 850ms; }
-.reveal-7 { animation-delay: 1000ms; }
 
 @keyframes reveal-up {
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(8px); }
 }
 
 /* ============================================================== */
@@ -248,9 +298,12 @@ footer {
 /* ============================================================== */
 
 .hero-workflow {
+  display: none;
   position: absolute;
-  inset: 0;
-  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 60%;
+  right: 0;
   height: 100%;
   pointer-events: none;
   z-index: 0;
@@ -268,6 +321,10 @@ footer {
     black 85%,
     transparent 100%
   );
+}
+
+@media (min-width: 1140px) {
+  .hero-workflow { display: block; }
 }
 
 /* Connection edges — hair-thin, stagger-drawn */
@@ -322,7 +379,7 @@ footer {
   animation: wf-text-fade 0.7s ease-out forwards;
 }
 .hero-workflow .wf-sub {
-  font-family: var(--font-instrument), "Instrument Sans", sans-serif;
+  font-family: var(--sans-font);
   font-size: 11px;
   fill: var(--ink-soft);
   opacity: 0;
@@ -383,34 +440,28 @@ footer {
   animation: wf-text-fade 0.7s ease-out 0.85s forwards;
 }
 
-/* Pulse dots flowing along edges */
+/* Pulse dots flowing along edges — opacity + motion both run in SMIL
+   (HeroWorkflowBg.tsx) so the fade stays locked to each loop. */
 .hero-workflow .wf-pulse {
   fill: var(--copper);
   opacity: 0;
-  animation: wf-pulse-show 3.5s ease-in-out infinite;
-}
-.hero-workflow .wp1 { animation-delay: 3.2s; }
-.hero-workflow .wp2 { animation-delay: 4.0s; }
-.hero-workflow .wp3 { animation-delay: 4.8s; }
-.hero-workflow .wp4 { animation-delay: 5.4s; }
-.hero-workflow .wp5 { animation-delay: 6.0s; }
-
-@keyframes wf-pulse-show {
-  0%, 5%    { opacity: 0; }
-  20%, 80%  { opacity: 0.78; }
-  95%, 100% { opacity: 0; }
 }
 
-/* ============================================================== */
-/* Scroll indicator                                                 */
-/* ============================================================== */
+/* Paused while the hero is offscreen (toggled in HeroWorkflowBg). */
+.hero-workflow.is-paused * { animation-play-state: paused !important; }
 
-.scroll-ind {
-  animation: scroll-pulse 2.4s ease-in-out infinite;
-}
-@keyframes scroll-pulse {
-  0%, 100% { transform: translateY(0);   opacity: 0.4; }
-  50%      { transform: translateY(8px); opacity: 1;   }
+/* Reduced motion: render the finished diagram, no travelling dots. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-workflow * { animation: none !important; }
+  .hero-workflow .wf-edge   { opacity: 0.18; stroke-dashoffset: 0; }
+  .hero-workflow .wf-rect   { opacity: 0.16; }
+  .hero-workflow .wf-node-primary .wf-rect { opacity: 0.24; }
+  .hero-workflow .wf-accent { opacity: 0.42; }
+  .hero-workflow .wf-node-primary .wf-accent { opacity: 0.58; }
+  .hero-workflow .wf-title,
+  .hero-workflow .wf-sub    { opacity: 0.40; }
+  .hero-workflow .wf-title-primary { opacity: 0.82; }
+  .hero-workflow .wf-pulse  { display: none; }
 }
 
 /* ============================================================== */

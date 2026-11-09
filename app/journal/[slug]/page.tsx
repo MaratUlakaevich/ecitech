@@ -78,7 +78,7 @@ const mdxComponents = {
   ),
   a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
     <a
-      className="text-ink-900 underline decoration-1 underline-offset-4 decoration-copper-500 hover:text-copper-500 transition-colors"
+      className="text-ink-900 underline decoration-1 underline-offset-4 decoration-copper-500 hover:text-copper-ink transition-colors"
       {...props}
     />
   ),
@@ -143,12 +143,12 @@ export default function ArticlePage({ params }: { params: Params }) {
 
       <MastheadHeader />
 
-      <main className="relative">
-        <article className="max-w-[1480px] mx-auto px-8 lg:px-14 pt-12 pb-16 lg:pt-20 lg:pb-24">
+      <main id="main" className="relative">
+        <article className="max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 pt-10 pb-16 lg:pt-20 lg:pb-24">
           {/* Back link */}
           <Link
             href="/journal"
-            className="inline-flex items-center gap-2 text-[13.5px] text-ink-500 hover:text-copper-500 transition-colors mb-12 lg:mb-16"
+            className="inline-flex items-center gap-2 min-h-11 text-[13.5px] text-ink-500 hover:text-copper-ink transition-colors mb-10 lg:mb-14"
           >
             <span className="w-6 h-px bg-current"></span>
             <span className="smallcaps">Back to journal</span>
@@ -156,11 +156,9 @@ export default function ArticlePage({ params }: { params: Params }) {
 
           {/* Article header */}
           <header className="max-w-reading mx-auto mb-12 lg:mb-16">
-            <div className="flex flex-wrap items-center gap-3 mb-8 mono-eyebrow !text-[10.5px]">
-              <span className="text-copper-500">{frontmatter.category}</span>
-              <span className="opacity-40">·</span>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-8 mono-eyebrow">
+              <span className="text-copper-ink">{frontmatter.category}</span>
               <time dateTime={frontmatter.date}>{formatArticleDate(frontmatter.date)}</time>
-              <span className="opacity-40">·</span>
               <span>{frontmatter.readingTime} min read</span>
             </div>
 
@@ -190,10 +188,9 @@ export default function ArticlePage({ params }: { params: Params }) {
 
           {/* Author / studio block */}
           <div className="max-w-reading mx-auto mt-16 lg:mt-20 pt-10 hairline-top">
-            <div className="mono-eyebrow mb-2">From the studio</div>
             <div className="text-[15px] leading-[1.65] text-ink-700">
               Written by <span className="text-ink-900">{frontmatter.author}</span>, founder
-              of ECITech &mdash; an independent digital studio.
+              of ECITech, an independent digital studio in Riyadh.
             </div>
           </div>
         </article>
@@ -201,8 +198,8 @@ export default function ArticlePage({ params }: { params: Params }) {
         {/* Related */}
         {related.length > 0 && (
           <section className="hairline-top bg-paper-soft">
-            <div className="max-w-[1480px] mx-auto px-8 lg:px-14 py-16 lg:py-24">
-              <div className="mono-eyebrow mb-10">More from the journal</div>
+            <div className="max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-14 lg:py-24">
+              <h2 className="display text-[28px] lg:text-[34px] text-ink-900 leading-[1.1] mb-8">More from the journal</h2>
               <ol className="grid gap-6 lg:gap-8 md:grid-cols-3">
                 {related.map((a) => (
                   <li key={a.slug}>
@@ -210,7 +207,7 @@ export default function ArticlePage({ params }: { params: Params }) {
                       href={`/journal/${a.slug}`}
                       className="group block hairline border bg-paper-50 hover:bg-paper-100 transition-colors p-7 lg:p-8 h-full"
                     >
-                      <div className="mono-eyebrow !text-[10px] text-copper-500 mb-3">
+                      <div className="mono-eyebrow text-copper-ink mb-3">
                         {a.frontmatter.category}
                       </div>
                       <h3 className="display text-[20px] lg:text-[22px] text-ink-900 leading-[1.15] mb-3 group-hover:text-ink-700 transition-colors">

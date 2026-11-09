@@ -1,4 +1,8 @@
 import type { FC } from "react";
+import Link from "next/link";
+import { book, CONTACT_EMAIL } from "@/lib/site";
+import type { Locale } from "@/lib/i18n";
+import { CASES } from "@/lib/cases";
 
 /**
  * Studio — Section 05.
@@ -9,84 +13,120 @@ import type { FC } from "react";
  * record. Editorial two-column layout with stat row anchor.
  */
 
-const STATS = [
-  { value: "9", suffix: "", label: "Live production projects" },
-  { value: "5", suffix: "yrs", label: "Combined Next.js + AI delivery" },
-  { value: "3", suffix: "", label: "Languages we ship in" },
-  { value: "1", suffix: "", label: "Founder per project" },
-];
+// Live projects = every case except the studio's own site.
+const LIVE = CASES.filter((c) => !c.href.startsWith("https://ecitech.online")).length;
 
-const StudioAbout: FC = () => {
+const COPY = {
+  en: {
+    stats: [
+      { value: "10", suffix: "yrs", label: "In software and AI engineering" },
+      { value: String(LIVE), suffix: "", label: "Production projects live" },
+      { value: "3", suffix: "", label: "Languages we ship in: English, Arabic (RTL included), Russian" },
+    ],
+    h2a: "Founded in 2024.",
+    h2b: "Intentionally small.",
+    p1: "ECITech is an independent digital studio based in Riyadh, founded by Marat Ulakaev, an engineer with a decade in software and AI. Marat shipped systems for BCG\u2009Gamma, Juniper Networks, Cisco, and Google before opening the studio.",
+    p2a: "We work as ",
+    p2b: "a studio of one plus a network",
+    p2c: ". Every project is led by the founder and supported by trusted specialists (design, copy, devops) when the scope needs them. No account managers, no sales floor.",
+    p3: "We don\u2019t take every project. We choose work where the path is clear: from a site, to the systems that run it, to the agents that scale it.",
+    studio: "Studio",
+    studioV: "Riyadh, Saudi Arabia",
+    markets: "Markets",
+    marketsV: "Saudi Arabia, UAE, the wider Gulf",
+  },
+  ru: {
+    stats: [
+      { value: "10", suffix: "лет", label: "В разработке и ИИ-инженерии" },
+      { value: String(LIVE), suffix: "", label: "Проектов в продакшене" },
+      { value: "3", suffix: "", label: "Языка, на которых запускаем: русский, английский, арабский (с RTL)" },
+    ],
+    h2a: "Основана в 2024.",
+    h2b: "Намеренно небольшая.",
+    p1: "ECITech — независимая digital-студия из Эр-Рияда. Её основал Марат Улакаев, инженер с десятилетним опытом в разработке и ИИ. До студии Марат строил системы для BCG\u2009Gamma, Juniper Networks, Cisco и Google.",
+    p2a: "Мы работаем как ",
+    p2b: "студия из одного человека плюс сеть",
+    p2c: ". Каждый проект ведёт основатель, а проверенные специалисты (дизайн, тексты, devops) подключаются, когда этого требует задача. Без аккаунт-менеджеров и отдела продаж.",
+    p3: "Мы берём не каждый проект. Выбираем те, где путь ясен: от сайта — к системам, которые его обслуживают, — к агентам, которые помогают расти.",
+    studio: "Студия",
+    studioV: "Эр-Рияд, Саудовская Аравия",
+    markets: "Рынки",
+    marketsV: "Россия, Саудовская Аравия, ОАЭ и страны Залива",
+  },
+};
+
+const StudioAbout: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
+  const t = COPY[locale];
+  const b = book(locale);
+  const STATS = t.stats;
   return (
     <section
       id="studio"
-      className="relative z-10 max-w-[1480px] mx-auto px-8 lg:px-14 py-24 lg:py-32"
+      className="relative z-10 max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-20 lg:py-32"
     >
       <div className="grid lg:grid-cols-[1fr_600px] gap-14 lg:gap-20 items-start">
         {/* Left — story */}
         <div>
-          <div className="mono-eyebrow mb-6">05 — The studio</div>
-          <h2 className="display text-[44px] sm:text-[60px] lg:text-[80px] text-ink-900 leading-[0.95] mb-12">
-            Founded in 2024.<br />
-            <span className="display-italic text-copper-500">Intentionally small.</span>
+          <h2 className="display text-[40px] sm:text-[60px] lg:text-[80px] text-ink-900 leading-[0.95] mb-10 lg:mb-12">
+            {t.h2a}<br />
+            <span className="display-italic text-copper-500">{t.h2b}</span>
           </h2>
 
           <div className="space-y-5 text-[17px] leading-[1.65] text-ink-700 max-w-reading">
+            <p>{t.p1}</p>
             <p>
-              ECITech is an independent digital studio, founded by Marat Ulakaev &mdash; an engineer with a decade in software and AI. Marat shipped systems for BCG&thinsp;Gamma, Juniper Networks, Cisco, and Google before opening the studio.
+              {t.p2a}<span className="text-ink-900">{t.p2b}</span>{t.p2c}
             </p>
-            <p>
-              We work as <span className="text-ink-900">a studio of one plus a network</span>: every project is led by the founder, supported by trusted specialists &mdash; designer, copywriter, devops &mdash; activated when the scope asks for them. We are not an agency. We do not run a sales floor.
-            </p>
-            <p>
-              We don&apos;t take every project. We choose work where the trajectory is clear: from a site, to the systems that run it, to the agents that scale it. The work in the portfolio above is the proof.
-            </p>
+            <p>{t.p3}</p>
           </div>
 
           <div className="mt-10">
-            <a href="#begin" className="link-editorial">
-              Talk to the studio &rarr;
-            </a>
+            <Link href={b.href} className="link-editorial">
+              {b.label}
+            </Link>
           </div>
         </div>
 
         {/* Right — stats + meta column */}
         <aside className="lg:pl-10 lg:border-l hairline-strong lg:border-l-[var(--rule-strong)]">
-          <div className="mono-eyebrow mb-8">In numbers</div>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-10 mb-14">
+          <dl className="grid grid-cols-3 gap-x-6 sm:gap-x-8 mb-14">
             {STATS.map((s) => (
-              <div key={s.label}>
-                <div className="numeral text-[64px] sm:text-[72px] text-ink-900">
+              <div key={s.label} className="flex flex-col-reverse justify-end">
+                <dt className="text-[13.5px] leading-[1.45] text-ink-500 mt-2 max-w-[160px]">
+                  {s.label}
+                </dt>
+                <dd className="numeral text-[48px] sm:text-[64px] text-ink-900">
                   {s.value}
                   {s.suffix && (
-                    <span className="text-[26px] align-top ml-1">{s.suffix}</span>
+                    <span className="text-[20px] sm:text-[24px] align-top ml-1">{s.suffix}</span>
                   )}
-                </div>
-                <div className="mono-eyebrow !text-[10.5px] !normal-case !tracking-[0.1em] text-ink-500 mt-1 max-w-[200px]">
-                  {s.label}
-                </div>
+                </dd>
               </div>
             ))}
-          </div>
+          </dl>
 
-          {/* Studio meta — correspondence + working hours */}
-          <div className="hairline-top pt-8 space-y-6">
+          {/* Studio meta — where, when, how to reach */}
+          <dl className="hairline-top pt-8 grid sm:grid-cols-2 gap-6">
             <div>
-              <div className="mono-eyebrow mb-2 !text-[10px]">Correspondence</div>
-              <a
-                href="mailto:hello@ecitech.online"
-                className="text-[15px] text-ink-800 hover:text-copper-500 transition-colors"
-              >
-                hello@ecitech.online
-              </a>
+              <dt className="mono-eyebrow mb-2">{t.studio}</dt>
+              <dd className="text-[15px] text-ink-800">{t.studioV}</dd>
             </div>
             <div>
-              <div className="mono-eyebrow mb-2 !text-[10px]">Working hours</div>
-              <p className="text-[14px] text-ink-700">
-                MON&ndash;THU · 09 &mdash; 18
-              </p>
+              <dt className="mono-eyebrow mb-2">{t.markets}</dt>
+              <dd className="text-[15px] text-ink-800">{t.marketsV}</dd>
             </div>
-          </div>
+            <div className="sm:col-span-2">
+              <dt className="mono-eyebrow mb-2">Email</dt>
+              <dd>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="inline-flex items-center min-h-11 text-[15px] text-ink-800 hover:text-copper-ink transition-colors"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+              </dd>
+            </div>
+          </dl>
         </aside>
       </div>
     </section>

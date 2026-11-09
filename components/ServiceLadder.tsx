@@ -9,147 +9,181 @@ import type { FC } from "react";
  * horizontal composition: roman numeral, big serif tier name, body
  * copy, included list, "Read more" link.
  *
- * Pricing is intentionally NOT shown on the marketing surface
- * (per the project pricing-hidden decision). Only "Engagements start
- * at $10k / 70k ₽" lives in FAQ.
+ * Pricing is intentionally NOT shown here (per the project
+ * pricing-hidden decision). "Engagements start at $10k" lives in the
+ * closing section and on /services.
  */
+import { book } from "@/lib/site";
+import { href, type Locale } from "@/lib/i18n";
 
 type Tier = {
-  number: string;
   slug: string;
   title: string;
-  highlight: string;
   body: string;
   meta: string[];
-  href: string;
 };
 
-const AUDIT: Tier = {
-  number: "00",
-  slug: "audit",
-  title: "AI Readiness Audit",
-  highlight: "audit",
-  body:
-    "Five days. One senior engineer. Three pilots scoped with honest ROI math. Delivered as a fifteen-page report your partners can actually read.",
-  meta: ["5 DAYS", "FIXED FEE", "NO OBLIGATION TO CONTINUE"],
-  href: "#begin",
+const COPY = {
+  en: {
+    audit: {
+      slug: "audit",
+      title: "AI Readiness Audit",
+      body:
+        "Five days with one senior engineer. You get three pilots scoped with expected ROI, in a fifteen-page report written for the people who sign off.",
+      meta: ["5 days", "Fixed fee", "No obligation to continue"],
+    },
+    auditTitle: ["AI Readiness", "Audit"],
+    tiers: [
+      {
+        slug: "sites",
+        title: "Sites",
+        body:
+          "Custom Next.js websites for businesses that have outgrown templates. From a single landing page to a multilingual catalog, built to last beyond the launch.",
+        meta: ["2–10 weeks", "Next.js on Vercel", "English, Arabic, Russian"],
+      },
+      {
+        slug: "automation",
+        title: "Automation",
+        body:
+          "Once the site is live, the operations layer: WhatsApp Business routing, HubSpot and Zoho CRM integration, portal lead intake, SEO retainers.",
+        meta: ["4–8 weeks", "WhatsApp, CRM, portals", "Retainer option"],
+      },
+      {
+        slug: "integration",
+        title: "Integration",
+        body:
+          "AI agents, RAG knowledge systems, custom CRM workflows, client portals. The layer that turns a site into a working system and gives your team its hours back.",
+        meta: ["6–16 weeks", "Agents, RAG, custom builds", "Bilingual delivery"],
+      },
+    ] as Tier[],
+    auditCta: "How the audit works",
+    tierCta: "See what's included",
+    h2a: "One trajectory.",
+    h2b: "Three layers",
+    lead:
+      "Most studios stop at the site. We start there, then earn the right to automate it, then earn the right to make it intelligent. Each tier is fixed-scope and ships on its own; the ladder is optional, not pushed.",
+    footA: "Not sure which layer fits? ",
+    footB: "Start with the audit.",
+    footC: " Five days, fixed fee, and you keep the plan whether or not you continue.",
+  },
+  ru: {
+    audit: {
+      slug: "audit",
+      title: "Аудит готовности к ИИ",
+      body:
+        "Пять дней работы с одним senior-инженером. На выходе — три пилота с расчётом ожидаемого ROI в отчёте на пятнадцать страниц, написанном для тех, кто принимает решение.",
+      meta: ["5 дней", "Фиксированная цена", "Без обязательств продолжать"],
+    },
+    auditTitle: ["Аудит готовности", "к ИИ"],
+    tiers: [
+      {
+        slug: "sites",
+        title: "Сайты",
+        body:
+          "Сайты на Next.js для компаний, которые выросли из шаблонов. От одного лендинга до многоязычного каталога — сделано так, чтобы работать долго после запуска.",
+        meta: ["2–10 недель", "Next.js на Vercel", "Русский, английский, арабский"],
+      },
+      {
+        slug: "automation",
+        title: "Автоматизация",
+        body:
+          "Когда сайт запущен — операционный слой: маршрутизация заявок в WhatsApp и Telegram, интеграция с amoCRM, Bitrix24, HubSpot и Zoho, сбор лидов с площадок, SEO-сопровождение.",
+        meta: ["4–8 недель", "Мессенджеры, CRM, площадки", "Можно на абонементе"],
+      },
+      {
+        slug: "integration",
+        title: "Интеграция",
+        body:
+          "ИИ-агенты, базы знаний на RAG, кастомные CRM-процессы, личные кабинеты клиентов. Слой, который превращает сайт в рабочую систему и возвращает команде часы.",
+        meta: ["6–16 недель", "Агенты, RAG, разработка", "Мультиязычная поставка"],
+      },
+    ] as Tier[],
+    auditCta: "Как устроен аудит",
+    tierCta: "Что входит",
+    h2a: "Один путь.",
+    h2b: "Три слоя",
+    lead:
+      "Большинство студий останавливаются на сайте. Мы с него начинаем, затем автоматизируем процессы за ним, а потом добавляем интеллект. Каждый слой — фиксированный объём и запускается сам по себе; переходить на следующий необязательно.",
+    footA: "Не уверены, какой слой нужен? ",
+    footB: "Начните с аудита.",
+    footC: " Пять дней, фиксированная цена, и план остаётся у вас, даже если дальше вы не пойдёте.",
+  },
 };
 
-const TIERS: Tier[] = [
-  {
-    number: "01",
-    slug: "sites",
-    title: "Sites",
-    highlight: "Sites",
-    body:
-      "Custom Next.js websites for businesses that have outgrown templates. From a single landing to a multilingual catalog — engineered to last beyond the launch sprint.",
-    meta: ["2–10 WEEKS", "NEXT.JS · VERCEL", "EN · RU · AR"],
-    href: "/services/sites",
-  },
-  {
-    number: "02",
-    slug: "automation",
-    title: "Automation",
-    highlight: "Automation",
-    body:
-      "Once the site is live, the operations layer: Telegram routing, amoCRM and Bitrix24 integration, WhatsApp Business, SEO retainers, content ops. The quiet machinery behind a calm Monday.",
-    meta: ["4–8 WEEKS", "TELEGRAM · CRM · WHATSAPP", "RETAINER OPTION"],
-    href: "/services/automation",
-  },
-  {
-    number: "03",
-    slug: "integration",
-    title: "Integration",
-    highlight: "Integration",
-    body:
-      "AI agents, RAG knowledge systems, custom CRM workflows, personal cabinets. The intelligence layer that turns one site into a working system — and one team's hours back into the team.",
-    meta: ["6–16 WEEKS", "AGENTS · RAG · CUSTOM", "BILINGUAL DELIVERY"],
-    href: "/services/integration",
-  },
-];
-
-const TierRow: FC<{ tier: Tier; featured?: boolean }> = ({ tier, featured }) => (
+const TierRow: FC<{
+  tier: Tier;
+  locale: Locale;
+  cta: string;
+  featuredTitle?: string[];
+}> = ({ tier, locale, cta, featuredTitle }) => (
   <a
-    href={tier.href}
-    className={`group block hairline-bottom py-12 lg:py-16 px-4 lg:px-10 -mx-4 lg:-mx-10 transition-colors hover:bg-paper-100 ${
-      featured ? "hairline-top" : ""
+    href={href(locale, `/services#${tier.slug}`)}
+    className={`group block hairline-bottom py-10 lg:py-14 px-4 lg:px-10 -mx-4 lg:-mx-10 transition-colors hover:bg-paper-100 ${
+      featuredTitle ? "hairline-top" : ""
     }`}
   >
-    <div className="grid lg:grid-cols-[80px_240px_1fr_160px] gap-8 lg:gap-10 items-start lg:items-center">
-      <div className="mono-eyebrow text-copper-500">
-        {tier.number}
-        <br />
-        <span className="text-ink-500 normal-case !tracking-[0.2em]">{tier.slug}</span>
-      </div>
+    <div className="grid lg:grid-cols-[280px_1fr_180px] gap-5 lg:gap-12 items-start lg:items-center">
+      <h3 className="display text-[32px] sm:text-[38px] lg:text-[44px] text-ink-900 leading-[1.02]">
+        {featuredTitle ? (
+          <>
+            {featuredTitle[0]}<br className="hidden lg:block" /> {featuredTitle[1]}
+          </>
+        ) : (
+          tier.title
+        )}
+      </h3>
       <div>
-        <h3 className="display text-[32px] sm:text-[38px] lg:text-[44px] text-ink-900 leading-[1]">
-          {featured ? (
-            <>
-              AI Readiness<br />Audit
-            </>
-          ) : (
-            tier.title
-          )}
-        </h3>
-      </div>
-      <div>
-        <p className="text-[15.5px] leading-[1.65] text-ink-700 max-w-measure">
+        <p className="text-[16px] leading-[1.65] text-ink-700 max-w-measure">
           {tier.body}
         </p>
-        <div className="mt-5 flex flex-wrap gap-x-3 gap-y-2 mono-eyebrow !text-[10px] text-ink-500">
-          {tier.meta.map((m, i) => (
-            <span key={m} className="flex items-center gap-3">
-              <span>{m}</span>
-              {i < tier.meta.length - 1 && <span className="opacity-40">·</span>}
-            </span>
+        <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-[13.5px] text-ink-500">
+          {tier.meta.map((m) => (
+            <li key={m}>{m}</li>
           ))}
-        </div>
+        </ul>
       </div>
-      <div className="flex items-center lg:justify-end gap-3 text-ink-700 transition-colors group-hover:text-copper-500">
-        <span className="smallcaps">
-          {featured ? "Begin here" : "Read more"}
-        </span>
-        <span className="w-7 h-px bg-current transition-all duration-300 group-hover:w-12"></span>
+      <div className="flex items-center lg:justify-end gap-3 text-ink-700 transition-colors group-hover:text-copper-ink">
+        <span className="smallcaps whitespace-nowrap">{cta}</span>
+        <span className="w-12 h-px bg-current origin-left scale-x-[0.6] transition-transform duration-200 ease-out group-hover:scale-x-100"></span>
       </div>
     </div>
   </a>
 );
 
-const ServiceLadder: FC = () => {
+const ServiceLadder: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
+  const t = COPY[locale];
+  const b = book(locale);
   return (
     <section
       id="practice"
-      className="relative z-10 max-w-[1480px] mx-auto px-8 lg:px-14 py-24 lg:py-32"
+      className="relative z-10 max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-20 lg:py-32"
     >
       {/* Header */}
-      <div className="grid lg:grid-cols-[1fr_600px] gap-14 mb-20 items-end">
-        <div>
-          <div className="mono-eyebrow mb-6">03 — Practice</div>
-          <h2 className="display text-[44px] sm:text-[60px] lg:text-[80px] text-ink-900 leading-[0.95]">
-            One trajectory.<br />
-            <span className="display-italic text-copper-500">Three layers</span>.
-          </h2>
-        </div>
+      <div className="grid lg:grid-cols-[1fr_600px] gap-8 lg:gap-14 mb-14 lg:mb-20 items-end">
+        <h2 className="display text-[40px] sm:text-[60px] lg:text-[80px] text-ink-900 leading-[0.95]">
+          {t.h2a}<br />
+          <span className="display-italic text-copper-500">{t.h2b}</span>.
+        </h2>
         <p className="text-[17px] lg:text-[18px] leading-[1.65] text-ink-700 max-w-reading">
-          Most studios stop at the site. We start there, then earn the right to automate it, then earn the right to make it intelligent. Each tier is fixed-scope and ships on its own; the ladder is optional, not pushed.
+          {t.lead}
         </p>
       </div>
 
       {/* Tripwire row — featured */}
-      <TierRow tier={AUDIT} featured />
+      <TierRow tier={t.audit} locale={locale} cta={t.auditCta} featuredTitle={t.auditTitle} />
 
       {/* Three core tiers */}
-      {TIERS.map((tier) => (
-        <TierRow key={tier.slug} tier={tier} />
+      {t.tiers.map((tier) => (
+        <TierRow key={tier.slug} tier={tier} locale={locale} cta={t.tierCta} />
       ))}
 
       {/* Footer affordance */}
-      <div className="mt-16 lg:mt-20 hairline-top pt-10 flex flex-col lg:flex-row gap-6 lg:items-end lg:justify-between">
+      <div className="mt-14 lg:mt-20 hairline-top pt-10 flex flex-col lg:flex-row gap-6 lg:items-end lg:justify-between">
         <p className="text-[16px] leading-[1.65] text-ink-700 max-w-reading">
-          Not sure which tier fits? <span className="text-ink-900">Begin with the audit.</span> Five days, fixed fee, walk away with a plan whether or not you continue.
+          {t.footA}<span className="text-ink-900">{t.footB}</span>{t.footC}
         </p>
-        <a href="#begin" className="link-editorial whitespace-nowrap">
-          Book the audit &rarr;
+        <a href={b.href} className="link-editorial whitespace-nowrap self-start lg:self-auto">
+          {b.label}
         </a>
       </div>
     </section>

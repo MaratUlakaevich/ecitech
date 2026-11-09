@@ -1,6 +1,9 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  // Hover styles only on devices that can actually hover (no sticky
+  // hover after a tap on phones).
+  future: { hoverOnlyWhenSupported: true },
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,14 +11,14 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      sm: "320px",
+      sm: "640px",
       md: "768px",
       lg: "1140px",
     },
     extend: {
       fontFamily: {
-        display: ["var(--font-fraunces)", "Fraunces", "ui-serif", "Georgia", "serif"],
-        sans: ["var(--font-instrument)", "Instrument Sans", "system-ui", "sans-serif"],
+        display: ["var(--display-font)"],
+        sans: ["var(--sans-font)"],
         mono: ["var(--font-plex-mono)", "IBM Plex Mono", "ui-monospace", "monospace"],
       },
       colors: {
@@ -40,6 +43,8 @@ const config: Config = {
           500: "#D4522E",  // Paper accent — hot orange punch
           600: "#B8633A",  // Copper warm — Section 06 close italic + accents
           700: "#964E2B",
+          ink: "#B8441F",    // copper for small text / fills under white text (5.4:1)
+          light: "#D98A5F",  // copper for small text on ink-700 (6.2:1)
         },
         cream: {
           50:  "#FBF7EE",
@@ -47,7 +52,8 @@ const config: Config = {
           200: "#EEE5D1",
         },
         brass: {
-          500: "#A08A5A",
+          500: "#A08A5A",  // rules only
+          700: "#7A6740",  // brass text (4.8:1 on paper-200)
         },
       },
       maxWidth: {

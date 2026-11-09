@@ -56,3 +56,5 @@ CLAUDE.md
 .claude/worktrees/
 # Build log scratch
 /tmp-build.log
+
+/leads

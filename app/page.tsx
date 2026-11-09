@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import MastheadHeader from "../components/MastheadHeader";
 import HeroSection from "../components/HeroSection";
 import SelectedWork from "../components/SelectedWork";
 import ServiceLadder from "../components/ServiceLadder";
@@ -10,7 +11,8 @@ import EditorialFooter from "../components/EditorialFooter";
 /**
  * ECITech home page — Phase 2 (full assembly).
  *
- *   01  Hero            (Paper, workflow SVG bg, masthead + nav)
+ *   00  Masthead        (shared MastheadHeader: ticker + nav)
+ *   01  Hero            (Paper, workflow SVG bg)
  *   02  Selected Work   (6 portfolio cases as editorial plates)
  *   03  Practice        (Service ladder: Audit / Sites / Automation / Integration)
  *   04  Process         (Brief → Sprint → Launch → Operate + pull-quote)
@@ -30,9 +32,11 @@ export const metadata: Metadata = {
     "Next.js development agency",
     "AI integration",
     "workflow automation",
-    "Telegram bot development",
-    "amoCRM integration",
-    "Bitrix24 integration",
+    "WhatsApp Business automation",
+    "HubSpot integration",
+    "Zoho CRM integration",
+    "web development Riyadh",
+    "web development Dubai",
     "RAG system",
     "AI workflow partner",
   ],
@@ -72,7 +76,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <main className="relative">
+      <MastheadHeader locale="en" />
+      <main id="main" className="relative">
         <HeroSection />
         <SelectedWork />
         <ServiceLadder />

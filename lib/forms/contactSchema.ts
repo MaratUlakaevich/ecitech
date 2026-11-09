@@ -19,14 +19,23 @@ export const INDUSTRY_OPTIONS = [
 export type Industry = (typeof INDUSTRY_OPTIONS)[number];
 
 export const contactSchema = z.object({
-  fullName: z.string().min(2).max(120),
-  email: z.string().email().max(200),
-  company: z.string().max(120).optional().or(z.literal('')),
-  phone: z.string().max(40).optional().or(z.literal('')),
-  message: z.string().min(10).max(5000),
+  fullName: z
+    .string()
+    .min(2, 'Enter your name.')
+    .max(120, 'Keep the name under 120 characters.'),
+  email: z
+    .string()
+    .email('Enter an email address like name@company.com.')
+    .max(200, 'Keep the email under 200 characters.'),
+  company: z.string().max(120, 'Keep the company name under 120 characters.').optional().or(z.literal('')),
+  phone: z.string().max(40, 'Keep the phone number under 40 characters.').optional().or(z.literal('')),
+  message: z
+    .string()
+    .min(10, 'Add a sentence or two about the project (10 characters minimum).')
+    .max(5000, 'Keep the message under 5,000 characters.'),
   industry: z.enum(INDUSTRY_OPTIONS).optional(),
   nda: z.boolean().optional(),
-  turnstileToken: z.string().min(10).max(2048),
+  turnstileToken: z.string().min(10, 'Complete the security check above the button.').max(2048),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;

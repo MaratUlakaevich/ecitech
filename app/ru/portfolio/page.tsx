@@ -1,0 +1,25 @@
+import type { Metadata } from "next";
+import PortfolioContent from "../../../components/pages/PortfolioContent";
+
+export const metadata: Metadata = {
+  title: "Работы ECITech: избранные проекты",
+  description:
+    "Одиннадцать проектов в продакшене: цветочный бутик, парфюмерный дом, B2B ERP, медицинская практика, культурное пространство, строительная компания, производитель напитков и другие.",
+  alternates: { canonical: "https://ecitech.online/ru/portfolio" },
+  openGraph: {
+    title: "Работы — ECITech",
+    description: "Одиннадцать проектов в продакшене: цветочный бутик, парфюмерный дом, B2B ERP, медицинская практика, культурное пространство, строительная компания, производитель напитков и другие.",
+    url: "https://ecitech.online/ru/portfolio",
+    locale: "ru_RU",
+    images: [{ url: "/img/og/default.png", width: 1200, height: 630, alt: "ECITech" }],
+  },
+  twitter: {
+    title: "Работы — ECITech",
+    description: "Одиннадцать проектов в продакшене: цветочный бутик, парфюмерный дом, B2B ERP, медицинская практика, культурное пространство, строительная компания, производитель напитков и другие.",
+    images: ["/img/og/default.png"],
+  },
+};
+
+export default function RuPortfolioPage() {
+  return <PortfolioContent locale="ru" />;
+}

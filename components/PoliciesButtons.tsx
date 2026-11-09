@@ -3,65 +3,42 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+const POLICIES = [
+  { href: "/terms", label: "Terms" },
+  { href: "/cookies-policy", label: "Cookies" },
+  { href: "/privacy-policy", label: "Privacy" },
+];
+
 /**
- * Пример компонента, где три кнопки ведут на соответствующие страницы.
- * Активная страница подсвечивается синим цветом, остальные — светлые.
+ * Tabs between the three legal pages. The active page gets an ink
+ * underline and aria-current; the row wraps on narrow screens.
  */
 export default function PoliciesButtons() {
-  // Получаем текущий pathname (например, "/cookies-policy")
   const pathname = usePathname();
 
-  // Функция для проверки, активен ли данный роут
-  const isActive = (path: string) => pathname === path;
-
   return (
-    <div className="flex w-full">
-    <div className="flex gap-4 items-center mx-auto mb-10 w-fit overflow-x-scroll scrollbar-hide">
-      {/* Terms and Conditions */}
-      <Link
-        href="/terms"
-        className={`
-          px-6 min-w-fit py-3 rounded-full font-medium transition-colors
-          ${
-            isActive("/terms")
-              ? "bg-blue-600 text-white hover:bg-blue-700"
-              : "bg-gray-100 text-gray-900 hover:bg-blue-700 hover:text-white"
-          }
-        `}
-      >
-        Terms and Conditions
-      </Link>
-
-      {/* Cookies policy */}
-      <Link
-        href="/cookies-policy"
-        className={`
-          px-6 py-3 min-w-fit rounded-full font-medium transition-colors
-          ${
-            isActive("/cookies-policy")
-              ? "bg-blue-600 text-white hover:bg-blue-800"
-              : "bg-gray-100 text-gray-900 hover:bg-blue-800 hover:text-white"
-          }
-        `}
-      >
-        Cookies policy
-      </Link>
-
-      {/* Privacy policy */}
-      <Link
-        href="/privacy-policy"
-        className={`
-          px-6 py-3 min-w-fit rounded-full font-medium transition-colors
-          ${
-            isActive("/privacy-policy")
-              ? "bg-blue-600 text-white hover:bg-blue-800"
-              : "bg-gray-100 text-gray-900 hover:bg-blue-800 hover:text-white"
-          }
-        `}
-      >
-        Privacy policy
-      </Link>
-    </div>
-    </div>
+    <nav aria-label="Legal" className="mb-10 lg:mb-14 hairline-bottom">
+      <ul className="flex flex-wrap gap-x-6 sm:gap-x-8">
+        {POLICIES.map((p) => {
+          const active = pathname === p.href;
+          return (
+            <li key={p.href}>
+              <Link
+                href={p.href}
+                aria-current={active ? "page" : undefined}
+                className={`relative inline-flex items-center min-h-11 text-[15px] transition-colors ${
+                  active ? "text-ink-900" : "text-ink-500 hover:text-ink-900"
+                }`}
+              >
+                {p.label}
+                {active && (
+                  <span aria-hidden="true" className="absolute left-0 right-0 -bottom-px h-[2px] bg-ink-900" />
+                )}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 }
