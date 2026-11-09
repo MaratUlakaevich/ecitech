@@ -14,7 +14,7 @@ import { typo } from "@/lib/typo";
  */
 const T = {
   en: { skip: "Skip to content", a: "Independent digital studio, Riyadh", s: "Digital studio, Riyadh", b: "Saudi Arabia, UAE, the Gulf", home: "ECITech home" },
-  ru: { skip: "Перейти к содержанию", a: "Независимая digital-студия, Эр-Рияд", s: "Digital-студия, Эр-Рияд", b: "Россия, Саудовская Аравия, ОАЭ", home: "ECITech, главная" },
+  ru: { skip: "Перейти к содержанию", a: "Независимая цифровая студия, Эр-Рияд", s: "Цифровая студия, Эр-Рияд", b: "Россия, Саудовская Аравия, ОАЭ", home: "ECITech, главная" },
 };
 
 T.ru = typo(T.ru);

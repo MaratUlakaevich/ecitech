@@ -9,7 +9,7 @@ import FinalCTA from "../../components/FinalCTA";
 import EditorialFooter from "../../components/EditorialFooter";
 
 export const metadata: Metadata = {
-  title: "ECITech — независимая digital-студия. Сайты, автоматизация, ИИ-интеграция.",
+  title: "ECITech — независимая цифровая студия. Сайты, автоматизация, ИИ-интеграция.",
   description:
     "ECITech делает сайты, автоматизацию процессов и ИИ-интеграцию для компаний среднего бизнеса. Инженеры с опытом в BCG Gamma, Juniper Networks, Cisco и Google.",
   alternates: { canonical: "https://ecitech.online/ru" },

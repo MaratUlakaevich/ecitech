@@ -18,7 +18,7 @@ const HeroSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   return (
     <section className="relative z-10 max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 pt-10 lg:pt-16 pb-24 lg:pb-32 overflow-hidden">
       {/* Workflow SVG floats behind content */}
-      <HeroWorkflowBg />
+      <HeroWorkflowBg locale={locale} />
 
       {/* Content column — relative + z-index above workflow */}
       <div className="hero-content relative max-w-hero" style={{ zIndex: 1 }}>

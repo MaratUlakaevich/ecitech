@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type FC } from "react";
+import type { Locale } from "@/lib/i18n";
 
 /**
  * Hero background workflow — n8n-style architectural illustration.
@@ -29,6 +30,16 @@ const NODES = [
   { x: 360, y: 560, title: "MS TEAMS", sub: "sales handoff" },
 ];
 
+/** Russian labels (168-FZ: visitor-facing text in Russian; product names stay as names). */
+const NODES_RU = [
+  { x: 60, y: 120, title: "ЗАЯВКИ", sub: "whatsapp, telegram" },
+  { x: 310, y: 120, title: "ПЛОЩАДКИ", sub: "лиды с порталов" },
+  { x: 185, y: 340, title: "ИИ-АГЕНТ", sub: "claude, инструменты", primary: true },
+  { x: 10, y: 560, title: "КАЛЕНДАРЬ", sub: "запись на встречу" },
+  { x: 185, y: 560, title: "CRM", sub: "карточка клиента" },
+  { x: 360, y: 560, title: "КОМАНДА", sub: "передача продажам" },
+];
+
 const PULSES = [
   { path: "wf-path-1", dur: 3.5, begin: 3.2 },
   { path: "wf-path-2", dur: 3.8, begin: 4.0 },
@@ -37,7 +48,8 @@ const PULSES = [
   { path: "wf-path-5", dur: 3.4, begin: 6.0 },
 ];
 
-const HeroWorkflowBg: FC = () => {
+const HeroWorkflowBg: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
+  const nodes = locale === "ru" ? NODES_RU : NODES;
   const ref = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
@@ -84,7 +96,7 @@ const HeroWorkflowBg: FC = () => {
 
       {/* Nodes: two triggers → agent → three outputs, top to bottom */}
       <g className="wf-nodes">
-        {NODES.map((n) => (
+        {nodes.map((n) => (
           <g
             key={n.title}
             transform={`translate(${n.x} ${n.y})`}
