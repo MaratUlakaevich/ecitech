@@ -23,7 +23,8 @@ export const RU_OPERATOR = {
   ogrnip: "325508100630127",
   /** Postal address for written requests (optional: requests also go by email). Leave "" to hide. */
   address: "",
-  email: CONTACT_EMAIL,
+  /** Russian-hosted inbox (Mail.ru, VK) — 152-FZ localisation for RU correspondence. */
+  email: "ulakaev05@mail.ru",
 };
 
 export const SA_OPERATOR = {
