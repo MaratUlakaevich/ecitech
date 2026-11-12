@@ -3,7 +3,7 @@ import Link from "next/link";
 import { book } from "@/lib/site";
 import { href, type Locale } from "@/lib/i18n";
 import { typo } from "@/lib/typo";
-import { contactEmail, ruOperatorIds, ruOperatorTitle } from "@/lib/legal";
+import { contactEmail, RU_OPERATOR } from "@/lib/legal";
 import CookieSettingsButton from "./CookieSettingsButton";
 
 /**
@@ -63,7 +63,7 @@ const COPY = {
     studioH: "Студия",
     contactH: "Контакты",
     copy: "\u00a9 2026 ECITech. Эр-Рияд, Саудовская Аравия.",
-    privacy: "Обработка персональных данных",
+    privacy: "Персональные данные",
     privacyHref: "/ru/privacy-policy",
     cookies: "Cookies",
     cookiesHref: "/ru/cookies-policy",
@@ -139,16 +139,20 @@ const EditorialFooter: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
         </div>
 
         {/* Copyline */}
-        <div className="hairline-top pt-4 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-2 lg:gap-4 text-[13.5px] text-ink-500">
-          <div className="py-2">
+        <div className="hairline-top pt-4 flex flex-col lg:flex-row items-start justify-between gap-2 lg:gap-10 text-[13.5px] text-ink-500">
+          <div className="py-2 space-y-1">
             <p>{t.copy}</p>
             {locale === "ru" && (
-              <p className="mt-1">
-                Оператор персональных данных на русской версии сайта: {ruOperatorTitle()}, {ruOperatorIds()}.
+              <p className="flex flex-wrap gap-x-2">
+                <span className="whitespace-nowrap">ИП {RU_OPERATOR.name}</span>
+                <span aria-hidden="true" className="text-ink-300">·</span>
+                <span className="whitespace-nowrap">ИНН {RU_OPERATOR.inn}</span>
+                <span aria-hidden="true" className="text-ink-300">·</span>
+                <span className="whitespace-nowrap">ОГРНИП {RU_OPERATOR.ogrnip}</span>
               </p>
             )}
           </div>
-          <ul className="flex flex-wrap items-center gap-x-6">
+          <ul className="flex flex-wrap items-center gap-x-6 lg:shrink-0 lg:justify-end">
             <li>
               <Link href={t.privacyHref} className={linkClass}>
                 {t.privacy}
