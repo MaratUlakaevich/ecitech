@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Instrument_Sans, IBM_Plex_Mono, Literata, IBM_Plex_Sans } from "next/font/google";
+import { fontVariables } from "./fonts";
 import { headers } from "next/headers";
 import { localeFromPath } from "@/lib/i18n";
 import "./globals.css";
@@ -8,48 +8,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/UI/sonner";
 import OrganizationLd from "@/components/seo/OrganizationLd";
 import LanguageAlternates from "@/components/LanguageAlternates";
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-  axes: ["opsz", "SOFT"],
-  style: ["normal", "italic"],
-});
-
-const instrument = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-instrument",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  variable: "--font-plex-mono",
-  display: "swap",
-  weight: ["400", "500", "600"],
-});
-
-// Cyrillic faces for the /ru site. Not preloaded: English pages never use them.
-const literata = Literata({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-literata",
-  display: "swap",
-  style: ["normal", "italic"],
-  axes: ["opsz"],
-  preload: false,
-});
-
-const plexSans = IBM_Plex_Sans({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-plex-sans",
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  preload: false,
-});
 
 export const metadata: Metadata = {
   title: "ECITech — An independent digital studio. Sites, automation, AI integration.",
@@ -95,7 +53,7 @@ export default function RootLayout({
   return (
     <html
       lang={lang}
-      className={`${fraunces.variable} ${instrument.variable} ${plexMono.variable} ${literata.variable} ${plexSans.variable}`}
+      style={fontVariables}
     >
       <head>
         <meta name="apple-mobile-web-app-title" content="ECITech" />
