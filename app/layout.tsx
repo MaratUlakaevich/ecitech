@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   description:
     "ECITech is an independent digital studio. We build sites, automation, and AI integration for mid-market businesses.",
   metadataBase: new URL("https://ecitech.online"),
+  verification: { yandex: "ddffe61af5e0e4a5" },
   openGraph: {
     title: "ECITech — Sites · Automation · AI Integration",
     description:
