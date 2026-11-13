@@ -39,6 +39,41 @@ export const plexmonoLatin = localFont({
   declarations: [{ prop: "unicode-range", value: "U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD" }],
 });
 
+/* Only the ruble sign (U+20BD): it sits in Google's heavy latin-ext subset. */
+export const literataRub = localFont({
+  src: [
+    { path: "./literata/rub-normal-200-900.woff2", weight: "200 900", style: "normal" },
+    { path: "./literata/rub-italic-200-900.woff2", weight: "200 900", style: "italic" },
+  ],
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
+  declarations: [{ prop: "unicode-range", value: "U+20BD" }],
+});
+
+export const plexsansRub = localFont({
+  src: [
+    { path: "./plexsans/rub-normal-400-700.woff2", weight: "400 700", style: "normal" },
+    { path: "./plexsans/rub-italic-400-700.woff2", weight: "400 700", style: "italic" },
+  ],
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
+  declarations: [{ prop: "unicode-range", value: "U+20BD" }],
+});
+
+export const plexmonoRub = localFont({
+  src: [
+    { path: "./plexmono/rub-normal-400.woff2", weight: "400", style: "normal" },
+    { path: "./plexmono/rub-normal-500.woff2", weight: "500", style: "normal" },
+    { path: "./plexmono/rub-normal-600.woff2", weight: "600", style: "normal" },
+  ],
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
+  declarations: [{ prop: "unicode-range", value: "U+20BD" }],
+});
+
 export const plexmonoCyrillic = localFont({
   src: [
     { path: "./plexmono/cyrillic-normal-400.woff2", weight: "400", style: "normal" },
@@ -106,8 +141,8 @@ const stack = (...faces: Face[]) => {
 export const fontVariables = {
   "--font-fraunces": stack(frauncesLatin),
   "--font-instrument": stack(instrumentLatin),
-  "--font-plex-mono": stack(plexmonoLatin, plexmonoCyrillic),
+  "--font-plex-mono": stack(plexmonoLatin, plexmonoCyrillic, plexmonoRub),
   // Cyrillic faces for the /ru site. Not preloaded: English pages never use them.
-  "--font-literata": stack(literataLatin, literataCyrillic),
-  "--font-plex-sans": stack(plexsansLatin, plexsansCyrillic),
+  "--font-literata": stack(literataLatin, literataCyrillic, literataRub),
+  "--font-plex-sans": stack(plexsansLatin, plexsansCyrillic, plexsansRub),
 } as CSSProperties;
