@@ -7,6 +7,7 @@ import BreadcrumbsLd from "../seo/BreadcrumbsLd";
 import { contactEmail } from "@/lib/legal";
 import { href, type Locale } from "@/lib/i18n";
 import { typo } from "@/lib/typo";
+import { TELEGRAM } from "@/lib/site";
 
 const T = {
   en: {
@@ -106,14 +107,14 @@ export default function ContactContent({ locale }: { locale: Locale }) {
                 <ul className="grid md:grid-cols-2 gap-6 lg:gap-8">
                   <li>
                     <a
-                      href="https://t.me/ecitech"
+                      href={TELEGRAM.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block hairline border bg-paper-50 p-7 lg:p-10 hover:bg-paper-100 transition-colors"
                     >
                       <div className="mono-eyebrow mb-3">Telegram</div>
                       <div className="display text-[32px] lg:text-[44px] text-ink-900 leading-[1.05] group-hover:text-copper-ink transition-colors">
-                        @ecitech
+                        {TELEGRAM.handle}
                       </div>
                       <p className="mt-4 text-[15px] text-ink-700">{t.tgNote}</p>
                     </a>
@@ -186,12 +187,12 @@ export default function ContactContent({ locale }: { locale: Locale }) {
                 <li>
                   <div className="mono-eyebrow mb-1">Telegram</div>
                   <a
-                    href="https://t.me/ecitech"
+                    href={TELEGRAM.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center min-h-11 text-ink-900 hover:text-copper-ink transition-colors text-[16px]"
                   >
-                    @ecitech
+                    {TELEGRAM.handle}
                   </a>
                 </li>
                 <li>

@@ -7,6 +7,8 @@ import type { Locale } from "./i18n";
 export const BOOK_HREF = "/contact#book";
 export const BOOK_LABEL = "Book an intro call";
 export const CONTACT_EMAIL = "hello@ecitech.online";
+/** Working Telegram account for enquiries (both locales). */
+export const TELEGRAM = { handle: "@maratulakaev", href: "https://t.me/maratulakaev" } as const;
 
 const BOOK = {
   en: { href: BOOK_HREF, label: BOOK_LABEL },
