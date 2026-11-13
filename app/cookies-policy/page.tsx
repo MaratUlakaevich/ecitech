@@ -110,11 +110,18 @@ export default function CookiesPolicy() {
                 Ads, up to 90 days).
               </p>
               <p className="text-ink-700 leading-[1.65] mb-2">
-                4.4 Analytics data is kept for 14 months. We do not sell it and
+                4.4 With the same consent we load the Apollo.io website tracker.
+                It uses your IP address to identify the company you may work
+                for, so that we can see which companies are interested in our
+                services and may contact them. Apollo.io may set its own
+                cookies for this.
+              </p>
+              <p className="text-ink-700 leading-[1.65] mb-2">
+                4.5 Analytics data is kept for 14 months. We do not sell it and
                 do not use it to make automated decisions about you.
               </p>
               <p className="text-ink-700 leading-[1.65]">
-                4.5 Google&apos;s privacy policy is available at:{" "}
+                4.6 Google&apos;s privacy policy is available at:{" "}
                 <Link
                   href="https://policies.google.com/privacy"
                   className="text-ink-900 underline underline-offset-4 hover:text-copper-ink"
@@ -127,6 +134,13 @@ export default function CookiesPolicy() {
                   className="text-ink-900 underline underline-offset-4 hover:text-copper-ink"
                 >
                   policies.google.com/technologies/partner-sites
+                </Link>
+                . Apollo.io&apos;s privacy policy:{" "}
+                <Link
+                  href="https://www.apollo.io/privacy-policy"
+                  className="text-ink-900 underline underline-offset-4 hover:text-copper-ink"
+                >
+                  apollo.io/privacy-policy
                 </Link>
                 .
               </p>

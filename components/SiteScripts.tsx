@@ -27,7 +27,7 @@ type Choice = "granted" | "denied";
 
 const COPY = {
   en: {
-    text: "We use Google Analytics and Google Ads cookies to see how the site is used and to measure and show our ads. They load only if you accept.",
+    text: "We use cookies from Google Analytics, Google Ads and Apollo.io to see how the site is used, measure and show our ads, and learn which companies visit us. They load only if you accept.",
     more: "Cookies Policy",
     moreHref: "/cookies-policy",
     accept: "Accept",
