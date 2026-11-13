@@ -93,14 +93,16 @@ function loadMetrica(id: number) {
   const s = document.createElement("script");
   s.id = "ym-js";
   s.async = true;
-  s.src = "https://mc.yandex.ru/metrika/tag.js";
+  s.src = `https://mc.yandex.ru/metrika/tag.js?id=${id}`;
   document.head.appendChild(s);
   window.ym(id, "init", {
     defer: true,
     clickmap: true,
     trackLinks: true,
     accurateTrackBounce: true,
-    webvisor: false,
+    webvisor: true,
+    referrer: document.referrer,
+    url: location.href,
   });
 }
 
