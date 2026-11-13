@@ -35,10 +35,13 @@ export const SA_OPERATOR = {
 };
 
 /** Date the current versions of the documents took effect. */
-export const LEGAL_UPDATED = { ru: "12 ноября 2026 г.", en: "12 November 2026" };
+export const LEGAL_UPDATED = { ru: "12 ноября 2026 г.", en: "13 November 2026" };
 
-/** Bump when the consent wording or the set of trackers changes: stored consent is then asked again. */
-export const CONSENT_VERSION = "2026-11-12";
+/**
+ * Bump a locale's value when its consent wording or set of trackers changes:
+ * stored consent on that locale is then asked again.
+ */
+export const CONSENT_VERSION = { ru: "2026-11-12", en: "2026-11-13" } as const;
 
 export const isFilled = (v: string) => !v.startsWith("[");
 

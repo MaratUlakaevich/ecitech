@@ -10,9 +10,12 @@ export type GtmEvent =
   | { event: 'portfolio_view'; case_slug: string }
   | { event: 'blog_read_60s'; article_slug: string }
   | { event: 'meeting_booked'; source?: string }
+  | { event: 'contact_click'; method: ContactMethod; location: string }
   | { event: 'form_submit'; form_id: string }
   | { event: 'form_success'; form_id: string }
   | { event: 'form_error'; form_id: string; error_code?: string };
+
+export type ContactMethod = 'telegram' | 'email' | 'phone' | 'whatsapp';
 
 type DataLayer = Array<Record<string, unknown>>;
 

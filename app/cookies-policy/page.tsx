@@ -32,9 +32,9 @@ export default function CookiesPolicy() {
                 cookies.
               </p>
               <p className="text-ink-700 leading-[1.65]">
-                1.2 Analytics cookies are set only after you press
+                1.2 Analytics and advertising cookies are set only after you press
                 &ldquo;Accept&rdquo; in the cookie banner. If you press
-                &ldquo;Decline&rdquo;, no analytics scripts load and the site
+                &ldquo;Decline&rdquo;, no analytics or advertising scripts load and the site
                 works in full. You can change or withdraw your choice at any
                 time with &ldquo;Cookie settings&rdquo; at the bottom of every
                 page. The site also keeps a record of your choice in your
@@ -88,30 +88,47 @@ export default function CookiesPolicy() {
 
             <section id="analytics-cookies" className="mb-8">
               <h2 className="display text-[26px] md:text-[30px] leading-[1.15] text-ink-900 mb-4">
-                4. Analytics Cookies
+                4. Analytics and Advertising Cookies
               </h2>
               <p className="text-ink-700 leading-[1.65] mb-2">
-                4.1 We use Google Analytics to analyze how our website is used.
+                4.1 With your consent we use Google Analytics to see how the
+                website is used, and Google Ads to measure whether our ads lead
+                to enquiries and to show our ads to people who visited the site.
+                Both are loaded through Google Tag Manager, only after you press
+                &ldquo;Accept&rdquo;.
               </p>
               <p className="text-ink-700 leading-[1.65] mb-2">
-                4.2 Our analytics service provider generates statistical and
-                other information about website use via cookies.
+                4.2 These services collect pages viewed, the referring page,
+                approximate location from your IP address, device and browser
+                data, and actions such as sending the contact form, booking a
+                call or clicking our email or Telegram link.
               </p>
               <p className="text-ink-700 leading-[1.65] mb-2">
-                4.3 The analytics cookies used include: <strong>_ga</strong>.
+                4.3 The cookies used include: <strong>_ga</strong> and{" "}
+                <strong>_ga_*</strong> (Google Analytics, up to 2 years),{" "}
+                <strong>_gcl_au</strong> and <strong>_gcl_aw</strong> (Google
+                Ads, up to 90 days).
               </p>
               <p className="text-ink-700 leading-[1.65] mb-2">
-                4.4 The generated data is used to create reports on website
-                usage.
+                4.4 Analytics data is kept for 14 months. We do not sell it and
+                do not use it to make automated decisions about you.
               </p>
               <p className="text-ink-700 leading-[1.65]">
                 4.5 Google&apos;s privacy policy is available at:{" "}
                 <Link
-                  href="http://www.google.com/policies/privacy/"
+                  href="https://policies.google.com/privacy"
                   className="text-ink-900 underline underline-offset-4 hover:text-copper-ink"
                 >
-                   http://www.google.com/policies/privacy/
+                  https://policies.google.com/privacy
                 </Link>
+                . How Google uses data from sites that use its services:{" "}
+                <Link
+                  href="https://policies.google.com/technologies/partner-sites"
+                  className="text-ink-900 underline underline-offset-4 hover:text-copper-ink"
+                >
+                  policies.google.com/technologies/partner-sites
+                </Link>
+                .
               </p>
             </section>
 

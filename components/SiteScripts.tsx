@@ -4,11 +4,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { localeFromPath, type Locale } from "@/lib/i18n";
 import { CONSENT_VERSION } from "@/lib/legal";
+import { pushEvent, type ContactMethod } from "@/lib/analytics/gtm";
 import { typoString } from "@/lib/typo";
 
 /**
  * Consent-gated analytics, one tracker per locale:
- *   EN pages: Google Tag Manager (GA4), operator = the Saudi company.
+ *   EN pages: Google Tag Manager (GA4 + Google Ads), operator = the Saudi company.
  *   RU pages: Yandex Metrica only, operator = the Russian sole trader.
  *     No Google scripts ever load on /ru, so no data of Russian visitors
  *     goes abroad from the site itself.
@@ -26,7 +27,7 @@ type Choice = "granted" | "denied";
 
 const COPY = {
   en: {
-    text: "We use Google Analytics cookies to see how the site is used. They load only if you accept.",
+    text: "We use Google Analytics and Google Ads cookies to see how the site is used and to measure and show our ads. They load only if you accept.",
     more: "Cookies Policy",
     moreHref: "/cookies-policy",
     accept: "Accept",
@@ -52,7 +53,7 @@ function readChoice(l: Locale): Choice | null {
     const raw = localStorage.getItem(key(l));
     if (!raw) return null;
     const v = JSON.parse(raw) as { v?: string; choice?: Choice };
-    return v.v === CONSENT_VERSION && (v.choice === "granted" || v.choice === "denied") ? v.choice : null;
+    return v.v === CONSENT_VERSION[l] && (v.choice === "granted" || v.choice === "denied") ? v.choice : null;
   } catch {
     return null;
   }
@@ -60,7 +61,7 @@ function readChoice(l: Locale): Choice | null {
 
 function writeChoice(l: Locale, choice: Choice) {
   try {
-    localStorage.setItem(key(l), JSON.stringify({ v: CONSENT_VERSION, choice, at: new Date().toISOString() }));
+    localStorage.setItem(key(l), JSON.stringify({ v: CONSENT_VERSION[l], choice, at: new Date().toISOString() }));
   } catch {
     /* storage blocked: the banner simply shows again next visit */
   }
@@ -72,9 +73,24 @@ declare global {
   }
 }
 
+/** Standard gtag(): GTM reads consent commands only as an `arguments` object. */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function gtag(..._args: unknown[]) {
+  // eslint-disable-next-line prefer-rest-params
+  window.dataLayer!.push(arguments as unknown as Record<string, unknown>);
+}
+
 function loadGtm() {
   if (document.getElementById("gtm-js")) return;
   window.dataLayer = window.dataLayer || [];
+  // Consent Mode v2. GTM loads only after the visitor pressed Accept, so the
+  // default state it sees is "granted" for analytics and ads.
+  gtag("consent", "default", {
+    analytics_storage: "granted",
+    ad_storage: "granted",
+    ad_user_data: "granted",
+    ad_personalization: "granted",
+  });
   window.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
   const s = document.createElement("script");
   s.id = "gtm-js";
@@ -104,6 +120,14 @@ function loadMetrica(id: number) {
     referrer: document.referrer,
     url: location.href,
   });
+}
+
+function contactMethod(href: string): ContactMethod | null {
+  if (/^mailto:/i.test(href)) return "email";
+  if (/^tel:/i.test(href)) return "phone";
+  if (/^https?:\/\/(t\.me|telegram\.me)\//i.test(href)) return "telegram";
+  if (/^https?:\/\/(wa\.me|api\.whatsapp\.com)\//i.test(href)) return "whatsapp";
+  return null;
 }
 
 export default function SiteScripts({ ymId }: { ymId?: string }) {
@@ -149,6 +173,21 @@ export default function SiteScripts({ ymId }: { ymId?: string }) {
       window.ym?.(metricaId, "hit", window.location.href);
     }
   }, [pathname, locale, metricaId]);
+
+  // Contact clicks (Telegram, email, phone): the leads on /ru, where there is no form.
+  useEffect(() => {
+    if (!hasTracker) return;
+    const onClick = (e: MouseEvent) => {
+      if (!loaded.current) return;
+      const a = (e.target as Element | null)?.closest?.("a[href]");
+      const method = a ? contactMethod(a.getAttribute("href") ?? "") : null;
+      if (!method) return;
+      if (locale === "en") pushEvent({ event: "contact_click", method, location: window.location.pathname });
+      else if (metricaId !== null) window.ym?.(metricaId, "reachGoal", `click_${method}`);
+    };
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
+  }, [hasTracker, locale, metricaId]);
 
   // "Cookie settings" link in the footer reopens the banner.
   useEffect(() => {
