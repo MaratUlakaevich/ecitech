@@ -1,7 +1,7 @@
 /**
  * Shared contact-form Zod schema. Used by both the client component
  * (`components/ContactForm.tsx`) and the server handler
- * (`api/sendEmails.ts`). Keep the schema authoritative here — do not
+ * (`app/api/sendEmails/route.ts`). Keep the schema authoritative here — do not
  * duplicate field constraints elsewhere.
  */
 

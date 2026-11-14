@@ -15,7 +15,7 @@ type CalcomEmbedProps = {
  * (e.g. ecitech/30min). Full URLs are used as-is.
  */
 export function resolveCalUrl(link?: string): string {
-  const raw = (link || process.env.NEXT_PUBLIC_CALCOM_LINK || "ecitech/30min").trim();
+  const raw = (link || process.env.NEXT_PUBLIC_CALCOM_LINK || "https://www.cal.eu/marat-ulakaev/30min").trim();
   if (/^https?:\/\//i.test(raw)) return raw.replace(/\/+$/, "");
   return `https://cal.com/${raw.replace(/^\/+/, "")}`;
 }

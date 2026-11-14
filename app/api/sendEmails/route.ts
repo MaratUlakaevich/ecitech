@@ -1,8 +1,8 @@
 /**
- * Contact-form submission handler (Vercel serverless function).
+ * Contact-form submission handler (Next.js route handler, POST /api/sendEmails).
  *
  * Pipeline:
- *   1. Parse multipart/form-data with formidable (keeps file-upload support).
+ *   1. Parse multipart/form-data with Request.formData() (keeps file-upload support).
  *   2. Validate with the shared Zod schema from lib/forms/contactSchema.
  *   3. Rate-limit by client IP (Upstash, 5 req/h per IP) — fail-open if
  *      Upstash is not configured.
@@ -25,9 +25,7 @@
  *   503 { error: 'email-not-configured' }            — RESEND_API_KEY missing
  */
 
-import { VercelRequest, VercelResponse } from '@vercel/node';
-import formidable from 'formidable';
-import fs from 'fs';
+import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 import {
@@ -41,33 +39,24 @@ import { limitContactForm } from '@/lib/security/rateLimit';
 import { createLead } from '@/lib/notion/leads';
 import { sendLeadAlert } from '@/lib/alerts/telegram';
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
+const MAX_FILE_BYTES = 10 * 1024 * 1024; // 10 MB
 
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 
-function firstString(
-  value: string | string[] | undefined,
-): string | undefined {
-  if (Array.isArray(value)) return value[0];
-  return value;
+function field(form: FormData, name: string): string | undefined {
+  const v = form.get(name);
+  return typeof v === 'string' ? v : undefined;
 }
 
-function getClientIp(req: VercelRequest): string {
-  const forwarded = req.headers['x-forwarded-for'];
-  const header = Array.isArray(forwarded) ? forwarded[0] : forwarded;
-  if (header) {
-    const first = header.split(',')[0]?.trim();
-    if (first) return first;
-  }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const remote = (req as any).socket?.remoteAddress as string | undefined;
-  return remote || 'unknown';
+function getClientIp(req: Request): string {
+  const header = req.headers.get('x-forwarded-for');
+  const first = header?.split(',')[0]?.trim();
+  return first || req.headers.get('x-real-ip') || 'unknown';
 }
 
 function escapeHtml(input: string): string {
@@ -77,21 +66,6 @@ function escapeHtml(input: string): string {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
-}
-
-function parseForm(
-  req: VercelRequest,
-): Promise<{ fields: formidable.Fields; files: formidable.Files }> {
-  return new Promise((resolve, reject) => {
-    const form = formidable({
-      multiples: false,
-      maxFileSize: 10 * 1024 * 1024, // 10 MB
-    });
-    form.parse(req, (err, fields, files) => {
-      if (err) return reject(err);
-      resolve({ fields, files });
-    });
-  });
 }
 
 type EmailTemplate = {
@@ -203,38 +177,27 @@ async function sendWithRetry(
 // Handler
 // ---------------------------------------------------------------------------
 
-export default async function handler(
-  req: VercelRequest,
-  res: VercelResponse,
-): Promise<void> {
-  if (req.method !== 'POST') {
-    res.status(405).json({ error: 'method-not-allowed' });
-    return;
-  }
-
-  let parsed: { fields: formidable.Fields; files: formidable.Files };
+export async function POST(req: Request): Promise<Response> {
+  let form: FormData;
   try {
-    parsed = await parseForm(req);
+    form = await req.formData();
   } catch (err) {
     const message = err instanceof Error ? err.message : 'form-parse-error';
     // eslint-disable-next-line no-console
     console.error('[sendEmails] form parse error:', message);
-    res.status(500).json({ error: 'form-parse-error' });
-    return;
+    return NextResponse.json({ error: 'form-parse-error' }, { status: 400 });
   }
-
-  const { fields, files } = parsed;
 
   // Build the raw object for Zod. FormData stringifies everything.
   const raw = {
-    fullName: firstString(fields.fullName) ?? '',
-    email: firstString(fields.email) ?? '',
-    company: firstString(fields.company) ?? '',
-    phone: firstString(fields.phone) ?? '',
-    message: firstString(fields.message) ?? firstString(fields.about) ?? '',
-    industry: firstString(fields.industry) as Industry | undefined,
-    nda: firstString(fields.nda) === 'true',
-    turnstileToken: firstString(fields.turnstileToken) ?? '',
+    fullName: field(form, 'fullName') ?? '',
+    email: field(form, 'email') ?? '',
+    company: field(form, 'company') ?? '',
+    phone: field(form, 'phone') ?? '',
+    message: field(form, 'message') ?? field(form, 'about') ?? '',
+    industry: field(form, 'industry') as Industry | undefined,
+    nda: field(form, 'nda') === 'true',
+    turnstileToken: field(form, 'turnstileToken') ?? '',
   };
 
   const hasTurnstileSecret = Boolean(process.env.TURNSTILE_SECRET_KEY);
@@ -242,14 +205,13 @@ export default async function handler(
   const parseResult = schema.safeParse(raw);
 
   if (!parseResult.success) {
-    res.status(400).json({
+    return NextResponse.json({
       error: 'invalid-input',
       issues: parseResult.error.issues.map((i) => ({
         path: i.path.join('.'),
         message: i.message,
       })),
-    });
-    return;
+    }, { status: 400 });
   }
 
   // Narrow to the common fields we consume below. `turnstileToken`
@@ -261,17 +223,13 @@ export default async function handler(
   const ip = getClientIp(req);
   const rl = await limitContactForm(ip);
   if (!rl.success) {
-    res
-      .status(429)
-      .json({ error: 'rate-limited', reset: rl.reset, limit: rl.limit });
-    return;
+    return NextResponse.json({ error: 'rate-limited', reset: rl.reset, limit: rl.limit }, { status: 429 });
   }
 
   // Turnstile verification.
   const turnstileOk = await verifyTurnstileToken(data.turnstileToken, ip);
   if (!turnstileOk) {
-    res.status(403).json({ error: 'turnstile-failed' });
-    return;
+    return NextResponse.json({ error: 'turnstile-failed' }, { status: 403 });
   }
 
   // Resend setup
@@ -285,30 +243,20 @@ export default async function handler(
     console.error(
       '[sendEmails] RESEND_API_KEY / RESEND_FROM_EMAIL / LEAD_NOTIFICATION_EMAIL missing',
     );
-    res.status(503).json({ error: 'email-not-configured' });
-    return;
+    return NextResponse.json({ error: 'email-not-configured' }, { status: 503 });
   }
 
   // Optional file attachment
   const attachments: Attachment[] = [];
-  const projectFile = files.projectFile;
-  if (projectFile) {
-    const fileData = Array.isArray(projectFile) ? projectFile[0] : projectFile;
-    if (fileData?.filepath) {
-      try {
-        const buffer = fs.readFileSync(fileData.filepath);
-        attachments.push({
-          filename: fileData.originalFilename || 'attachment',
-          content: buffer,
-        });
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.warn(
-          '[sendEmails] attachment read failed, continuing without it:',
-          err instanceof Error ? err.message : 'unknown',
-        );
-      }
+  const projectFile = form.get('projectFile');
+  if (projectFile instanceof File && projectFile.size > 0) {
+    if (projectFile.size > MAX_FILE_BYTES) {
+      return NextResponse.json({ error: 'file-too-large' }, { status: 413 });
     }
+    attachments.push({
+      filename: projectFile.name || 'attachment',
+      content: Buffer.from(await projectFile.arrayBuffer()),
+    });
   }
 
   const template = buildEmail(data);
@@ -332,8 +280,7 @@ export default async function handler(
     console.error(
       `[sendEmails] Resend send failed (${sendResult.status}): ${sendResult.message}`,
     );
-    res.status(502).json({ error: 'email-send-failed' });
-    return;
+    return NextResponse.json({ error: 'email-send-failed' }, { status: 502 });
   }
 
   // ----- Best-effort CRM + alerting -----
@@ -393,5 +340,5 @@ export default async function handler(
     );
   }
 
-  res.status(200).json({ ok: true, notionId, notionUrl });
+  return NextResponse.json({ ok: true, notionId, notionUrl });
 }

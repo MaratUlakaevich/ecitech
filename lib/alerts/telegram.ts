@@ -1,6 +1,6 @@
 /**
  * Telegram lead-alert helper.
- * Used by server-side form handlers (e.g. api/sendEmails.ts — Stream A).
+ * Used by server-side form handlers (e.g. app/api/sendEmails/route.ts).
  */
 
 export type LeadAlert = {
