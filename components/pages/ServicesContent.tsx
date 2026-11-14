@@ -33,6 +33,10 @@ const T = {
       "We price per project, not per hour. Every engagement begins with the fixed-fee audit ($3,000), and you keep the plan whether or not you continue. Bilingual English and Arabic delivery is included where the scope needs it.",
     tiers: [] as { name: string; what: string; price: string; time: string }[],
     extras: "",
+    appsEyebrow: "Also",
+    appsTitle: "Web and mobile apps",
+    appsBody: "Client portals, internal systems and apps for iOS and Android, built as separate projects.",
+    appsLink: "How we build apps",
     layers: [
       {
         slug: "sites",
@@ -101,6 +105,10 @@ const T = {
     ],
     extras:
       "Отдельно: Telegram-бот — от 90 000 ₽, настройка amoCRM или Bitrix24 — 30 000–80 000 ₽, ИИ-ассистент для сайта — от 100 000 ₽, поддержка — от 5 000 ₽ в месяц.",
+    appsEyebrow: "Также",
+    appsTitle: "Веб- и мобильные приложения",
+    appsBody: "Личные кабинеты, внутренние системы и приложения для iOS и Android — отдельными проектами. Веб — от 300 000 ₽, мобильные — от 500 000 ₽.",
+    appsLink: "Как мы делаем приложения",
     layers: [
       {
         slug: "sites",
@@ -237,7 +245,27 @@ export default function ServicesContent({ locale }: { locale: Locale }) {
           ))}
         </section>
 
-        {/* Pricing note (the only place pricing is named on the site) */}
+        {/* Apps: a separate practice with its own page */}
+        <section id="apps" className="hairline-top scroll-mt-6">
+          <Link
+            href={href(locale, "/services/apps")}
+            className="group block max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-14 lg:py-20 grid lg:grid-cols-[200px_1fr_auto] gap-4 lg:gap-16 lg:items-center"
+          >
+            <div className="mono-eyebrow">{t.appsEyebrow}</div>
+            <div>
+              <h2 className="display text-[36px] sm:text-[48px] lg:text-[56px] text-ink-900 leading-[1] group-hover:text-copper-ink transition-colors">
+                {t.appsTitle}
+              </h2>
+              <p className="mt-4 max-w-reading text-[16px] leading-[1.65] text-ink-700">{t.appsBody}</p>
+            </div>
+            <span className="inline-flex items-center gap-3 min-h-11 text-ink-900 group-hover:text-copper-ink transition-colors">
+              <span className="smallcaps whitespace-nowrap">{t.appsLink}</span>
+              <span className="w-12 h-px bg-current origin-left scale-x-[0.6] transition-transform duration-200 ease-out group-hover:scale-x-100"></span>
+            </span>
+          </Link>
+        </section>
+
+        {/* Pricing note */}
         <section className="hairline-top bg-paper-soft">
           <div className="max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-14 lg:py-20">
             <h2 className="display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.1] text-ink-900 max-w-[920px]">

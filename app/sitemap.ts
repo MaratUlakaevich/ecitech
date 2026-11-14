@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: baseUrl, lastModified: now, changeFrequency: "monthly", priority: 1 },
     { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/services`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${baseUrl}/services/apps`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/portfolio`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     { url: `${baseUrl}/industries`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
@@ -21,7 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const ruPages: MetadataRoute.Sitemap = ["", "/about", "/services", "/portfolio", "/industries", "/contact", "/privacy-policy", "/cookies-policy"].map(
+  const ruPages: MetadataRoute.Sitemap = ["", "/about", "/services", "/services/apps", "/portfolio", "/industries", "/contact", "/privacy-policy", "/cookies-policy"].map(
     (p) => ({ url: `${baseUrl}/ru${p}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 }),
   );
 

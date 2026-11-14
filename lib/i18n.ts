@@ -13,6 +13,7 @@ export const LOCALIZED_PATHS = [
   "/",
   "/portfolio",
   "/services",
+  "/services/apps",
   "/industries",
   "/about",
   "/contact",
