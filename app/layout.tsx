@@ -10,13 +10,13 @@ import OrganizationLd from "@/components/seo/OrganizationLd";
 import LanguageAlternates from "@/components/LanguageAlternates";
 
 export const metadata: Metadata = {
-  title: "ECITech — An independent digital studio. Sites, automation, AI integration.",
+  title: "ECITech — Websites, apps, automation and AI integration",
   description:
-    "ECITech is an independent digital studio. We build sites, automation, and AI integration for mid-market businesses.",
+    "ECITech is an independent digital studio. We build sites, web and mobile apps, automation, and AI integration for mid-market businesses.",
   metadataBase: new URL("https://ecitech.online"),
   verification: { yandex: "ddffe61af5e0e4a5" },
   openGraph: {
-    title: "ECITech — Sites · Automation · AI Integration",
+    title: "ECITech — Sites · Apps · Automation · AI Integration",
     description:
       "An independent digital studio for mid-market teams.",
     url: "https://ecitech.online",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ECITech — Sites · Automation · AI Integration",
+    title: "ECITech — Sites · Apps · Automation · AI Integration",
     description:
       "Independent digital studio. Built by engineers who shipped for BCG Gamma, Juniper, Cisco, and Google.",
     images: ["/img/og/default.png"],

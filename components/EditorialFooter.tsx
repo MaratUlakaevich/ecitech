@@ -24,6 +24,7 @@ const COPY = {
       { href: "/services#sites", label: "Sites" },
       { href: "/services#automation", label: "Automation" },
       { href: "/services#integration", label: "Integration" },
+      { href: "/services/apps", label: "Web and mobile apps" },
     ],
     studio: [
       { href: "/portfolio", label: "Work" },
@@ -50,6 +51,7 @@ const COPY = {
       { href: "/services#sites", label: "Сайты" },
       { href: "/services#automation", label: "Автоматизация" },
       { href: "/services#integration", label: "Интеграция" },
+      { href: "/services/apps", label: "Приложения" },
     ],
     studio: [
       { href: "/portfolio", label: "Работы" },

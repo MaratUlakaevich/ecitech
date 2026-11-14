@@ -57,6 +57,15 @@ const COPY = {
         meta: ["6–16 weeks", "Agents, RAG, custom builds", "Bilingual delivery"],
       },
     ] as Tier[],
+    apps: {
+      slug: "apps",
+      title: "Web and mobile apps",
+      body:
+        "Client portals, internal systems and apps for iOS and Android, run as a separate project. We ship a first working version that solves one real job, then grow it from what users actually do.",
+      meta: ["8–20 weeks", "Web, iOS, Android", "Fixed price per project"],
+    },
+    appsLabel: "Alongside the layers",
+    appsCta: "See apps",
     entry: "Entry point, before the layers",
     auditCta: "How the audit works",
     tierCta: "See what's included",
@@ -100,6 +109,15 @@ const COPY = {
         meta: ["6–16 недель", "Агенты, RAG, разработка", "Мультиязычная поставка"],
       },
     ] as Tier[],
+    apps: {
+      slug: "apps",
+      title: "Веб- и мобильные приложения",
+      body:
+        "Личные кабинеты, внутренние системы и приложения для iOS и Android — отдельным проектом. Делаем первую рабочую версию под одну настоящую задачу и развиваем её по тому, как ею пользуются.",
+      meta: ["8–20 недель", "Веб, iOS, Android", "Фиксированная цена за проект"],
+    },
+    appsLabel: "Отдельно от слоёв",
+    appsCta: "Подробнее",
     entry: "Точка входа, до трёх слоёв",
     auditCta: "Как устроен аудит",
     tierCta: "Что входит",
@@ -121,9 +139,10 @@ const TierRow: FC<{
   cta: string;
   featuredTitle?: string[];
   entryLabel?: string;
-}> = ({ tier, locale, cta, featuredTitle, entryLabel }) => (
+  path?: string;
+}> = ({ tier, locale, cta, featuredTitle, entryLabel, path }) => (
   <a
-    href={href(locale, `/services#${tier.slug}`)}
+    href={href(locale, path ?? `/services#${tier.slug}`)}
     className={`group relative isolate block hairline-bottom py-10 lg:py-14 before:absolute before:inset-y-0 before:-inset-x-4 lg:before:-inset-x-10 before:-z-10 before:transition-colors hover:before:bg-paper-100 ${
       featuredTitle ? "hairline-top" : ""
     }`}
@@ -184,6 +203,9 @@ const ServiceLadder: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
       {t.tiers.map((tier) => (
         <TierRow key={tier.slug} tier={tier} locale={locale} cta={t.tierCta} />
       ))}
+
+      {/* Apps — a separate service, outside the three-layer ladder */}
+      <TierRow tier={t.apps} locale={locale} cta={t.appsCta} entryLabel={t.appsLabel} path="/services/apps" />
 
       {/* Footer affordance */}
       <div className="mt-14 lg:mt-20 hairline-top pt-10 flex flex-col lg:flex-row gap-6 lg:items-end lg:justify-between">

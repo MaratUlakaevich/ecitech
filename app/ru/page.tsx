@@ -9,20 +9,20 @@ import FinalCTA from "../../components/FinalCTA";
 import EditorialFooter from "../../components/EditorialFooter";
 
 export const metadata: Metadata = {
-  title: "ECITech — независимая цифровая студия. Сайты, автоматизация, ИИ-интеграция.",
+  title: "ECITech — сайты, приложения, автоматизация и ИИ-интеграция",
   description:
-    "ECITech делает сайты, автоматизацию процессов и ИИ-интеграцию для компаний среднего бизнеса. Инженеры с опытом в BCG Gamma, Juniper Networks, Cisco и Google.",
+    "ECITech делает сайты, веб- и мобильные приложения, автоматизацию процессов и ИИ-интеграцию для компаний среднего бизнеса. Инженеры с опытом в BCG Gamma, Juniper Networks, Cisco и Google.",
   alternates: { canonical: "https://ecitech.online/ru" },
   openGraph: {
-    title: "ECITech — сайты, автоматизация, ИИ-интеграция",
-    description: "ECITech делает сайты, автоматизацию процессов и ИИ-интеграцию для компаний среднего бизнеса. Инженеры с опытом в BCG Gamma, Juniper Networks, Cisco и Google.",
+    title: "ECITech — сайты, приложения, автоматизация, ИИ-интеграция",
+    description: "ECITech делает сайты, веб- и мобильные приложения, автоматизацию процессов и ИИ-интеграцию для компаний среднего бизнеса. Инженеры с опытом в BCG Gamma, Juniper Networks, Cisco и Google.",
     url: "https://ecitech.online/ru",
     locale: "ru_RU",
     images: [{ url: "/img/og/default.png", width: 1200, height: 630, alt: "ECITech" }],
   },
   twitter: {
-    title: "ECITech — сайты, автоматизация, ИИ-интеграция",
-    description: "ECITech делает сайты, автоматизацию процессов и ИИ-интеграцию для компаний среднего бизнеса. Инженеры с опытом в BCG Gamma, Juniper Networks, Cisco и Google.",
+    title: "ECITech — сайты, приложения, автоматизация, ИИ-интеграция",
+    description: "ECITech делает сайты, веб- и мобильные приложения, автоматизацию процессов и ИИ-интеграцию для компаний среднего бизнеса. Инженеры с опытом в BCG Gamma, Juniper Networks, Cisco и Google.",
     images: ["/img/og/default.png"],
   },
 };
