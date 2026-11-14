@@ -188,6 +188,14 @@ export async function POST(req: Request): Promise<Response> {
   }
 
   // Build the raw object for Zod. FormData stringifies everything.
+  // Honeypot: the hidden "website" field is filled only by bots. Answer as if
+  // the lead was taken, so the bot learns nothing, and deliver nothing.
+  if (field(form, 'website')) {
+    // eslint-disable-next-line no-console
+    console.warn('[sendEmails] honeypot filled; dropping submission');
+    return NextResponse.json({ ok: true, delivered: [] });
+  }
+
   const raw = {
     fullName: field(form, 'fullName') ?? '',
     email: field(form, 'email') ?? '',

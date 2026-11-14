@@ -241,6 +241,8 @@ const ContactForm: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Honeypot: people never see this field, form-filling bots usually fill it.
+    const honeypot = new FormData(e.currentTarget).get("website");
     if (submitting) return;
 
     const candidate = {
@@ -294,6 +296,7 @@ const ContactForm: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
     if (result.data.industry) formData.append("industry", result.data.industry);
     formData.append("nda", result.data.nda ? "true" : "false");
     if (turnstileToken) formData.append("turnstileToken", turnstileToken);
+    if (typeof honeypot === "string" && honeypot) formData.append("website", honeypot);
 
     const file = fileInputRef.current?.files?.[0];
     if (file) formData.append("projectFile", file);
@@ -575,6 +578,14 @@ const ContactForm: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
               </label>
             </div>
           )}
+        </div>
+
+        {/* Honeypot for bots: hidden from people and screen readers. */}
+        <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+          <label>
+            Website
+            <input type="text" name="website" tabIndex={-1} autoComplete="off" defaultValue="" />
+          </label>
         </div>
 
         {/* Turnstile widget */}
