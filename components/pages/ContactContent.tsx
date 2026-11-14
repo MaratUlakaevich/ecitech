@@ -16,7 +16,7 @@ const T = {
     h1b: "costing you",
     h1c: " the most.",
     lead:
-      "Pick a time for a thirty-minute call, or write a few lines below. Either way you hear back within one business day. If we’re not the right fit, we’ll say so and point you to someone who is.",
+      "Pick a time for a thirty-minute call, or write a few lines below. Either way you hear back within 15 minutes. If we’re not the right fit, we’ll say so and point you to someone who is.",
     bookH: "Book a 30-minute intro call.",
     bookP:
       "No deck, no pitch. We talk through the problem and decide together whether the next step is a five-day audit or a polite goodbye.",
@@ -31,7 +31,7 @@ const T = {
     studioV: "Riyadh, Saudi Arabia",
     nextH: "What happens next",
     next: [
-      "A reply within one business day.",
+      "A reply within 15 minutes.",
       "A thirty-minute call scoped to your problem.",
       "A written scope and fixed fee within a week.",
     ],
@@ -42,11 +42,11 @@ const T = {
     h1b: "обходится вам",
     h1c: " дороже всего.",
     lead:
-      "Напишите в Telegram или на почту — пары строк о задаче достаточно. Ответим в течение одного рабочего дня и при необходимости договоримся о тридцатиминутном звонке. Если мы вам не подходим — скажем честно и посоветуем, к кому обратиться.",
+      "Напишите в Telegram или на почту — пары строк о задаче достаточно. Ответим в течение 15 минут и при необходимости договоримся о тридцатиминутном звонке. Если мы вам не подходим — скажем честно и посоветуем, к кому обратиться.",
     bookH: "Напишите нам напрямую.",
     bookP:
       "Без презентаций и продаж. Обсуждаем задачу и вместе решаем, будет ли следующим шагом пятидневный аудит или вежливое прощание.",
-    tgNote: "Самый быстрый способ. Ответ обычно в тот же день.",
+    tgNote: "Самый быстрый способ. Ответ в течение 15 минут.",
     mailNote: "Удобно, если нужно приложить бриф или ТЗ.",
     pdNote:
       "Для оценки задачи не нужны паспортные и другие личные данные — не присылайте их. Как мы обрабатываем переписку, описано в ",
@@ -58,7 +58,7 @@ const T = {
     studioV: "Эр-Рияд, Саудовская Аравия",
     nextH: "Что дальше",
     next: [
-      "Ответ в течение одного рабочего дня.",
+      "Ответ в течение 15 минут.",
       "Тридцатиминутный звонок по вашей задаче, если он нужен.",
       "Письменное ТЗ и фиксированная цена в течение недели.",
     ],

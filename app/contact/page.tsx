@@ -4,7 +4,7 @@ import ContactContent from "../../components/pages/ContactContent";
 export const metadata: Metadata = {
   title: "Contact ECITech: book an intro call",
   description:
-    "Book a 30-minute intro call or write to the studio. We reply within one business day, scope on the call, and quote within a week.",
+    "Book a 30-minute intro call or write to the studio. We reply within 15 minutes, scope on the call, and quote within a week.",
   keywords: [
     "contact ECITech",
     "begin a project",
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Contact ECITech",
-    description: "Book a 30-minute intro call. We reply within one business day.",
+    description: "Book a 30-minute intro call. We reply within 15 minutes.",
     url: "https://ecitech.online/contact",
     images: [
       {
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "Contact ECITech",
-    description: "Book a 30-minute intro call. Reply within one business day.",
+    description: "Book a 30-minute intro call. Reply within 15 minutes.",
     images: ["/img/og/default.png"],
   },
 };
