@@ -8,21 +8,20 @@
  *      Upstash is not configured.
  *   4. Verify the Cloudflare Turnstile token — skipped in dev when no
  *      TURNSTILE_SECRET_KEY is present.
- *   5. Send email via Resend (retry once on transient failure).
- *   6. Best-effort CRM: createLead() in Notion, sendLeadAlert() to
- *      Telegram. Both non-throwing per Stream B/D contracts — wrapped in
- *      try/catch as defence-in-depth. Their failure does NOT fail the
- *      request.
+ *   5. Deliver to every configured channel: email via Resend (retry once
+ *      on transient failure), a lead in Notion, an alert in Telegram. Each
+ *      channel is optional and non-throwing; the request succeeds when at
+ *      least one of them took the lead.
  *
  * Responses:
- *   200 { ok: true, notionId?, notionUrl? }
+ *   200 { ok: true, delivered, notionId?, notionUrl? }
  *   400 { error: 'invalid-input', issues }          — Zod failure
+ *   400 { error: 'form-parse-error' }                — body is not form data
  *   403 { error: 'turnstile-failed' }                — bot protection
- *   405 { error: 'method-not-allowed' }              — non-POST
+ *   405                                              — non-POST (Next.js)
+ *   413 { error: 'file-too-large' }                  — attachment over 10 MB
  *   429 { error: 'rate-limited', reset }             — too many requests
- *   500 { error: 'form-parse-error' | 'internal' }   — unexpected
- *   502 { error: 'email-send-failed' }               — Resend exhausted retries
- *   503 { error: 'email-not-configured' }            — RESEND_API_KEY missing
+ *   503 { error: 'not-delivered' }                   — no channel took the lead
  */
 
 import { NextResponse } from 'next/server';
@@ -232,19 +231,9 @@ export async function POST(req: Request): Promise<Response> {
     return NextResponse.json({ error: 'turnstile-failed' }, { status: 403 });
   }
 
-  // Resend setup
-  const apiKey = process.env.RESEND_API_KEY;
-  const fromEmail = process.env.RESEND_FROM_EMAIL;
-  const toEmail = process.env.LEAD_NOTIFICATION_EMAIL;
-  const ccEmail = process.env.LEAD_NOTIFICATION_CC;
-
-  if (!apiKey || !fromEmail || !toEmail) {
-    // eslint-disable-next-line no-console
-    console.error(
-      '[sendEmails] RESEND_API_KEY / RESEND_FROM_EMAIL / LEAD_NOTIFICATION_EMAIL missing',
-    );
-    return NextResponse.json({ error: 'email-not-configured' }, { status: 503 });
-  }
+  // Delivery channels: email (Resend), Notion CRM, Telegram alert. Each is
+  // optional; the lead counts as received when at least one channel took it.
+  const delivered: string[] = [];
 
   // Optional file attachment
   const attachments: Attachment[] = [];
@@ -259,33 +248,40 @@ export async function POST(req: Request): Promise<Response> {
     });
   }
 
-  const template = buildEmail(data);
-  const resend = new Resend(apiKey);
+  const apiKey = process.env.RESEND_API_KEY;
+  const fromEmail = process.env.RESEND_FROM_EMAIL;
+  const toEmail = process.env.LEAD_NOTIFICATION_EMAIL;
+  const ccEmail = process.env.LEAD_NOTIFICATION_CC;
 
-  const sendResult = await sendWithRetry(resend, {
-    from: fromEmail,
-    to: [toEmail],
-    cc: ccEmail ? [ccEmail] : undefined,
-    replyTo: data.email,
-    subject: template.subject,
-    html: template.html,
-    text: template.text,
-    attachments: attachments.length
-      ? attachments.map((a) => ({ filename: a.filename, content: a.content }))
-      : undefined,
-  });
-
-  if (!sendResult.ok) {
+  if (apiKey && fromEmail && toEmail) {
+    const template = buildEmail(data);
+    const sendResult = await sendWithRetry(new Resend(apiKey), {
+      from: fromEmail,
+      to: [toEmail],
+      cc: ccEmail ? [ccEmail] : undefined,
+      replyTo: data.email,
+      subject: template.subject,
+      html: template.html,
+      text: template.text,
+      attachments: attachments.length
+        ? attachments.map((a) => ({ filename: a.filename, content: a.content }))
+        : undefined,
+    });
+    if (sendResult.ok) delivered.push('email');
+    else {
+      // eslint-disable-next-line no-console
+      console.error(
+        `[sendEmails] Resend send failed (${sendResult.status}): ${sendResult.message}`,
+      );
+    }
+  } else {
     // eslint-disable-next-line no-console
-    console.error(
-      `[sendEmails] Resend send failed (${sendResult.status}): ${sendResult.message}`,
-    );
-    return NextResponse.json({ error: 'email-send-failed' }, { status: 502 });
+    console.warn('[sendEmails] Resend not configured; skipping email');
   }
 
-  // ----- Best-effort CRM + alerting -----
-  // Both helpers are non-throwing per Stream B/D contracts. Defence-in-depth
-  // try/catch so an unexpected throw never breaks the happy path.
+  // ----- CRM + alerting -----
+  // Both helpers are non-throwing. Defence-in-depth try/catch so an
+  // unexpected throw never breaks the request.
   let notionUrl: string | undefined;
   let notionId: string | undefined;
   try {
@@ -306,6 +302,7 @@ export async function POST(req: Request): Promise<Response> {
     if ('id' in notionResult) {
       notionId = notionResult.id;
       notionUrl = notionResult.url;
+      delivered.push('notion');
     } else {
       // eslint-disable-next-line no-console
       console.warn('[sendEmails] Notion createLead error:', notionResult.error);
@@ -328,7 +325,8 @@ export async function POST(req: Request): Promise<Response> {
       source: 'website-form',
       notionUrl,
     });
-    if (!alertResult.ok) {
+    if (alertResult.ok) delivered.push('telegram');
+    else {
       // eslint-disable-next-line no-console
       console.warn('[sendEmails] Telegram alert error:', alertResult.error);
     }
@@ -340,5 +338,11 @@ export async function POST(req: Request): Promise<Response> {
     );
   }
 
-  return NextResponse.json({ ok: true, notionId, notionUrl });
+  if (delivered.length === 0) {
+    // eslint-disable-next-line no-console
+    console.error('[sendEmails] lead not delivered to any channel');
+    return NextResponse.json({ error: 'not-delivered' }, { status: 503 });
+  }
+
+  return NextResponse.json({ ok: true, delivered, notionId, notionUrl });
 }
