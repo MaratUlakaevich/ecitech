@@ -49,7 +49,8 @@ const PULSES = [
 ];
 
 const HeroWorkflowBg: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
-  const nodes = locale === "ar" ? NODES_AR : NODES;
+  const rtl = locale === "ar";
+  const nodes = rtl ? NODES_AR : NODES;
   const ref = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
@@ -72,6 +73,7 @@ const HeroWorkflowBg: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
     <svg
       ref={ref}
       className="hero-workflow"
+      direction="ltr"
       viewBox="0 0 520 760"
       preserveAspectRatio="xMidYMid meet"
       aria-hidden="true"
@@ -103,11 +105,19 @@ const HeroWorkflowBg: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
             className={n.primary ? "wf-node wf-node-primary" : "wf-node"}
           >
             <rect width="150" height="68" rx="6" className="wf-rect" />
-            <rect width="5" height="68" className="wf-accent" />
-            <text x="20" y="28" className={n.primary ? "wf-title wf-title-primary" : "wf-title"}>
+            {/* RTL: accent bar on the right edge, labels anchored to it */}
+            <rect x={rtl ? 145 : 0} width="5" height="68" className="wf-accent" />
+            <text
+              x={rtl ? 130 : 20}
+              y="28"
+              textAnchor={rtl ? "end" : "start"}
+              className={n.primary ? "wf-title wf-title-primary" : "wf-title"}
+            >
               {n.title}
             </text>
-            <text x="20" y="50" className="wf-sub">{n.sub}</text>
+            <text x={rtl ? 130 : 20} y="50" textAnchor={rtl ? "end" : "start"} className="wf-sub">
+              {n.sub}
+            </text>
           </g>
         ))}
       </g>

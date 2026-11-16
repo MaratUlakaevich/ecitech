@@ -393,6 +393,15 @@ html[lang="ar"] .dropcap::first-letter {
 }
 @keyframes wf-node-fade { to { opacity: 0.16; } }
 
+/* RTL: the diagram moves to the left column (the text column is on the right). */
+[dir="rtl"] .hero-workflow { left: 0; right: 60%; }
+/* Letter-spacing breaks Arabic joins; Arabic labels use the Arabic sans. */
+html[lang="ar"] .hero-workflow .wf-title {
+  font-family: var(--font-plex-arabic), var(--font-plex-mono), sans-serif;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
 /* Accent left bars — hot orange */
 .hero-workflow .wf-accent {
   fill: var(--copper);
