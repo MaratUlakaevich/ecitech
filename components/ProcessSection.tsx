@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import type { Locale } from "@/lib/i18n";
-import { typo, typoString as ty } from "@/lib/typo";
 
 /**
  * Process — Section 04.
@@ -43,36 +42,36 @@ const STEPS_EN: Step[] = [
   },
 ];
 
-const STEPS_RU: Step[] = [
+const STEPS_AR: Step[] = [
   {
-    number: "I",
-    title: "Бриф",
+    number: "1",
+    title: "التعريف",
     body:
-      "Звонок на 30 минут. Разбираемся, что на самом деле не работает и нужен ли здесь ИИ. Если не нужен — так и скажем.",
+      "مكالمة مدتها 30 دقيقة. نكتشف ما الذي لا يعمل فعلًا، وهل الذكاء الاصطناعي هو الأداة المناسبة. وإن لم يكن كذلك، نقولها بصراحة.",
   },
   {
-    number: "II",
-    title: "Спринт",
+    number: "2",
+    title: "التنفيذ",
     body:
-      "Фиксированный объём, фиксированная цена, демо каждую неделю. Марат делает всё сам или с одним специалистом из сети, если проекту это нужно.",
+      "نطاق ثابت، وسعر ثابت، وعرض أسبوعي لما أُنجز. يبني مارات المشروع بنفسه، أو مع متخصص واحد من شبكتنا عندما يحتاج المشروع ذلك.",
   },
   {
-    number: "III",
-    title: "Запуск",
+    number: "3",
+    title: "الإطلاق",
     body:
-      "Деплой на Vercel, передача доступов, обучение команды, которая будет жить с системой после нас.",
+      "نطلق النظام على Vercel، ونسلّمكم كل الصلاحيات، وندرّب الفريق الذي سيعمل عليه بعد انتهاء المشروع.",
   },
   {
-    number: "IV",
-    title: "Поддержка",
+    number: "4",
+    title: "التشغيل",
     body:
-      "По желанию. Небольшой ежемесячный абонемент для тех, кто не хочет думать о хостинге, правках и выходе следующей ИИ-модели.",
+      "اختياري. اشتراك شهري بسيط لمن يفضّل ألّا ينشغل بالاستضافة والتعديلات وإصدار نموذج الذكاء الاصطناعي القادم.",
   },
 ];
 
 const ProcessSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
-  const ru = locale === "ru";
-  const STEPS = ru ? typo(STEPS_RU) : STEPS_EN;
+  const ar = locale === "ar";
+  const STEPS = ar ? STEPS_AR : STEPS_EN;
   return (
     <section
       id="process"
@@ -81,12 +80,12 @@ const ProcessSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
       <div className="max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-20 lg:py-32">
         <div className="grid lg:grid-cols-[1fr_600px] gap-8 lg:gap-14 mb-14 lg:mb-20 items-end">
           <h2 className="display text-[40px] sm:text-[60px] lg:text-[80px] text-ink-900 leading-[0.95]">
-            {ru ? "Четыре шага." : "Four steps."}<br />
-            {ru ? ty("Всегда в одном порядке.") : "Same order every time."}
+            {ar ? "أربع خطوات." : "Four steps."}<br />
+            {ar ? "بالترتيب نفسه في كل مرة." : "Same order every time."}
           </h2>
           <p className="text-[17px] lg:text-[18px] leading-[1.65] text-ink-700 max-w-reading">
-            {ru
-              ? ty("Без долгих воркшопов и презентаций. Каждый проект проходит одни и те же четыре шага в одном порядке. Меняется только объём работы внутри каждого.")
+            {ar
+              ? "بلا ورش عمل مطوّلة ولا عروض تقديمية. كل مشروع يمر بالخطوات الأربع نفسها وبالترتيب نفسه، ولا يتغير إلا حجم العمل داخل كل خطوة."
               : "No discovery workshops, no pitch decks. Every engagement follows the same four steps in the same order. Only the scope inside each one changes."}
           </p>
         </div>
@@ -112,10 +111,10 @@ const ProcessSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
               {/* Arrow connector — between items, hidden on last */}
               {i < STEPS.length - 1 && (
                 <span
-                  className="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 z-10 text-ink-500"
+                  className="hidden lg:block absolute top-1/2 -end-3 -translate-y-1/2 z-10 text-ink-500"
                   aria-hidden="true"
                 >
-                  <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+                  <svg width="14" height="10" viewBox="0 0 14 10" fill="none" className="rtl:-scale-x-100">
                     <path
                       d="M0 5h12M9 1l4 4-4 4"
                       stroke="currentColor"
@@ -134,9 +133,9 @@ const ProcessSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
         <figure className="mt-20 lg:mt-24 max-w-[1040px]">
           <blockquote>
             <p className="display text-[28px] sm:text-[36px] lg:text-[44px] leading-[1.12] text-ink-900">
-              {ru ? (
+              {ar ? (
                 <>
-                  Мы не <span className="display-italic text-copper-500">&laquo;внедряем ИИ&raquo;</span> в ваш бизнес. {ty("Мы снимаем с команды рутину, которая съедает её неделю.")}
+                  نحن لا <span className="display-italic text-copper-500">«نضيف الذكاء الاصطناعي»</span> إلى أعمالكم. نحن نرفع عن فريقكم الأعمال المتكررة التي تستهلك أسبوعه.
                 </>
               ) : (
                 <>
@@ -147,13 +146,13 @@ const ProcessSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
           </blockquote>
           <div className="brass-rule mt-10 mb-6 max-w-md"></div>
           <p className="text-[16px] leading-[1.7] text-ink-700 max-w-reading">
-            {ru
-              ? ty("Инструменты сегодня доступны всем. Умение выбрать — нет: какие тридцать процентов бизнеса автоматизировать, а какие семьдесят оставить как есть.")
+            {ar
+              ? "الأدوات اليوم متاحة للجميع، أما حسن الاختيار فليس كذلك: أيّ ثلاثين بالمئة من العمل تستحق الأتمتة، وأيّ سبعين بالمئة يجب أن تبقى كما هي."
               : "The tools are a commodity now. The judgement is not: which thirty per cent of a business to automate, and which seventy per cent to leave alone."}
           </p>
           <figcaption className="mt-6 flex items-center gap-3 text-[14px] text-ink-500">
             <span className="w-4 h-px bg-ink-400" aria-hidden="true"></span>
-            <span>{ru ? "Марат Улакаев, основатель" : "Marat Ulakaev, founder"}</span>
+            <span>{ar ? "مارات أولاكاييف، المؤسس" : "Marat Ulakaev, founder"}</span>
           </figcaption>
         </figure>
       </div>

@@ -25,7 +25,6 @@ export default function LegalDoc({
   intro?: Block;
   sections: Section[];
 }) {
-  const ru = locale === "ru";
   return (
     <>
       <MastheadHeader locale={locale} />
@@ -35,7 +34,7 @@ export default function LegalDoc({
           {title}
         </h1>
         <p className="text-[14px] text-ink-500 mb-10">
-          {ru ? "Редакция от " : "Effective "}
+          Effective 
           {updated}
         </p>
 
@@ -56,8 +55,8 @@ export default function LegalDoc({
             ))}
           </div>
 
-          <nav aria-label={ru ? "Содержание" : "Contents"} className="hidden lg:block sticky top-8">
-            <div className="mono-eyebrow mb-4">{ru ? "Содержание" : "Contents"}</div>
+          <nav aria-label="Contents" className="hidden lg:block sticky top-8">
+            <div className="mono-eyebrow mb-4">Contents</div>
             <ol className="space-y-2 text-[14px] text-ink-500">
               {sections.map((s, i) => (
                 <li key={s.id}>

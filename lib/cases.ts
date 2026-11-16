@@ -1,5 +1,3 @@
-import { typo } from "./typo";
-
 /**
  * Portfolio cases — single source for the home "Selected work" grid
  * (featured only) and the /portfolio page (all). Work by the founder
@@ -12,8 +10,8 @@ export type Case = {
   emphasis?: string;
   story: string;
   stack: string;
-  /** Russian copy for the /ru site. */
-  ru: { niche: string; story: string; stack?: string };
+  /** Arabic copy for the /ar site. */
+  ar: { niche: string; story: string; stack?: string };
   href: string;
   plate: keyof typeof PLATES;
   /** First-screen capture of the live site in /public/img/work (1440x1080). */
@@ -37,7 +35,7 @@ export const PLATES = {
   "plate-ink":    "linear-gradient(180deg, #DEE3EA 0%, #6F8399 42%, #13202F 100%)",
 } as const;
 
-export const CASES: Case[] = ([
+export const CASES: Case[] = [
   {
     niche: "Floral boutique, Dubai",
     brand: "Pompon",
@@ -45,10 +43,10 @@ export const CASES: Case[] = ([
     story:
       "Online flower shop for a Dubai boutique. English, Arabic and Russian catalog, sizes per bouquet, Stripe checkout and an order desk for the team.",
     stack: "Next.js, Supabase, Stripe",
-    ru: {
-      niche: "Цветочный бутик, Дубай",
+    ar: {
+      niche: "متجر زهور، دبي",
       story:
-        "Интернет-магазин цветочного бутика в Дубае. Каталог на английском, арабском и русском, размеры букетов, оплата через Stripe и панель заказов для команды.",
+        "متجر إلكتروني لمتجر زهور في دبي. كتالوج بالإنجليزية والعربية والروسية، ومقاسات لكل باقة، ودفع عبر Stripe، ولوحة طلبات للفريق.",
     },
     href: "https://www.pompon.ae/",
     shot: "/img/work/pompon.jpg",
@@ -62,10 +60,10 @@ export const CASES: Case[] = ([
     story:
       "E-commerce for a Dubai perfume house: body creams and home oud. Film-led hero, EN/AR/RU with full RTL, Stripe or cash on delivery, an admin for the owner.",
     stack: "Next.js, Supabase, Stripe",
-    ru: {
-      niche: "Парфюмерный дом, Дубай",
+    ar: {
+      niche: "دار عطور، دبي",
       story:
-        "Интернет-магазин парфюмерного дома из Дубая: кремы для тела и уд для дома. Видео в первом экране, на английском, арабском и русском с письмом справа налево, оплата через Stripe или курьеру, админка для владелицы.",
+        "متجر إلكتروني لدار عطور في دبي: كريمات للجسم وعود للمنزل. فيديو في الواجهة، بالإنجليزية والعربية والروسية مع دعم كامل للكتابة من اليمين إلى اليسار، ودفع عبر Stripe أو عند الاستلام، ولوحة إدارة للمالكة.",
     },
     href: "https://bait-al-choki.vercel.app/",
     shot: "/img/work/bait-al-choki.jpg",
@@ -79,10 +77,10 @@ export const CASES: Case[] = ([
     story:
       "ERP for service companies: tasks, time tracking, invoicing and CRM in one database, so every task knows its client, its hours and its cost.",
     stack: "Next.js, NestJS, Postgres",
-    ru: {
-      niche: "Облачная ERP-система",
+    ar: {
+      niche: "نظام ERP سحابي",
       story:
-        "ERP для сервисных компаний: задачи, учёт времени, счета и CRM в одной базе. Каждая задача знает своего клиента, свои часы и свою стоимость.",
+        "نظام ERP لشركات الخدمات: المهام وتتبع الوقت والفواتير وإدارة العملاء في قاعدة بيانات واحدة، فتعرف كل مهمة عميلها وساعاتها وتكلفتها.",
     },
     href: "https://business.relate-verse.tech/",
     plate: "plate-ink",
@@ -94,10 +92,10 @@ export const CASES: Case[] = ([
     story:
       "Editorial portfolio for a plastic surgeon. Restrained typography, monochrome photography, trust before motion.",
     stack: "Next.js, Vercel",
-    ru: {
-      niche: "Медицинская практика",
+    ar: {
+      niche: "عيادة طبية",
       story:
-        "Сайт-портфолио пластического хирурга. Сдержанная типографика, монохромная съёмка, сначала доверие, потом анимация.",
+        "موقع أعمال لجرّاحة تجميل. طباعة هادئة، وتصوير أحادي اللون، والثقة قبل الحركة.",
     },
     href: "https://aida-isaeva.vercel.app/",
     shot: "/img/work/aida-isaeva.jpg",
@@ -110,10 +108,10 @@ export const CASES: Case[] = ([
     story:
       "Bilingual EN + AR landing for a Saudi contracting firm. Featured project gallery and a services taxonomy written for enterprise buyers.",
     stack: "Next.js, Vercel, EN/AR",
-    ru: {
-      niche: "Строительство, КСА",
+    ar: {
+      niche: "مقاولات، السعودية",
       story:
-        "Двуязычный лендинг (EN + AR) для саудовской подрядной компании. Галерея ключевых объектов и структура услуг, написанная для корпоративных заказчиков.",
+        "صفحة هبوط ثنائية اللغة (الإنجليزية والعربية) لشركة مقاولات سعودية. معرض لأبرز المشاريع، وتصنيف للخدمات مكتوب لعملاء الشركات الكبرى.",
     },
     href: "https://www.tawabekalistithmar.com/",
     shot: "/img/work/tawabek.jpg",
@@ -126,10 +124,10 @@ export const CASES: Case[] = ([
     story:
       "A museum, restaurant and master-class venue in one. Long-form bread-and-history hero, three halls, a single ticket flow.",
     stack: "Next.js, Vercel",
-    ru: {
-      niche: "Культурное пространство",
+    ar: {
+      niche: "مساحة ثقافية",
       story:
-        "Музей, ресторан и мастер-классы под одной крышей. Длинный первый экран об истории хлеба, три зала, единый путь покупки билета.",
+        "متحف ومطعم وورش عمل تحت سقف واحد. واجهة طويلة عن تاريخ الخبز، وثلاث قاعات، ومسار واحد لشراء التذاكر.",
     },
     href: "https://zerno-sigma.vercel.app/",
     shot: "/img/work/zerno.jpg",
@@ -142,10 +140,10 @@ export const CASES: Case[] = ([
     story:
       "Sales landing for beachfront residences on Al Marjan Island, Ras Al Khaimah. Unit types with starting prices, the payment plan, and every enquiry routed to WhatsApp or a price request.",
     stack: "Next.js, Vercel",
-    ru: {
-      niche: "Недвижимость, ОАЭ",
+    ar: {
+      niche: "عقارات، الإمارات",
       story:
-        "Продающий лендинг жилого комплекса у моря на острове Аль-Марджан в Рас-эль-Хайме. Типы квартир со стартовыми ценами, план рассрочки и заявки в WhatsApp или через запрос цен.",
+        "صفحة مبيعات لمشروع سكني على الشاطئ في جزيرة المرجان برأس الخيمة. أنواع الوحدات بأسعار تبدأ من، وخطة الدفع، وكل استفسار يصل إلى واتساب أو كطلب سعر.",
     },
     href: "https://www.solevaresidence.com/",
     shot: "/img/work/soleva.jpg",
@@ -157,10 +155,10 @@ export const CASES: Case[] = ([
     story:
       "Arabic-first site for a Riyadh performance-marketing agency, with an English version. Services, method and results, a live growth calculator, and leads straight into WhatsApp.",
     stack: "Next.js, AR/EN",
-    ru: {
-      niche: "Маркетинговое агентство, КСА",
+    ar: {
+      niche: "وكالة تسويق، السعودية",
       story:
-        "Сайт эр-риядского агентства интернет-маркетинга: сначала на арабском, с английской версией. Услуги, методика, результаты, интерактивный калькулятор роста и заявки сразу в WhatsApp.",
+        "موقع عربي أولًا لوكالة تسويق أداء في الرياض، مع نسخة إنجليزية. الخدمات والمنهجية والنتائج، وحاسبة نمو تفاعلية، والطلبات تصل مباشرة إلى واتساب.",
     },
     href: "https://www.ogpdigital.com/",
     shot: "/img/work/ogp-digital.jpg",
@@ -173,11 +171,11 @@ export const CASES: Case[] = ([
     story:
       "Personal brand for an international DJ. Booking form, set archive with waveform players, press kit.",
     stack: "Next.js, Vercel, custom domain",
-    ru: {
-      niche: "Портфолио диджея",
+    ar: {
+      niche: "موقع منسّق موسيقي",
       story:
-        "Личный бренд международного диджея. Форма букинга, архив сетов с плеерами-волнами, пресс-кит.",
-      stack: "Next.js, Vercel, свой домен",
+        "هوية شخصية لمنسّق موسيقي عالمي. نموذج حجز، وأرشيف للعروض مع مشغّلات موجية، وملف صحفي.",
+      stack: "Next.js, Vercel, نطاق خاص",
     },
     href: "https://www.tallamie.com/",
     shot: "/img/work/tallamie.jpg",
@@ -190,10 +188,10 @@ export const CASES: Case[] = ([
     story:
       "Productized logo design: brief, AI generation, designer polish, delivery in 48 hours. Prices shown up front at the entry tier.",
     stack: "Next.js, Vercel",
-    ru: {
-      niche: "Дизайн-сервис",
+    ar: {
+      niche: "خدمة تصميم",
       story:
-        "Логотип как продукт: бриф, генерация с ИИ, доводка дизайнером, готово за 48 часов. Цены видны сразу, уже на входном тарифе.",
+        "تصميم الشعار كمنتج: موجز، وتوليد بالذكاء الاصطناعي، وتحسين على يد مصمم، والتسليم خلال 48 ساعة. الأسعار ظاهرة من البداية.",
     },
     href: "https://logo48.vercel.app/",
     shot: "/img/work/logo48.jpg",
@@ -205,10 +203,10 @@ export const CASES: Case[] = ([
     story:
       "Multi-page corporate site for a strategy advisory firm. Service taxonomy, leadership grid, gated case studies.",
     stack: "Next.js, Vercel",
-    ru: {
-      niche: "Стратегический консалтинг",
+    ar: {
+      niche: "استشارات استراتيجية",
       story:
-        "Многостраничный корпоративный сайт консалтинговой компании. Структура услуг, команда партнёров, кейсы по запросу.",
+        "موقع مؤسسي متعدد الصفحات لشركة استشارات استراتيجية. تصنيف للخدمات، وفريق الشركاء، ودراسات حالة عند الطلب.",
     },
     href: "https://gbs-beta.vercel.app/",
     shot: "/img/work/gbs.jpg",
@@ -221,14 +219,14 @@ export const CASES: Case[] = ([
     story:
       "Manufacturer site with a bilingual catalog, distributor portal, and contact routing into national sales.",
     stack: "Next.js, Vercel, custom domain",
-    ru: {
-      niche: "Производитель напитков",
+    ar: {
+      niche: "مصنع مشروبات",
       story:
-        "Сайт производителя с двуязычным каталогом, кабинетом дистрибьютора и маршрутизацией заявок в федеральные продажи.",
-      stack: "Next.js, Vercel, свой домен",
+        "موقع لمصنع مع كتالوج ثنائي اللغة، وبوابة للموزعين، وتوجيه الطلبات إلى فريق المبيعات الوطني.",
+      stack: "Next.js, Vercel, نطاق خاص",
     },
     href: "https://era-zavod.ru/",
     shot: "/img/work/era.jpg",
     plate: "plate-moss",
   },
-] as Case[]).map((c) => ({ ...c, ru: typo(c.ru) }));
+];

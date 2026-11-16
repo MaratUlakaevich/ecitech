@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { fontVariables } from "./fonts";
 import { headers } from "next/headers";
-import { localeFromPath } from "@/lib/i18n";
+import { dirOf, localeFromPath } from "@/lib/i18n";
 import "./globals.css";
 import SiteScripts from "@/components/SiteScripts";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -54,6 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang={lang}
+      dir={dirOf(lang)}
       style={fontVariables}
     >
       <head>
@@ -70,9 +71,9 @@ export default function RootLayout({
       <body className="overscroll-none min-h-screen antialiased">
         {children}
         <Toaster />
-        {/* Analytics load only after consent; RU pages get Yandex Metrica, never Google/Vercel. */}
-        <SiteScripts ymId={process.env.NEXT_PUBLIC_YM_ID} />
-        {lang === "en" && <SpeedInsights />}
+        {/* Analytics (GTM: GA4 + Google Ads) load only after consent. */}
+        <SiteScripts />
+        <SpeedInsights />
       </body>
     </html>
   );

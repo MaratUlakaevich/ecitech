@@ -30,14 +30,14 @@ const NODES = [
   { x: 360, y: 560, title: "MS TEAMS", sub: "sales handoff" },
 ];
 
-/** Russian labels (168-FZ: visitor-facing text in Russian; product names stay as names). */
-const NODES_RU = [
-  { x: 60, y: 120, title: "ЗАЯВКИ", sub: "whatsapp, telegram" },
-  { x: 310, y: 120, title: "ПЛОЩАДКИ", sub: "лиды с порталов" },
-  { x: 185, y: 340, title: "ИИ-АГЕНТ", sub: "claude, инструменты", primary: true },
-  { x: 10, y: 560, title: "КАЛЕНДАРЬ", sub: "запись на встречу" },
-  { x: 185, y: 560, title: "CRM", sub: "карточка клиента" },
-  { x: 360, y: 560, title: "КОМАНДА", sub: "передача продажам" },
+/** Arabic labels; product names stay as names. */
+const NODES_AR = [
+  { x: 60, y: 120, title: "واتساب", sub: "استقبال الطلبات" },
+  { x: 310, y: 120, title: "البوابات", sub: "bayut · pf" },
+  { x: 185, y: 340, title: "وكيل ذكي", sub: "claude · أدوات", primary: true },
+  { x: 10, y: 560, title: "التقويم", sub: "cal.com" },
+  { x: 185, y: 560, title: "HUBSPOT", sub: "سجل العميل" },
+  { x: 360, y: 560, title: "MS TEAMS", sub: "تسليم للمبيعات" },
 ];
 
 const PULSES = [
@@ -49,7 +49,7 @@ const PULSES = [
 ];
 
 const HeroWorkflowBg: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
-  const nodes = locale === "ru" ? NODES_RU : NODES;
+  const nodes = locale === "ar" ? NODES_AR : NODES;
   const ref = useRef<SVGSVGElement>(null);
 
   useEffect(() => {

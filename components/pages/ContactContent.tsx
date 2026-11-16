@@ -6,7 +6,6 @@ import MeetingBookedTracker from "../MeetingBookedTracker";
 import BreadcrumbsLd from "../seo/BreadcrumbsLd";
 import { contactEmail } from "@/lib/legal";
 import { href, type Locale } from "@/lib/i18n";
-import { typo } from "@/lib/typo";
 import { TELEGRAM } from "@/lib/site";
 
 const T = {
@@ -20,10 +19,6 @@ const T = {
     bookH: "Book a 30-minute intro call.",
     bookP:
       "No deck, no pitch. We talk through the problem and decide together whether the next step is a five-day audit or a polite goodbye.",
-    tgNote: "",
-    mailNote: "",
-    pdNote: "",
-    pdLink: "",
     writeH: "Or write us a few lines.",
     direct: "Direct",
     email: "Email",
@@ -36,36 +31,29 @@ const T = {
       "A written scope and fixed fee within a week.",
     ],
   },
-  ru: {
-    crumbs: ["Главная", "Контакты"],
-    h1a: "Расскажите, что",
-    h1b: "обходится вам",
-    h1c: " дороже всего.",
+  ar: {
+    crumbs: ["الرئيسية", "تواصل معنا"],
+    h1a: "أخبرونا ما الذي",
+    h1b: "يكلّفكم",
+    h1c: " أكثر من غيره.",
     lead:
-      "Напишите в Telegram или на почту — пары строк о задаче достаточно. Ответим в течение 15 минут и при необходимости договоримся о тридцатиминутном звонке. Если мы вам не подходим — скажем честно и посоветуем, к кому обратиться.",
-    bookH: "Напишите нам напрямую.",
+      "اختاروا موعدًا لمكالمة مدتها ثلاثون دقيقة، أو اكتبوا بضعة أسطر أدناه. في الحالتين ستصلكم إجابتنا خلال 15 دقيقة. وإن لم نكن الخيار المناسب، سنقول ذلك ونرشدكم إلى من يناسبكم.",
+    bookH: "احجزوا مكالمة تعريفية مدتها 30 دقيقة.",
     bookP:
-      "Без презентаций и продаж. Обсуждаем задачу и вместе решаем, будет ли следующим шагом пятидневный аудит или вежливое прощание.",
-    tgNote: "Самый быстрый способ. Ответ в течение 15 минут.",
-    mailNote: "Удобно, если нужно приложить бриф или ТЗ.",
-    pdNote:
-      "Для оценки задачи не нужны паспортные и другие личные данные — не присылайте их. Как мы обрабатываем переписку, описано в ",
-    pdLink: "Политике обработки персональных данных",
-    writeH: "Или напишите нам пару строк.",
-    direct: "Напрямую",
-    email: "Почта",
-    studio: "Студия",
-    studioV: "Эр-Рияд, Саудовская Аравия",
-    nextH: "Что дальше",
+      "بلا عروض تقديمية ولا محاولات بيع. نناقش المشكلة ونقرر معًا هل الخطوة التالية تقييم لمدة خمسة أيام أم وداع لطيف.",
+    writeH: "أو اكتبوا لنا بضعة أسطر.",
+    direct: "تواصل مباشر",
+    email: "البريد الإلكتروني",
+    studio: "الاستوديو",
+    studioV: "الرياض، المملكة العربية السعودية",
+    nextH: "ماذا يحدث بعد ذلك",
     next: [
-      "Ответ в течение 15 минут.",
-      "Тридцатиминутный звонок по вашей задаче, если он нужен.",
-      "Письменное ТЗ и фиксированная цена в течение недели.",
+      "رد خلال 15 دقيقة.",
+      "مكالمة مدتها ثلاثون دقيقة حول مشكلتكم تحديدًا.",
+      "نطاق مكتوب وسعر ثابت خلال أسبوع.",
     ],
   },
 };
-
-T.ru = typo(T.ru);
 
 export default function ContactContent({ locale }: { locale: Locale }) {
   const t = T[locale];
@@ -77,7 +65,7 @@ export default function ContactContent({ locale }: { locale: Locale }) {
           { name: t.crumbs[1], url: href(locale, "/contact") },
         ]}
       />
-      {locale === "en" && <MeetingBookedTracker />}
+      <MeetingBookedTracker />
 
       <MastheadHeader locale={locale} />
 
@@ -102,67 +90,13 @@ export default function ContactContent({ locale }: { locale: Locale }) {
               </h2>
               <p className="text-[16px] leading-[1.65] text-ink-700 max-w-reading">{t.bookP}</p>
             </div>
-            {locale === "ru" ? (
-              <>
-                <ul className="grid md:grid-cols-2 gap-6 lg:gap-8">
-                  <li>
-                    <a
-                      href={TELEGRAM.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group block hairline border bg-paper-50 p-7 lg:p-10 hover:bg-paper-100 transition-colors"
-                    >
-                      <div className="mono-eyebrow mb-3">Telegram</div>
-                      <div className="display text-[32px] lg:text-[44px] text-ink-900 leading-[1.05] group-hover:text-copper-ink transition-colors">
-                        {TELEGRAM.handle}
-                      </div>
-                      <p className="mt-4 text-[15px] text-ink-700">{t.tgNote}</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={`mailto:${contactEmail(locale)}`}
-                      className="group block hairline border bg-paper-50 p-7 lg:p-10 hover:bg-paper-100 transition-colors"
-                    >
-                      <div className="mono-eyebrow mb-3">{t.email}</div>
-                      <div className="display text-[28px] sm:text-[32px] lg:text-[44px] text-ink-900 leading-[1.05] break-all group-hover:text-copper-ink transition-colors">
-                        {contactEmail(locale)}
-                      </div>
-                      <p className="mt-4 text-[15px] text-ink-700">{t.mailNote}</p>
-                    </a>
-                  </li>
-                </ul>
-                <div className="mt-12 grid lg:grid-cols-[1fr_600px] gap-10 lg:gap-12 items-start">
-                  <div>
-                    <h3 className="display text-[22px] text-ink-900 leading-[1.1] mb-4">{t.nextH}</h3>
-                    <ol className="space-y-3 text-[15px] text-ink-700 leading-[1.55]">
-                      {t.next.map((line, i) => (
-                        <li key={line} className="flex gap-4">
-                          <span className="numeral text-[22px] text-copper-ink w-5 shrink-0">{i + 1}</span>
-                          {line}
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-                  <p className="text-[14px] leading-[1.6] text-ink-500 max-w-reading">
-                    {t.pdNote}
-                    <a href="/ru/privacy-policy" className="text-ink-700 underline underline-offset-4 hover:text-ink-900">
-                      {t.pdLink}
-                    </a>
-                    .
-                  </p>
-                </div>
-              </>
-            ) : (
-              <div className="hairline border bg-paper-50 p-2 sm:p-6 lg:p-10">
-                <CalcomEmbed locale={locale} />
-              </div>
-            )}
+            <div className="hairline border bg-paper-50 p-2 sm:p-6 lg:p-10">
+              <CalcomEmbed locale={locale} />
+            </div>
           </div>
         </section>
 
-        {/* Two columns — form + direct contact (EN only: /ru collects no data through the site) */}
-        {locale === "en" && (
+        {/* Two columns — form + direct contact */}
         <section className="hairline-top bg-paper-soft">
           <div className="max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-14 lg:py-20 grid lg:grid-cols-[1fr_400px] gap-14 lg:gap-20 items-start">
             <div>
@@ -172,7 +106,7 @@ export default function ContactContent({ locale }: { locale: Locale }) {
               <ContactForm locale={locale} />
             </div>
 
-            <aside className="lg:pl-10 lg:border-l hairline-strong">
+            <aside className="lg:ps-10 lg:border-s hairline-strong">
               <h2 className="display text-[24px] text-ink-900 leading-[1.1] mb-6">{t.direct}</h2>
               <ul className="space-y-6 text-[15px] text-ink-700">
                 <li>
@@ -215,7 +149,6 @@ export default function ContactContent({ locale }: { locale: Locale }) {
             </aside>
           </div>
         </section>
-        )}
       </main>
 
       <EditorialFooter locale={locale} />

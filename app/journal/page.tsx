@@ -78,7 +78,7 @@ export default function JournalPage() {
         {categories.length > 0 && (
           <section className="hairline-top hairline-bottom bg-paper-soft">
             <div className="max-w-[1480px] mx-auto px-5 sm:px-8 lg:px-14 py-6 flex flex-wrap items-center gap-3">
-              <span className="mono-eyebrow mr-2">Topics</span>
+              <span className="mono-eyebrow me-2">Topics</span>
               {categories.map((c) => (
                 <span
                   key={c}
@@ -113,10 +113,10 @@ export default function JournalPage() {
                       </p>
                       <div className="mt-8 inline-flex items-center gap-3 text-[14px] text-ink-900 group-hover:text-copper-ink transition-colors">
                         <span className="smallcaps">Read the essay</span>
-                        <span className="w-14 h-px bg-current origin-left scale-x-[0.57] transition-transform duration-200 ease-out group-hover:scale-x-100"></span>
+                        <span className="w-14 h-px bg-current origin-left rtl:origin-right scale-x-[0.57] transition-transform duration-200 ease-out group-hover:scale-x-100"></span>
                       </div>
                     </div>
-                    <aside className="lg:pl-10 lg:border-l hairline-strong space-y-5">
+                    <aside className="lg:ps-10 lg:border-s hairline-strong space-y-5">
                       <div>
                         <div className="mono-eyebrow mb-1">Category</div>
                         <div className="text-[15px] text-ink-900">

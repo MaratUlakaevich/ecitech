@@ -2,7 +2,6 @@ import type { FC } from "react";
 import Image from "next/image";
 import { PLATES, type Case } from "@/lib/cases";
 import type { Locale } from "@/lib/i18n";
-import { typo } from "@/lib/typo";
 
 /**
  * One portfolio case as a typographic plate + story + stack. Shared by
@@ -10,17 +9,15 @@ import { typo } from "@/lib/typo";
  */
 const T = {
   en: { opens: ". Opens the live site in a new tab.", self: "You are here", live: "View live" },
-  ru: { opens: ". Откроется в новой вкладке.", self: "Вы здесь", live: "Открыть сайт" },
+  ar: { opens: ". يفتح الموقع في علامة تبويب جديدة.", self: "أنت هنا", live: "زيارة الموقع" },
 };
-
-T.ru = typo(T.ru);
 
 const CaseCard: FC<{ c: Case; locale?: Locale }> = ({ c, locale = "en" }) => {
   const isSelf = c.href.startsWith("https://ecitech.online");
   const t = T[locale];
-  const niche = locale === "ru" ? c.ru.niche : c.niche;
-  const story = locale === "ru" ? c.ru.story : c.story;
-  const stack = locale === "ru" ? c.ru.stack ?? c.stack : c.stack;
+  const niche = locale === "ar" ? c.ar.niche : c.niche;
+  const story = locale === "ar" ? c.ar.story : c.story;
+  const stack = locale === "ar" ? c.ar.stack ?? c.stack : c.stack;
   return (
     <a
       href={c.href}
@@ -52,13 +49,13 @@ const CaseCard: FC<{ c: Case; locale?: Locale }> = ({ c, locale = "en" }) => {
           </>
         )}
         <div
-          className={`absolute top-5 left-5 mono-eyebrow ${
+          className={`absolute top-5 start-5 mono-eyebrow ${
             c.shot ? "bg-paper-50/90 text-ink-900 px-2 py-1" : "text-ink-900/75"
           }`}
         >
           {niche}
         </div>
-        <div className="absolute bottom-6 left-6 right-6">
+        <div className="absolute bottom-6 inset-x-6">
           <div className="display text-[42px] sm:text-[48px] lg:text-[54px] text-paper-50 leading-[1.02] pb-1">
             {c.emphasis ? (
               <>

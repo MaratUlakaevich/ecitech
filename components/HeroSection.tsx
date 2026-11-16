@@ -3,7 +3,6 @@ import Link from "next/link";
 import HeroWorkflowBg from "./HeroWorkflowBg";
 import { book } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
-import { typoString as ty } from "@/lib/typo";
 
 /**
  * Hero section — home page, directly under the shared MastheadHeader.
@@ -24,16 +23,16 @@ const HeroSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
       <div className="hero-content relative max-w-hero" style={{ zIndex: 1 }}>
         <h1
           className={`display ${
-            locale === "ru"
-              ? "text-[clamp(2.25rem,6.2vw,5.25rem)]"
+            locale === "ar"
+              ? "text-[clamp(2.25rem,6vw,5rem)]"
               : "text-[clamp(2.75rem,8.6vw,7rem)]"
           } text-ink-900 mb-10 lg:mb-12 text-balance`}
         >
-          {locale === "ru" ? (
+          {locale === "ar" ? (
             <>
-              Сайты, процессы<br />
-              и <span className="display-italic text-copper-500">{ty("ИИ-агенты")}</span>,<br />
-              {ty("которые их ведут.")}
+              مواقع وأتمتة،<br />
+              و<span className="display-italic text-copper-500">وكلاء ذكاء اصطناعي</span><br />
+              يديرونها.
             </>
           ) : (
             <>
@@ -45,8 +44,8 @@ const HeroSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
         </h1>
 
         <p className="reveal reveal-1 max-w-[34rem] text-[19px] lg:text-[21px] leading-[1.55] text-ink-700 mb-10">
-          {locale === "ru"
-            ? ty("Для компаний среднего бизнеса, которые выросли из шаблонов и ручной рутины. Делают инженеры с опытом в BCG Gamma, Juniper, Cisco и Google.")
+          {locale === "ar"
+            ? "مواقع إلكترونية وأتمتة لسير العمل ووكلاء ذكاء اصطناعي للشركات المتوسطة. ينفّذها مهندسون عملوا مع BCG Gamma وJuniper وCisco وGoogle."
             : "Websites, workflow automation, and AI agents for mid-market teams. Built by engineers who shipped for BCG Gamma, Juniper, Cisco, and Google."}
         </p>
 
@@ -56,7 +55,7 @@ const HeroSection: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
             <span className="arrow" aria-hidden="true"></span>
           </Link>
           <Link href="#work" className="link-editorial">
-            {locale === "ru" ? "Смотреть работы" : "See the work"}
+            {locale === "ar" ? "شاهد أعمالنا" : "See the work"}
           </Link>
         </div>
       </div>

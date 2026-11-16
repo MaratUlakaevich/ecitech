@@ -22,7 +22,6 @@ import {
 import { pushEvent } from "@/lib/analytics/gtm";
 import { CONTACT_EMAIL } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
-import { typo } from "@/lib/typo";
 
 const STR = {
   en: {
@@ -53,53 +52,51 @@ const STR = {
     // English messages come from the Zod schema itself.
     fieldErrors: {} as Partial<Record<string, string>>,
   },
-  ru: {
-    fullName: "Имя и фамилия",
-    email: "Рабочая почта",
-    message: "О проекте",
-    messagePh: "Что сейчас работает медленно, вручную или не работает вовсе?",
-    showDetails: "Добавить компанию, телефон, отрасль (необязательно)",
-    hideDetails: "Скрыть данные компании",
-    company: "Компания",
-    phone: "Телефон, WhatsApp или Telegram",
-    industry: "Отрасль",
-    selectIndustry: "Выберите отрасль",
+  ar: {
+    fullName: "الاسم الكامل",
+    email: "البريد الإلكتروني للعمل",
+    message: "عن المشروع",
+    messagePh: "ما الذي يسير ببطء، أو يُنجز يدويًا، أو ينقصكم اليوم؟",
+    showDetails: "إضافة الشركة والهاتف والقطاع (اختياري)",
+    hideDetails: "إخفاء بيانات الشركة",
+    company: "الشركة",
+    phone: "الهاتف أو واتساب",
+    industry: "القطاع",
+    selectIndustry: "اختر القطاع",
     industries: {
-      fintech: "Финтех",
-      medtech: "Медицина",
-      edtech: "Образование",
-      hospitality: "Гостеприимство",
-      enterprise: "Корпоративный сектор",
-      other: "Другое",
+      fintech: "التقنية المالية",
+      medtech: "الرعاية الصحية",
+      edtech: "التعليم",
+      hospitality: "الضيافة",
+      enterprise: "الشركات الكبرى",
+      other: "أخرى",
     } as Record<string, string>,
-    showNda: "Запросить NDA или приложить бриф",
-    hideNda: "Скрыть NDA и вложение",
-    attach: "Приложить бриф",
-    nda: "Сначала пришлите ваш NDA",
-    acceptA: "Я согласен на обработку данных из этой формы для ответа на мой запрос в соответствии с",
-    consentErr: "Отметьте согласие или напишите нам на почту.",
-    privacy: "Политику конфиденциальности",
-    sending: "Отправляем\u2026",
-    send: "Отправить",
-    sent: "Сообщение отправлено. Ответим в течение 15 минут.",
-    oneInvalid: "Одно поле нужно исправить.",
-    manyInvalid: (n: number) => `Нужно исправить полей: ${n}.`,
-    failed: `Сообщение не отправилось. Попробуйте ещё раз или напишите напрямую на ${CONTACT_EMAIL}.`,
+    showNda: "طلب اتفاقية عدم إفصاح أو إرفاق موجز",
+    hideNda: "إخفاء الاتفاقية والمرفق",
+    attach: "إرفاق موجز",
+    nda: "أرسلوا لي اتفاقية عدم الإفصاح أولًا",
+    acceptA: "أوافق على أن تعالج ECITech البيانات الواردة في هذا النموذج للرد على طلبي، وفقًا لما هو موضح في",
+    consentErr: "ضع علامة في المربع للموافقة، أو راسلنا عبر البريد الإلكتروني بدلًا من ذلك.",
+    privacy: "سياسة الخصوصية (بالإنجليزية)",
+    sending: "جارٍ الإرسال\u2026",
+    send: "إرسال الرسالة",
+    sent: "تم إرسال رسالتك. نرد خلال 15 دقيقة.",
+    oneInvalid: "حقل واحد يحتاج إلى تصحيح.",
+    manyInvalid: (n: number) => `عدد الحقول التي تحتاج إلى تصحيح: ${n}.`,
+    failed: `لم تصل رسالتك. حاول مرة أخرى، أو راسلنا مباشرة على ${CONTACT_EMAIL}.`,
     fieldErrors: {
-      fullName: "Укажите имя (от 2 до 120 символов).",
-      email: "Укажите почту в формате name@company.com.",
-      company: "Название компании — не длиннее 120 символов.",
-      phone: "Телефон — не длиннее 40 символов.",
-      message: "Добавьте пару предложений о проекте (от 10 до 5000 символов).",
-      industry: "Выберите отрасль из списка.",
-      turnstileToken: "Пройдите проверку безопасности над кнопкой.",
+      fullName: "أدخل اسمك (من 2 إلى 120 حرفًا).",
+      email: "أدخل بريدًا إلكترونيًا بصيغة name@company.com.",
+      company: "اسم الشركة يجب ألا يتجاوز 120 حرفًا.",
+      phone: "رقم الهاتف يجب ألا يتجاوز 40 حرفًا.",
+      message: "أضف جملتين عن المشروع (من 10 إلى 5000 حرف).",
+      industry: "اختر القطاع من القائمة.",
+      turnstileToken: "أكمل التحقق الأمني فوق الزر.",
     } as Partial<Record<string, string>>,
   },
 };
 
 const FORM_ID = "contact";
-
-STR.ru = typo(STR.ru);
 
 type FieldKey =
   | "fullName"
@@ -142,7 +139,7 @@ const inputClass =
   "aria-[invalid=true]:border-[#B42318] aria-[invalid=true]:shadow-[0_1px_0_0_#B42318] transition-[border-color,box-shadow] duration-150";
 const errorClass = "mt-2 text-[13.5px] leading-[1.45] text-[#B42318]";
 const toggleClass =
-  "inline-flex items-center min-h-11 text-left text-[14.5px] text-ink-700 underline decoration-dotted underline-offset-4 hover:text-ink-900 transition-colors";
+  "inline-flex items-center min-h-11 text-start text-[14.5px] text-ink-700 underline decoration-dotted underline-offset-4 hover:text-ink-900 transition-colors";
 
 const ContactForm: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   const S = STR[locale];
@@ -402,6 +399,7 @@ const ContactForm: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
             </label>
             <input
               type="email"
+              dir="ltr"
               name="email"
               id="email"
               autoComplete="email"
@@ -478,6 +476,7 @@ const ContactForm: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
                 </label>
                 <input
                   type="tel"
+                  dir="ltr"
                   name="phone"
                   id="phone"
                   autoComplete="tel"
@@ -631,7 +630,7 @@ const ContactForm: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
               <span>
                 {S.acceptA}{" "}
                 <a
-                  href={locale === "ru" ? "/ru/privacy-policy" : "/privacy-policy"}
+                  href="/privacy-policy"
                   className="text-ink-900 underline underline-offset-4 hover:text-copper-ink"
                 >
                   {S.privacy}

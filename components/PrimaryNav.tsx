@@ -14,18 +14,18 @@ const LINKS = {
     { href: "/journal", label: "Journal" },
     { href: "/about", label: "Studio" },
   ],
-  ru: [
-    { href: "/portfolio", label: "Работы" },
-    { href: "/services", label: "Услуги" },
-    { href: "/industries", label: "Отрасли" },
-    { href: "/journal", label: "Журнал" },
-    { href: "/about", label: "Студия" },
+  ar: [
+    { href: "/portfolio", label: "أعمالنا" },
+    { href: "/services", label: "الخدمات" },
+    { href: "/industries", label: "القطاعات" },
+    { href: "/journal", label: "المدونة" },
+    { href: "/about", label: "الاستوديو" },
   ],
 };
 
 const MENU = {
   en: { open: "Menu", close: "Close", aria: "Primary" },
-  ru: { open: "Меню", close: "Закрыть", aria: "Основная навигация" },
+  ar: { open: "القائمة", close: "إغلاق", aria: "التنقل الرئيسي" },
 };
 
 const isActive = (pathname: string, href: string) =>
@@ -88,13 +88,13 @@ const PrimaryNav: FC = () => {
           className="hidden md:inline-flex items-center gap-3 min-h-11 text-[14.5px] text-ink-900 group"
         >
           <span>{b.label}</span>
-          <span className="w-12 h-px bg-ink-900 origin-left scale-x-[0.66] transition-[transform,background-color] duration-200 ease-out group-hover:scale-x-100 group-hover:bg-copper-ink"></span>
+          <span className="w-12 h-px bg-ink-900 origin-left rtl:origin-right scale-x-[0.66] transition-[transform,background-color] duration-200 ease-out group-hover:scale-x-100 group-hover:bg-copper-ink"></span>
         </Link>
 
         <button
           ref={buttonRef}
           type="button"
-          className="lg:hidden inline-flex items-center gap-3 min-h-11 px-3 -mr-3 text-[14.5px] text-ink-900"
+          className="lg:hidden inline-flex items-center gap-3 min-h-11 px-3 -me-3 text-[14.5px] text-ink-900"
           aria-expanded={open}
           aria-controls="mobile-nav"
           onClick={() => setOpen((v) => !v)}

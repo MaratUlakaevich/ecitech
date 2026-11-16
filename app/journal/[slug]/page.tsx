@@ -84,13 +84,13 @@ const mdxComponents = {
   ),
   ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
     <ul
-      className="list-disc pl-6 mb-8 space-y-2 text-[17.5px] leading-[1.7] text-ink-800 marker:text-copper-500"
+      className="list-disc ps-6 mb-8 space-y-2 text-[17.5px] leading-[1.7] text-ink-800 marker:text-copper-500"
       {...props}
     />
   ),
   ol: (props: React.HTMLAttributes<HTMLOListElement>) => (
     <ol
-      className="list-decimal pl-6 mb-8 space-y-2 text-[17.5px] leading-[1.7] text-ink-800 marker:text-copper-500"
+      className="list-decimal ps-6 mb-8 space-y-2 text-[17.5px] leading-[1.7] text-ink-800 marker:text-copper-500"
       {...props}
     />
   ),
@@ -101,7 +101,7 @@ const mdxComponents = {
   em: (props: React.HTMLAttributes<HTMLElement>) => <em className="italic" {...props} />,
   blockquote: (props: React.HTMLAttributes<HTMLElement>) => (
     <blockquote
-      className="border-l-2 border-copper-500 pl-6 my-8 italic text-ink-700 text-[18px] leading-[1.7]"
+      className="border-s-2 border-copper-500 ps-6 my-8 italic text-ink-700 text-[18px] leading-[1.7]"
       {...props}
     />
   ),

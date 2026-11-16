@@ -2,8 +2,7 @@ import type { FC } from "react";
 import Link from "next/link";
 import { book } from "@/lib/site";
 import { href, type Locale } from "@/lib/i18n";
-import { typo } from "@/lib/typo";
-import { contactEmail, RU_OPERATOR } from "@/lib/legal";
+import { contactEmail } from "@/lib/legal";
 import CookieSettingsButton from "./CookieSettingsButton";
 
 /**
@@ -45,40 +44,37 @@ const COPY = {
     cookieSettings: "Cookie settings",
     terms: "Terms",
   },
-  ru: {
+  ar: {
     practice: [
-      { href: "/services#audit", label: "Аудит готовности к ИИ" },
-      { href: "/services#sites", label: "Сайты" },
-      { href: "/services#automation", label: "Автоматизация" },
-      { href: "/services#integration", label: "Интеграция" },
-      { href: "/services/apps", label: "Приложения" },
+      { href: "/services#audit", label: "تقييم الجاهزية للذكاء الاصطناعي" },
+      { href: "/services#sites", label: "المواقع الإلكترونية" },
+      { href: "/services#automation", label: "الأتمتة" },
+      { href: "/services#integration", label: "التكامل" },
+      { href: "/services/apps", label: "تطبيقات الويب والجوال" },
     ],
     studio: [
-      { href: "/portfolio", label: "Работы" },
-      { href: "/industries", label: "Отрасли" },
-      { href: "/about", label: "О студии" },
-      { href: "/journal", label: "Журнал (EN)" },
+      { href: "/portfolio", label: "أعمالنا" },
+      { href: "/industries", label: "القطاعات" },
+      { href: "/about", label: "عن الاستوديو" },
+      { href: "/journal", label: "المدونة (بالإنجليزية)" },
     ],
     blurb:
-      "Независимая цифровая студия для компаний среднего бизнеса. Базируемся в Эр-Рияде, работаем с клиентами в России, странах Залива и не только.",
-    practiceH: "Услуги",
-    studioH: "Студия",
-    contactH: "Контакты",
-    copy: "\u00a9 2026 ECITech. Эр-Рияд, Саудовская Аравия.",
-    privacy: "Персональные данные",
-    privacyHref: "/ru/privacy-policy",
-    cookies: "Cookies",
-    cookiesHref: "/ru/cookies-policy",
-    cookieSettings: "Настройки cookies",
-    terms: "Условия",
+      "استوديو رقمي مستقل للشركات المتوسطة. مقرّنا الرياض، ونعمل مع عملاء في منطقة الخليج وخارجها.",
+    practiceH: "الخدمات",
+    studioH: "الاستوديو",
+    contactH: "تواصل معنا",
+    copy: "\u00a9 2026 ECITech. الرياض، المملكة العربية السعودية.",
+    privacy: "الخصوصية",
+    privacyHref: "/privacy-policy",
+    cookies: "ملفات تعريف الارتباط",
+    cookiesHref: "/cookies-policy",
+    cookieSettings: "إعدادات ملفات تعريف الارتباط",
+    terms: "الشروط",
   },
 };
 
-COPY.ru = typo(COPY.ru);
-
 const EditorialFooter: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   const t = COPY[locale];
-  const hasMetrica = Boolean(process.env.NEXT_PUBLIC_YM_ID);
   const b = book(locale);
   return (
     <footer className="relative z-10 bg-paper-soft hairline-top">
@@ -144,15 +140,6 @@ const EditorialFooter: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
         <div className="hairline-top pt-4 flex flex-col lg:flex-row items-start justify-between gap-2 lg:gap-10 text-[13.5px] text-ink-500">
           <div className="py-2 space-y-1">
             <p>{t.copy}</p>
-            {locale === "ru" && (
-              <p className="flex flex-wrap gap-x-2">
-                <span className="whitespace-nowrap">ИП {RU_OPERATOR.name}</span>
-                <span aria-hidden="true" className="text-ink-300">·</span>
-                <span className="whitespace-nowrap">ИНН {RU_OPERATOR.inn}</span>
-                <span aria-hidden="true" className="text-ink-300">·</span>
-                <span className="whitespace-nowrap">ОГРНИП {RU_OPERATOR.ogrnip}</span>
-              </p>
-            )}
           </div>
           <ul className="flex flex-wrap items-center gap-x-6 lg:shrink-0 lg:justify-end">
             <li>
@@ -165,18 +152,14 @@ const EditorialFooter: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
                 {t.cookies}
               </Link>
             </li>
-            {(locale === "en" || hasMetrica) && (
-              <li>
-                <CookieSettingsButton label={t.cookieSettings} className={linkClass} />
-              </li>
-            )}
-            {locale === "en" && (
-              <li>
-                <Link href="/terms" className={linkClass}>
-                  {t.terms}
-                </Link>
-              </li>
-            )}
+            <li>
+              <CookieSettingsButton label={t.cookieSettings} className={linkClass} />
+            </li>
+            <li>
+              <Link href="/terms" className={linkClass}>
+                {t.terms}
+              </Link>
+            </li>
             <li>
               <a
                 href="https://www.linkedin.com/company/ecitech-sa/"

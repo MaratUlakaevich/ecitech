@@ -3,6 +3,7 @@
 
 import type { MetadataRoute } from "next";
 import { getAllArticles } from "@/lib/journal/articles";
+import { href, LOCALIZED_PATHS } from "@/lib/i18n";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://ecitech.online";
@@ -22,6 +23,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
 
+  // Arabic twins of the translated marketing pages.
+  const arabicPages: MetadataRoute.Sitemap = LOCALIZED_PATHS.map((p) => ({
+    url: `${baseUrl}${href("ar", p)}`,
+    lastModified: now,
+    changeFrequency: "monthly" as const,
+    priority: p === "/" ? 0.9 : 0.7,
+  }));
+
   const articleUrls: MetadataRoute.Sitemap = getAllArticles().map((a) => ({
     url: `${baseUrl}/journal/${a.slug}`,
     lastModified: new Date(a.frontmatter.updated ?? a.frontmatter.date),
@@ -29,5 +38,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...articleUrls];
+  return [...staticPages, ...arabicPages, ...articleUrls];
 }

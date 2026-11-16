@@ -29,21 +29,21 @@ export default function CalcomEmbed({
   title,
   locale = "en",
 }: CalcomEmbedProps) {
-  const ru = locale === "ru";
-  const frameTitle = title ?? (ru ? "Запись на 30-минутный звонок" : "Book a 30-minute intro call");
+  const ar = locale === "ar";
+  const frameTitle = title ?? (ar ? "احجز مكالمة تعريفية مدتها 30 دقيقة" : "Book a 30-minute intro call");
   const url = resolveCalUrl(link);
   const src = `${url}${url.includes("?") ? "&" : "?"}embed=true`;
 
   const fallback = (
     <p className="mb-4 text-[14px] text-ink-500">
-      {ru ? "Календарь не загружается?" : "Calendar not loading?"}{" "}
+      {ar ? "لا يظهر التقويم؟" : "Calendar not loading?"}{" "}
       <a
         href={url}
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex items-center min-h-11 text-ink-900 underline underline-offset-4 decoration-[var(--rule-strong)] hover:text-copper-ink"
       >
-        {ru ? "Откройте в новой вкладке" : "Open it in a new tab"}
+        {ar ? "افتحه في علامة تبويب جديدة" : "Open it in a new tab"}
       </a>
     </p>
   );
@@ -57,7 +57,7 @@ export default function CalcomEmbed({
           aria-hidden="true"
           className="absolute inset-x-0 top-16 text-center text-[15px] text-ink-500"
         >
-          {ru ? "Загружаем календарь\u2026" : "Loading the calendar\u2026"}
+          {ar ? "جارٍ تحميل التقويم\u2026" : "Loading the calendar\u2026"}
         </p>
         <iframe
           src={src}

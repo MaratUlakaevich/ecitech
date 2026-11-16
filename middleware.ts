@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 /**
  * Forward the request path to server components so the root layout can
- * set <html lang> (en / ru) and LanguageAlternates can emit hreflang.
+ * set <html lang> (en / ar) and dir and LanguageAlternates can emit hreflang.
  */
 export function middleware(request: NextRequest) {
   const headers = new Headers(request.headers);

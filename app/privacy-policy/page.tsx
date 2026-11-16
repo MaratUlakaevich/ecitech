@@ -18,7 +18,7 @@ const SECTIONS: Section[] = [
         ? `The controller of your personal data on ecitech.online is ${SA_OPERATOR.legalName}, Commercial Registration No. ${SA_OPERATOR.cr}, ${SA_OPERATOR.address} ("ECITech", "we").`
         : `The controller of your personal data on ecitech.online is ECITech, a company registered in ${SA_OPERATOR.address} ("ECITech", "we").`,
       `Questions and requests about your data: ${SA_OPERATOR.email}.`,
-      "This policy covers the English pages of the site. The Russian site (ru.ecitech.online) has its own policy and a different operator, under Russian law.",
+      "This policy covers the English and Arabic pages of the site. The Russian site (ru.ecitech.online) has its own policy and a different operator, under Russian law.",
     ],
   },
   {

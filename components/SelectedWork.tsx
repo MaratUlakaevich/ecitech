@@ -2,7 +2,6 @@ import type { FC } from "react";
 import CaseCard from "./CaseCard";
 import { CASES } from "@/lib/cases";
 import type { Locale } from "@/lib/i18n";
-import { typo } from "@/lib/typo";
 
 /**
  * Selected Work — Section 02.
@@ -27,20 +26,18 @@ const T = {
     bridgeC: " is the systems that run behind it.",
     more: "See the three layers",
   },
-  ru: {
-    h2a: "Шесть свежих проектов.",
-    h2b: "Шесть разных",
-    h2c: " рынков.",
+  ar: {
+    h2a: "ستة مشاريع حديثة.",
+    h2b: "ستة أسواق",
+    h2c: " مختلفة.",
     lead:
-      "Наша команда сделала их для цветочного бутика, парфюмерного дома, программного продукта для бизнеса, пластического хирурга, строительной компании в Саудовской Аравии и культурного пространства.",
-    bridgeA: "Каждый начинался с сайта. ",
-    bridgeB: "Следующий слой",
-    bridgeC: " — системы, на которых этот сайт работает.",
-    more: "Посмотреть три слоя",
+      "نفّذها فريقنا لمتجر زهور، ودار عطور، ومنتج برمجي للشركات، وجرّاح تجميل، وشركة مقاولات في السعودية، ومساحة ثقافية.",
+    bridgeA: "كل واحد منها بدأ بموقع. ",
+    bridgeB: "الطبقة التالية",
+    bridgeC: " هي الأنظمة التي تعمل خلفه.",
+    more: "اطّلع على الطبقات الثلاث",
   },
 };
-
-T.ru = typo(T.ru);
 
 const SelectedWork: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   const t = T[locale];

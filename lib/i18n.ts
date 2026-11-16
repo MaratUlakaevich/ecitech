@@ -1,14 +1,20 @@
 /**
- * Minimal two-locale setup. English lives at the root, Russian under /ru.
- * The marketing pages and the privacy/cookies documents are translated
- * (the RU documents name a different operator); the journal and the terms
- * stay English-only and are linked as-is from the Russian site.
+ * Two locales on ecitech.online: English at the root, Arabic under /ar
+ * (right-to-left). The marketing pages are translated; the journal and the
+ * legal documents stay English and are linked as-is from the Arabic site.
+ * The Russian site is a separate project at RU_SITE_URL.
  */
-export type Locale = "en" | "ru";
+export type Locale = "en" | "ar";
 
-export const LOCALES: Locale[] = ["en", "ru"];
+export const LOCALES: Locale[] = ["en", "ar"];
 
-/** Paths that have a Russian twin under /ru. */
+/** The Russian site lives on its own subdomain since 2026-11-16. */
+export const RU_SITE_URL = "https://ru.ecitech.online";
+
+/** Writing direction per locale. */
+export const dirOf = (locale: Locale): "ltr" | "rtl" => (locale === "ar" ? "rtl" : "ltr");
+
+/** Paths that have an Arabic twin under /ar. */
 export const LOCALIZED_PATHS = [
   "/",
   "/portfolio",
@@ -17,22 +23,23 @@ export const LOCALIZED_PATHS = [
   "/industries",
   "/about",
   "/contact",
-  "/privacy-policy",
-  "/cookies-policy",
 ] as const;
+
+/** Paths the Russian site also has (for the RU link in the language switch). */
+const RU_TWINS = ["/", "/portfolio", "/services", "/services/apps", "/industries", "/about", "/contact"];
 
 const isLocalized = (path: string) =>
   (LOCALIZED_PATHS as readonly string[]).includes(path.split(/[?#]/)[0] || "/");
 
-/** Strip the /ru prefix: "/ru/services" -> "/services", "/ru" -> "/". */
+/** Strip the /ar prefix: "/ar/services" -> "/services", "/ar" -> "/". */
 export function stripLocale(pathname: string): string {
-  if (pathname === "/ru") return "/";
-  if (pathname.startsWith("/ru/")) return pathname.slice(3);
+  if (pathname === "/ar") return "/";
+  if (pathname.startsWith("/ar/")) return pathname.slice(3);
   return pathname;
 }
 
 export function localeFromPath(pathname: string): Locale {
-  return pathname === "/ru" || pathname.startsWith("/ru/") ? "ru" : "en";
+  return pathname === "/ar" || pathname.startsWith("/ar/") ? "ar" : "en";
 }
 
 /**
@@ -43,19 +50,19 @@ export function href(locale: Locale, path: string): string {
   if (locale === "en" || !path.startsWith("/")) return path;
   const [base, hash] = path.split("#");
   if (!isLocalized(base || "/")) return path;
-  const prefixed = base === "/" ? "/ru" : `/ru${base}`;
+  const prefixed = base === "/" ? "/ar" : `/ar${base}`;
   return hash !== undefined ? `${prefixed}#${hash}` : prefixed;
 }
 
-/** The Russian site lives on its own subdomain since 2026-11-16. */
-export const RU_SITE_URL = "https://ru.ecitech.online";
-
-/**
- * The same page in the other locale (falls back to that locale's home).
- * Russian pages are on RU_SITE_URL, so that link is absolute.
- */
+/** The same page in the other locale (falls back to that locale's home). */
 export function alternatePath(pathname: string, target: Locale): string {
-  const base = stripLocale(pathname);
+  const base = stripLocale(pathname.split(/[?#]/)[0] || "/");
   if (target === "en") return base;
-  return isLocalized(base) ? `${RU_SITE_URL}${base === "/" ? "" : base}` : RU_SITE_URL;
+  return isLocalized(base) ? href("ar", base) : "/ar";
+}
+
+/** The same page on the Russian site (falls back to its home). */
+export function ruSitePath(pathname: string): string {
+  const base = stripLocale(pathname.split(/[?#]/)[0] || "/");
+  return RU_TWINS.includes(base) && base !== "/" ? `${RU_SITE_URL}${base}` : RU_SITE_URL;
 }

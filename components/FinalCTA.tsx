@@ -2,7 +2,6 @@ import type { FC } from "react";
 import Link from "next/link";
 import { book } from "@/lib/site";
 import type { Locale } from "@/lib/i18n";
-import { typo } from "@/lib/typo";
 
 /**
  * Section 06 — Begin.
@@ -22,16 +21,16 @@ const STEPS_EN = [
   "No deck, no pitch. Engagements start at $10,000.",
 ];
 
-const STEPS_RU = [
-  "Вы рассказываете, какая часть бизнеса отнимает больше всего времени или денег.",
-  "Мы прямо говорим, подходит ли здесь ИИ или хватит чего-то попроще.",
-  "Если подходит — прямо на звонке определяем рамки пятидневного аудита. Если нет — подскажем, куда обратиться.",
-  "Без презентаций и продаж. Сайты — от 70 000 ₽, автоматизация и ИИ — по объёму задачи.",
+const STEPS_AR = [
+  "تخبروننا بالجزء من العمل الذي يكلّفكم أكثر وقت أو مال.",
+  "نقول لكم بوضوح هل الذكاء الاصطناعي هو الأداة المناسبة، أم أن حلًا أبسط يكفي.",
+  "إن كان مناسبًا، نحدد نطاق تقييم مدته خمسة أيام خلال المكالمة نفسها. وإن لم يكن، نرشدكم إلى الجهة المناسبة.",
+  "بلا عروض تقديمية ولا محاولات بيع. تبدأ المشاريع من 10,000 دولار.",
 ];
 
 const FinalCTA: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
-  const ru = locale === "ru";
-  const STEPS = ru ? typo(STEPS_RU) : STEPS_EN;
+  const ar = locale === "ar";
+  const STEPS = ar ? STEPS_AR : STEPS_EN;
   const b = book(locale);
   return (
     <section
@@ -47,13 +46,13 @@ const FinalCTA: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
               className="display text-[44px] sm:text-[72px] lg:text-[104px] leading-[0.95] mb-12 lg:mb-16"
               style={{ color: "var(--cream)" }}
             >
-              {ru ? "Пять дней." : "Five days."}<br />
-              {ru ? "Один старший инженер." : "One senior engineer."}<br />
+              {ar ? "خمسة أيام." : "Five days."}<br />
+              {ar ? "مهندس خبير واحد." : "One senior engineer."}<br />
               <span
                 className="display-italic"
                 style={{ color: "var(--copper-warm)" }}
               >
-                {ru ? "Реальный план." : "A real plan."}
+                {ar ? "وخطة حقيقية." : "A real plan."}
               </span>
             </h2>
 
@@ -72,7 +71,7 @@ const FinalCTA: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
               className="mono-eyebrow mb-7"
               style={{ color: "rgba(245, 239, 227, 0.72)" }}
             >
-              {ru ? "Что происходит на первом звонке" : "What happens in the first call"}
+              {ar ? "ماذا يحدث في المكالمة الأولى" : "What happens in the first call"}
             </h3>
             <ol className="space-y-5 text-[15px] leading-[1.6]">
               {STEPS.map((step, i) => (

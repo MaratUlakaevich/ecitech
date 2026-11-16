@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 import React from "react";
-import { alternatePath, localeFromPath, LOCALIZED_PATHS, stripLocale } from "@/lib/i18n";
+import { href, LOCALIZED_PATHS, ruSitePath, stripLocale } from "@/lib/i18n";
 
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
@@ -35,14 +35,13 @@ function getPathFromHeaders(): string {
 
 /**
  * Renders hreflang <link rel="alternate"> tags. English locales point at
- * the root URL; pages with a Russian twin also get hreflang="ru".
+ * the root URL; pages with an Arabic twin also get hreflang="ar" and the
+ * Russian site's twin gets hreflang="ru".
  */
 export default function LanguageAlternates({ path }: LanguageAlternatesProps) {
   const resolvedPath = path ?? getPathFromHeaders();
-  const enPath = stripLocale(resolvedPath);
-  const hasRu =
-    localeFromPath(resolvedPath) === "ru" ||
-    (LOCALIZED_PATHS as readonly string[]).includes(enPath);
+  const enPath = stripLocale(resolvedPath.split(/[?#]/)[0] || "/");
+  const localized = (LOCALIZED_PATHS as readonly string[]).includes(enPath);
   const abs = (p: string) => `${SITE_URL}${p === "/" ? "" : p}` || SITE_URL;
   const enHref = abs(enPath);
 
@@ -51,8 +50,11 @@ export default function LanguageAlternates({ path }: LanguageAlternatesProps) {
       {LOCALES.map((loc) => (
         <link key={loc} rel="alternate" hrefLang={loc} href={enHref} />
       ))}
-      {hasRu && (
-        <link rel="alternate" hrefLang="ru" href={alternatePath(enPath, "ru")} />
+      {localized && (
+        <>
+          <link rel="alternate" hrefLang="ar" href={abs(href("ar", enPath))} />
+          <link rel="alternate" hrefLang="ru" href={ruSitePath(enPath)} />
+        </>
       )}
       <link rel="alternate" hrefLang="x-default" href={enHref} />
     </>

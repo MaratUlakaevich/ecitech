@@ -12,7 +12,7 @@ export const TELEGRAM = { handle: "@maratulakaev", href: "https://t.me/maratulak
 
 const BOOK = {
   en: { href: BOOK_HREF, label: BOOK_LABEL },
-  ru: { href: "/ru/contact#book", label: "Обсудить проект" },
+  ar: { href: "/ar/contact#book", label: "احجز مكالمة تعريفية" },
 } as const;
 
 export const book = (locale: Locale) => BOOK[locale];

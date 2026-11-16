@@ -4,7 +4,6 @@ import { book } from "@/lib/site";
 import { contactEmail } from "@/lib/legal";
 import type { Locale } from "@/lib/i18n";
 import { CASES } from "@/lib/cases";
-import { typo } from "@/lib/typo";
 
 /**
  * Studio — Section 05.
@@ -36,27 +35,25 @@ const COPY = {
     markets: "Markets",
     marketsV: "Saudi Arabia, UAE, the wider Gulf",
   },
-  ru: {
+  ar: {
     stats: [
-      { value: "10", suffix: "лет", label: "В разработке и ИИ-инженерии" },
-      { value: String(LIVE), suffix: "", label: "Проектов в продакшене" },
-      { value: "3", suffix: "", label: "Языка, на которых запускаем: русский, английский, арабский (с письмом справа налево)" },
+      { value: "10", suffix: "سنوات", label: "في هندسة البرمجيات والذكاء الاصطناعي" },
+      { value: String(LIVE), suffix: "", label: "مشاريع تعمل فعليًا" },
+      { value: "3", suffix: "", label: "لغات نطلق بها: العربية (مع دعم الكتابة من اليمين إلى اليسار)، والإنجليزية، والروسية" },
     ],
-    h2a: "Основана в 2024.",
-    h2b: "Намеренно небольшая.",
-    p1: "ECITech — независимая цифровая студия из Эр-Рияда. Её основал Марат Улакаев, инженер с десятилетним опытом в разработке и ИИ. До студии Марат строил системы для BCG\u2009Gamma, Juniper Networks, Cisco и Google.",
-    p2a: "Мы работаем как ",
-    p2b: "студия из одного человека плюс сеть",
-    p2c: ". Каждый проект ведёт основатель, а проверенные специалисты (дизайн, тексты, инфраструктура) подключаются, когда этого требует задача. Без аккаунт-менеджеров и отдела продаж.",
-    p3: "Мы берём не каждый проект. Выбираем те, где путь ясен: от сайта — к системам, которые его обслуживают, — к агентам, которые помогают расти.",
-    studio: "Студия",
-    studioV: "Эр-Рияд, Саудовская Аравия",
-    markets: "Рынки",
-    marketsV: "Россия, Саудовская Аравия, ОАЭ и страны Залива",
+    h2a: "تأسس عام 2024.",
+    h2b: "صغير عن قصد.",
+    p1: "ECITech استوديو رقمي مستقل مقره الرياض، أسسه مارات أولاكاييف، مهندس يمتلك عقدًا من الخبرة في البرمجيات والذكاء الاصطناعي. قبل تأسيس الاستوديو، بنى مارات أنظمة لـ BCG\u2009Gamma وJuniper Networks وCisco وGoogle.",
+    p2a: "نعمل بصيغة ",
+    p2b: "استوديو من شخص واحد مع شبكة من المتخصصين",
+    p2c: ". يقود المؤسس كل مشروع بنفسه، وينضم إليه متخصصون موثوقون (التصميم، والمحتوى، والبنية التحتية) عندما يتطلب النطاق ذلك. لا مديري حسابات ولا فرق مبيعات.",
+    p3: "لا نقبل كل مشروع. نختار الأعمال التي يكون فيها المسار واضحًا: من الموقع، إلى الأنظمة التي تديره، إلى الوكلاء الذين يوسّعونه.",
+    studio: "الاستوديو",
+    studioV: "الرياض، المملكة العربية السعودية",
+    markets: "الأسواق",
+    marketsV: "السعودية، والإمارات، ودول الخليج",
   },
 };
-
-COPY.ru = typo(COPY.ru);
 
 const StudioAbout: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
   const t = COPY[locale];
@@ -91,7 +88,7 @@ const StudioAbout: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
         </div>
 
         {/* Right — stats + meta column */}
-        <aside className="lg:pl-10 lg:border-l hairline-strong lg:border-l-[var(--rule-strong)]">
+        <aside className="lg:ps-10 lg:border-s hairline-strong lg:border-s-[var(--rule-strong)]">
           <dl className="grid grid-cols-3 gap-x-6 sm:gap-x-8 mb-14">
             {STATS.map((s) => (
               <div key={s.label} className="flex flex-col-reverse justify-end">
@@ -101,7 +98,7 @@ const StudioAbout: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
                 <dd className="numeral text-[48px] sm:text-[64px] text-ink-900">
                   {s.value}
                   {s.suffix && (
-                    <span className="text-[20px] sm:text-[24px] align-top ml-1">{s.suffix}</span>
+                    <span className="text-[20px] sm:text-[24px] align-top ms-1">{s.suffix}</span>
                   )}
                 </dd>
               </div>
@@ -119,7 +116,7 @@ const StudioAbout: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
               <dd className="text-[15px] text-ink-800">{t.marketsV}</dd>
             </div>
             <div className="sm:col-span-2">
-              <dt className="mono-eyebrow mb-2">{locale === "ru" ? "Почта" : "Email"}</dt>
+              <dt className="mono-eyebrow mb-2">{locale === "ar" ? "البريد الإلكتروني" : "Email"}</dt>
               <dd>
                 <a
                   href={`mailto:${contactEmail(locale)}`}
