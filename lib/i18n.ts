@@ -47,9 +47,15 @@ export function href(locale: Locale, path: string): string {
   return hash !== undefined ? `${prefixed}#${hash}` : prefixed;
 }
 
-/** The same page in the other locale (falls back to that locale's home). */
+/** The Russian site lives on its own subdomain since 2026-11-16. */
+export const RU_SITE_URL = "https://ru.ecitech.online";
+
+/**
+ * The same page in the other locale (falls back to that locale's home).
+ * Russian pages are on RU_SITE_URL, so that link is absolute.
+ */
 export function alternatePath(pathname: string, target: Locale): string {
   const base = stripLocale(pathname);
   if (target === "en") return base;
-  return isLocalized(base) ? href("ru", base) : "/ru";
+  return isLocalized(base) ? `${RU_SITE_URL}${base === "/" ? "" : base}` : RU_SITE_URL;
 }

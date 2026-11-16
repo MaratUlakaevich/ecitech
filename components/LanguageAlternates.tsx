@@ -52,7 +52,7 @@ export default function LanguageAlternates({ path }: LanguageAlternatesProps) {
         <link key={loc} rel="alternate" hrefLang={loc} href={enHref} />
       ))}
       {hasRu && (
-        <link rel="alternate" hrefLang="ru" href={abs(alternatePath(enPath, "ru"))} />
+        <link rel="alternate" hrefLang="ru" href={alternatePath(enPath, "ru")} />
       )}
       <link rel="alternate" hrefLang="x-default" href={enHref} />
     </>

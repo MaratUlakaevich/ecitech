@@ -60,6 +60,9 @@ const nextConfig = {
   // and incoming RSS/email links by 301-redirecting the entire tree.
   async redirects() {
     return [
+      // The Russian site moved to its own subdomain on 2026-11-16.
+      { source: '/ru', destination: 'https://ru.ecitech.online', permanent: true },
+      { source: '/ru/:path*', destination: 'https://ru.ecitech.online/:path*', permanent: true },
       {
         source: '/blog',
         destination: '/journal',

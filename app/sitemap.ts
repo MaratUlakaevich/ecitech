@@ -22,10 +22,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
 
-  const ruPages: MetadataRoute.Sitemap = ["", "/about", "/services", "/services/apps", "/portfolio", "/industries", "/contact", "/privacy-policy", "/cookies-policy"].map(
-    (p) => ({ url: `${baseUrl}/ru${p}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 }),
-  );
-
   const articleUrls: MetadataRoute.Sitemap = getAllArticles().map((a) => ({
     url: `${baseUrl}/journal/${a.slug}`,
     lastModified: new Date(a.frontmatter.updated ?? a.frontmatter.date),
@@ -33,5 +29,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...ruPages, ...articleUrls];
+  return [...staticPages, ...articleUrls];
 }

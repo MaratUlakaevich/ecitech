@@ -179,7 +179,7 @@ const EditorialFooter: FC<{ locale?: Locale }> = ({ locale = "en" }) => {
             )}
             <li>
               <a
-                href="https://www.linkedin.com/company/ecitech"
+                href="https://www.linkedin.com/company/ecitech-sa/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={linkClass}

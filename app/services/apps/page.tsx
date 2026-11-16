@@ -9,7 +9,6 @@ export const metadata: Metadata = {
   description,
   alternates: {
     canonical: "https://ecitech.online/services/apps",
-    languages: { en: "https://ecitech.online/services/apps", ru: "https://ecitech.online/ru/services/apps" },
   },
   openGraph: {
     title: "Web and mobile apps — ECITech",
